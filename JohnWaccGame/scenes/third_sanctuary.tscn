@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dqe8kbia2jd2t"]
+
+[ext_resource type="AudioStream" uid="uid://2ac3rtwphoww" path="res://assets/audio/music/Third_Sanctuary.ogg" id="1_u44yg"]
+
+[node name="ThirdSanctuary" type="AudioStreamPlayer" unique_id=2098121584]
+stream = ExtResource("1_u44yg")
+pitch_scale = 0.95
+autoplay = true
+bus = &"Music"
+parameters/looping = true

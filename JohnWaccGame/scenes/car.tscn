@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://blxo7j5lbqkgk"]
+
+[ext_resource type="Texture2D" uid="uid://i6dqm26in8ru" path="res://assets/sprites/Characters/Car.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/car.gd" id="1_50v30"]
+[ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/killzone.tscn" id="2_md0e3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ra3w"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uy6h"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwavj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md0e3")
+}],
+"loop": true,
+"name": &"CarIdleFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ra3w")
+}],
+"loop": true,
+"name": &"CarIdleSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uy6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4w8v")
+}],
+"loop": true,
+"name": &"CarWalkSide",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50v30"]
+size = Vector2(10, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_50v30"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ra3w"]
+radius = 6.0
+
+[node name="Car" type="CharacterBody2D" unique_id=1027794888]
+script = ExtResource("1_50v30")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
+sprite_frames = SubResource("SpriteFrames_xwavj")
+animation = &"CarWalkSide"
+autoplay = "CarIdleSide"
+frame_progress = 0.91459274
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1995339573]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_50v30")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=326158773]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_50v30")
+
+[node name="Killzone" parent="." unique_id=631934805 instance=ExtResource("2_md0e3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1319252143]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_4ra3w")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=388195486]
+position = Vector2(0, 2)
+target_position = Vector2(-10, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=175754584]
+position = Vector2(0, 2)
+target_position = Vector2(11, 0)
