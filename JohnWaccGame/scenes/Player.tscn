@@ -6,6 +6,22 @@
 [ext_resource type="AudioStream" uid="uid://d0ne8i4gr2svq" path="res://assets/audio/sounds/jump.wav" id="3_mdl7e"]
 [ext_resource type="Texture2D" uid="uid://cabj0ahjsijba" path="res://assets/sprites/VFX/death.png" id="3_qu4a1"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4as6"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1r6t"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0asu"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq1a3"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(112, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1jpwa"]
 atlas = ExtResource("1_p0vlq")
 region = Rect2(112, 0, 16, 16)
@@ -142,6 +158,28 @@ region = Rect2(48, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m4as6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1r6t")
+}],
+"loop": false,
+"name": &"PlayerAttackBack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0asu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq1a3")
+}],
+"loop": false,
+"name": &"PlayerAttackFront",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1jpwa")
 }, {
 "duration": 1.0,
@@ -207,10 +245,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ebwui")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sfy4j")
-}, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_sfy4j")
 }, {
 "duration": 1.0,
@@ -447,10 +482,8 @@ script = ExtResource("1_v6fml")
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_d3wef")
-animation = &"PlayerDeath"
+animation = &"PlayerIdleBack"
 autoplay = "PlayerIdleSide"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049596249]
 position = Vector2(0, -5)
