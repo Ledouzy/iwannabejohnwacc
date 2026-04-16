@@ -486,7 +486,6 @@ animation = &"PlayerAttackBack"
 autoplay = "PlayerIdleSide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049596249]
-visible = false
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_v6fml")
 
@@ -503,6 +502,5 @@ bus = &"SFX"
 libraries/ = SubResource("AnimationLibrary_70d11")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=2033770049]
-visible = false
 position = Vector2(0, -5)
 target_position = Vector2(0, 8)
