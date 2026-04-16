@@ -5,6 +5,7 @@ var direction = -1
 @export var MAX_FALL_VELOCITY = 300
 
 var pickedUpBy
+var startThrow = false
 
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
@@ -23,9 +24,27 @@ func pickedUp(player: CharacterBody2D) -> void:
 	collision_shape_2.disabled = true
 	collision_shape_3.disabled = true
 	pass
+func thrown() -> void:
+	print("car thrown")
+	startThrow = true
+	move_and_slide()
+	await get_tree().create_timer(0.1).timeout
+	killzone_collison.disabled = false
+	animated_sprite.flip_v = false
+	collision_shape_2.disabled = false
+	collision_shape_3.disabled = false
+	pickedUpBy = null
+	startThrow = false
+	await get_tree().create_timer(0.5).timeout
+	velocity.x = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if (direction < 0):
+		animated_sprite.flip_h = false
+	elif (direction > 0):
+		animated_sprite.flip_h = true
+		
 	if pickedUpBy == null:
 		# check for walls and change direction if yes
 		if ray_cast_right.is_colliding():
@@ -45,9 +64,17 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# process gravity
-	if pickedUpBy != null:
+	if startThrow:
+		velocity.x += 500 * delta * direction
+		velocity.y -= 500 * delta
+	elif pickedUpBy != null:
+		var temp = Input.get_axis("left", "right")
+		if temp != 0:
+			direction = temp
+			
 		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-16)
 	elif not is_on_floor():
 		if velocity.y < MAX_FALL_VELOCITY:
 			velocity += get_gravity() * delta * 0.5
+			
 	move_and_slide()

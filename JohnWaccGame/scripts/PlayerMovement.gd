@@ -9,6 +9,9 @@ var speedMult = 1.0
 var jumps = MAX_JUMPS # number of jumps left
 var dir = 1 # direction for camera mostly
 
+# pickup/throw objects
+var pickedUp
+
 # animation flags
 var jumpanim = true # play the animation once
 var deathanim = false
@@ -42,10 +45,17 @@ func get_direction() -> int:
 
 func pickUp() -> void:
 	var object = throw_rayCast.get_collider()
+	if object == null:
+		return
 	if object.has_method("pickedUp"):
 		object.call("pickedUp", self)
-	pass
+		pickedUp = object
 	
+func throw() -> void:
+	if pickedUp == null:
+		return
+	if pickedUp.has_method("thrown"):
+		pickedUp.call("thrown")
 
 func _physics_process(delta: float) -> void:
 	# When die
@@ -88,6 +98,7 @@ func _physics_process(delta: float) -> void:
 		pickupanim = false
 		waitforanimationend = true
 		animated_sprite.play("PlayerThrow")
+		throw()
 		await get_tree().create_timer(0.4).timeout
 		waitforanimationend = false
 	
