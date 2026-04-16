@@ -195,12 +195,21 @@ centered = false
 
 [node name="Player" parent="." unique_id=1264691691 instance=ExtResource("1_uwrxv")]
 position = Vector2(0, 1)
+SPEED = 90
+JUMP_VELOCITY = -180.0
+MAX_FALL_VELOCITY = 300
+MAX_JUMPS = 1
+dead = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=483693143]
+position = Vector2(-16, 0)
+scale = Vector2(1, 0.99999994)
+skew = -1.56907
 process_callback = 0
 limit_bottom = 160
 limit_smoothed = true
 position_smoothing_enabled = true
+drag_horizontal_offset = 1.0
 script = ExtResource("6_ssvqc")
 
 [node name="Level" type="Node2D" parent="." unique_id=1139344455]
