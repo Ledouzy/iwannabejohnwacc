@@ -24,6 +24,7 @@ func pickedUp(player: CharacterBody2D) -> void:
 	collision_shape_2.disabled = true
 	collision_shape_3.disabled = true
 	pass
+	
 func thrown() -> void:
 	print("car thrown")
 	startThrow = true

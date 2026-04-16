@@ -43,13 +43,16 @@ func get_direction() -> int:
 	
 # throw logic
 
-func pickUp() -> void:
+func pickUp() -> bool:
 	var object = throw_rayCast.get_collider()
 	if object == null:
-		return
+		return false
 	if object.has_method("pickedUp"):
 		object.call("pickedUp", self)
 		pickedUp = object
+		return true
+	return false
+	
 	
 func throw() -> void:
 	if pickedUp == null:
@@ -90,7 +93,10 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.play("PlayerPickup")
 		velocity.x = 0
 		await get_tree().create_timer(0.8).timeout
-		pickUp()
+		if !pickUp():
+			pickupanim = false
+			animated_sprite.play("PlayerShrug")
+			await get_tree().create_timer(0.6).timeout
 		waitforanimationend = false
 		skipMoveProcess = false
 	# throw logic
