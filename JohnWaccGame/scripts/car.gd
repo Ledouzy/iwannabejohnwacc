@@ -38,8 +38,8 @@ func pickedUp(player: CharacterBody2D) -> void:
 	animated_sprite.flip_v = true
 	collision_shape_2.disabled = true
 	collision_shape_3.disabled = true
-	if (player.has_method("get_dir")):
-		direction = player.get_dir()
+	if (player.has_method("get_direction")):
+		direction = player.get_direction()
 	
 func thrown() -> void:
 	print("car thrown")
@@ -52,7 +52,7 @@ func thrown() -> void:
 	pickedUpBy = null
 	thrown_hurt_box.disabled = false
 	await get_tree().create_timer(0.5).timeout
-	velocity.x = 0
+	velocity.x = move_toward(velocity.x, 0, 100)
 	await get_tree().create_timer(2).timeout
 	walkDisabled = false
 	thrown_hurt_box.disabled = true
