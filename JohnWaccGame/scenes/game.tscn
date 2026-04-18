@@ -451,15 +451,62 @@ position = Vector2(1176, -24)
 [node name="Spikes10" parent="Level/Spikes" unique_id=382201787 instance=ExtResource("11_ca42v")]
 position = Vector2(1240, -24)
 
+[node name="ColorRect2" type="ColorRect" parent="Level" unique_id=283875682]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.0
+offset_top = -55.0
+offset_right = 109.0
+offset_bottom = -39.0
+grow_horizontal = 2
+scale = Vector2(0.85550755, 0.9123172)
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Level" unique_id=1935207028]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1249.0
+offset_top = -99.0
+offset_right = 1409.0
+offset_bottom = -83.0
+grow_horizontal = 2
+scale = Vector2(0.963102, 3.2884743)
+color = Color(0, 0, 0, 1)
+
+[node name="Label3" type="Label" parent="Level" unique_id=1400803506]
+visible = false
+offset_left = 1253.0
+offset_top = -101.0
+offset_right = 1469.0
+offset_bottom = -28.0
+text = "Hello I am the princess. 
+Please don't throw me 
+off the cliff."
+label_settings = SubResource("LabelSettings_ca42v")
+
+[node name="Label2" type="Label" parent="Level" unique_id=286771036]
+visible = false
+offset_left = -50.0
+offset_top = -57.0
+offset_right = 83.0
+offset_bottom = -34.0
+text = "Go save the princess!"
+label_settings = SubResource("LabelSettings_ca42v")
+
 [node name="Label" type="Label" parent="Level" unique_id=1863749845]
-offset_left = 1387.0
+offset_left = 1414.0
 offset_top = -76.0
-offset_right = 1427.0
+offset_right = 1454.0
 offset_bottom = -53.0
 text = "Man..."
 label_settings = SubResource("LabelSettings_ca42v")
 
 [node name="JohnWaccland" type="Sprite2D" parent="Level" unique_id=543149493]
+visible = false
 position = Vector2(1460.0001, 21.000002)
 scale = Vector2(0.055741463, 0.055741463)
 texture = ExtResource("13_rysoc")
