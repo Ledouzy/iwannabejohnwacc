@@ -543,6 +543,7 @@ bus = &"Music"
 stream = ExtResource("15_ir15t")
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("19_264po")]
 position = Vector2(1368, -31)
