@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://cqfvfe8griydo"]
+
+[ext_resource type="Texture2D" uid="uid://clkpoj4jo0u07" path="res://assets/sprites/Characters/hime.png" id="1_4ben4"]
+[ext_resource type="Script" uid="uid://c6u51hf3lhbjj" path="res://scripts/hime.gd" id="1_kjsfy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjsfy"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tjwd"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pply"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ben4"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08ng3"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(0, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wjcd"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(32, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b8xf"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(16, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcy52"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(48, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk3dj"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4p8a"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avru3"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(176, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrhxh"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(192, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gce6y"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mamu"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4fj4"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ben4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjsfy")
+}],
+"loop": true,
+"name": &"HimeBackIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tjwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pply")
+}],
+"loop": true,
+"name": &"HimeBackWalk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ben4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08ng3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wjcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b8xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ben4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08ng3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcy52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b8xf")
+}],
+"loop": true,
+"name": &"HimeFrontIdle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk3dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4p8a")
+}],
+"loop": true,
+"name": &"HimeFrontWalk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_avru3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrhxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avru3")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_vrhxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avru3")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_vrhxh")
+}],
+"loop": true,
+"name": &"HimeGrabbed",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gce6y")
+}],
+"loop": true,
+"name": &"HimeSideIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mamu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4fj4")
+}],
+"loop": true,
+"name": &"HimeSideWalk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ben4"]
+size = Vector2(9, 14)
+
+[node name="Hime" type="CharacterBody2D" unique_id=1227297899]
+script = ExtResource("1_kjsfy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=594908979]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_4ben4")
+animation = &"HimeGrabbed"
+autoplay = "HimeFrontIdle"
+frame_progress = 0.6216685
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462337660]
+position = Vector2(0.5, -8)
+shape = SubResource("RectangleShape2D_4ben4")

@@ -4,9 +4,53 @@
 [ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/car.gd" id="1_50v30"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/killzone.tscn" id="2_md0e3"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctevm"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uraa1"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm33m"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugdpj"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(32, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
 atlas = ExtResource("1_7p1mj")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50v30"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mrxu"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp117"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4clw4"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hylxu"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mia2"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtldb"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ra3w"]
 atlas = ExtResource("1_7p1mj")
@@ -24,10 +68,74 @@ region = Rect2(16, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_md0e3")
+"texture": SubResource("AtlasTexture_ctevm")
 }],
 "loop": true,
-"name": &"CarIdleFront",
+"name": &"CarBackIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uraa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm33m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugdpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm33m")
+}],
+"loop": true,
+"name": &"CarBackWalk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_md0e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50v30")
+}],
+"loop": true,
+"name": &"CarFrontIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mrxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp117")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4clw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp117")
+}],
+"loop": true,
+"name": &"CarFrontWalk",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hylxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mia2")
+}],
+"loop": true,
+"name": &"CarGrabbed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtldb")
+}],
+"loop": true,
+"name": &"CarIdleBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -35,7 +143,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4ra3w")
 }],
 "loop": true,
-"name": &"CarIdleSide",
+"name": &"CarSideIdle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -46,7 +154,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_c4w8v")
 }],
 "loop": true,
-"name": &"CarWalkSide",
+"name": &"CarSideWalk",
 "speed": 5.0
 }]
 
@@ -64,9 +172,10 @@ script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"CarWalkSide"
-autoplay = "CarIdleSide"
-frame_progress = 0.91459274
+animation = &"CarGrabbed"
+autoplay = "CarSideIdle"
+frame = 1
+frame_progress = 0.9765336
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1995339573]
 position = Vector2(0, -3)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/layer0.png" id="1_lbhrr"]
 [ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="1_trtic"]
-[ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/Player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/layer1.png" id="2_iywne"]
 [ext_resource type="PackedScene" uid="uid://m7yeuqk3ioq6" path="res://scenes/platform.tscn" id="2_lnu2h"]
 [ext_resource type="Script" uid="uid://cfeuiua35doyh" path="res://scripts/game_manager.gd" id="2_trtic"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dvs3gxg2f32yd" path="res://assets/JohnWaccland.png" id="13_rysoc"]
 [ext_resource type="AudioStream" uid="uid://bvtx5venoy5la" path="res://assets/audio/music/track_baller.wav" id="14_trtic"]
 [ext_resource type="AudioStream" uid="uid://2ac3rtwphoww" path="res://assets/audio/music/Third_Sanctuary.ogg" id="15_ir15t"]
+[ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/hime.tscn" id="19_264po"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dinhu"]
 distance = -160.0
@@ -542,3 +543,6 @@ bus = &"Music"
 stream = ExtResource("15_ir15t")
 autoplay = true
 bus = &"Music"
+
+[node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("19_264po")]
+position = Vector2(1368, -31)

@@ -212,7 +212,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_3li8b")
 }],
 "loop": true,
@@ -295,7 +295,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hxdpb")
 }],
-"loop": true,
+"loop": false,
 "name": &"PlayerShrug",
 "speed": 5.0
 }, {
@@ -306,7 +306,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fgkxt")
 }],
-"loop": true,
+"loop": false,
 "name": &"PlayerThrow",
 "speed": 5.0
 }, {
@@ -482,8 +482,9 @@ script = ExtResource("1_v6fml")
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_d3wef")
-animation = &"PlayerAttackBack"
+animation = &"PlayerIdleFront"
 autoplay = "PlayerIdleSide"
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049596249]
 position = Vector2(0, -5)
