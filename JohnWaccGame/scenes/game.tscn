@@ -199,6 +199,7 @@ position = Vector2(0, 1)
 JUMP_VELOCITY = -200.0
 
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("19_264po")]
+z_index = 4
 position = Vector2(1368, -31)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=483693143]

@@ -26,12 +26,16 @@ var skipMoveProcess = false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound: AudioStreamPlayer = $Jump
 @onready var throw_rayCast: RayCast2D = $RayCast2D
-#@onready var node: Node2D = $AnimatedSprite2D/Node2D
+@onready var death_timer: Timer = $DeathTimer
 
 # Set the bools for true so that we can call from other scripts
 func set_dead():
 	dead = true
 	deathanim = true
+	print("You died!")
+	death_timer.start()
+
+
 
 # returns value of dead
 func is_dead() -> bool:
@@ -162,3 +166,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
 	move_and_slide()
+
+func _on_death_timer_timeout() -> void:
+	print("timer ran out.")
+	get_tree().reload_current_scene()

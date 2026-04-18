@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://i6dqm26in8ru" path="res://assets/sprites/Characters/Car.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/car.gd" id="1_50v30"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/killzone.tscn" id="2_md0e3"]
+[ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/throw_hurt_box.tscn" id="3_3mrxu"]
+[ext_resource type="AudioStream" uid="uid://b34tbckjtxd73" path="res://assets/audio/sounds/death.wav" id="5_3mrxu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctevm"]
 atlas = ExtResource("1_7p1mj")
@@ -19,6 +21,18 @@ region = Rect2(0, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugdpj"]
 atlas = ExtResource("1_7p1mj")
 region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1jdg"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(144, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8qg8"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(176, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vqyg"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(160, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
 atlas = ExtResource("1_7p1mj")
@@ -89,6 +103,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"CarBackWalk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1jdg")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_l8qg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vqyg")
+}],
+"loop": false,
+"name": &"CarDeath",
 "speed": 5.0
 }, {
 "frames": [{
@@ -167,15 +195,213 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ra3w"]
 radius = 6.0
 
+[sub_resource type="Animation" id="Animation_50v30"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D3:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Killzone/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RayCastRight:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RayCastLeft:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Death:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_jtldb"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D3:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Killzone/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RayCastRight:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RayCastLeft:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"set_dead"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Death:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3mrxu"]
+_data = {
+&"RESET": SubResource("Animation_50v30"),
+&"death": SubResource("Animation_jtldb")
+}
+
 [node name="Car" type="CharacterBody2D" unique_id=1027794888]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"CarGrabbed"
+animation = &"CarDeath"
 autoplay = "CarSideIdle"
-frame = 1
-frame_progress = 0.9765336
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1995339573]
 position = Vector2(0, -3)
@@ -185,7 +411,14 @@ shape = SubResource("RectangleShape2D_50v30")
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_50v30")
 
-[node name="Killzone" parent="." unique_id=631934805 instance=ExtResource("2_md0e3")]
+[node name="ThrowHurtBox" parent="." unique_id=631934805 instance=ExtResource("3_3mrxu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowHurtBox" unique_id=2117886572]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_4ra3w")
+disabled = true
+
+[node name="Killzone" parent="." unique_id=7972012 instance=ExtResource("2_md0e3")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1319252143]
 position = Vector2(0, 2)
@@ -198,3 +431,10 @@ target_position = Vector2(-10, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=175754584]
 position = Vector2(0, 2)
 target_position = Vector2(11, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1166779148]
+libraries/ = SubResource("AnimationLibrary_3mrxu")
+
+[node name="Death" type="AudioStreamPlayer" parent="." unique_id=1403296673]
+stream = ExtResource("5_3mrxu")
+bus = &"SFX"
