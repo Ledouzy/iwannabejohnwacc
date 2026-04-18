@@ -38,6 +38,8 @@ func pickedUp(player: CharacterBody2D) -> void:
 	animated_sprite.flip_v = true
 	collision_shape_2.disabled = true
 	collision_shape_3.disabled = true
+	if (player.has_method("get_dir")):
+		direction = player.get_dir()
 	
 func thrown() -> void:
 	print("car thrown")
@@ -71,6 +73,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x += 500 * delta * direction
 		velocity.y -= 500 * delta
 	elif pickedUpBy != null:
+		killzone_collison.disabled = true
+		animated_sprite.flip_v = true
 		var temp = Input.get_axis("left", "right")
 		if temp != 0:
 			direction = temp
@@ -90,10 +94,10 @@ func _physics_process(delta: float) -> void:
 			# check for walls and change direction if yes
 			if ray_cast_right.is_colliding():
 				direction = 1
-				animated_sprite.flip_h = true
+				animated_sprite.flip_h = false
 			if ray_cast_left.is_colliding():
 				direction = -1
-				animated_sprite.flip_h = false
+				animated_sprite.flip_h = true
 			if ray_cast_left.is_colliding() && ray_cast_right.is_colliding():
 				animated_sprite.play("CarFrontIdle")
 				pass

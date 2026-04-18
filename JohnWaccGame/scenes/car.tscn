@@ -187,7 +187,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50v30"]
-size = Vector2(10, 2)
+size = Vector2(7.5, 2)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_50v30"]
 radius = 5.0
@@ -400,11 +400,11 @@ script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"CarDeath"
+animation = &"CarFrontIdle"
 autoplay = "CarSideIdle"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1995339573]
-position = Vector2(0, -3)
+position = Vector2(-0.25, -3)
 shape = SubResource("RectangleShape2D_50v30")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=326158773]

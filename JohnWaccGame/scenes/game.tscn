@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/layer2.png" id="3_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/layer3.png" id="4_0tnpc"]
 [ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/camera.gd" id="6_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://d3x5bi32l5htu" path="res://scenes/lance.tscn" id="7_1kice"]
 [ext_resource type="PackedScene" uid="uid://ck5adci3iyhod" path="res://scenes/platformwide.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://6lbf6y0p3txv" path="res://scenes/coin.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/killzone.tscn" id="10_kvpfn"]
@@ -19,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://bvtx5venoy5la" path="res://assets/audio/music/track_baller.wav" id="14_trtic"]
 [ext_resource type="AudioStream" uid="uid://2ac3rtwphoww" path="res://assets/audio/music/Third_Sanctuary.ogg" id="15_ir15t"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/hime.tscn" id="19_264po"]
+[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/beaver.tscn" id="21_5newe"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dinhu"]
 distance = -160.0
@@ -201,6 +203,9 @@ JUMP_VELOCITY = -200.0
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("19_264po")]
 z_index = 4
 position = Vector2(1368, -31)
+
+[node name="Lance" parent="." unique_id=1868515835 instance=ExtResource("7_1kice")]
+position = Vector2(55, -127)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=483693143]
 process_callback = 0
@@ -472,6 +477,9 @@ position = Vector2(920, 41)
 
 [node name="Car4" parent="Enemies" unique_id=1498591038 instance=ExtResource("12_dinhu")]
 position = Vector2(473, -167)
+
+[node name="Beaver" parent="Enemies" unique_id=588698386 instance=ExtResource("21_5newe")]
+position = Vector2(713, -127)
 
 [node name="GameManager" type="Control" parent="." unique_id=1758001710]
 unique_name_in_owner = true

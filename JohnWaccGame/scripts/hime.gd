@@ -14,6 +14,8 @@ func pickedUp(player: CharacterBody2D) -> void:
 	print("Hime picked")
 	pickedUpBy = player
 	collision_shape.disabled = true
+	if (player.has_method("get_dir")):
+		direction = player.get_dir()
 	animated_sprite.play("HimeGrabbed")
 	
 func thrown() -> void:
@@ -27,14 +29,13 @@ func thrown() -> void:
 	await get_tree().create_timer(0.5).timeout
 	animated_sprite.play("HimeFrontIdle")
 	velocity.x = 0
-	
-func _process(delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	if (direction < 0):
 		animated_sprite.flip_h = false
 	elif (direction > 0):
 		animated_sprite.flip_h = true
-
-func _physics_process(delta: float) -> void:
+		
 	# process gravity
 	if startThrow:
 		velocity.x += 500 * delta * direction
