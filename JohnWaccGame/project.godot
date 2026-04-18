@@ -27,7 +27,6 @@ boot_splash/minimum_display_time=2000
 
 window/size/viewport_width=160
 window/size/viewport_height=144
-window/size/mode=4
 window/size/resizable=false
 window/stretch/mode="viewport"
 
@@ -89,3 +88,7 @@ pick={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/lossless_compression/force_png=true
+textures/default_filters/anisotropic_filtering_level=0
+viewport/hdr_2d=true
+anti_aliasing/screen_space_roughness_limiter/enabled=false
