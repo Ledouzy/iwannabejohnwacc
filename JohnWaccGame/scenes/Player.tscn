@@ -86,13 +86,13 @@ region = Rect2(48, 16, 16, 16)
 atlas = ExtResource("1_p0vlq")
 region = Rect2(96, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b8lor"]
-atlas = ExtResource("1_p0vlq")
-region = Rect2(48, 16, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6e537"]
 atlas = ExtResource("1_p0vlq")
 region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8lor"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvsjc"]
 atlas = ExtResource("1_p0vlq")
@@ -130,13 +130,13 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("1_p0vlq")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bruh7"]
-atlas = ExtResource("1_p0vlq")
-region = Rect2(0, 16, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6eyey"]
 atlas = ExtResource("1_p0vlq")
 region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bruh7"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o4126"]
 atlas = ExtResource("3_qu4a1")
@@ -273,10 +273,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b8lor")
+"texture": SubResource("AtlasTexture_6e537")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6e537")
+"texture": SubResource("AtlasTexture_b8lor")
 }],
 "loop": true,
 "name": &"PlayerPickupWalkSide",
@@ -334,10 +334,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bruh7")
+"texture": SubResource("AtlasTexture_6eyey")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6eyey")
+"texture": SubResource("AtlasTexture_bruh7")
 }],
 "loop": true,
 "name": &"PlayerWalkSide",

@@ -337,7 +337,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_j1yin")
 }],
 "loop": true,
-"name": &"PlayerWalkSide",
+"name": &"LanceWalkSide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -372,7 +372,7 @@ collision_layer = 2
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_d3wef")
-animation = &"LanceAttackBack"
+animation = &"LanceWalkSide"
 autoplay = "LanceIdleSide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049596249]

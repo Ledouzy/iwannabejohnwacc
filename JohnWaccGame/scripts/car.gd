@@ -99,10 +99,10 @@ func _physics_process(delta: float) -> void:
 				direction = -1
 				animated_sprite.flip_h = true
 			if ray_cast_left.is_colliding() && ray_cast_right.is_colliding():
-				animated_sprite.play("CarFrontIdle")
+				animated_sprite.play("CarIdleFront")
 				pass
 			else:
-				animated_sprite.play("CarSideWalk")
+				animated_sprite.play("CarWalkSide")
 				if !walkDisabled:
 					position.x += direction * delta * speed
 		else:
