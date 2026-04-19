@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://2ac3rtwphoww" path="res://assets/audio/music/Third_Sanctuary.ogg" id="15_ir15t"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/hime.tscn" id="19_264po"]
 [ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/beaver.tscn" id="21_5newe"]
+[ext_resource type="AudioStream" uid="uid://c480n6c82dhxe" path="res://assets/audio/music/Divine Bloodlines.wav" id="22_37s47"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dinhu"]
 distance = -160.0
@@ -205,6 +206,7 @@ z_index = 4
 position = Vector2(1368, -31)
 
 [node name="Lance" parent="." unique_id=1868515835 instance=ExtResource("7_1kice")]
+z_index = 4
 position = Vector2(55, -127)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=483693143]
@@ -601,6 +603,10 @@ bus = &"Music"
 
 [node name="ThirdSanctuary" type="AudioStreamPlayer" parent="." unique_id=1993442971]
 stream = ExtResource("15_ir15t")
-autoplay = true
 bus = &"Music"
 parameters/looping = true
+
+[node name="DivineBloodlines" type="AudioStreamPlayer" parent="." unique_id=431146690]
+stream = ExtResource("22_37s47")
+autoplay = true
+bus = &"Music"
