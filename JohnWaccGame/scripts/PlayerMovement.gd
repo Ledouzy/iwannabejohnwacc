@@ -8,7 +8,7 @@ var speedMult = 1.0 # mults the speed by this constant, changes if sprinting
 # Jump
 @export var JUMP_VELOCITY = -180.0 # How high you jump
 @export var MAX_FALL_VELOCITY = 300 # How fast you fall
-@export var MAX_JUMPS = 1 # number of jumps
+@export var MAX_JUMPS = 5 # number of jumps
 var jumps = MAX_JUMPS # number of jumps left
 # direction
 var dir = 1 # direction of the player
@@ -148,9 +148,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY * 0.25
 	
 	# If held, or first tapped we give full height, also handles multiple jumps
-	if Input.is_action_just_pressed("jump") and (is_on_floor() && jumps >= 1) && !waitforanimationend :
+	if Input.is_action_just_pressed("jump") and (is_on_floor() || jumps >= 1) && !waitforanimationend :
 		# removes 1 jump to number of jumps (jumps variable)
 		jumps -= 1
+		print("jumps: ",jumps)
 		
 		# play the jump sfx
 		jumpSound.play()
@@ -211,7 +212,7 @@ func _physics_process(delta: float) -> void:
 		
 	# Handles attacking, right now only for sword and on side
 	# TODO: Handle attack in all direction if in air and 2 directions on the ground (up side down and up side respectively)
-	if Input.is_action_just_pressed("attack") && !waitforanimationend:
+	if Input.is_action_just_pressed("attack") && !waitforanimationend && !pickupanim:
 		print("attack") # debug message
 		
 		# play the attack animation and locks animation for the length of the animation
@@ -219,6 +220,7 @@ func _physics_process(delta: float) -> void:
 		waitforanimationend = true
 		await get_tree().create_timer(0.3).timeout
 		waitforanimationend = false
+		jumpanim = false
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
