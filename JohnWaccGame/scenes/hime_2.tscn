@@ -9,14 +9,6 @@ radius = 4.0
 atlas = ExtResource("2_2m0bj")
 region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wfau2"]
-atlas = ExtResource("2_2m0bj")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vhfcu"]
-atlas = ExtResource("2_2m0bj")
-region = Rect2(32, 32, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_2m0bj"]
 atlas = ExtResource("2_2m0bj")
 region = Rect2(0, 0, 16, 16)
@@ -37,6 +29,18 @@ region = Rect2(16, 208, 16, 16)
 atlas = ExtResource("2_2m0bj")
 region = Rect2(48, 208, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7hx0"]
+atlas = ExtResource("2_2m0bj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfau2"]
+atlas = ExtResource("2_2m0bj")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhfcu"]
+atlas = ExtResource("2_2m0bj")
+region = Rect2(32, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_n3s1r"]
 atlas = ExtResource("2_2m0bj")
 region = Rect2(16, 0, 16, 16)
@@ -44,10 +48,6 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nb0dy"]
 atlas = ExtResource("2_2m0bj")
 region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c7hx0"]
-atlas = ExtResource("2_2m0bj")
-region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ihkc0"]
 atlas = ExtResource("2_2m0bj")
@@ -64,18 +64,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_m3qaf")
 }],
 "loop": true,
-"name": &"HimeBackIdle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wfau2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vhfcu")
-}],
-"loop": true,
-"name": &"HimeBackWalk",
+"name": &"HimeIdleBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -104,8 +93,27 @@ animations = [{
 "texture": SubResource("AtlasTexture_a4i4t")
 }],
 "loop": true,
-"name": &"HimeFrontIdle",
+"name": &"HimeIdleFront",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7hx0")
+}],
+"loop": true,
+"name": &"HimeIdleSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfau2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhfcu")
+}],
+"loop": true,
+"name": &"HimeWalkBack",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -115,15 +123,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nb0dy")
 }],
 "loop": true,
-"name": &"HimeFrontWalk",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c7hx0")
-}],
-"loop": true,
-"name": &"HimeSideIdle",
+"name": &"HimeWalkFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -134,7 +134,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_n1ho6")
 }],
 "loop": true,
-"name": &"HimeSideWalk",
+"name": &"HimeWalkSide",
 "speed": 5.0
 }]
 
@@ -147,6 +147,5 @@ shape = SubResource("CircleShape2D_0b8xf")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=500741014]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_n3s1r")
-animation = &"HimeFrontIdle"
-autoplay = "HimeFrontIdle"
-frame_progress = 0.12413539
+animation = &"HimeWalkSide"
+autoplay = "HimeIdleFront"

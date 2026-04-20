@@ -6,6 +6,14 @@
 atlas = ExtResource("1_cke00")
 region = Rect2(0, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cke00"]
+atlas = ExtResource("1_cke00")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owjge"]
+atlas = ExtResource("1_cke00")
+region = Rect2(0, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_uikgk"]
 atlas = ExtResource("1_cke00")
 region = Rect2(0, 32, 16, 16)
@@ -21,10 +29,6 @@ region = Rect2(48, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dorug"]
 atlas = ExtResource("1_cke00")
 region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cke00"]
-atlas = ExtResource("1_cke00")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tjgbh"]
 atlas = ExtResource("1_cke00")
@@ -42,10 +46,6 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("1_cke00")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_owjge"]
-atlas = ExtResource("1_cke00")
-region = Rect2(0, 16, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebhbi"]
 atlas = ExtResource("1_cke00")
 region = Rect2(0, 16, 16, 16)
@@ -61,7 +61,23 @@ animations = [{
 "texture": SubResource("AtlasTexture_b1872")
 }],
 "loop": true,
-"name": &"BeaverBackIdle",
+"name": &"BeaverIdleBack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cke00")
+}],
+"loop": true,
+"name": &"BeaverIdleFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owjge")
+}],
+"loop": true,
+"name": &"BeaverIdleSide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -78,15 +94,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_dorug")
 }],
 "loop": true,
-"name": &"BeaverBackWalk",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cke00")
-}],
-"loop": true,
-"name": &"BeaverFrontIdle",
+"name": &"BeaverWalkBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -103,15 +111,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ojngg")
 }],
 "loop": true,
-"name": &"BeaverFrontWalk",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_owjge")
-}],
-"loop": true,
-"name": &"BeaverSideIdle",
+"name": &"BeaverWalkFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -122,7 +122,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_s172u")
 }],
 "loop": true,
-"name": &"BeaverSideWalk",
+"name": &"BeaverWalkSide",
 "speed": 5.0
 }]
 
@@ -137,8 +137,7 @@ radius = 7.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1783104354]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ebhbi")
-animation = &"BeaverFrontWalk"
-frame_progress = 0.23292941
+animation = &"BeaverWalkSide"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1864582220]
 position = Vector2(0.625, -15)

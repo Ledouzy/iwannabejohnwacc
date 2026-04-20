@@ -27,7 +27,7 @@ func thrown() -> void:
 	pickedUpBy = null
 	startThrow = false
 	await get_tree().create_timer(0.5).timeout
-	animated_sprite.play("HimeFrontIdle")
+	animated_sprite.play("HimeIdleFront")
 	velocity.x = move_toward(velocity.x, 0, 100)
 
 func _physics_process(delta: float) -> void:

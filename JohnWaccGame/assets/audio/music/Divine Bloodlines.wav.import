@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c480n6c82dhxe"
+path="res://.godot/imported/Divine Bloodlines.wav-a9812130bfea9113c86389df34a84f90.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/Divine Bloodlines.wav"
+dest_files=["res://.godot/imported/Divine Bloodlines.wav-a9812130bfea9113c86389df34a84f90.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=342840
+edit/loop_end=8544218
+compress/mode=2
