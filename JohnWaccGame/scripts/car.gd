@@ -4,6 +4,8 @@ extends CharacterBody2D
 var direction = -1
 @export var MAX_FALL_VELOCITY = 300
 
+@export var health = 2
+
 var pickedUpBy
 var startThrow = false
 var deathanim = false
@@ -17,10 +19,12 @@ var walkDisabled = false
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var killzone_collison: CollisionShape2D = $Killzone/CollisionShape2D
+@onready var hurtbox_collison: CollisionShape2D = $HurtBox/CollisionShape2D
 @onready var collision_shape_2: CollisionShape2D = $CollisionShape2D2
 @onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
 @onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 
 func set_dead():
 	dead = true
@@ -34,7 +38,7 @@ func pickedUp(player: CharacterBody2D) -> void:
 	print("car picked")
 	pickedUpBy = player
 	walkDisabled = true
-	killzone_collison.disabled = true
+	hurtbox_collison.disabled = true
 	animated_sprite.flip_v = true
 	collision_shape_2.disabled = true
 	collision_shape_3.disabled = true
@@ -56,8 +60,24 @@ func thrown() -> void:
 	await get_tree().create_timer(2).timeout
 	walkDisabled = false
 	thrown_hurt_box.disabled = true
-	killzone_collison.disabled = false
+	hurtbox_collison.disabled = false
 	animated_sprite.flip_v = false
+	
+func takeDamage(damage) -> void:
+	health -= damage
+	if health <= 0:
+		animation_player.play("death")
+	else:
+		animated_sprite.play("CarTakeDamage")
+		skipMoveProcess = true
+		waitforanimationend = true
+		hurtbox_collison.disabled = true
+		blink_animation_player.play("blink")
+		await get_tree().create_timer(0.5).timeout
+		skipMoveProcess = false
+		waitforanimationend = false
+		await get_tree().create_timer(1.5).timeout
+		hurtbox_collison.disabled = false
 
 func _physics_process(delta: float) -> void:
 	if (dead):
@@ -73,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x += 500 * delta * direction
 		velocity.y -= 500 * delta
 	elif pickedUpBy != null:
-		killzone_collison.disabled = true
+		hurtbox_collison.disabled = true
 		animated_sprite.flip_v = true
 		var temp = Input.get_axis("left", "right")
 		if temp != 0:

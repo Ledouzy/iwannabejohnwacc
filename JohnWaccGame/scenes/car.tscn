@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/killzone.tscn" id="2_md0e3"]
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/throw_hurt_box.tscn" id="3_3mrxu"]
 [ext_resource type="AudioStream" uid="uid://b34tbckjtxd73" path="res://assets/audio/sounds/death.wav" id="5_3mrxu"]
+[ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/hurt_box.gd" id="5_cp117"]
+[ext_resource type="PackedScene" uid="uid://dpy5sdcomqdjx" path="res://scenes/blink_animation_player.tscn" id="7_4clw4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a1jdg"]
 atlas = ExtResource("1_7p1mj")
@@ -41,6 +43,10 @@ region = Rect2(0, 48, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ra3w"]
 atlas = ExtResource("1_7p1mj")
 region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctevm"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(144, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uraa1"]
 atlas = ExtResource("1_7p1mj")
@@ -126,6 +132,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"CarIdleSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctevm")
+}],
+"loop": false,
+"name": &"CarTakeDamage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -224,7 +238,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Killzone/CollisionShape2D:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -312,7 +326,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Killzone/CollisionShape2D:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -388,7 +402,7 @@ script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"CarWalkSide"
+animation = &"CarTakeDamage"
 autoplay = "CarIdleSide"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1995339573]
@@ -406,9 +420,10 @@ position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_4ra3w")
 disabled = true
 
-[node name="Killzone" parent="." unique_id=7972012 instance=ExtResource("2_md0e3")]
+[node name="HurtBox" parent="." unique_id=7972012 instance=ExtResource("2_md0e3")]
+script = ExtResource("5_cp117")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1319252143]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1319252143]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_4ra3w")
 
@@ -426,3 +441,5 @@ libraries/ = SubResource("AnimationLibrary_3mrxu")
 [node name="Death" type="AudioStreamPlayer" parent="." unique_id=1403296673]
 stream = ExtResource("5_3mrxu")
 bus = &"SFX"
+
+[node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("7_4clw4")]
