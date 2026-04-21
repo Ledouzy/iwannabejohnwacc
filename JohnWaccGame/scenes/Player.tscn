@@ -749,4 +749,8 @@ disabled = true
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="." unique_id=566804164]
 libraries/ = SubResource("AnimationLibrary_smehm")
 
+[node name="DamageTimer" type="Timer" parent="." unique_id=1120886137]
+wait_time = 2.0
+
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

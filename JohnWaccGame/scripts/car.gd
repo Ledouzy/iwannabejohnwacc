@@ -4,7 +4,10 @@ extends CharacterBody2D
 var direction = -1
 @export var MAX_FALL_VELOCITY = 300
 
-@export var health = 2
+@export var MAX_HEALTH = 2
+var health = MAX_HEALTH
+var invulnerable = false
+@onready var damage_timer: Timer = $DamageTimer # invulnerability frames basically
 
 var pickedUpBy
 var startThrow = false
@@ -64,20 +67,26 @@ func thrown() -> void:
 	animated_sprite.flip_v = false
 	
 func takeDamage(damage) -> void:
-	health -= damage
-	if health <= 0:
-		animation_player.play("death")
-	else:
-		animated_sprite.play("CarTakeDamage")
-		skipMoveProcess = true
-		waitforanimationend = true
-		hurtbox_collison.disabled = true
-		blink_animation_player.play("blink")
-		await get_tree().create_timer(0.5).timeout
-		skipMoveProcess = false
-		waitforanimationend = false
-		await get_tree().create_timer(1.5).timeout
-		hurtbox_collison.disabled = false
+	if !invulnerable:
+		invulnerable = true
+		damage_timer.start()
+		health -= damage
+		if health <= 0:
+			animation_player.play("death")
+		else:
+			animated_sprite.play("CarTakeDamage")
+			skipMoveProcess = true
+			waitforanimationend = true
+			hurtbox_collison.disabled = true
+			blink_animation_player.play("blink")
+			await get_tree().create_timer(0.5).timeout
+			skipMoveProcess = false
+			waitforanimationend = false
+			await get_tree().create_timer(.5).timeout
+			hurtbox_collison.disabled = false
+
+func _on_death_timer_timeout() -> void:
+	invulnerable = false
 
 func _physics_process(delta: float) -> void:
 	if (dead):

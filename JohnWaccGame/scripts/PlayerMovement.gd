@@ -8,13 +8,16 @@ var speedMult = 1.0 # mults the speed by this constant, changes if sprinting
 # Jump
 @export var JUMP_VELOCITY = -180.0 # How high you jump
 @export var MAX_FALL_VELOCITY = 300 # How fast you fall
-@export var MAX_JUMPS = 5 # number of jumps        
+@export var MAX_JUMPS = 1 # number of jumps        
 var jumps = MAX_JUMPS # number of jumps left
 # direction
 var dir = 1 # direction of the player
 
-@export var health = 100 # number of hits before dying
-var healthLock : Mutex # lock for not taking damage until invul frames end
+@export var MAX_HEALTH = 10 # max hp
+var health = MAX_HEALTH # number of hits before dying
+var invulnerable = false
+@onready var damage_timer: Timer = $DamageTimer # invulnerability frames basically
+#var healthLock : Mutex # lock for not taking damage until invul frames end
 
 # pickup/throw objects
 var pickedUp # stores the object that you picked up
@@ -30,6 +33,7 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @export var dead = false # indicates that the player is dead
 
 # Component references
+@onready var game_manager: Control = %GameManager
 @onready var player_body: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound: AudioStreamPlayer = $Jump
@@ -55,25 +59,42 @@ func set_dead():
 	# start the (2) seconds timer before reload
 	death_timer.start()
 	
+## get value of health
+func get_health() -> int:
+	return health
+	
+## get value of MAX_HEALTH
+func get_max_health() -> int:
+	return MAX_HEALTH
+	
 ## when death timer runs out, reload current scene
 func _on_death_timer_timeout() -> void:
 	get_tree().reload_current_scene()
 	
 func takeDamage(damage) -> void:
-	if healthLock.try_lock():
+	#if healthLock.try_lock():
+	if !invulnerable:
+		invulnerable = true
+		damage_timer.start()
 		health -= damage
+		game_manager.update_health() # updates display
+		print("health: ",health)
 		if health <= 0:
 			animation_player.play("death")
 		else:
 			animated_sprite.play("PlayerTakeDamage")
+			
 			skipMoveProcess = true
 			waitforanimationend = true
 			await get_tree().create_timer(0.2).timeout
 			skipMoveProcess = false
 			waitforanimationend = false
 			blink_animation_player.play("blink")
-			await get_tree().create_timer(2).timeout
-		healthLock.unlock()
+			await get_tree().create_timer(1.8).timeout
+	#healthLock.unlock()
+	
+func _on_damage_timer_timeout() -> void:
+	invulnerable = false
 	
 ## returns the direction, it's called dir since direction already existed
 func get_direction() -> int:
@@ -144,8 +165,6 @@ func process_animation(direction) -> void:
 			else:
 				animated_sprite.play("PlayerJumpSide")
 				
-func _ready():
-	healthLock = Mutex.new()
 
 ## call at fixed interval for physics calculations
 func _physics_process(delta: float) -> void:

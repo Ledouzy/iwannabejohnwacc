@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/throw_hurt_box.tscn" id="3_3mrxu"]
 [ext_resource type="AudioStream" uid="uid://b34tbckjtxd73" path="res://assets/audio/sounds/death.wav" id="5_3mrxu"]
 [ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/hurt_box.gd" id="5_cp117"]
-[ext_resource type="PackedScene" uid="uid://dpy5sdcomqdjx" path="res://scenes/blink_animation_player.tscn" id="7_4clw4"]
+[ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/blink_short_animation_player.tscn" id="7_4clw4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a1jdg"]
 atlas = ExtResource("1_7p1mj")
@@ -442,4 +442,8 @@ libraries/ = SubResource("AnimationLibrary_3mrxu")
 stream = ExtResource("5_3mrxu")
 bus = &"SFX"
 
+[node name="DamageTimer" type="Timer" parent="." unique_id=223963880]
+
 [node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("7_4clw4")]
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_death_timer_timeout"]

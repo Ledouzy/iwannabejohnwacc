@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ccuol7nug10h3"]
+
+[ext_resource type="Animation" uid="uid://cuh1wioebaitd" path="res://blink.res" id="1_12i1q"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smehm"]
+_data = {
+&"blink": ExtResource("1_12i1q")
+}
+
+[node name="BlinkShortAnimationPlayer" type="AnimationPlayer" unique_id=1277852578]
+libraries/ = SubResource("AnimationLibrary_smehm")
