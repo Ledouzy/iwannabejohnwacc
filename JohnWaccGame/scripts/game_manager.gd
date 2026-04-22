@@ -7,7 +7,7 @@ var score = 0
 func _ready() -> void:
 	label.text = "Coins: " + str(score) + "\t Health: " + str(player.get_health()) + "/" + str(player.get_max_health())
 	
-func update_health():
+func _process(delta: float) -> void:
 	label.text = "Coins: " + str(score) + "\t Health: " + str(player.get_health()) + "/" + str(player.get_max_health())
 
 func add_point():

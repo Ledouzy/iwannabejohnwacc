@@ -33,7 +33,7 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @export var dead = false # indicates that the player is dead
 
 # Component references
-@onready var game_manager: Control = %GameManager
+#@onready var game_manager: Control = %GameManager
 @onready var player_body: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jumpSound: AudioStreamPlayer = $Jump
@@ -48,6 +48,8 @@ func is_dead() -> bool:
 	
 ## Setter: Set the bools for true so that we can call from other scripts
 func set_dead():
+	# set health to 0 so it doesn't look weird
+	health = 0
 	# we are dead
 	dead = true 
 	
@@ -77,7 +79,8 @@ func takeDamage(damage) -> void:
 		invulnerable = true
 		damage_timer.start()
 		health -= damage
-		game_manager.update_health() # updates display
+		health = max(health,0)
+		#game_manager.update_health() # updates display
 		print("health: ",health)
 		if health <= 0:
 			animation_player.play("death")
