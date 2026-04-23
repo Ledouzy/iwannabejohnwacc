@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://vilx3cwlkfli"]
+
+[ext_resource type="Texture2D" uid="uid://dp03icp33bmj2" path="res://assets/sprites/Characters/KingCar.png" id="1_sb14k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcyrv"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e60a2"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ixsw"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb14k"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okwsv"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okwsv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcyrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e60a2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ixsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e60a2")
+}],
+"loop": true,
+"name": &"KingCarWalkFront",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb14k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okwsv")
+}],
+"loop": true,
+"name": &"KingCarWalkSide",
+"speed": 5.0
+}]
+
+[node name="KingCar" type="Node2D" unique_id=374207838]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058641899]
+sprite_frames = SubResource("SpriteFrames_okwsv")
+animation = &"KingCarWalkSide"
+frame_progress = 0.49244365
