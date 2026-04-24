@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://djqms57dwnula"]
+
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="1_jpkfe"]
+
+[resource]
+line_spacing = 4.0
+font = ExtResource("1_jpkfe")
+font_color = Color(0, 0, 0, 1)

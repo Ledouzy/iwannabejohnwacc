@@ -193,9 +193,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		# coyote time aka jumping when leaving ground
 		coyote_timer += delta
-		print("coyote timer: ", coyote_timer)
 		if coyote_timer > MAXCOYOTETIME:
-			print("timer expired")
+			# can't jump if we're in the air for too long
 			can_jump = false
 			
 		if velocity.y < MAX_FALL_VELOCITY:

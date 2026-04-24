@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="I Wanna be JOHN WACCLAND"
-run/main_scene="uid://buvoxkpjj2c3b"
+run/main_scene="uid://eicwdtw6abms"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/use_filter=false
@@ -27,7 +27,7 @@ boot_splash/minimum_display_time=2000
 
 window/size/viewport_width=160
 window/size/viewport_height=144
-window/size/resizable=false
+window/size/mode=4
 window/stretch/mode="viewport"
 
 [input]
