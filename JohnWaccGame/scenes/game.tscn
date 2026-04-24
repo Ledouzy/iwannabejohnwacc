@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://buvoxkpjj2c3b"]
 
+[ext_resource type="PackedScene" uid="uid://cpi64xbe0gpg2" path="res://scenes/fps_counter.tscn" id="1_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/layer0.png" id="1_lbhrr"]
 [ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="1_trtic"]
 [ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -197,6 +198,8 @@ shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
 [node name="Game" type="Node2D" unique_id=1170486435]
+
+[node name="FPS_counter" parent="." unique_id=1727205778 instance=ExtResource("1_bt5mj")]
 
 [node name="Background" type="Node2D" parent="." unique_id=190998599]
 position = Vector2(-230, -259)

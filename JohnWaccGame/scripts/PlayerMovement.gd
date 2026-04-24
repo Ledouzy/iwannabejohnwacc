@@ -10,6 +10,10 @@ var speedMult = 1.0 # mults the speed by this constant, changes if sprinting
 @export var MAX_FALL_VELOCITY = 300 # How fast you fall
 @export var MAX_JUMPS = 1 # number of jumps        
 var jumps = MAX_JUMPS # number of jumps left
+const MAXCOYOTETIME = .10 # max time in air before we can't jump anymore
+var coyote_timer = 0
+var can_jump = true
+
 # direction
 var dir = 1 # direction of the player
 
@@ -139,7 +143,6 @@ func process_animation(direction) -> void:
 	if is_on_floor():
 		# we are not jumping and we can reset our number of jumps
 		jumpanim = false
-		jumps = MAX_JUMPS
 		
 		# if we are not moving, play the idle animation
 		if direction == 0:
@@ -160,7 +163,6 @@ func process_animation(direction) -> void:
 		if !jumpanim:
 			# play the jump animation, but only once
 			jumpanim = true
-			jumps -= 1
 			
 			# if we are holding an object/enemy, play the variant
 			if (pickupanim):
@@ -181,20 +183,32 @@ func _physics_process(delta: float) -> void:
 			# lock movement and animation
 			skipMoveProcess = true
 			waitforanimationend = true
+			
+	if is_on_floor():
+		can_jump = true
+		coyote_timer = 0
+		jumps = MAX_JUMPS
 		
 	# Add the gravity.
 	if not is_on_floor():
+		# coyote time aka jumping when leaving ground
+		coyote_timer += delta
+		print("coyote timer: ", coyote_timer)
+		if coyote_timer > MAXCOYOTETIME:
+			print("timer expired")
+			can_jump = false
+			
 		if velocity.y < MAX_FALL_VELOCITY:
 			velocity += get_gravity() * delta * 0.5
 
 	# Jump Handling
 	# If light tap, we decrease our velocity
-	if Input.is_action_just_released("jump") and velocity.y < 0 && !waitforanimationend:
+	if Input.is_action_just_released("jump") and velocity.y < 0 and !waitforanimationend:
 		# updates the velocity
 		velocity.y = JUMP_VELOCITY * 0.25
 	
 	# If held, or first tapped we give full height, also handles multiple jumps
-	if Input.is_action_just_pressed("jump") and (jumps > 0) && !waitforanimationend :
+	if Input.is_action_just_pressed("jump") and can_jump and (jumps > 0) and !waitforanimationend :
 		# removes 1 jump to number of jumps (jumps variable)
 		jumps -= 1
 		print("jumps: ",jumps)
@@ -206,7 +220,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		
 	# Handles PickUp objects and enemies
-	if Input.is_action_just_pressed("pick") && pickupanim == false && !waitforanimationend && is_on_floor():
+	if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend and is_on_floor():
 		# indicates that we use pickup variants of animations
 		pickupanim = true
 		
@@ -241,7 +255,7 @@ func _physics_process(delta: float) -> void:
 		skipMoveProcess = false
 		
 	# Handles throwing objects and enemies
-	if Input.is_action_just_pressed("pick") && pickupanim == true && !waitforanimationend:
+	if Input.is_action_just_pressed("pick") and pickupanim == true and !waitforanimationend:
 		# indicate that we aren't holding anything anymore and locks animations
 		pickupanim = false
 		waitforanimationend = true
@@ -258,7 +272,7 @@ func _physics_process(delta: float) -> void:
 		
 	# Handles attacking, right now only for sword and on side
 	# TODO: Handle attack in all direction if in air and 2 directions on the ground (up side down and up side respectively)
-	if Input.is_action_just_pressed("attack") && !waitforanimationend && !pickupanim:
+	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
 		print("attack") # debug message
 		
 		# play the attack animation and locks animation for the length of the animation
