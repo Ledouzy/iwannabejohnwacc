@@ -180,9 +180,9 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("PlayerDeath")
 			deathanim = false
 			
-			# lock movement and animation
-			skipMoveProcess = true
-			waitforanimationend = true
+		# lock movement and animation
+		skipMoveProcess = true
+		waitforanimationend = true
 			
 	if is_on_floor():
 		can_jump = true

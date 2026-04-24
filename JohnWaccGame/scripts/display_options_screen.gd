@@ -1,4 +1,11 @@
 extends Control
+@onready var check_box: CheckBox = $UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer/CheckBox
+
+func _process(delta) -> void:
+	if (DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN):
+		check_box.button_pressed = false
+	else:
+		check_box.button_pressed = true
 
 func _on_back_button_pressed() -> void:
 	self.visible = false
