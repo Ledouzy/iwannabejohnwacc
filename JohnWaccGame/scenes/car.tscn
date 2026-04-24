@@ -174,7 +174,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"CarWalkFront",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -402,8 +402,9 @@ script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"CarTakeDamage"
+animation = &"CarWalkFront"
 autoplay = "CarIdleSide"
+frame_progress = 0.3998875
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1995339573]
 position = Vector2(-0.25, -3)
