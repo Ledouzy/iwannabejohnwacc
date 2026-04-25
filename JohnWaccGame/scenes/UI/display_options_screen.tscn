@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bpq5o2sd8wutd"]
+
+[ext_resource type="Script" uid="uid://c6sncqj6xsixm" path="res://scripts/UI/display_options_screen.gd" id="1_y00dx"]
+[ext_resource type="Texture2D" uid="uid://cybx686bfvt0l" path="res://assets/UI/ui_bigbox.png" id="2_jnvwv"]
+[ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="3_x3dci"]
+[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/Default2.tres" id="4_vq1c8"]
+[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/Default.tres" id="5_t2gth"]
+
+[node name="display_options_screen" type="Control" unique_id=349359289]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y00dx")
+
+[node name="UI_elements" type="MarginContainer" parent="." unique_id=2029960543]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="UI_elements" unique_id=1803824595]
+layout_mode = 2
+texture = ExtResource("2_jnvwv")
+stretch_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI_elements" unique_id=1797090601]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI_elements/VBoxContainer2" unique_id=1725349449]
+layout_mode = 2
+text = "Display"
+label_settings = ExtResource("3_x3dci")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Container" type="MarginContainer" parent="UI_elements/VBoxContainer2" unique_id=286577830]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2/Container" unique_id=1986467115]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="UI_elements/VBoxContainer2/Container/VBoxContainer" unique_id=438606363]
+layout_mode = 2
+split_offsets = PackedInt32Array(66)
+split_offset = 66
+
+[node name="Label" type="Label" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer" unique_id=1675227230]
+layout_mode = 2
+text = "Fullscreen"
+label_settings = ExtResource("3_x3dci")
+
+[node name="CheckBox" type="CheckBox" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer" unique_id=251459603]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+focus_neighbor_top = NodePath("../../../../VBoxContainer/BackButton")
+focus_neighbor_bottom = NodePath("../../../../VBoxContainer/BackButton")
+theme = ExtResource("4_vq1c8")
+button_pressed = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2" unique_id=1648078062]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="BackButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=468169370]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../../Container/VBoxContainer/HSplitContainer/CheckBox")
+focus_neighbor_bottom = NodePath("../../Container/VBoxContainer/HSplitContainer/CheckBox")
+theme = ExtResource("5_t2gth")
+text = "Back"
+
+[connection signal="toggled" from="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

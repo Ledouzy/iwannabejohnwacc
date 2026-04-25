@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cpi64xbe0gpg2"]
-
-[ext_resource type="Script" uid="uid://b0snmbqu82c8b" path="res://scripts/fps_counter.gd" id="1_u321x"]
-
-[node name="FPS_counter" type="Node2D" unique_id=1727205778]
-script = ExtResource("1_u321x")

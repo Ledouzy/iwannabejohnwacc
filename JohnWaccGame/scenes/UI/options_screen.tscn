@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dd623so28ui25"]
+
+[ext_resource type="Script" uid="uid://dh57gijaujsfo" path="res://scripts/UI/options_screen.gd" id="1_b7fgw"]
+[ext_resource type="Texture2D" uid="uid://cybx686bfvt0l" path="res://assets/UI/ui_bigbox.png" id="1_ffprp"]
+[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/Default.tres" id="2_8c6mt"]
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="2_d6p5t"]
+[ext_resource type="PackedScene" uid="uid://bpq5o2sd8wutd" path="res://scenes/UI/display_options_screen.tscn" id="5_jva2f"]
+[ext_resource type="PackedScene" uid="uid://wnge05ej7piu" path="res://scenes/UI/sound_options_screen.tscn" id="6_8rg7l"]
+[ext_resource type="PackedScene" uid="uid://8lnj8w3laj0b" path="res://scenes/UI/input_options_screen.tscn" id="7_2x2dr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b7fgw"]
+line_spacing = 4.0
+font = ExtResource("2_d6p5t")
+font_color = Color(0, 0, 0, 1)
+
+[node name="options_screen" type="Control" unique_id=1561367031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b7fgw")
+
+[node name="UI_elements" type="MarginContainer" parent="." unique_id=951448431]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="UI_elements" unique_id=703714920]
+layout_mode = 2
+texture = ExtResource("1_ffprp")
+stretch_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI_elements" unique_id=597229047]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI_elements/VBoxContainer2" unique_id=723083194]
+layout_mode = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_b7fgw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2" unique_id=1708386191]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="DisplayButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=180694131]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../SoundButton")
+theme = ExtResource("2_8c6mt")
+text = "Display
+"
+
+[node name="SoundButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1580562569]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../DisplayButton")
+focus_neighbor_bottom = NodePath("../InputButton")
+theme = ExtResource("2_8c6mt")
+text = "Sound"
+
+[node name="InputButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=888339255]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../SoundButton")
+focus_neighbor_bottom = NodePath("../BackButton")
+theme = ExtResource("2_8c6mt")
+text = "Input"
+
+[node name="BackButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1752251795]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../InputButton")
+focus_neighbor_bottom = NodePath("../DisplayButton")
+theme = ExtResource("2_8c6mt")
+text = "Back"
+
+[node name="display_options_screen" parent="." unique_id=349359289 instance=ExtResource("5_jva2f")]
+visible = false
+layout_mode = 1
+
+[node name="sound_options_screen" parent="." unique_id=1969319783 instance=ExtResource("6_8rg7l")]
+visible = false
+layout_mode = 1
+
+[node name="input_options_screen" parent="." unique_id=1232177562 instance=ExtResource("7_2x2dr")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/DisplayButton" to="." method="_on_display_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/InputButton" to="." method="_on_input_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

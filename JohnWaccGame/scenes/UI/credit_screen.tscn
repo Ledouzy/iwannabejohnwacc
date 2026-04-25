@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://b1oegl0o0afyl"]
+
+[ext_resource type="Texture2D" uid="uid://cybx686bfvt0l" path="res://assets/UI/ui_bigbox.png" id="1_6w8co"]
+[ext_resource type="Script" uid="uid://dqvu8jucwvlys" path="res://scripts/UI/credit_screen.gd" id="1_b4xf6"]
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="2_b4xf6"]
+[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/Default.tres" id="3_wv2xs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tf7ur"]
+line_spacing = 0.0
+font = ExtResource("2_b4xf6")
+font_color = Color(0, 0, 0, 1)
+
+[node name="credit_screen" type="Control" unique_id=1398797062]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b4xf6")
+
+[node name="UI_elements" type="MarginContainer" parent="." unique_id=1590773846]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="UI_elements" unique_id=1456263556]
+layout_mode = 2
+texture = ExtResource("1_6w8co")
+stretch_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI_elements" unique_id=1104290873]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="UI_elements/VBoxContainer2" unique_id=1464786264]
+layout_mode = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_tf7ur")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI_elements/VBoxContainer2" unique_id=1671758377]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "-Programming & Art-
+Ledouzy
+-Art-
+Rhadish"
+label_settings = SubResource("LabelSettings_tf7ur")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2" unique_id=1009853541]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="BackButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1552017771]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+theme = ExtResource("3_wv2xs")
+text = "Back"
+
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

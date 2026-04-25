@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bipvhwh20w3xj"]
+
+[ext_resource type="Texture2D" uid="uid://cybx686bfvt0l" path="res://assets/UI/ui_bigbox.png" id="1_5d2l8"]
+[ext_resource type="Script" uid="uid://cya5jjqph4bte" path="res://scripts/UI/pause_screen.gd" id="1_7l7mv"]
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="2_7l7mv"]
+[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/Default.tres" id="3_v4r4p"]
+[ext_resource type="PackedScene" uid="uid://dd623so28ui25" path="res://scenes/UI/options_screen.tscn" id="4_1s2dm"]
+[ext_resource type="Script" uid="uid://dak7y1gd3ajdl" path="res://scripts/UI/first_button.gd" id="5_v4r4p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_88e76"]
+line_spacing = 4.0
+font = ExtResource("2_7l7mv")
+font_color = Color(0, 0, 0, 1)
+
+[node name="pause_menu" type="Control" unique_id=1261421658]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7l7mv")
+
+[node name="UI_elements" type="MarginContainer" parent="." unique_id=1290708349]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="UI_elements" unique_id=489004108]
+layout_mode = 2
+texture = ExtResource("1_5d2l8")
+stretch_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI_elements" unique_id=976158472]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI_elements/VBoxContainer2" unique_id=2064438058]
+layout_mode = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_88e76")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2" unique_id=2066754480]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1593347430]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_v4r4p")
+text = "Resume
+"
+script = ExtResource("5_v4r4p")
+
+[node name="OptionButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1056014080]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_v4r4p")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1014345925]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_v4r4p")
+text = "Title"
+
+[node name="options_screen" parent="." unique_id=1561367031 instance=ExtResource("4_1s2dm")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="." method="_on_title_button_pressed"]

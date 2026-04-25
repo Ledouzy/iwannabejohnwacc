@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://giwa7yidedhl" path="res://assets/UI/ui_slider_knob.png" id="5_vk85k"]
 [ext_resource type="Texture2D" uid="uid://dk85fun2jqn1r" path="res://assets/UI/ui_slider_knob_disabled.png" id="6_8jhlc"]
 [ext_resource type="Texture2D" uid="uid://rfv8es3g36b8" path="res://assets/UI/ui_slider_back.png" id="7_gfib0"]
+[ext_resource type="Texture2D" uid="uid://kbqab1deuyil" path="res://assets/UI/ui_scrollbar.png" id="8_8jhlc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e87vq"]
 region_rect = Rect2(0, 48, 64, 16)
@@ -50,6 +51,42 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(0, 0, 32, 9)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_56wgs"]
+content_margin_left = 0.0
+content_margin_top = 6.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+texture = ExtResource("8_8jhlc")
+axis_stretch_horizontal = 1
+region_rect = Rect2(52, 35, 9, 58)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n2w6l"]
+content_margin_left = 0.0
+content_margin_top = 6.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+texture = ExtResource("8_8jhlc")
+axis_stretch_horizontal = 1
+region_rect = Rect2(84, 35, 9, 58)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nuu04"]
+content_margin_left = 5.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = ExtResource("8_8jhlc")
+axis_stretch_horizontal = 1
+region_rect = Rect2(20, 48, 9, 96)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_571xj"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = ExtResource("8_8jhlc")
+axis_stretch_horizontal = 1
+region_rect = Rect2(36, 0, 9, 32)
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
@@ -87,3 +124,8 @@ HSlider/icons/grabber_highlight = ExtResource("5_vk85k")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_8jhlc")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_vk85k")
 HSlider/styles/slider = SubResource("StyleBoxTexture_gfib0")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_56wgs")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_n2w6l")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_56wgs")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_nuu04")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxTexture_571xj")
