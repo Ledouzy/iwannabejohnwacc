@@ -61,6 +61,8 @@ size_flags_vertical = 3
 [node name="ActionList" type="VBoxContainer" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer" unique_id=1012714718]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../../HBoxContainer")
+focus_neighbor_bottom = NodePath("../../../HBoxContainer")
 
 [node name="InputButton" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer/ActionList" unique_id=677971783 instance=ExtResource("4_35qm1")]
 layout_mode = 2
@@ -79,12 +81,16 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1546629294]
 layout_mode = 2
+focus_neighbor_top = NodePath("../MarginContainer/ScrollContainer/ActionList")
+focus_neighbor_bottom = NodePath("../MarginContainer/ScrollContainer/ActionList")
 alignment = 1
 
 [node name="ResetButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1199369900]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_right = NodePath("../BackButton")
 focus_mode = 0
 theme = ExtResource("3_35qm1")
 text = "Reset"
@@ -93,6 +99,8 @@ text = "Reset"
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath("../ResetButton")
+focus_neighbor_right = NodePath("../ResetButton")
 theme = ExtResource("3_35qm1")
 text = "Back"
 

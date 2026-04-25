@@ -63,6 +63,8 @@ label_settings = ExtResource("2_v6f2x")
 
 [node name="VolumeSlider" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer" unique_id=226598733 instance=ExtResource("4_v6f2x")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../VBoxContainer/BackButton")
+focus_neighbor_bottom = NodePath("../../HSplitContainer3/VolumeSlider")
 bus_name = "Master"
 
 [node name="HSplitContainer3" type="HSplitContainer" parent="UI_elements/VBoxContainer2/Container/VBoxContainer" unique_id=976970241]
@@ -77,6 +79,8 @@ label_settings = ExtResource("2_v6f2x")
 
 [node name="VolumeSlider" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer3" unique_id=83750726 instance=ExtResource("4_v6f2x")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../HSplitContainer/VolumeSlider")
+focus_neighbor_bottom = NodePath("../../HSplitContainer2/VolumeSlider")
 value = 1.0
 bus_name = "Music"
 
@@ -92,6 +96,8 @@ label_settings = ExtResource("2_v6f2x")
 
 [node name="VolumeSlider" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer2" unique_id=1435973895 instance=ExtResource("4_v6f2x")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../HSplitContainer3/VolumeSlider")
+focus_neighbor_bottom = NodePath("../../../../VBoxContainer/BackButton")
 value = 1.0
 bus_name = "SFX"
 
@@ -105,6 +111,8 @@ alignment = 1
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../../Container/VBoxContainer/HSplitContainer2/VolumeSlider")
+focus_neighbor_bottom = NodePath("../../Container/VBoxContainer/HSplitContainer/VolumeSlider")
 theme = ExtResource("4_ftuep")
 text = "Back"
 

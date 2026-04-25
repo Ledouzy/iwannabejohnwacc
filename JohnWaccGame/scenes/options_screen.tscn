@@ -59,6 +59,8 @@ alignment = 1
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../SoundButton")
 theme = ExtResource("2_8c6mt")
 text = "Display
 "
@@ -67,6 +69,8 @@ text = "Display
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../DisplayButton")
+focus_neighbor_bottom = NodePath("../InputButton")
 theme = ExtResource("2_8c6mt")
 text = "Sound"
 
@@ -74,6 +78,8 @@ text = "Sound"
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../SoundButton")
+focus_neighbor_bottom = NodePath("../BackButton")
 theme = ExtResource("2_8c6mt")
 text = "Input"
 
@@ -81,6 +87,8 @@ text = "Input"
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../InputButton")
+focus_neighbor_bottom = NodePath("../DisplayButton")
 theme = ExtResource("2_8c6mt")
 text = "Back"
 
