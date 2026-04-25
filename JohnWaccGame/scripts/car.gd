@@ -38,7 +38,7 @@ func is_dead() -> bool:
 	return dead
 
 func pickedUp(player: CharacterBody2D) -> void:
-	print("car picked")
+	#print("car picked")
 	pickedUpBy = player
 	walkDisabled = true
 	hurtbox_collison.disabled = true
@@ -49,7 +49,7 @@ func pickedUp(player: CharacterBody2D) -> void:
 		direction = player.get_direction()
 	
 func thrown() -> void:
-	print("car thrown")
+	#print("car thrown")
 	startThrow = true
 	move_and_slide()
 	await get_tree().create_timer(0.1).timeout

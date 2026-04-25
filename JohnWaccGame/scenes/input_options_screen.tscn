@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://8lnj8w3laj0b"]
 
 [ext_resource type="Script" uid="uid://bwn07fqfg2y26" path="res://scripts/input_options_screen.gd" id="1_5nrgs"]
-[ext_resource type="Texture2D" uid="uid://cybx686bfvt0l" path="res://assets/UI/ui_bigbox.png" id="1_cnbbv"]
 [ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="2_5nrgs"]
+[ext_resource type="Texture2D" uid="uid://co3l8muxahw75" path="res://assets/UI/ui_bigboxfull.png" id="2_35qm1"]
 [ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/Default.tres" id="3_35qm1"]
+[ext_resource type="PackedScene" uid="uid://dm1jro7e1wk6x" path="res://scenes/input_button.tscn" id="4_35qm1"]
 
 [node name="input_options_screen" type="Control" unique_id=1232177562]
 layout_mode = 3
@@ -28,7 +29,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="TextureRect" type="TextureRect" parent="UI_elements" unique_id=1764096708]
 layout_mode = 2
-texture = ExtResource("1_cnbbv")
+texture = ExtResource("2_35qm1")
 stretch_mode = 3
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="UI_elements" unique_id=316860266]
@@ -47,11 +48,53 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="BackButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=2007221114]
+[node name="MarginContainer" type="MarginContainer" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=58872036]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer" unique_id=711059732]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionList" type="VBoxContainer" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer" unique_id=1012714718]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputButton" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer/ActionList" unique_id=677971783 instance=ExtResource("4_35qm1")]
+layout_mode = 2
+
+[node name="InputButton2" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer/ActionList" unique_id=1070448168 instance=ExtResource("4_35qm1")]
+layout_mode = 2
+
+[node name="InputButton3" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer/ActionList" unique_id=864477508 instance=ExtResource("4_35qm1")]
+layout_mode = 2
+
+[node name="InputButton4" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer/ActionList" unique_id=1676408002 instance=ExtResource("4_35qm1")]
+layout_mode = 2
+
+[node name="InputButton5" parent="UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer/ActionList" unique_id=347906359 instance=ExtResource("4_35qm1")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1546629294]
+layout_mode = 2
+alignment = 1
+
+[node name="ResetButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1199369900]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme = ExtResource("3_35qm1")
+text = "Reset"
+
+[node name="BackButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer/HBoxContainer" unique_id=2007221114]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_35qm1")
 text = "Back"
 
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

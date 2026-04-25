@@ -14,6 +14,9 @@ const MAXCOYOTETIME = .12 # max time in air before we can't jump anymore
 var coyote_timer = 0
 var can_jump = true
 
+# deadzone
+@export var deadzone = 0.25 # min value before input is registered
+
 # direction
 var dir = 1 # direction of the player
 
@@ -85,7 +88,7 @@ func takeDamage(damage) -> void:
 		health -= damage
 		health = max(health,0)
 		#game_manager.update_health() # updates display
-		print("health: ",health)
+		#print("health: ",health)
 		if health <= 0:
 			animation_player.play("death")
 		else:
@@ -210,7 +213,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and can_jump and (jumps > 0) and !waitforanimationend :
 		# removes 1 jump to number of jumps (jumps variable)
 		jumps -= 1
-		print("jumps: ",jumps)
+		#print("jumps: ",jumps)
 		
 		# play the jump sfx
 		jumpSound.play()
@@ -272,7 +275,7 @@ func _physics_process(delta: float) -> void:
 	# Handles attacking, right now only for sword and on side
 	# TODO: Handle attack in all direction if in air and 2 directions on the ground (up side down and up side respectively)
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
-		print("attack") # debug message
+		#print("attack") # debug message
 		
 		# play the attack animation and locks animation for the length of the animation
 		animation_player.play("attackSide")
@@ -283,10 +286,12 @@ func _physics_process(delta: float) -> void:
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
+	if abs(direction) < deadzone:
+		direction = 0
 	
 	# check if running
 	if Input.is_action_just_pressed("run"):
-		print("running!") # debug message
+		#print("running!") # debug message
 		
 		# updates the speed multiplier with run speed
 		speedMult = RUN_MULT

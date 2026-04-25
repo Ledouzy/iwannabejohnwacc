@@ -11,7 +11,7 @@ var startThrow = false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func pickedUp(player: CharacterBody2D) -> void:
-	print("Hime picked")
+	#print("Hime picked")
 	pickedUpBy = player
 	collision_shape.disabled = true
 	if (player.has_method("get_direction")):
@@ -19,7 +19,7 @@ func pickedUp(player: CharacterBody2D) -> void:
 	animated_sprite.play("HimeGrabbed")
 	
 func thrown() -> void:
-	print("Hime thrown")
+	#print("Hime thrown")
 	startThrow = true
 	move_and_slide()
 	await get_tree().create_timer(0.1).timeout

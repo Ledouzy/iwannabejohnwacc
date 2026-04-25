@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dm1jro7e1wk6x"]
+
+[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/Default2.tres" id="1_5r1ea"]
+[ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="2_8mqh5"]
+
+[node name="InputButton" type="Button" unique_id=677971783]
+custom_minimum_size = Vector2(0, 16)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+focus_mode = 0
+theme = ExtResource("1_5r1ea")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1076215453]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=331026040]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer" unique_id=173208486]
+layout_mode = 2
+mouse_filter = 1
+text = "action name"
+label_settings = ExtResource("2_8mqh5")
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer" unique_id=2028190689]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer" unique_id=302696856]
+layout_mode = 2
+mouse_filter = 1
+text = "input"
+label_settings = ExtResource("2_8mqh5")

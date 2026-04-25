@@ -5,7 +5,6 @@
 [ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="2_v6f2x"]
 [ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/Default.tres" id="4_ftuep"]
 [ext_resource type="PackedScene" uid="uid://cjb0g5l04i6w" path="res://scenes/volume_slider.tscn" id="4_v6f2x"]
-[ext_resource type="AudioStream" uid="uid://c480n6c82dhxe" path="res://assets/audio/music/Divine Bloodlines.wav" id="6_upurj"]
 
 [node name="sound_options_screen" type="Control" unique_id=1969319783]
 layout_mode = 3
@@ -108,10 +107,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_ftuep")
 text = "Back"
-
-[node name="DivineBloodlines" type="AudioStreamPlayer" parent="." unique_id=1860358159]
-stream = ExtResource("6_upurj")
-autoplay = true
-bus = &"Music"
 
 [connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

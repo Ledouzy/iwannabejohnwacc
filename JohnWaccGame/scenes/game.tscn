@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://2ac3rtwphoww" path="res://assets/audio/music/Third_Sanctuary.ogg" id="15_ir15t"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/hime.tscn" id="19_264po"]
 [ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/beaver.tscn" id="21_5newe"]
+[ext_resource type="PackedScene" uid="uid://bipvhwh20w3xj" path="res://scenes/pause_menu.tscn" id="21_e1j6l"]
 [ext_resource type="AudioStream" uid="uid://c480n6c82dhxe" path="res://assets/audio/music/Divine Bloodlines.wav" id="22_37s47"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dinhu"]
@@ -613,6 +614,10 @@ offset_bottom = 40.0
 script = ExtResource("2_trtic")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GameManager" unique_id=1359064907]
+
+[node name="pause_menu" parent="GameManager/CanvasLayer" unique_id=1261421658 instance=ExtResource("21_e1j6l")]
+visible = false
+z_index = 10
 
 [node name="Base" type="Control" parent="GameManager/CanvasLayer" unique_id=918589098]
 layout_mode = 3
