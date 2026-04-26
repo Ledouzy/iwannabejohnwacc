@@ -9,7 +9,7 @@ var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 @export var JUMP_VELOCITY = -200.0 ## How high you jump
 @export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
-var jumps = MAX_JUMPS # number of jumps left
+@onready var jumps = MAX_JUMPS # number of jumps left
 const MAXCOYOTETIME = .12 # max time in air before we can't jump anymore
 var coyote_timer = 0
 var can_jump = true
@@ -21,7 +21,7 @@ var can_jump = true
 var dir = 1 # direction of the player
 
 @export var MAX_HEALTH = 10 ## max hp
-var health = MAX_HEALTH # number of hits before dying
+@onready var health = MAX_HEALTH # number of hits before dying
 var invulnerable = false
 @onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
 #var healthLock : Mutex # lock for not taking damage until invul frames end
@@ -196,7 +196,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		# coyote time aka jumping when leaving ground
 		coyote_timer += delta
-		if coyote_timer > MAXCOYOTETIME:
+		if coyote_timer > MAXCOYOTETIME && jumps <= 0:
 			# can't jump if we're in the air for too long
 			can_jump = false
 			
@@ -213,7 +213,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and can_jump and (jumps > 0) and !waitforanimationend :
 		# removes 1 jump to number of jumps (jumps variable)
 		jumps -= 1
-		#print("jumps: ",jumps)
+		print("jumps: ",jumps)
 		
 		# play the jump sfx
 		jumpSound.play()
