@@ -15,12 +15,14 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="I Wanna be JOHN WACCLAND"
+config/description="You are JOHN DOGI and you are on a quest to become JOHN WACCLAND!"
+config/version="0.0.1"
 run/main_scene="uid://eicwdtw6abms"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/use_filter=false
 boot_splash/image="uid://bg6owbdplrmtu"
-config/icon="res://icon.svg"
+config/icon="uid://cxijk32o0siyi"
 boot_splash/minimum_display_time=2000
 
 [autoload]
@@ -33,6 +35,13 @@ window/size/viewport_width=160
 window/size/viewport_height=144
 window/size/mode=4
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="uid://0l6awu6fxxuk"
+
+[gui]
+
+theme/default_font_antialiasing=0
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
 
 [input]
 
