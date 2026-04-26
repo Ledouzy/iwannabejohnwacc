@@ -1,10 +1,6 @@
 extends Area2D
 
-@export var next_level_name: String = ""
-@onready var next_level = "res://scenes/levels/" + next_level_name + ".tscn"
+@export var next_scene_name: String = ""
 
 func _on_body_entered(body: Node2D) -> void:
-	#print("entered zone, next level: " + next_level_name)
-	var error = get_tree().change_scene_to_file(next_level)
-	if error:
-		print("error loading scene!")
+	scene_manager.change_scene(get_tree(), next_scene_name)

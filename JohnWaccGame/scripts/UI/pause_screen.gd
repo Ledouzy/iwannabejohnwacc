@@ -18,7 +18,7 @@ func _on_option_button_pressed() -> void:
 func _on_title_button_pressed() -> void:
 	# probably have a confirmation popup
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/UI/title_screen.tscn")
+	scene_manager.go_to_title(get_tree())
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):

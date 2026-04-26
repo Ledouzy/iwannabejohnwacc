@@ -146,7 +146,7 @@ _data = {
 font = ExtResource("16_h8itd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fqlro"]
-size = Vector2(188, 63)
+size = Vector2(1093, 63)
 
 [node name="Game" type="Node2D" unique_id=1170486435]
 
@@ -492,10 +492,10 @@ texture = ExtResource("17_0rsli")
 
 [node name="level_transition" parent="Level" unique_id=1807414438 instance=ExtResource("17_v80qm")]
 position = Vector2(1386, 106)
-next_level_name = "level_test"
+next_scene_name = "level_test"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition" unique_id=2067332125]
-position = Vector2(84, 21.5)
+position = Vector2(536.5, 21.5)
 shape = SubResource("RectangleShape2D_fqlro")
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1279079287]
