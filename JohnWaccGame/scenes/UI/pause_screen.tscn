@@ -59,6 +59,8 @@ alignment = 1
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../OptionButton")
 theme = ExtResource("3_v4r4p")
 text = "Resume
 "
@@ -68,6 +70,8 @@ script = ExtResource("5_v4r4p")
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
 theme = ExtResource("3_v4r4p")
 text = "Options"
 
@@ -75,6 +79,8 @@ text = "Options"
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../OptionButton")
+focus_neighbor_bottom = NodePath("../ResumeButton")
 theme = ExtResource("3_v4r4p")
 text = "Title"
 
