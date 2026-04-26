@@ -79,15 +79,12 @@ func get_max_health() -> int:
 func _on_death_timer_timeout() -> void:
 	get_tree().reload_current_scene()
 	
-func takeDamage(damage) -> void:
-	#if healthLock.try_lock():
+func take_damage(damage) -> void:
 	if !invulnerable:
 		invulnerable = true
 		damage_timer.start()
 		health -= damage
 		health = max(health,0)
-		#game_manager.update_health() # updates display
-		#print("health: ",health)
 		if health <= 0:
 			animation_player.play("death")
 		else:
@@ -99,8 +96,7 @@ func takeDamage(damage) -> void:
 			skipMoveProcess = false
 			waitforanimationend = false
 			blink_animation_player.play("blink")
-			await get_tree().create_timer(1.8).timeout
-	#healthLock.unlock()
+			await get_tree().create_timer(1.0).timeout
 	
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false

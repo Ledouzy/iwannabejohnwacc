@@ -6,6 +6,7 @@ extends Control
 
 func _ready() -> void:
 	audio_manager.play_music("DivineBloodlines")
+	focused()
 
 func focused():
 	start_button.grab_focus()

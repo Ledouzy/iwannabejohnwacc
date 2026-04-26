@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bjy8d1i5fhi8x"]
 
-[ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="1_xbcdo"]
+[ext_resource type="PackedScene" uid="uid://c118octxh7v0b" path="res://scenes/logic/hurt_box.tscn" id="1_tkv1w"]
 [ext_resource type="Texture2D" uid="uid://bdbmirx3dodw5" path="res://assets/sprites/Objects/Spikes.png" id="2_bflj7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kd5gq"]
@@ -8,10 +8,12 @@ size = Vector2(16, 7)
 
 [node name="Spikes" type="Node2D" unique_id=2076175770]
 
-[node name="Killzone" parent="." unique_id=631934805 instance=ExtResource("1_xbcdo")]
-collision_mask = 6
+[node name="HurtBox" parent="." unique_id=631934805 instance=ExtResource("1_tkv1w")]
+collision_layer = 7
+collision_mask = 7
+damage = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=2093787505]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2093787505]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_kd5gq")
 

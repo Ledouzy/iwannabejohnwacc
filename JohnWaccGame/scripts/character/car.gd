@@ -67,7 +67,7 @@ func thrown() -> void:
 	hurtbox_collison.disabled = false
 	animated_sprite.flip_v = false
 	
-func takeDamage(damage) -> void:
+func take_damage(damage) -> void:
 	if !invulnerable:
 		invulnerable = true
 		damage_timer.start()

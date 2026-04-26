@@ -205,7 +205,6 @@ centered = false
 
 [node name="Player" parent="." unique_id=1264691691 instance=ExtResource("6_fqlro")]
 position = Vector2(0, 1)
-MAX_JUMPS = 2
 
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("7_tb13f")]
 z_index = 4
