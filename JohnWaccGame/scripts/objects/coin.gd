@@ -6,3 +6,4 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	game_manager.add_point()
 	animation_player.play("pickup")
+	audio_manager.play_sfx("Coin", 0, position)

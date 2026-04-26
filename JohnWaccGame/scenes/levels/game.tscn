@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://buvoxkpjj2c3b"]
 
+[ext_resource type="Script" uid="uid://bb6f7ojwbjx3n" path="res://scripts/level/game.gd" id="1_02t1k"]
 [ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/layer0.png" id="2_tb13f"]
 [ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/layer1.png" id="3_i73dc"]
 [ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/layer2.png" id="4_1w27a"]
@@ -20,9 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="18_7yv8k"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="19_hilwk"]
 [ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="19_j2fik"]
-[ext_resource type="AudioStream" uid="uid://bvtx5venoy5la" path="res://assets/audio/music/track_baller.wav" id="22_sq8y2"]
-[ext_resource type="AudioStream" uid="uid://2ac3rtwphoww" path="res://assets/audio/music/Third_Sanctuary.ogg" id="23_7xxho"]
-[ext_resource type="AudioStream" uid="uid://c480n6c82dhxe" path="res://assets/audio/music/Divine Bloodlines.wav" id="24_atgmy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dinhu"]
 distance = -160.0
@@ -149,6 +147,7 @@ font = ExtResource("16_h8itd")
 size = Vector2(1093, 63)
 
 [node name="Game" type="Node2D" unique_id=1170486435]
+script = ExtResource("1_02t1k")
 
 [node name="Background" type="Node2D" parent="." unique_id=190998599]
 position = Vector2(-230, -259)
@@ -206,8 +205,7 @@ centered = false
 
 [node name="Player" parent="." unique_id=1264691691 instance=ExtResource("6_fqlro")]
 position = Vector2(0, 1)
-MAX_JUMPS = 255
-MAX_HEALTH = 255
+MAX_JUMPS = 2
 
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("7_tb13f")]
 z_index = 4
@@ -517,18 +515,3 @@ position = Vector2(713, -127)
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("19_hilwk")]
 unique_name_in_owner = true
-
-[node name="TrackBaller" type="AudioStreamPlayer" parent="." unique_id=1847751448]
-stream = ExtResource("22_sq8y2")
-pitch_scale = 0.91
-bus = &"Music"
-
-[node name="ThirdSanctuary" type="AudioStreamPlayer" parent="." unique_id=1993442971]
-stream = ExtResource("23_7xxho")
-bus = &"Music"
-parameters/looping = true
-
-[node name="DivineBloodlines" type="AudioStreamPlayer" parent="." unique_id=431146690]
-stream = ExtResource("24_atgmy")
-autoplay = true
-bus = &"Music"

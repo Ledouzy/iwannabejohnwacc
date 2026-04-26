@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://1wxxvftalvkh"]
 
 [ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/layer0.png" id="1_8883n"]
+[ext_resource type="Script" uid="uid://c5itgkvy7hbdm" path="res://scripts/level/level_test.gd" id="1_es4qh"]
 [ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/character/player.tscn" id="1_jp5fc"]
 [ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="2_4ptlp"]
 [ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/layer1.png" id="2_es4qh"]
@@ -9,12 +10,12 @@
 [ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="4_4ptlp"]
 [ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/layer3.png" id="4_nxmka"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="5_ycf23"]
-[ext_resource type="AudioStream" uid="uid://v11oc0wr282e" path="res://assets/audio/music/Star Light Zone.wav" id="10_es4qh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uh3ll"]
 distance = -160.0
 
 [node name="Level Test" type="Node2D" unique_id=1918408538]
+script = ExtResource("1_es4qh")
 
 [node name="Background" type="Node2D" parent="." unique_id=1715817432]
 position = Vector2(-230, -259)
@@ -72,7 +73,6 @@ centered = false
 
 [node name="Player" parent="." unique_id=1264691691 instance=ExtResource("1_jp5fc")]
 position = Vector2(0, 1)
-JUMP_VELOCITY = -200.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1901197980]
 process_callback = 0
@@ -97,8 +97,3 @@ tile_set = ExtResource("4_4ptlp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Killzone" unique_id=293971914]
 position = Vector2(0, 2)
 shape = SubResource("WorldBoundaryShape2D_uh3ll")
-
-[node name="StarLightZone" type="AudioStreamPlayer" parent="." unique_id=496354649]
-stream = ExtResource("10_es4qh")
-autoplay = true
-bus = &"Music"

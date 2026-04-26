@@ -4,6 +4,9 @@ extends Control
 @onready var credit_screen: Control = $credit_screen
 @onready var start_button: Button = $UI_elements/VBoxContainer/VBoxContainer/StartButton
 
+func _ready() -> void:
+	audio_manager.play_music("DivineBloodlines")
+
 func focused():
 	start_button.grab_focus()
 

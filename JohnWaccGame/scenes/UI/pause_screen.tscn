@@ -3,9 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cybx686bfvt0l" path="res://assets/UI/ui_bigbox.png" id="1_5d2l8"]
 [ext_resource type="Script" uid="uid://cya5jjqph4bte" path="res://scripts/UI/pause_screen.gd" id="1_7l7mv"]
 [ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="2_7l7mv"]
-[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/Default.tres" id="3_v4r4p"]
+[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/UI.tres" id="3_v4r4p"]
 [ext_resource type="PackedScene" uid="uid://dd623so28ui25" path="res://scenes/UI/options_screen.tscn" id="4_1s2dm"]
 [ext_resource type="Script" uid="uid://dak7y1gd3ajdl" path="res://scripts/UI/first_button.gd" id="5_v4r4p"]
+[ext_resource type="Script" uid="uid://b1wjcwgadqxqt" path="res://scripts/UI/base_button.gd" id="6_11xym"]
+[ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="7_40d3o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_88e76"]
 line_spacing = 4.0
@@ -74,6 +76,7 @@ focus_neighbor_top = NodePath("../ResumeButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 theme = ExtResource("3_v4r4p")
 text = "Options"
+script = ExtResource("6_11xym")
 
 [node name="QuitButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1014345925]
 custom_minimum_size = Vector2(64, 0)
@@ -83,11 +86,21 @@ focus_neighbor_top = NodePath("../OptionButton")
 focus_neighbor_bottom = NodePath("../ResumeButton")
 theme = ExtResource("3_v4r4p")
 text = "Title"
+script = ExtResource("7_40d3o")
 
 [node name="options_screen" parent="." unique_id=1561367031 instance=ExtResource("4_1s2dm")]
 visible = false
 layout_mode = 1
 
+[connection signal="focus_entered" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" method="_on_pressed"]
+[connection signal="focus_entered" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" method="_on_pressed"]
+[connection signal="focus_entered" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="." method="_on_title_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" method="_on_pressed"]

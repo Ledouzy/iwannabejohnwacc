@@ -25,10 +25,15 @@ boot_splash/image="uid://bg6owbdplrmtu"
 config/icon="uid://cxijk32o0siyi"
 boot_splash/minimum_display_time=2000
 
+[audio]
+
+buses/default_bus_layout="uid://550b0h1aton2"
+
 [autoload]
 
 global_manager="*uid://ssgv63itdkke"
 scene_manager="*uid://danqm66esm7xh"
+audio_manager="*uid://b14o7v5ncnymy"
 
 [display]
 

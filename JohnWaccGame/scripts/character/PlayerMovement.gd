@@ -10,7 +10,7 @@ var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 @export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
 @onready var jumps = MAX_JUMPS # number of jumps left
-const MAXCOYOTETIME = .12 # max time in air before we can't jump anymore
+@export var MAXCOYOTETIME = .12 # max time in air before we can't jump anymore
 var coyote_timer = 0
 var can_jump = true
 
@@ -43,7 +43,6 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 #@onready var game_manager: Control = %GameManager
 @onready var player_body: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var jumpSound: AudioStreamPlayer = $Jump
 @onready var throw_rayCast: RayCast2D = $RayCastThrow
 @onready var death_timer: Timer = $DeathTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -196,10 +195,13 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		# coyote time aka jumping when leaving ground
 		coyote_timer += delta
-		if coyote_timer > MAXCOYOTETIME && jumps <= 0:
+		
+		if coyote_timer > MAXCOYOTETIME:
 			# can't jump if we're in the air for too long
+			if can_jump:
+				# remove the jump since we're in the air
+				jumps = min(jumps, MAX_JUMPS-1)
 			can_jump = false
-			
 		if velocity.y < MAX_FALL_VELOCITY:
 			velocity += get_gravity() * delta * 0.5
 
@@ -210,13 +212,13 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY * 0.25
 	
 	# If held, or first tapped we give full height, also handles multiple jumps
-	if Input.is_action_just_pressed("jump") and can_jump and (jumps > 0) and !waitforanimationend :
+	if Input.is_action_just_pressed("jump") and (can_jump or (jumps > 0)) and !waitforanimationend :
 		# removes 1 jump to number of jumps (jumps variable)
 		jumps -= 1
-		print("jumps: ",jumps)
+		#print("jumps: ",jumps)
 		
 		# play the jump sfx
-		jumpSound.play()
+		play_sfx("Jump")
 		
 		# updates the velocity
 		velocity.y = JUMP_VELOCITY
@@ -328,3 +330,6 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
 	move_and_slide()
+	
+func play_sfx(sfx_name):
+	audio_manager.play_sfx(sfx_name, 0, self.position)

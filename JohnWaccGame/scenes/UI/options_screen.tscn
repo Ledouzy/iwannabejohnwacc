@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dh57gijaujsfo" path="res://scripts/UI/options_screen.gd" id="1_b7fgw"]
 [ext_resource type="Texture2D" uid="uid://cybx686bfvt0l" path="res://assets/UI/ui_bigbox.png" id="1_ffprp"]
-[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/Default.tres" id="2_8c6mt"]
 [ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="2_d6p5t"]
+[ext_resource type="PackedScene" uid="uid://bcfnr3wci4rq3" path="res://scenes/UI/base_button.tscn" id="4_wask0"]
+[ext_resource type="Script" uid="uid://dak7y1gd3ajdl" path="res://scripts/UI/first_button.gd" id="5_f30g4"]
 [ext_resource type="PackedScene" uid="uid://bpq5o2sd8wutd" path="res://scenes/UI/display_options_screen.tscn" id="5_jva2f"]
 [ext_resource type="PackedScene" uid="uid://wnge05ej7piu" path="res://scenes/UI/sound_options_screen.tscn" id="6_8rg7l"]
+[ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="6_f30g4"]
 [ext_resource type="PackedScene" uid="uid://8lnj8w3laj0b" path="res://scenes/UI/input_options_screen.tscn" id="7_2x2dr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b7fgw"]
@@ -55,42 +57,37 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="DisplayButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=180694131]
+[node name="DisplayButton" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1194301000 instance=ExtResource("4_wask0")]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../BackButton")
 focus_neighbor_bottom = NodePath("../SoundButton")
-theme = ExtResource("2_8c6mt")
-text = "Display
-"
+text = "Display"
+script = ExtResource("5_f30g4")
 
-[node name="SoundButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1580562569]
+[node name="SoundButton" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=2022586543 instance=ExtResource("4_wask0")]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../DisplayButton")
 focus_neighbor_bottom = NodePath("../InputButton")
-theme = ExtResource("2_8c6mt")
 text = "Sound"
 
-[node name="InputButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=888339255]
-custom_minimum_size = Vector2(64, 0)
+[node name="InputButton" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=185815978 instance=ExtResource("4_wask0")]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../SoundButton")
 focus_neighbor_bottom = NodePath("../BackButton")
-theme = ExtResource("2_8c6mt")
 text = "Input"
 
-[node name="BackButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1752251795]
-custom_minimum_size = Vector2(64, 0)
+[node name="BackButton" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=232235127 instance=ExtResource("4_wask0")]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../InputButton")
 focus_neighbor_bottom = NodePath("../DisplayButton")
-theme = ExtResource("2_8c6mt")
 text = "Back"
+script = ExtResource("6_f30g4")
 
 [node name="display_options_screen" parent="." unique_id=349359289 instance=ExtResource("5_jva2f")]
 visible = false

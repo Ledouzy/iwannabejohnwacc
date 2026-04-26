@@ -32,6 +32,7 @@ var walkDisabled = false
 func set_dead():
 	dead = true
 	deathanim = true
+	play_sfx("Death")
 
 # returns value of dead
 func is_dead() -> bool:
@@ -138,3 +139,6 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("CarGrabbed")
 	
 	move_and_slide()
+	
+func play_sfx(sfx_name):
+	audio_manager.play_sfx(sfx_name, 0, self.position)

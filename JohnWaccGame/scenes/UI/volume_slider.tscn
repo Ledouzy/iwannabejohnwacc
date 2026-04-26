@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjb0g5l04i6w"]
 
-[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/Default2.tres" id="1_1snrh"]
+[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/UI_no_box.tres" id="1_1snrh"]
 [ext_resource type="Script" uid="uid://b2xtvtr1fxxk5" path="res://scripts/UI/volume_slider.gd" id="2_4v2uo"]
 
 [node name="VolumeSlider" type="HSlider" unique_id=226598733]

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dm1jro7e1wk6x"]
 
-[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/Default2.tres" id="1_5r1ea"]
+[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/UI_no_box.tres" id="1_5r1ea"]
 [ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="2_8mqh5"]
+[ext_resource type="Script" uid="uid://b1wjcwgadqxqt" path="res://scripts/UI/base_button.gd" id="2_74igm"]
 
 [node name="InputButton" type="Button" unique_id=677971783]
 custom_minimum_size = Vector2(0, 16)
@@ -10,6 +11,7 @@ anchor_right = 1.0
 grow_horizontal = 2
 focus_mode = 0
 theme = ExtResource("1_5r1ea")
+script = ExtResource("2_74igm")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1076215453]
 layout_mode = 1
@@ -40,3 +42,5 @@ layout_mode = 2
 mouse_filter = 1
 text = "input"
 label_settings = ExtResource("2_8mqh5")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
