@@ -2,28 +2,28 @@ extends CharacterBody2D
 
 # Movement Parameters
 # Speed
-@export var SPEED = 90 # base speed value
-@export var RUN_MULT = 1.5 # Sprint multiplier
-var speedMult = 1.0 # mults the speed by this constant, changes if sprinting
+@export var SPEED = 90 ## base speed value
+@export var RUN_MULT = 1.5 ## Sprint multiplier
+var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 # Jump
-@export var JUMP_VELOCITY = -180.0 # How high you jump
-@export var MAX_FALL_VELOCITY = 300 # How fast you fall
-@export var MAX_JUMPS = 1 # number of jumps        
+@export var JUMP_VELOCITY = -200.0 ## How high you jump
+@export var MAX_FALL_VELOCITY = 300 ## How fast you fall
+@export var MAX_JUMPS = 1 ## number of jumps        
 var jumps = MAX_JUMPS # number of jumps left
 const MAXCOYOTETIME = .12 # max time in air before we can't jump anymore
 var coyote_timer = 0
 var can_jump = true
 
 # deadzone
-@export var deadzone = 0.25 # min value before input is registered
+@export var deadzone = 0.25 ## min value before input is registered
 
 # direction
 var dir = 1 # direction of the player
 
-@export var MAX_HEALTH = 10 # max hp
+@export var MAX_HEALTH = 10 ## max hp
 var health = MAX_HEALTH # number of hits before dying
 var invulnerable = false
-@onready var damage_timer: Timer = $DamageTimer # invulnerability frames basically
+@onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
 #var healthLock : Mutex # lock for not taking damage until invul frames end
 
 # pickup/throw objects

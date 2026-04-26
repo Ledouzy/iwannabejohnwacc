@@ -1,0 +1,104 @@
+[gd_scene format=4 uid="uid://1wxxvftalvkh"]
+
+[ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/layer0.png" id="1_8883n"]
+[ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/character/player.tscn" id="1_jp5fc"]
+[ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="2_4ptlp"]
+[ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/layer1.png" id="2_es4qh"]
+[ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/layer2.png" id="3_s0ovu"]
+[ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="3_ycf23"]
+[ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="4_4ptlp"]
+[ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/layer3.png" id="4_nxmka"]
+[ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="5_ycf23"]
+[ext_resource type="AudioStream" uid="uid://v11oc0wr282e" path="res://assets/audio/music/Star Light Zone.wav" id="10_es4qh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uh3ll"]
+distance = -160.0
+
+[node name="Level Test" type="Node2D" unique_id=1918408538]
+
+[node name="Background" type="Node2D" parent="." unique_id=1715817432]
+position = Vector2(-230, -259)
+
+[node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=1627762535]
+z_index = -4096
+scroll_scale = Vector2(0.1, 0)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 256)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=724986569]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("1_8883n")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background" unique_id=1937827694]
+z_index = -4096
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(0.5, -0.25)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2" unique_id=1848466790]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("2_es4qh")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Background" unique_id=1633445144]
+z_index = -4096
+scroll_scale = Vector2(0.05, 0)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" unique_id=594511508]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("3_s0ovu")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="Background" unique_id=1955813722]
+z_index = -4096
+scroll_scale = Vector2(0.001, 0)
+scroll_offset = Vector2(-150, 240)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=2085988623]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("4_nxmka")
+centered = false
+
+[node name="Player" parent="." unique_id=1264691691 instance=ExtResource("1_jp5fc")]
+position = Vector2(0, 1)
+JUMP_VELOCITY = -200.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1901197980]
+process_callback = 0
+limit_bottom = 160
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("2_4ptlp")
+
+[node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("3_ycf23")]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_right = 41.0
+
+[node name="Level" type="Node2D" parent="." unique_id=1847949631]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Level" unique_id=201060811]
+tile_map_data = PackedByteArray("AAD//wAAAAACAAUAAAAAAAAAAAACAAUAAAAAAAEAAAAAAAMAAAD//wEAAAAAAAMAAAD//wIAAAAAAAMAAAD//wMAAAAAAAMAAAAAAAMAAAAAAAMAAAAAAAIAAAAAAAMAAAABAAAAAAACAAUAAAACAAAAAAACAAUAAAACAAEAAAAAAAMAAAACAAIAAAAAAAMAAAABAAIAAAAAAAMAAAABAAMAAAAAAAMAAAABAAEAAAAAAAMAAAD+/wIAAAAAAAMAAAD+/wEAAAAAAAMAAAD9/wEAAAAAAAMAAAD9/wAAAAACAAUAAAD+/wAAAAACAAUAAAD8/wAAAAABAAUAAAD7/wAAAAACAAUAAAD6/wAAAAACAAUAAAD5/wAAAAACAAUAAAD4/wAAAAACAAUAAAADAAAAAAACAAUAAAAEAAAAAAACAAUAAAAFAAAAAAACAAUAAAAGAAAAAAABAAUAAAAHAAAAAAACAAUAAAAHAAEAAAAAAAMAAAAHAAIAAAAAAAMAAAAHAAMAAAAAAAMAAAAGAAMAAAAAAAMAAAAFAAMAAAAAAAMAAAAEAAMAAAAAAAMAAAADAAMAAAAAAAMAAAACAAMAAAAAAAMAAAD+/wMAAAAAAAMAAAD9/wMAAAAAAAMAAAD8/wMAAAAAAAMAAAD7/wMAAAAAAAMAAAD6/wMAAAAAAAMAAAD5/wMAAAAAAAMAAAD4/wMAAAAAAAMAAAD4/wIAAAAAAAMAAAD4/wEAAAAAAAMAAAD5/wEAAAAAAAMAAAD4/wQAAAAAAAMAAAD5/wQAAAAAAAMAAAD6/wQAAAAAAAMAAAD7/wQAAAAAAAMAAAD8/wQAAAAAAAMAAAD9/wQAAAAAAAMAAAD+/wQAAAAAAAMAAAD//wQAAAAAAAMAAAAAAAQAAAAAAAMAAAABAAQAAAAAAAMAAAACAAQAAAAAAAMAAAADAAQAAAAAAAMAAAAEAAQAAAAAAAMAAAAFAAQAAAAAAAMAAAAGAAQAAAAAAAMAAAAHAAQAAAAAAAMAAAAGAAEAAAAAAAMAAAAFAAEAAAAAAAMAAAAEAAEAAAAAAAMAAAADAAEAAAAAAAMAAAD8/wEAAAAAAAMAAAD7/wEAAAAAAAMAAAD6/wEAAAAAAAMAAAD5/wIAAAAAAAMAAAD6/wIAAAAAAAMAAAD7/wIAAAAAAAMAAAD8/wIAAAAAAAMAAAD9/wIAAAAAAAMAAAADAAIAAAAAAAMAAAAEAAIAAAAAAAMAAAAFAAIAAAAAAAMAAAAGAAIAAAAAAAMAAAD8////AAABAAQAAAAGAP//AAABAAQAAAD4/wUAAAAAAAMAAAD4/wYAAAAAAAMAAAD4/wcAAAAAAAMAAAD4/wgAAAAAAAMAAAD5/wgAAAAAAAMAAAD6/wgAAAAAAAMAAAD7/wgAAAAAAAMAAAD8/wgAAAAAAAMAAAD9/wgAAAAAAAMAAAD+/wgAAAAAAAMAAAD//wgAAAAAAAMAAAAAAAgAAAAAAAMAAAABAAgAAAAAAAMAAAACAAgAAAAAAAMAAAADAAgAAAAAAAMAAAAEAAgAAAAAAAMAAAAFAAgAAAAAAAMAAAAGAAgAAAAAAAMAAAAHAAgAAAAAAAMAAAAHAAcAAAAAAAMAAAAHAAYAAAAAAAMAAAAHAAUAAAAAAAMAAAAGAAUAAAAAAAMAAAAFAAUAAAAAAAMAAAAEAAUAAAAAAAMAAAADAAUAAAAAAAMAAAACAAUAAAAAAAMAAAABAAUAAAAAAAMAAAAAAAUAAAAAAAMAAAD//wUAAAAAAAMAAAD+/wUAAAAAAAMAAAD9/wUAAAAAAAMAAAD8/wUAAAAAAAMAAAD7/wUAAAAAAAMAAAD6/wUAAAAAAAMAAAD5/wUAAAAAAAMAAAD5/wYAAAAAAAMAAAD5/wcAAAAAAAMAAAD6/wcAAAAAAAMAAAD7/wcAAAAAAAMAAAD8/wcAAAAAAAMAAAD8/wYAAAAAAAMAAAD9/wYAAAAAAAMAAAD7/wYAAAAAAAMAAAD6/wYAAAAAAAMAAAD+/wYAAAAAAAMAAAD//wYAAAAAAAMAAAAAAAYAAAAAAAMAAAABAAYAAAAAAAMAAAACAAcAAAAAAAMAAAABAAcAAAAAAAMAAAAAAAcAAAAAAAMAAAD//wcAAAAAAAMAAAD+/wcAAAAAAAMAAAD9/wcAAAAAAAMAAAADAAcAAAAAAAMAAAAEAAcAAAAAAAMAAAAEAAYAAAAAAAMAAAAFAAYAAAAAAAMAAAAGAAYAAAAAAAMAAAADAAYAAAAAAAMAAAACAAYAAAAAAAMAAAAFAAcAAAAAAAMAAAAGAAcAAAAAAAMAAAD4/wkAAAAAAAMAAAD5/wkAAAAAAAMAAAD6/wkAAAAAAAMAAAD7/wkAAAAAAAMAAAD8/wkAAAAAAAMAAAD9/wkAAAAAAAMAAAD+/wkAAAAAAAMAAAD//wkAAAAAAAMAAAAAAAkAAAAAAAMAAAABAAkAAAAAAAMAAAACAAkAAAAAAAMAAAADAAkAAAAAAAMAAAAEAAkAAAAAAAMAAAAFAAkAAAAAAAMAAAAGAAkAAAAAAAMAAAAHAAkAAAAAAAMAAAA=")
+tile_set = ExtResource("4_4ptlp")
+
+[node name="Killzone" parent="Level" unique_id=631934805 instance=ExtResource("5_ycf23")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Killzone" unique_id=293971914]
+position = Vector2(0, 2)
+shape = SubResource("WorldBoundaryShape2D_uh3ll")
+
+[node name="StarLightZone" type="AudioStreamPlayer" parent="." unique_id=496354649]
+stream = ExtResource("10_es4qh")
+autoplay = true
+bus = &"Music"

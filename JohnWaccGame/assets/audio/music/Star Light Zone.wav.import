@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://v11oc0wr282e"
+path="res://.godot/imported/Star Light Zone.wav-52a59a802c3ee50d813412d30a006b54.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/Star Light Zone.wav"
+dest_files=["res://.godot/imported/Star Light Zone.wav-52a59a802c3ee50d813412d30a006b54.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=73148
+edit/loop_end=-1
+compress/mode=2

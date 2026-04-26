@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://27r6pjij1ih4"]
+
+[ext_resource type="Script" uid="uid://cfeuiua35doyh" path="res://scripts/global/game_manager.gd" id="1_ggb4a"]
+[ext_resource type="PackedScene" uid="uid://bipvhwh20w3xj" path="res://scenes/UI/pause_screen.tscn" id="2_p6koq"]
+[ext_resource type="Texture2D" uid="uid://drpgmcseogtpc" path="res://assets/UI/ui_statusbar.png" id="3_suis6"]
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="4_3gp8j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ir15t"]
+font = ExtResource("4_3gp8j")
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[node name="GameManager" type="Control" unique_id=2047177381]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ggb4a")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1582219963]
+
+[node name="pause_menu" parent="CanvasLayer" unique_id=1261421658 instance=ExtResource("2_p6koq")]
+visible = false
+z_index = 10
+
+[node name="Base" type="Control" parent="CanvasLayer" unique_id=1031970460]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Base" unique_id=1237986463]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 160.0
+texture = ExtResource("3_suis6")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Base" unique_id=91836293]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 160.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Base/MarginContainer" unique_id=1469044287]
+layout_mode = 2
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1397771135]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Coins: 0"
+label_settings = SubResource("LabelSettings_ir15t")
+
+[node name="Spacer" type="Control" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=527231120]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1001150836]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Health: 0/0"
+label_settings = SubResource("LabelSettings_ir15t")

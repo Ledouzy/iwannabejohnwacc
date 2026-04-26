@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bxywk3cyha3sj"]
+
+[ext_resource type="Script" uid="uid://lk2fq1u7dtgw" path="res://scripts/logic/level_transition.gd" id="1_xo4ko"]
+
+[node name="level_transition" type="Area2D" unique_id=1807414438]
+collision_mask = 2
+script = ExtResource("1_xo4ko")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
