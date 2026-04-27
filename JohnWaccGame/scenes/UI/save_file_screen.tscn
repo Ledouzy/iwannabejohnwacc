@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://gje4btbpm3xd"]
+
+[ext_resource type="Script" uid="uid://cdenra2nhjwws" path="res://scripts/UI/save_file_screen.gd" id="1_i0tt5"]
+[ext_resource type="Texture2D" uid="uid://co3l8muxahw75" path="res://assets/UI/ui_bigboxfull.png" id="1_uvu0l"]
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="2_i0tt5"]
+[ext_resource type="PackedScene" uid="uid://bcfnr3wci4rq3" path="res://scenes/UI/base_button.tscn" id="3_hgemg"]
+[ext_resource type="PackedScene" uid="uid://daw2eekshyb83" path="res://scenes/UI/save_files.tscn" id="3_uvu0l"]
+[ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="5_b4efw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kutwd"]
+line_spacing = 4.0
+font = ExtResource("2_i0tt5")
+font_color = Color(0, 0, 0, 1)
+
+[node name="SaveFileScreen" type="Control" unique_id=1983364981]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i0tt5")
+
+[node name="UI_elements" type="MarginContainer" parent="." unique_id=1255295004]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="UI_elements" unique_id=1545821684]
+layout_mode = 2
+texture = ExtResource("1_uvu0l")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_elements" unique_id=980880682]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI_elements/MarginContainer" unique_id=1314459413]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=158580548]
+layout_mode = 2
+text = "Save Files"
+label_settings = SubResource("LabelSettings_kutwd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=592045912]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="SaveFiles" parent="UI_elements/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1428793453 instance=ExtResource("3_uvu0l")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../BackButton")
+focus_neighbor_bottom = NodePath("../SaveFiles2")
+
+[node name="SaveFiles2" parent="UI_elements/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1215022370 instance=ExtResource("3_uvu0l")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../SaveFiles")
+focus_neighbor_bottom = NodePath("../SaveFiles3")
+
+[node name="SaveFiles3" parent="UI_elements/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=636465128 instance=ExtResource("3_uvu0l")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../SaveFiles2")
+focus_neighbor_bottom = NodePath("../../BackButton")
+
+[node name="BackButton" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=1194301000 instance=ExtResource("3_hgemg")]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../VBoxContainer")
+focus_neighbor_bottom = NodePath("../VBoxContainer")
+text = "Back"
+script = ExtResource("5_b4efw")
+
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]

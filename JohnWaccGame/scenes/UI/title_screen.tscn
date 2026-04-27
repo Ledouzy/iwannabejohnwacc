@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b1oegl0o0afyl" path="res://scenes/UI/credit_screen.tscn" id="8_cs5ya"]
 [ext_resource type="PackedScene" uid="uid://bcfnr3wci4rq3" path="res://scenes/UI/base_button.tscn" id="8_vg0i1"]
 [ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="9_vg0i1"]
+[ext_resource type="PackedScene" uid="uid://gje4btbpm3xd" path="res://scenes/UI/save_file_screen.tscn" id="12_ydf1q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_e54dn"]
 font = ExtResource("3_s4lrb")
@@ -112,6 +113,10 @@ visible = false
 layout_mode = 1
 
 [node name="credit_screen" parent="." unique_id=1398797062 instance=ExtResource("8_cs5ya")]
+visible = false
+layout_mode = 1
+
+[node name="SaveFileScreen" parent="." unique_id=1983364981 instance=ExtResource("12_ydf1q")]
 visible = false
 layout_mode = 1
 

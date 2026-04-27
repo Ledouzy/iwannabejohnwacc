@@ -3,6 +3,7 @@ extends Control
 @onready var options_screen: Control = $options_screen
 @onready var credit_screen: Control = $credit_screen
 @onready var start_button: Button = $UI_elements/VBoxContainer/VBoxContainer/StartButton
+@onready var save_file_screen: Control = $SaveFileScreen
 
 func _ready() -> void:
 	audio_manager.play_music("DivineBloodlines")
@@ -12,7 +13,8 @@ func focused():
 	start_button.grab_focus()
 
 func _on_start_button_pressed() -> void:
-	scene_manager.change_scene(get_tree(), "game")
+	save_file_screen.visible = true
+	save_file_screen.focused()
 
 
 func _on_options_button_pressed() -> void:
