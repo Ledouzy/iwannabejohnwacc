@@ -25,6 +25,7 @@ z_index = -4096
 scroll_scale = Vector2(0.1, 0)
 scroll_offset = Vector2(0, 240)
 repeat_size = Vector2(256, 256)
+autoscroll = Vector2(4, 0)
 repeat_times = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=724986569]
@@ -52,6 +53,7 @@ z_index = -4096
 scroll_scale = Vector2(0.05, 0)
 scroll_offset = Vector2(0, 240)
 repeat_size = Vector2(256, 0)
+autoscroll = Vector2(4, 0)
 repeat_times = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" unique_id=594511508]
@@ -64,6 +66,7 @@ centered = false
 z_index = -4096
 scroll_scale = Vector2(0.001, 0)
 scroll_offset = Vector2(-150, 240)
+autoscroll = Vector2(4, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=2085988623]
 z_index = -4096
