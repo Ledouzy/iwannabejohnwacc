@@ -19,6 +19,7 @@ config/description="You are JOHN DOGI and you are on a quest to become JOHN WACC
 config/version="0.0.1"
 run/main_scene="uid://eicwdtw6abms"
 config/features=PackedStringArray("4.6", "Forward Plus")
+run/max_fps=24
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/use_filter=false
 boot_splash/image="uid://bg6owbdplrmtu"

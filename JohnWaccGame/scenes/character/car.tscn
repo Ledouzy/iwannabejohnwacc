@@ -398,6 +398,7 @@ disabled = true
 
 [node name="HurtBox" parent="." unique_id=7972012 instance=ExtResource("2_md0e3")]
 script = ExtResource("5_cp117")
+damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1319252143]
 position = Vector2(0, 2)
@@ -418,4 +419,5 @@ libraries/ = SubResource("AnimationLibrary_3mrxu")
 
 [node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("7_4clw4")]
 
+[connection signal="body_exited" from="HurtBox" to="HurtBox" method="_on_body_exited"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_death_timer_timeout"]

@@ -13,7 +13,7 @@ func _on_body_entered(body: Node2D) -> void:
 				var x = body.get_node("AnimationPlayer")
 				if x != null:
 					x.play("death")
-					
+
 func _physics_process(delta: float) -> void:
 	if target != null:
 		target.call_deferred("take_damage",damage)
