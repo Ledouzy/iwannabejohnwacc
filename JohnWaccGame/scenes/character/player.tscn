@@ -538,10 +538,10 @@ tracks/3/path = NodePath("SwordSprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 2]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -658,6 +658,10 @@ region = Rect2(16, 80, 16, 16)
 atlas = ExtResource("1_p0vlq")
 region = Rect2(0, 80, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y732"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(0, 64, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fjrip"]
 animations = [{
 "frames": [{
@@ -674,6 +678,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tuyoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y732")
 }],
 "loop": false,
 "name": &"SwordSide",
