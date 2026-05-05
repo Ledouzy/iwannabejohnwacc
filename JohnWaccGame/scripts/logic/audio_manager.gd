@@ -22,7 +22,7 @@ func play_music(audio_name: String, from_position: float = 0.0, restart: bool = 
 func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Vector2 = Vector2(0,0)) -> void:
 	active_sound_stream = sounds.get_node(audio_name)
 	active_sound_stream.position = sound_position
-	active_sound_stream.play()
+	active_sound_stream.play(from_position)
 	
 func play_ui_confirm() -> void:
 	confirm_sfx.play()
