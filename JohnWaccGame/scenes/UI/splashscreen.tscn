@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cbsflqhs1m8hk"]
+
+[ext_resource type="Script" uid="uid://cbaafj6y51rc2" path="res://scenes/UI/splashscreen.gd" id="1_0l5pg"]
+[ext_resource type="Texture2D" uid="uid://bg6owbdplrmtu" path="res://assets/splash/splashscreen.png" id="1_3nor1"]
+
+[node name="Splashscreen" type="Node2D" unique_id=1006247149]
+script = ExtResource("1_0l5pg")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1883264968]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_3nor1")
