@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://daw2eekshyb83"]
+
+[ext_resource type="Script" uid="uid://cde66hxhumpbd" path="res://scripts/UI/save_files.gd" id="1_icqg6"]
+[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/UI_no_box.tres" id="2_43el8"]
+[ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="3_rne80"]
+[ext_resource type="Texture2D" uid="uid://dx1xlya0ssdhi" path="res://assets/UI/save_file_icon.png" id="4_d6a30"]
+[ext_resource type="PackedScene" uid="uid://bcfnr3wci4rq3" path="res://scenes/UI/base_button.tscn" id="5_78sj6"]
+
+[node name="SaveFile" type="Control" unique_id=1428793453]
+custom_minimum_size = Vector2(144, 16)
+layout_mode = 3
+anchor_right = 0.95000005
+anchor_bottom = 1.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_icqg6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=564958722]
+layout_mode = 0
+offset_right = 152.0
+offset_bottom = 16.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Name" type="Label" parent="HBoxContainer" unique_id=1331634060]
+layout_mode = 2
+focus_behavior_recursive = 1
+theme = ExtResource("2_43el8")
+text = "Jack"
+label_settings = ExtResource("3_rne80")
+
+[node name="Spacer2" type="Control" parent="HBoxContainer" unique_id=1877226951]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stage" type="Label" parent="HBoxContainer" unique_id=1274120910]
+layout_mode = 2
+focus_behavior_recursive = 1
+theme = ExtResource("2_43el8")
+text = "0"
+label_settings = ExtResource("3_rne80")
+
+[node name="Spacer3" type="Control" parent="HBoxContainer" unique_id=1809969282]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaveIcon" type="TextureRect" parent="HBoxContainer" unique_id=924313301]
+layout_mode = 2
+size_flags_vertical = 4
+focus_behavior_recursive = 1
+texture = ExtResource("4_d6a30")
+stretch_mode = 2
+
+[node name="Spacer" type="Control" parent="HBoxContainer" unique_id=1600429872]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayButton" parent="HBoxContainer" unique_id=1194301000 instance=ExtResource("5_78sj6")]
+layout_mode = 2
+text = "Play"
+
+[connection signal="pressed" from="HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

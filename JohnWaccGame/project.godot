@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="I Wanna be JOHN WACCLAND"
-config/description="You are JOHN DOGI and you are on a quest to become JOHN WACCLAND!"
+config/description="You are JACK WACC and you are on a quest to become JOHN WACCLAND!"
 config/version="0.0.1"
 run/main_scene="uid://cbsflqhs1m8hk"
 config/features=PackedStringArray("4.6", "Forward Plus")
@@ -34,6 +34,7 @@ buses/default_bus_layout="uid://550b0h1aton2"
 global_manager="*uid://ssgv63itdkke"
 scene_manager="*uid://danqm66esm7xh"
 audio_manager="*uid://b14o7v5ncnymy"
+save_system="*uid://62mwuruemgld"
 
 [display]
 
