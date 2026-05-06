@@ -13,6 +13,14 @@ var loaded_data: Dictionary = { # for the save menu
 	"sword": false,
 	"MAX_HP": 6,
 	"coins": 0,
+	"Lives": 3,
+	"deeple_fire": false,
+	"deeple_earth": false,
+	"deeple_wind": false,
+	"deeple_water": false,
+	"number_of_deeples": 0,
+	"game_complete": false,
+	"score": 0 # no clue if we're going to use this
 }
 
 var current_data: Dictionary = { # data of the current game
