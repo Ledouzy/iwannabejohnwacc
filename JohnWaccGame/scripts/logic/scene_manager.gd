@@ -9,6 +9,13 @@ func change_scene(from, to_scene_name: String) -> void:
 	get_tree().call_deferred("change_scene_to_file", next_level)
 	animation.play("fade_in")
 	await animation.animation_finished
+
+func reload_scene() -> void:
+	animation.play("fade_out")
+	await animation.animation_finished
+	get_tree().reload_current_scene()
+	animation.play("fade_in")
+	await animation.animation_finished
 	
 func load_level(level_id: int):
 	var next_level = "res://scenes/levels/level" + str(level_id) + ".tscn"

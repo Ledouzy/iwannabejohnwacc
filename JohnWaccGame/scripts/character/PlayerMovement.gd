@@ -77,7 +77,7 @@ func get_max_health() -> int:
 	
 ## when death timer runs out, reload current scene
 func _on_death_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+	scene_manager.reload_scene()
 	
 func take_damage(damage) -> void:
 	if !invulnerable:

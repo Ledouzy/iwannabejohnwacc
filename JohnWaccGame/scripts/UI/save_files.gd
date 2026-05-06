@@ -9,6 +9,8 @@ extends Control
 @onready var spacer_2: Control = $HBoxContainer/Spacer2
 @onready var spacer_3: Control = $HBoxContainer/Spacer3
 @onready var spacer: Control = $HBoxContainer/Spacer
+@onready var spacer_4: Control = $HBoxContainer/Spacer4
+@onready var delete_button: Button = $HBoxContainer/DeleteButton
 
 var save_data
 
@@ -18,6 +20,7 @@ func display_save_data(data):
 	if data != null:
 		save_data = data
 		stage_label.text = str(stage_names[data.stage])
+		file_name.text = data.name
 	else:
 		stage_label.text = ""
 		stage_label.visible = false
@@ -27,12 +30,17 @@ func display_save_data(data):
 		spacer.visible = false
 		spacer_2.visible = false
 		spacer_3.visible = false
+		spacer_4.visible = false
+		delete_button.visible = false
+		save_data = null
 
 func _on_play_button_pressed() -> void:
+	save_system.select_save_file(file_id)
 	if save_data == null:
 		save_system.create_new_save(file_id)
 		scene_manager.load_level(0)
 	else:
 		# load data
 		# load into correct scene
+		save_system._load(file_id)
 		scene_manager.load_level(save_data.stage)

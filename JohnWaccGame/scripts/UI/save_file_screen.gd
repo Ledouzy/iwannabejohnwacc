@@ -8,13 +8,35 @@ extends Control
 
 
 func _ready() -> void:
-	var file0 = save_system._load(0)
+	var file0 = save_system._load_data(0)
 	save_file_0.display_save_data(file0)
 	
-	var file1 = save_system._load(1)
+	var file1 = save_system._load_data(1)
 	save_file_1.display_save_data(file1)
 	
-	var file2 = save_system._load(2)
+	var file2 = save_system._load_data(2)
+	save_file_2.display_save_data(file2)
+	
+	back_button.focus_neighbor_top = NodePath(str(save_file_2.get_path())+"/HBoxContainer/PlayButton")
+	back_button.focus_neighbor_bottom = NodePath(str(save_file_0.get_path())+"/HBoxContainer/PlayButton")
+	
+	get_node(str(save_file_0.get_path())+"/HBoxContainer/PlayButton").focus_neighbor_top = back_button.get_path()
+	get_node(str(save_file_0.get_path())+"/HBoxContainer/PlayButton").focus_neighbor_bottom = NodePath(str(save_file_1.get_path())+"/HBoxContainer/PlayButton")
+	
+	get_node(str(save_file_1.get_path())+"/HBoxContainer/PlayButton").focus_neighbor_top = NodePath(str(save_file_0.get_path())+"/HBoxContainer/PlayButton")
+	get_node(str(save_file_1.get_path())+"/HBoxContainer/PlayButton").focus_neighbor_bottom = NodePath(str(save_file_2.get_path())+"/HBoxContainer/PlayButton")
+	
+	get_node(str(save_file_2.get_path())+"/HBoxContainer/PlayButton").focus_neighbor_top = NodePath(str(save_file_1.get_path())+"/HBoxContainer/PlayButton")
+	get_node(str(save_file_2.get_path())+"/HBoxContainer/PlayButton").focus_neighbor_bottom = back_button.get_path()
+
+func _process(delta):
+	var file0 = save_system._load_data(0)
+	save_file_0.display_save_data(file0)
+	
+	var file1 = save_system._load_data(1)
+	save_file_1.display_save_data(file1)
+	
+	var file2 = save_system._load_data(2)
 	save_file_2.display_save_data(file2)
 
 func focused():

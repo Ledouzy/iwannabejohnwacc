@@ -7,6 +7,7 @@ var score = 0
 @onready var pause_menu: Control = $CanvasLayer/pause_menu
 
 func _ready() -> void:
+	score = save_system.current_data.coins
 	coins_label.text = "Coins: " + str(score)
 	health_label.text = "Health: " + str(player.get_health()) + "/" + str(player.get_max_health())
 	
@@ -19,4 +20,5 @@ func _process(delta: float) -> void:
 
 func add_point():
 	score +=1
+	save_system.current_data.coins = score
 	coins_label.text = "Coins: " + str(score)

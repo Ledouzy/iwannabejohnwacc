@@ -720,7 +720,6 @@ position = Vector2(0, -5)
 target_position = Vector2(0, 8)
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1506339776]
-wait_time = 2.0
 one_shot = true
 
 [node name="SwordSprite" type="AnimatedSprite2D" parent="." unique_id=990093966]
