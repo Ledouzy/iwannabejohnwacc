@@ -12,17 +12,17 @@ var contents: Dictionary = {
 	"coins": 0,
 }
 
-func select_save_file(n: int):
-	if n >= 0 and n < 3: # between 0 and 2, for 3 save files
-		save_location = "user://file" + str(n) + ".json"
+func select_save_file(file_id: int):
+	if file_id >= 0 and file_id < 3: # between 0 and 2, for 3 save files
+		save_location = "user://file" + str(file_id) + ".json"
 
 func _save():
 	var file = FileAccess.open(save_location, FileAccess.WRITE)
 	file.store_var(contents.duplicate())
 	file.close()
 	
-func _load(n: int):
-	select_save_file(n)
+func _load(file_id: int):
+	select_save_file(file_id)
 	
 	if FileAccess.file_exists(save_location):
 		var file = FileAccess.open(save_location, FileAccess.READ)
@@ -36,3 +36,16 @@ func _load(n: int):
 		return contents # load successful
 		
 	return null # load failed, create new save file
+	
+func create_new_save(file_id):
+	contents = {
+		"stage": 0,
+		"armor": false,
+		"jump_boots": false,
+		"hookshot": false,
+		"sword": false,
+		"MAX_HP": 6,
+		"coins": 0,
+	}
+	select_save_file(file_id)
+	_save()
