@@ -12,11 +12,9 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e87vq"]
 region_rect = Rect2(0, 48, 64, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5up1n"]
-region_rect = Rect2(0, 48, 64, 16)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_veg55"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aii0r"]
-region_rect = Rect2(-0.0067195892, 15.994682, 64.00672, 16.005318)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t67hx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3l3a2"]
 region_rect = Rect2(0, 0, 64, 16)
@@ -108,11 +106,13 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_c8pvf")
 Button/styles/disabled = SubResource("StyleBoxTexture_e87vq")
-Button/styles/focus = SubResource("StyleBoxTexture_5up1n")
-Button/styles/hover = SubResource("StyleBoxTexture_aii0r")
+Button/styles/focus = SubResource("StyleBoxEmpty_veg55")
+Button/styles/hover = SubResource("StyleBoxEmpty_t67hx")
 Button/styles/normal = SubResource("StyleBoxTexture_3l3a2")
 Button/styles/pressed = SubResource("StyleBoxTexture_oaugo")
+CheckBox/constants/check_v_offset = 4
 CheckBox/constants/h_separation = 0
+CheckBox/constants/icon_max_width = 0
 CheckBox/font_sizes/font_size = 16
 CheckBox/icons/checked = ExtResource("2_tvwxy")
 CheckBox/icons/unchecked = ExtResource("3_s0dvl")
