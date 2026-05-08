@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name player
 
 # Movement Parameters
 # Speed
@@ -47,6 +48,16 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @onready var death_timer: Timer = $DeathTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
+@onready var camera: Camera2D = $"../Camera2D"
+
+# ready just for camera lmao
+func _ready() -> void:
+	camera.position_smoothing_enabled = false
+	camera.position = self.position
+	
+	# make sure one frame occurs with the position not smoothed
+	await get_tree().create_timer(0.1).timeout
+	camera.position_smoothing_enabled = true
 
 ## Getter: returns value of dead, i.e. is player dead or not
 func is_dead() -> bool:
@@ -78,7 +89,8 @@ func get_max_health() -> int:
 ## when death timer runs out, reload current scene
 func _on_death_timer_timeout() -> void:
 	scene_manager.reload_scene()
-	
+
+## proccess taking damage
 func take_damage(damage) -> void:
 	if !invulnerable:
 		invulnerable = true

@@ -6,6 +6,9 @@ extends Control
 @onready var save_file_screen: Control = $SaveFileScreen
 
 func _ready() -> void:
+	# reset checkpoint upon arriving on title screen, TODO: Ask if we want to keep checkpoint maybe
+	save_system.checkpoint_reset()
+	
 	audio_manager.play_music("DivineBloodlines")
 	focused()
 

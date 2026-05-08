@@ -18,6 +18,7 @@
 [ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="16_xremi"]
 [ext_resource type="Texture2D" uid="uid://dvs3gxg2f32yd" path="res://assets/JohnWaccland.png" id="17_ghfbn"]
 [ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="18_4k6ad"]
+[ext_resource type="PackedScene" uid="uid://drf1doidx3rhd" path="res://scenes/objects/checkpoint.tscn" id="19_po5je"]
 [ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="19_vn2at"]
 [ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="20_q6o2s"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="21_ecdks"]
@@ -490,10 +491,14 @@ texture = ExtResource("17_ghfbn")
 [node name="level_transition" parent="Level" unique_id=1807414438 instance=ExtResource("18_4k6ad")]
 position = Vector2(1386, 106)
 next_scene_name = "level1"
+next_stage_number = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition" unique_id=2067332125]
 position = Vector2(536.5, 21.5)
 shape = SubResource("RectangleShape2D_fqlro")
+
+[node name="checkpoint" parent="Level" unique_id=2123040548 instance=ExtResource("19_po5je")]
+position = Vector2(344, -16)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1279079287]
 

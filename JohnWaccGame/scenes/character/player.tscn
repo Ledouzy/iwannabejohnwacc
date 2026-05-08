@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqs0fv8ytarnj"]
 
 [ext_resource type="Texture2D" uid="uid://dsbny4c2d444a" path="res://assets/sprites/Characters/player.png" id="1_p0vlq"]
-[ext_resource type="Script" uid="uid://nvd00fbdfpq5" path="res://scripts/character/PlayerMovement.gd" id="1_v6fml"]
+[ext_resource type="Script" uid="uid://nvd00fbdfpq5" path="res://scripts/character/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://cabj0ahjsijba" path="res://assets/sprites/VFX/death.png" id="3_qu4a1"]
 [ext_resource type="Animation" uid="uid://cuh1wioebaitd" path="res://blink.res" id="6_fjrip"]
 [ext_resource type="PackedScene" uid="uid://c118octxh7v0b" path="res://scenes/logic/hurt_box.tscn" id="6_tuyoq"]

@@ -75,7 +75,7 @@ texture = ExtResource("4_nxmka")
 centered = false
 
 [node name="Player" parent="." unique_id=1264691691 instance=ExtResource("1_jp5fc")]
-position = Vector2(0, 1)
+position = Vector2(3, -86)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1901197980]
 process_callback = 0
