@@ -75,4 +75,5 @@ theme = ExtResource("6_43el8")
 script = ExtResource("7_rne80")
 
 [connection signal="pressed" from="HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/DeleteButton" to="HBoxContainer/DeleteButton" method="_on_pressed"]

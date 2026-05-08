@@ -44,3 +44,7 @@ func _on_play_button_pressed() -> void:
 		# load into correct scene
 		save_system._load(file_id)
 		scene_manager.load_level(save_data.stage)
+
+
+func _on_delete_button_pressed() -> void:
+	play_button.grab_focus()

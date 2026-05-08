@@ -285,10 +285,19 @@ func _physics_process(delta: float) -> void:
 	# Handles attacking, right now only for sword and on side
 	# TODO: Handle attack in all direction if in air and 2 directions on the ground (up side down and up side respectively)
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
-		#print("attack") # debug message
+		print("attack") # debug message
 		
 		# play the attack animation and locks animation for the length of the animation
-		animation_player.play("attackSide")
+		if Input.is_action_pressed("down"):
+			print("down")
+			animation_player.play("attackFront")
+		elif Input.is_action_pressed("up"):
+			print("up")
+			animation_player.play("attackBack")
+		else:
+			print("other")
+			animation_player.play("attackSide")
+		
 		waitforanimationend = true
 		await get_tree().create_timer(0.3).timeout
 		waitforanimationend = false
