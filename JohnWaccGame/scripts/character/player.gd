@@ -20,6 +20,7 @@ var can_jump = true
 
 # direction
 var dir = 1 # direction of the player
+var lock_direction = false
 
 @export var MAX_HEALTH = 10 ## max hp
 @onready var health = MAX_HEALTH # number of hits before dying
@@ -104,11 +105,11 @@ func take_damage(damage) -> void:
 			
 			skipMoveProcess = true
 			waitforanimationend = true
-			await get_tree().create_timer(0.2).timeout
+			await animated_sprite.animation_finished
 			skipMoveProcess = false
 			waitforanimationend = false
 			blink_animation_player.play("blink")
-			await get_tree().create_timer(1.0).timeout
+			await blink_animation_player.animation_finished
 	
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false
@@ -248,7 +249,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		
 		# waits for a fixed amount for the animation to play
-		await get_tree().create_timer(0.8).timeout
+		await animated_sprite.animation_finished
 		
 		# tries to pickUp the item right below us
 		if !pickUp():
@@ -260,7 +261,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("PlayerShrug")
 			
 			# wait for shrug animation end
-			await get_tree().create_timer(0.6).timeout
+			await animated_sprite.animation_finished
 			
 		# allows animation to play and player to move again
 		waitforanimationend = false
@@ -279,7 +280,7 @@ func _physics_process(delta: float) -> void:
 		throw()
 		
 		# wait for throw to finish and then allows animation to play again
-		await get_tree().create_timer(0.4).timeout
+		await animated_sprite.animation_finished
 		waitforanimationend = false
 		
 	# Handles attacking, right now only for sword and on side
@@ -287,21 +288,37 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
 		print("attack") # debug message
 		
+		var changed_dir = dir
+		lock_direction = true
+		
 		# play the attack animation and locks animation for the length of the animation
 		if Input.is_action_pressed("down"):
 			print("down")
+			if dir <= -1:
+				changed_dir = 1
+				player_body.scale.x = -1
 			animation_player.play("attackFront")
 		elif Input.is_action_pressed("up"):
 			print("up")
+			if dir <= -1:
+				changed_dir = 1
+				player_body.scale.x = -1
 			animation_player.play("attackBack")
 		else:
 			print("other")
 			animation_player.play("attackSide")
 		
 		waitforanimationend = true
-		await get_tree().create_timer(0.3).timeout
+		await animation_player.animation_finished
 		waitforanimationend = false
 		jumpanim = false
+		
+		if changed_dir != dir:
+			if dir == 1:
+				player_body.scale.x = -1
+			elif dir == -1:
+				player_body.scale.x = -1
+		lock_direction = false
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
@@ -318,20 +335,20 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("run"):
 		# defaults back to 1 speed multiplier
 		speedMult = 1.0
-	
+		
 	# Flip sprite if changed direction
 	if (direction < 0):
 		# flip sprite if we changed direction
-		if dir != -1:
+		if dir != -1 && !lock_direction:
 			player_body.scale.x = -1
-			
+				
 		# updates our direction
 		dir = -1
 	elif (direction > 0):
 		# flip sprite if we changed direction
-		if dir != 1:
+		if dir != 1 && !lock_direction:
 			player_body.scale.x = -1
-			
+				
 		# updates our direction
 		dir = 1
 	
