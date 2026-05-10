@@ -604,7 +604,7 @@ tracks/6/path = NodePath("SwordBackHurtBox3/CollisionShape2D:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -884,9 +884,9 @@ region = Rect2(32, 80, 16, 16)
 atlas = ExtResource("1_p0vlq")
 region = Rect2(32, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcyh3"]
 atlas = ExtResource("1_p0vlq")
-region = Rect2(16, 80, 16, 16)
+region = Rect2(16, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("1_p0vlq")
@@ -936,7 +936,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qlg0r")
+"texture": SubResource("AtlasTexture_tcyh3")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tuyoq")
