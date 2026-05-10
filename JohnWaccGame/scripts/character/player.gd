@@ -3,8 +3,10 @@ class_name player
 
 # Movement Parameters
 # Speed
-@export var SPEED = 90 ## base speed value
-@export var SPEED_CAP = 250
+@export var SPEED = 10 ## base speed value
+@export var SPEED_CAP = 240
+@export var WALK_CAP = 90
+@export var RUN_CAP = 135
 @export var RUN_MULT = 1.5 ## Sprint multiplier
 var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 # Jump
@@ -151,9 +153,6 @@ func throw() -> void:
 		
 ## Handles jumping on springs
 func spring_jump(jump_height):
-	# play the jump sfx
-	play_sfx("Jump")
-		
 	# updates the velocity
 	velocity = jump_height
 
@@ -344,6 +343,7 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("run"):
 		# defaults back to 1 speed multiplier
 		speedMult = 1.0
+		velocity.x = WALK_CAP*direction
 		
 	# Flip sprite if changed direction
 	if (direction < 0):
@@ -368,7 +368,8 @@ func _physics_process(delta: float) -> void:
 	if !skipMoveProcess:
 		# Apply Movement
 		if direction:
-			velocity.x += direction * SPEED * speedMult
+			if (velocity.x*direction < WALK_CAP and speedMult == 1.0) or (velocity.x*direction < RUN_CAP and speedMult != 1.0):
+				velocity.x += direction * SPEED * speedMult
 			if velocity.x > 0:
 				velocity.x = min(velocity.x, SPEED_CAP * speedMult)
 			else:

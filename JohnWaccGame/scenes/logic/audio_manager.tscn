@@ -66,6 +66,7 @@ bus = &"SFX"
 
 [node name="Spring" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1776910349]
 stream = ExtResource("10_y3xji")
+volume_db = 6.0
 
 [node name="UI" type="Node" parent="." unique_id=1757287764]
 
