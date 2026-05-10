@@ -8,7 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://be26io14cxx7k" path="res://assets/audio/sounds/coin.wav" id="6_2hsro"]
 [ext_resource type="AudioStream" uid="uid://d0ne8i4gr2svq" path="res://assets/audio/sounds/jump.wav" id="7_siidf"]
 [ext_resource type="AudioStream" uid="uid://b34tbckjtxd73" path="res://assets/audio/sounds/death.wav" id="8_pc3ia"]
+[ext_resource type="AudioStream" uid="uid://dugkgoilqj7pe" path="res://assets/audio/sounds/sword.wav" id="9_hhrbd"]
 [ext_resource type="AudioStream" uid="uid://bnom6e03tfwvg" path="res://assets/audio/sounds/menu_back.wav" id="9_siidf"]
+[ext_resource type="AudioStream" uid="uid://6eka5b8pid7x" path="res://assets/audio/sounds/spring.wav" id="10_y3xji"]
 [ext_resource type="AudioStream" uid="uid://b3qpqepnxnr7s" path="res://assets/audio/sounds/menu_confirm.wav" id="11_hhrbd"]
 
 [node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "confirm_sfx", "move_sfx", "back_sfx")]
@@ -58,9 +60,12 @@ volume_db = 6.0
 bus = &"SFX"
 
 [node name="Sword" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1517363634]
-stream = ExtResource("8_pc3ia")
+stream = ExtResource("9_hhrbd")
 volume_db = 6.0
 bus = &"SFX"
+
+[node name="Spring" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1776910349]
+stream = ExtResource("10_y3xji")
 
 [node name="UI" type="Node" parent="." unique_id=1757287764]
 

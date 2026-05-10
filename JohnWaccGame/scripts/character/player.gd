@@ -4,6 +4,7 @@ class_name player
 # Movement Parameters
 # Speed
 @export var SPEED = 90 ## base speed value
+@export var SPEED_CAP = 250
 @export var RUN_MULT = 1.5 ## Sprint multiplier
 var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 # Jump
@@ -147,6 +148,14 @@ func throw() -> void:
 	if pickedUp.has_method("thrown"):
 		# call the thrown method on the object
 		pickedUp.call("thrown")
+		
+## Handles jumping on springs
+func spring_jump(jump_height):
+	# play the jump sfx
+	play_sfx("Jump")
+		
+	# updates the velocity
+	velocity = jump_height
 
 ## Handles the playing of animations not specific to an action
 func process_animation(direction) -> void:
@@ -359,7 +368,11 @@ func _physics_process(delta: float) -> void:
 	if !skipMoveProcess:
 		# Apply Movement
 		if direction:
-			velocity.x = direction * SPEED * speedMult
+			velocity.x += direction * SPEED * speedMult
+			if velocity.x > 0:
+				velocity.x = min(velocity.x, SPEED_CAP * speedMult)
+			else:
+				velocity.x = max(velocity.x, -SPEED_CAP * speedMult)
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			

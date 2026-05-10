@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://bytkg1aao2wyn"]
+
+[ext_resource type="Script" uid="uid://c2g2st1toc7um" path="res://scripts/objects/spring.gd" id="1_2h5a8"]
+[ext_resource type="Texture2D" uid="uid://bm08xomr4e27y" path="res://assets/sprites/Objects/springs.png" id="1_apevs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apevs"]
+atlas = ExtResource("1_apevs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h5a8"]
+atlas = ExtResource("1_apevs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sfmc"]
+atlas = ExtResource("1_apevs")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oipka"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apevs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h5a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sfmc")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8dp2"]
+atlas = ExtResource("1_apevs")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r86yn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8dp2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_apevs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spring:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spring:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pad:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_2h5a8"]
+resource_name = "jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spring:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"jump", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spring:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pad:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -4), Vector2(0, -20), Vector2(0, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1sfmc"]
+_data = {
+&"RESET": SubResource("Animation_apevs"),
+&"jump": SubResource("Animation_2h5a8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h5a8"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sfmc"]
+size = Vector2(16, 5)
+
+[node name="Spring" type="Node2D" unique_id=109024424]
+script = ExtResource("1_2h5a8")
+
+[node name="Spring" type="AnimatedSprite2D" parent="." unique_id=1201674572]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_oipka")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Pad" type="AnimatedSprite2D" parent="." unique_id=91312790]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_r86yn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=669844621]
+libraries/ = SubResource("AnimationLibrary_1sfmc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2967748]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1473149464]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_2h5a8")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=285257251]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1635214985]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_1sfmc")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]
