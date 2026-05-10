@@ -3,7 +3,7 @@ class_name player
 
 # Movement Parameters
 # Speed
-@export var SPEED = 10 ## base speed value
+@export var SPEED = 20 ## base speed value
 @export var SPEED_CAP = 240
 @export var WALK_CAP = 90
 @export var RUN_CAP = 135
@@ -374,6 +374,9 @@ func _physics_process(delta: float) -> void:
 				velocity.x = min(velocity.x, SPEED_CAP * speedMult)
 			else:
 				velocity.x = max(velocity.x, -SPEED_CAP * speedMult)
+			# if over the speed cap, slow down until under
+			if abs(velocity.x) > RUN_CAP:
+				velocity.x -= direction * 10
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
