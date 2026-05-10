@@ -138,4 +138,4 @@ position = Vector2(488, 144)
 [node name="Spring3" parent="Level/Springs" unique_id=148812886 instance=ExtResource("13_lgguw")]
 position = Vector2(896, 120)
 rotation = -1.5707964
-spring_jump_height = Vector2(-300, 0)
+spring_jump_height = Vector2(-500, 0)
