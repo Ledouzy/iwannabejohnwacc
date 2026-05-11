@@ -6,7 +6,6 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if save_system.checkpoint_data.stage != 1:
-		print("amogasu")
 		save_system.checkpoint_save(player.position.x, player.position.y)
 	save_system.current_data.stage = 1
 	audio_manager.play_music("StarLightZone")

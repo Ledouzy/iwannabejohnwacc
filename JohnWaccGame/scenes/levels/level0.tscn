@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://buvoxkpjj2c3b"]
 
 [ext_resource type="Script" uid="uid://bb6f7ojwbjx3n" path="res://scripts/level/level0.gd" id="1_db1u1"]
-[ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/layer0.png" id="2_po5je"]
-[ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/layer1.png" id="3_mtrs4"]
-[ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/layer2.png" id="4_rbahy"]
-[ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/layer3.png" id="5_al08y"]
+[ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/bg4_layer0.png" id="2_po5je"]
+[ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/bg4_layer1.png" id="3_mtrs4"]
+[ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/bg4_layer2.png" id="4_rbahy"]
+[ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/bg4_layer3.png" id="5_al08y"]
 [ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/character/player.tscn" id="6_cam4b"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="7_56goh"]
 [ext_resource type="PackedScene" uid="uid://d3x5bi32l5htu" path="res://scenes/character/lance.tscn" id="8_j4kqp"]
@@ -157,7 +157,7 @@ position = Vector2(-230, -259)
 z_index = -4096
 scroll_scale = Vector2(0.1, 0)
 scroll_offset = Vector2(0, 240)
-repeat_size = Vector2(256, 256)
+repeat_size = Vector2(256, 0)
 repeat_times = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=1743911642]
@@ -182,7 +182,7 @@ centered = false
 
 [node name="Parallax2D3" type="Parallax2D" parent="Background" unique_id=2012294644]
 z_index = -4096
-scroll_scale = Vector2(0.05, 0)
+scroll_scale = Vector2(0.1, 0.1)
 scroll_offset = Vector2(0, 240)
 repeat_size = Vector2(256, 0)
 repeat_times = 4
@@ -195,7 +195,7 @@ centered = false
 
 [node name="Parallax2D4" type="Parallax2D" parent="Background" unique_id=598958461]
 z_index = -4096
-scroll_scale = Vector2(0.001, 0)
+scroll_scale = Vector2(0.005, 0.005)
 scroll_offset = Vector2(-150, 240)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=1651621638]

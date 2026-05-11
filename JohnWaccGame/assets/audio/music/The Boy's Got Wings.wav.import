@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://drachgabwwx2l"
+path="res://.godot/imported/The Boy's Got Wings.wav-c2a6a37b174c602b15509560eabc38d5.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/The Boy's Got Wings.wav"
+dest_files=["res://.godot/imported/The Boy's Got Wings.wav-c2a6a37b174c602b15509560eabc38d5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

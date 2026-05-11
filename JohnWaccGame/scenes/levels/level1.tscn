@@ -1,15 +1,16 @@
 [gd_scene format=4 uid="uid://1wxxvftalvkh"]
 
-[ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/layer0.png" id="1_8883n"]
+[ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/bg4_layer0.png" id="1_8883n"]
 [ext_resource type="Script" uid="uid://c5itgkvy7hbdm" path="res://scripts/level/level1.gd" id="1_es4qh"]
 [ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/character/player.tscn" id="1_jp5fc"]
 [ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="2_4ptlp"]
-[ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/layer1.png" id="2_es4qh"]
-[ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/layer2.png" id="3_s0ovu"]
+[ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/bg4_layer1.png" id="2_es4qh"]
+[ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/bg4_layer2.png" id="3_s0ovu"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="3_ycf23"]
 [ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="4_4ptlp"]
-[ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/layer3.png" id="4_nxmka"]
+[ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/bg4_layer3.png" id="4_nxmka"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="5_ycf23"]
+[ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="9_g7tkf"]
 [ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="9_sbmf2"]
 [ext_resource type="PackedScene" uid="uid://ck5adci3iyhod" path="res://scenes/objects/platformwide.tscn" id="11_nkeig"]
 [ext_resource type="PackedScene" uid="uid://m7yeuqk3ioq6" path="res://scenes/objects/platform.tscn" id="12_nfihu"]
@@ -17,6 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="14_jprdt"]
 [ext_resource type="PackedScene" uid="uid://6lbf6y0p3txv" path="res://scenes/objects/coin.tscn" id="15_ps2vj"]
 [ext_resource type="PackedScene" uid="uid://drf1doidx3rhd" path="res://scenes/objects/checkpoint.tscn" id="16_1xax6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fww7"]
+size = Vector2(1093, 63)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uh3ll"]
 distance = -192.0
@@ -31,7 +35,7 @@ position = Vector2(-230, -259)
 z_index = -4096
 scroll_scale = Vector2(0.1, 0)
 scroll_offset = Vector2(0, 240)
-repeat_size = Vector2(256, 256)
+repeat_size = Vector2(256, 0)
 autoscroll = Vector2(4, 0)
 repeat_times = 4
 
@@ -45,7 +49,7 @@ centered = false
 z_index = -4096
 scroll_scale = Vector2(0, 0)
 scroll_offset = Vector2(0, 240)
-repeat_size = Vector2(256, 0)
+repeat_size = Vector2(256, 256)
 autoscroll = Vector2(0.5, -0.25)
 repeat_times = 4
 
@@ -57,10 +61,9 @@ centered = false
 
 [node name="Parallax2D3" type="Parallax2D" parent="Background" unique_id=1633445144]
 z_index = -4096
-scroll_scale = Vector2(0.05, 0)
+scroll_scale = Vector2(0.1, 0.1)
 scroll_offset = Vector2(0, 240)
 repeat_size = Vector2(256, 0)
-autoscroll = Vector2(4, 0)
 repeat_times = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" unique_id=594511508]
@@ -71,7 +74,7 @@ centered = false
 
 [node name="Parallax2D4" type="Parallax2D" parent="Background" unique_id=1955813722]
 z_index = -4096
-scroll_scale = Vector2(0.001, 0)
+scroll_scale = Vector2(0.005, 0.005)
 scroll_offset = Vector2(-150, 240)
 autoscroll = Vector2(4, 0)
 
@@ -97,6 +100,15 @@ position_smoothing_enabled = true
 script = ExtResource("2_4ptlp")
 
 [node name="Level" type="Node2D" parent="." unique_id=1847949631]
+
+[node name="level_transition" parent="Level" unique_id=1807414438 instance=ExtResource("9_g7tkf")]
+position = Vector2(1386, 106)
+next_scene_name = "level2"
+next_stage_number = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition" unique_id=2085094530]
+position = Vector2(-2061, 55)
+shape = SubResource("RectangleShape2D_4fww7")
 
 [node name="Enemies" type="Node2D" parent="Level" unique_id=1634673464]
 

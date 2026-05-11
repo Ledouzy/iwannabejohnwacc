@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://b14o7v5ncnymy"]
 
 [ext_resource type="Script" uid="uid://wht1ke7uro52" path="res://scripts/logic/audio_manager.gd" id="1_qxga5"]
+[ext_resource type="AudioStream" uid="uid://crwlyr114vidw" path="res://assets/audio/music/Temple of the Sun.wav" id="2_acg88"]
 [ext_resource type="AudioStream" uid="uid://bvtx5venoy5la" path="res://assets/audio/music/track_baller.wav" id="2_mcjhh"]
 [ext_resource type="AudioStream" uid="uid://2ac3rtwphoww" path="res://assets/audio/music/Third_Sanctuary.ogg" id="3_gh300"]
+[ext_resource type="AudioStream" uid="uid://drachgabwwx2l" path="res://assets/audio/music/The Boy's Got Wings.wav" id="3_pum6a"]
 [ext_resource type="AudioStream" uid="uid://c480n6c82dhxe" path="res://assets/audio/music/Divine Bloodlines.wav" id="4_4brc7"]
+[ext_resource type="AudioStream" uid="uid://bjyrdipvih7gl" path="res://assets/audio/music/The Great Forest of Celceta.wav" id="4_t0aqn"]
 [ext_resource type="AudioStream" uid="uid://v11oc0wr282e" path="res://assets/audio/music/Star Light Zone.wav" id="5_gh300"]
 [ext_resource type="AudioStream" uid="uid://be26io14cxx7k" path="res://assets/audio/sounds/coin.wav" id="6_2hsro"]
+[ext_resource type="AudioStream" uid="uid://bp5wsq8gs01i4" path="res://assets/audio/music/The Final Decisive Battle.wav" id="6_6fkjv"]
 [ext_resource type="AudioStream" uid="uid://d0ne8i4gr2svq" path="res://assets/audio/sounds/jump.wav" id="7_siidf"]
 [ext_resource type="AudioStream" uid="uid://b34tbckjtxd73" path="res://assets/audio/sounds/death.wav" id="8_pc3ia"]
 [ext_resource type="AudioStream" uid="uid://dugkgoilqj7pe" path="res://assets/audio/sounds/sword.wav" id="9_hhrbd"]
@@ -24,6 +28,15 @@ back_sfx = NodePath("UI/MenuBack")
 
 [node name="Musics" type="Node" parent="." unique_id=1933384434]
 
+[node name="TempleOfTheSun" type="AudioStreamPlayer" parent="Musics" unique_id=771599168]
+stream = ExtResource("2_acg88")
+
+[node name="TheBoysGotWings" type="AudioStreamPlayer" parent="Musics" unique_id=1012878382]
+stream = ExtResource("3_pum6a")
+
+[node name="TheGreatForestOfCelceta" type="AudioStreamPlayer" parent="Musics" unique_id=742210809]
+stream = ExtResource("4_t0aqn")
+
 [node name="TrackBaller" type="AudioStreamPlayer" parent="Musics" unique_id=1767493365]
 stream = ExtResource("2_mcjhh")
 pitch_scale = 0.91
@@ -40,6 +53,10 @@ bus = &"Music"
 
 [node name="StarLightZone" type="AudioStreamPlayer" parent="Musics" unique_id=352814736]
 stream = ExtResource("5_gh300")
+bus = &"Music"
+
+[node name="TheFinalDecisiveBattle" type="AudioStreamPlayer" parent="Musics" unique_id=1591937285]
+stream = ExtResource("6_6fkjv")
 bus = &"Music"
 
 [node name="Sounds" type="Node" parent="." unique_id=1718301511]
