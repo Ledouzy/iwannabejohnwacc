@@ -10,7 +10,7 @@ func _ready() -> void:
 	score = save_system.current_data.coins
 	coins_label.text = "Coins: " + str(score)
 	health_label.text = "Health: " + str(player.get_health()) + "/" + str(player.get_max_health())
-	
+
 func _process(delta: float) -> void:
 	#coins_label.text = "Coins: " + str(score)
 	health_label.text = "Health: " + str(player.get_health()) + "/" + str(player.get_max_health())

@@ -6,4 +6,4 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	save_system.current_data.stage = next_stage_number
 	save_system._save()
-	scene_manager.change_scene(get_tree(), next_scene_name)	
+	scene_manager.change_scene(get_tree(), next_scene_name)

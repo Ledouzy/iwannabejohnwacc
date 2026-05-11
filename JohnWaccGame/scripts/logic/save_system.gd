@@ -136,13 +136,16 @@ func checkpoint_save(x_coords: float, y_coords):
 	
 func checkpoint_load(player: CharacterBody2D):
 	print("loading checkpoint data")
-	
+	print("old coins: ", current_data.coins)
+	print("checkpoint coins:", checkpoint_data.coins)
 	current_data = checkpoint_data.duplicate()
+	
 	current_data.erase("x_coords")
 	current_data.erase("y_coords")
 	
 	player.position = Vector2(checkpoint_data.x_coords, checkpoint_data.y_coords)
 	print("player position: ", player.position)
+	print("current coins:", current_data.coins)
 	
 func checkpoint_reset():
 	checkpoint_data = {

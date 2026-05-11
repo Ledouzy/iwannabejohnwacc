@@ -3,6 +3,7 @@ extends Control
 @onready var options_screen: Control = $options_screen
 var opened
 @onready var resume_button: Button = $UI_elements/VBoxContainer2/VBoxContainer/ResumeButton
+@onready var player = $"../../../Player"
 
 func focused():
 	resume_button.grab_focus()
@@ -28,3 +29,13 @@ func _process(delta: float) -> void:
 		else:
 			opened = false
 			_on_resume_button_pressed()
+
+
+func _on_retry_button_pressed() -> void:
+	#if player != null:
+	#	save_system.checkpoint_load(player)
+	#else:
+	#	print("player is null")
+	
+	scene_manager.reload_scene()
+	get_tree().paused = false

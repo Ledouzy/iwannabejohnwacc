@@ -92,6 +92,7 @@ func get_max_health() -> int:
 	
 ## when death timer runs out, reload current scene
 func _on_death_timer_timeout() -> void:
+	save_system.checkpoint_load(self)
 	scene_manager.reload_scene()
 
 ## proccess taking damage

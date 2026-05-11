@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bytkg1aao2wyn" path="res://scenes/objects/spring.tscn" id="13_lgguw"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="14_jprdt"]
 [ext_resource type="PackedScene" uid="uid://6lbf6y0p3txv" path="res://scenes/objects/coin.tscn" id="15_ps2vj"]
+[ext_resource type="PackedScene" uid="uid://drf1doidx3rhd" path="res://scenes/objects/checkpoint.tscn" id="16_1xax6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uh3ll"]
 distance = -192.0
@@ -81,6 +82,7 @@ texture = ExtResource("4_nxmka")
 centered = false
 
 [node name="Player" parent="." unique_id=1264691691 instance=ExtResource("1_jp5fc")]
+unique_name_in_owner = true
 position = Vector2(3, -86)
 
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("14_jprdt")]
@@ -394,6 +396,9 @@ position = Vector2(120, -919)
 
 [node name="Coin72" parent="Level/Coins" unique_id=1685123266 instance=ExtResource("15_ps2vj")]
 position = Vector2(120, -935)
+
+[node name="Checkpoint" parent="Level" unique_id=2123040548 instance=ExtResource("16_1xax6")]
+position = Vector2(216, -208)
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("3_ycf23")]
 unique_name_in_owner = true
