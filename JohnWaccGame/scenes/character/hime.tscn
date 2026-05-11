@@ -168,7 +168,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ben4"]
-size = Vector2(9, 14)
+size = Vector2(10, 14)
 
 [node name="Hime" type="CharacterBody2D" unique_id=1227297899]
 script = ExtResource("1_kjsfy")
@@ -176,9 +176,10 @@ script = ExtResource("1_kjsfy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=594908979]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4ben4")
-animation = &"HimeIdleBack"
+animation = &"HimeIdleSide"
 autoplay = "HimeIdleFront"
+frame_progress = 0.8803335
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462337660]
-position = Vector2(0.5, -8)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_4ben4")
