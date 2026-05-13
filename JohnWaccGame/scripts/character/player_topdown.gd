@@ -23,6 +23,7 @@ var can_jump = true
 
 # direction
 var dir = 1 # direction of the player (N-0,E-1,S-2,W-3)
+var side_dir = 1 # act as the old dir did
 var lock_direction = false
 
 @export var MAX_HEALTH = 10 ## max hp
@@ -165,23 +166,33 @@ func process_animation(direction_hori, direction_vert) -> void:
 		# if we are holding an object/enemy, play the variant
 		match dir:
 			0:
-				pass
+				animated_sprite.play("PlayerIdleFront")
 			1:
-				pass
+				animated_sprite.play("PlayerIdleSide")
 			2:
-				pass
+				animated_sprite.play("PlayerIdleBack")
 			3:
-				pass
+				animated_sprite.play("PlayerIdleSide")
 			_:
 				print("Error: Direction isn't between 0 and 3")
-		animated_sprite.play("PlayerIdleSide")
 	# else, we are moving, play the walk animation
 	else:
 		# if we are holding an object/enemy, play the variant
 		if (pickupanim):
 			animated_sprite.play("PlayerPickupWalkSide")
 		else:
-			animated_sprite.play("PlayerWalkSide")
+			match dir:
+				0:
+					animated_sprite.play("PlayerWalkFront")
+				1:
+					animated_sprite.play("PlayerWalkSide")
+				2:
+					animated_sprite.play("PlayerWalkBack")
+				3:
+					animated_sprite.play("PlayerWalkSide")
+				_:
+					print("Error: Direction isn't between 0 and 3")
+			
 
 ## call at fixed interval for physics calculations
 func _physics_process(delta: float) -> void:
@@ -289,19 +300,19 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
 		print("attack") # debug message
 		
-		var changed_dir = dir
+		var changed_dir = side_dir
 		lock_direction = true
 		
 		# play the attack animation and locks animation for the length of the animation
-		if Input.is_action_pressed("down"):
+		if dir == 0:
 			print("down")
-			if dir <= -1:
+			if side_dir == -1:
 				changed_dir = 1
 				player_body.scale.x = -1
 			animation_player.play("attackFront")
-		elif Input.is_action_pressed("up"):
+		elif dir == 2:
 			print("up")
-			if dir <= -1:
+			if side_dir == -1:
 				changed_dir = 1
 				player_body.scale.x = -1
 			animation_player.play("attackBack")
@@ -314,10 +325,10 @@ func _physics_process(delta: float) -> void:
 		waitforanimationend = false
 		jumpanim = false
 		
-		if changed_dir != dir:
-			if dir == 1:
+		if changed_dir != side_dir:
+			if side_dir == 1:
 				player_body.scale.x = -1
-			elif dir == -1:
+			elif side_dir == -1:
 				player_body.scale.x = -1
 		lock_direction = false
 	
@@ -325,10 +336,19 @@ func _physics_process(delta: float) -> void:
 	var direction_hori := Input.get_axis("left", "right")
 	var direction_vert := Input.get_axis("up", "down")
 	
-	if abs(direction_hori) < deadzone:
+	if abs(direction_hori)+abs(direction_vert) < deadzone:
 		direction_hori = 0
-	if abs(direction_vert) < deadzone:
 		direction_vert = 0
+		
+	if direction_hori > 0:
+		direction_hori = 1
+	elif direction_hori < 0:
+		direction_hori = -1
+		
+	if direction_vert > 0:
+		direction_vert = 1
+	elif direction_vert < 0:
+		direction_vert = -1
 	
 	# check if running
 	if Input.is_action_just_pressed("run"):
@@ -345,18 +365,28 @@ func _physics_process(delta: float) -> void:
 	# Flip sprite if changed direction_hori
 	if (direction_hori < 0):
 		# flip sprite if we changed direction_hori
-		if dir != -1 && !lock_direction:
+		if side_dir != -1 && !lock_direction:
 			player_body.scale.x = -1
 				
 		# updates our direction_hori
-		dir = -1
+		dir = 3
+		side_dir = -1
 	elif (direction_hori > 0):
 		# flip sprite if we changed direction_hori
-		if dir != 1 && !lock_direction:
+		if side_dir != 1 && !lock_direction:
 			player_body.scale.x = -1
 				
 		# updates our direction_hori
 		dir = 1
+		side_dir = 1
+	
+	# Flip sprite if changed direction_vert
+	if (direction_vert < 0):
+		# updates our direction_vert
+		dir = 2
+	elif (direction_vert > 0):
+		# updates our direction_vert
+		dir = 0
 	
 	# animation handling
 	if !waitforanimationend:
