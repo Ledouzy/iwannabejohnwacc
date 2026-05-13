@@ -30,12 +30,15 @@ back_sfx = NodePath("UI/MenuBack")
 
 [node name="TempleOfTheSun" type="AudioStreamPlayer" parent="Musics" unique_id=771599168]
 stream = ExtResource("2_acg88")
+bus = &"Music"
 
 [node name="TheBoysGotWings" type="AudioStreamPlayer" parent="Musics" unique_id=1012878382]
 stream = ExtResource("3_pum6a")
+bus = &"Music"
 
 [node name="TheGreatForestOfCelceta" type="AudioStreamPlayer" parent="Musics" unique_id=742210809]
 stream = ExtResource("4_t0aqn")
+bus = &"Music"
 
 [node name="TrackBaller" type="AudioStreamPlayer" parent="Musics" unique_id=1767493365]
 stream = ExtResource("2_mcjhh")
@@ -84,6 +87,7 @@ bus = &"SFX"
 [node name="Spring" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1776910349]
 stream = ExtResource("10_y3xji")
 volume_db = 10.0
+bus = &"SFX"
 
 [node name="UI" type="Node" parent="." unique_id=1757287764]
 
