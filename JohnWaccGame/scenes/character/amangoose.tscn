@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ku2eobc64brn"]
+
+[ext_resource type="Texture2D" uid="uid://cxg5ds56j18nq" path="res://assets/sprites/Characters/amangoose.png" id="1_jgbbn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2007"]
+atlas = ExtResource("1_jgbbn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgbbn"]
+atlas = ExtResource("1_jgbbn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v11bw"]
+atlas = ExtResource("1_jgbbn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjqsw"]
+atlas = ExtResource("1_jgbbn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nruos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2007")
+}],
+"loop": true,
+"name": &"AmangooseIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgbbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v11bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjqsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v11bw")
+}],
+"loop": true,
+"name": &"AmangooseWalk",
+"speed": 5.0
+}]
+
+[node name="Amangoose" type="Node2D" unique_id=875060791]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=192920219]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_nruos")
+animation = &"AmangooseWalk"
+frame_progress = 0.071103014
