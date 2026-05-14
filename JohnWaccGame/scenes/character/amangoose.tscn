@@ -46,10 +46,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Amangoose" type="Node2D" unique_id=875060791]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgbbn"]
+size = Vector2(12, 15)
+
+[node name="Amangoose" type="CharacterBody2D" unique_id=1646617251]
+z_index = -1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=192920219]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_nruos")
-animation = &"AmangooseWalk"
-frame_progress = 0.071103014
+animation = &"AmangooseIdle"
+autoplay = "AmangooseIdle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=910790235]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_jgbbn")
