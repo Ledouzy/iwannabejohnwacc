@@ -207,6 +207,7 @@ centered = false
 [node name="Player" parent="." unique_id=1264691691 instance=ExtResource("6_cam4b")]
 unique_name_in_owner = true
 position = Vector2(0, 1)
+collision_layer = 10
 
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("7_56goh")]
 z_index = 4

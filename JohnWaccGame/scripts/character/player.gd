@@ -284,6 +284,7 @@ func _physics_process(delta: float) -> void:
 		
 		# Play the throw animation
 		animated_sprite.play("PlayerThrow")
+		await get_tree().create_timer(.1).timeout
 		
 		# Throw the held object/enemy
 		throw()

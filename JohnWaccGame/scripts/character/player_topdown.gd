@@ -63,6 +63,8 @@ func _ready() -> void:
 	# make sure one frame occurs with the position not smoothed
 	await get_tree().create_timer(0.1).timeout
 	camera.position_smoothing_enabled = true
+	
+	motion_mode = MOTION_MODE_FLOATING
 
 ## Getter: returns value of dead, i.e. is player dead or not
 func is_dead() -> bool:
