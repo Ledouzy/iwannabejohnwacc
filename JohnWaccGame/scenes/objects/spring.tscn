@@ -171,5 +171,6 @@ shape = SubResource("RectangleShape2D_2h5a8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1635214985]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_1sfmc")
+disabled = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]

@@ -6,6 +6,24 @@
 [ext_resource type="Animation" uid="uid://cuh1wioebaitd" path="res://blink.res" id="6_fjrip"]
 [ext_resource type="PackedScene" uid="uid://c118octxh7v0b" path="res://scenes/logic/hurt_box.tscn" id="6_tuyoq"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwile"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jfl7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwile")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0yad"]
 atlas = ExtResource("1_p0vlq")
 region = Rect2(80, 16, 16, 16)
@@ -968,6 +986,13 @@ z_index = 5
 collision_layer = 2
 floor_snap_length = 3.0
 script = ExtResource("1_v6fml")
+
+[node name="Shadow" type="AnimatedSprite2D" parent="." unique_id=884812571]
+visible = false
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_7jfl7")
+frame = 1
+frame_progress = 0.25694755
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=415068813]
 texture_filter = 1

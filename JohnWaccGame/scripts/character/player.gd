@@ -14,7 +14,7 @@ var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 @export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
 @onready var jumps = MAX_JUMPS # number of jumps left
-@export var MAXCOYOTETIME = .12 # max time in air before we can't jump anymore
+@export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
 var coyote_timer = 0
 var can_jump = true
 
