@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cfhjn46f5v8xr"]
+
+[ext_resource type="Script" uid="uid://nvd00fbdfpq5" path="res://scripts/character/player.gd" id="1_5nlcr"]
+[ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/character/player.tscn" id="1_amd7u"]
+[ext_resource type="Script" uid="uid://dotnn6exktd2d" path="res://scripts/character/player_node.gd" id="1_hmm4i"]
+
+[node name="PlayerSide" type="Node2D" unique_id=1165610629]
+script = ExtResource("1_hmm4i")
+
+[node name="PlayerBody" parent="." unique_id=1264691691 instance=ExtResource("1_amd7u")]
+script = ExtResource("1_5nlcr")

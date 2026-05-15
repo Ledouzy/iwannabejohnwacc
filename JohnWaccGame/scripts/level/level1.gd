@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player: player = $Player
+@onready var player = $Player.get_player()
 @onready var game_manager: Control = %GameManager
 
 # Called when the node enters the scene tree for the first time.

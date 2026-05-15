@@ -3,10 +3,10 @@ class_name player_topdown
 
 # Movement Parameters
 # Speed
-@export var SPEED = 20 ## base speed value
-@export var SPEED_CAP = 240
-@export var WALK_CAP = 90
-@export var RUN_CAP = 135
+@export var SPEED = 10 ## base speed value
+@export var SPEED_CAP = 120
+@export var WALK_CAP = 45
+@export var RUN_CAP = 80
 @export var RUN_MULT = 1.5 ## Sprint multiplier
 var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 # Jump
@@ -14,7 +14,7 @@ var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 #@export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
 @onready var jumps = MAX_JUMPS # number of jumps left
-@export var MAXCOYOTETIME = .12 # max time in air before we can't jump anymore
+@export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
 var coyote_timer = 0
 var can_jump = true
 
@@ -57,7 +57,7 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @onready var death_timer: Timer = $DeathTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
-@onready var camera: Camera2D = $"../Camera2D"
+@onready var camera: Camera2D = $"../../Camera2D"
 
 # ready just for camera lmao
 func _ready() -> void:
@@ -205,10 +205,8 @@ func collision_handler() -> bool:
 	
 	# https://forum.godotengine.org/t/need-an-easy-solution-to-top-down-block-pushing-being-buggy/104033
 	for i in get_slide_collision_count():
-		print("i am inside")
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:
-			print("and i do shit")
 			var collision_direction = -c.get_normal()
 			var impulse_direction = Vector2.ZERO
 			# Check whether collision is from the left/right or top/bottom

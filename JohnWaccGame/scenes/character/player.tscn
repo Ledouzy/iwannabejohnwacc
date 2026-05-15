@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cqs0fv8ytarnj"]
 
 [ext_resource type="Texture2D" uid="uid://dsbny4c2d444a" path="res://assets/sprites/Characters/player.png" id="1_p0vlq"]
-[ext_resource type="Script" uid="uid://nvd00fbdfpq5" path="res://scripts/character/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://cabj0ahjsijba" path="res://assets/sprites/VFX/death.png" id="3_qu4a1"]
 [ext_resource type="Animation" uid="uid://cuh1wioebaitd" path="res://blink.res" id="6_fjrip"]
 [ext_resource type="PackedScene" uid="uid://c118octxh7v0b" path="res://scenes/logic/hurt_box.tscn" id="6_tuyoq"]
@@ -111,6 +110,14 @@ region = Rect2(160, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x06ku"]
 atlas = ExtResource("1_p0vlq")
 region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jfl7"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eff70"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(128, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pygui"]
 atlas = ExtResource("1_p0vlq")
@@ -314,6 +321,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"PlayerPickupWalkSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jfl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eff70")
+}],
+"loop": true,
+"name": &"PlayerPushSide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -982,10 +1000,8 @@ _data = {
 }
 
 [node name="PlayerBody" type="CharacterBody2D" unique_id=1264691691]
-z_index = 5
 collision_layer = 10
 floor_snap_length = 3.0
-script = ExtResource("1_v6fml")
 
 [node name="Shadow" type="AnimatedSprite2D" parent="." unique_id=884812571]
 visible = false

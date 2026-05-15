@@ -52,7 +52,7 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @onready var death_timer: Timer = $DeathTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
-@onready var camera: Camera2D = $"../Camera2D"
+@onready var camera: Camera2D = $"../../Camera2D"
 
 # ready just for camera lmao
 func _ready() -> void:

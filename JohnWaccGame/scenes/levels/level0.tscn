@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/bg4_layer1.png" id="3_mtrs4"]
 [ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/bg4_layer2.png" id="4_rbahy"]
 [ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/bg4_layer3.png" id="5_al08y"]
-[ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/character/player.tscn" id="6_cam4b"]
+[ext_resource type="PackedScene" uid="uid://cfhjn46f5v8xr" path="res://scenes/character/player_side.tscn" id="6_po5je"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="7_56goh"]
 [ext_resource type="PackedScene" uid="uid://d3x5bi32l5htu" path="res://scenes/character/lance.tscn" id="8_j4kqp"]
 [ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="9_wcmim"]
@@ -204,9 +204,8 @@ position = Vector2(256, 0)
 texture = ExtResource("5_al08y")
 centered = false
 
-[node name="Player" parent="." unique_id=1264691691 instance=ExtResource("6_cam4b")]
+[node name="Player" parent="." unique_id=1165610629 instance=ExtResource("6_po5je")]
 unique_name_in_owner = true
-position = Vector2(0, 1)
 
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("7_56goh")]
 z_index = 4

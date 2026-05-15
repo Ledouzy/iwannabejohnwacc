@@ -3,7 +3,7 @@ extends Control
 var score = 0
 @onready var coins_label: Label = $CanvasLayer/Base/MarginContainer/HBoxContainer/CoinsLabel
 @onready var health_label: Label = $CanvasLayer/Base/MarginContainer/HBoxContainer/HealthLabel
-@onready var player: CharacterBody2D = $"../Player"
+@onready var player: CharacterBody2D = $"../Player".get_player()
 @onready var pause_menu: Control = $CanvasLayer/pause_menu
 
 func _ready() -> void:

@@ -12,11 +12,6 @@
 y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=806243544 instance=ExtResource("1_5di5l")]
-position = Vector2(8, 8)
-SPEED = 10
-SPEED_CAP = 120
-WALK_CAP = 45
-RUN_CAP = 85
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1814646841]
 process_callback = 0
