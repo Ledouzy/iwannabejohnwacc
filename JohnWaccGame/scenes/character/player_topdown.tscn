@@ -964,6 +964,7 @@ _data = {
 }
 
 [node name="Player_topdown" type="CharacterBody2D" unique_id=806243544]
+collision_layer = 10
 script = ExtResource("1_c64y4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=164098171]

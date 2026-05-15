@@ -26,6 +26,7 @@ var dir = 1 # direction of the player (N-0,E-1,S-2,W-3)
 var side_dir = 1 # act as the old dir did
 var lock_direction = false
 
+# health related
 @export var MAX_HEALTH = 10 ## max hp
 @onready var health = MAX_HEALTH # number of hits before dying
 var invulnerable = false
@@ -34,6 +35,9 @@ var invulnerable = false
 
 # pickup/throw objects
 var pickedUp # stores the object that you picked up
+
+# pushing blocks
+@export var push_force = 10.0
 
 # animation flags
 var jumpanim = false # play the animation once
@@ -195,6 +199,35 @@ func process_animation(direction_hori, direction_vert) -> void:
 				_:
 					print("Error: Direction isn't between 0 and 3")
 			
+## process pushing blocks
+func collision_handler() -> bool:
+	var pushing = false
+	
+	# https://forum.godotengine.org/t/need-an-easy-solution-to-top-down-block-pushing-being-buggy/104033
+	for i in get_slide_collision_count():
+		print("i am inside")
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			print("and i do shit")
+			var collision_direction = -c.get_normal()
+			var impulse_direction = Vector2.ZERO
+			# Check whether collision is from the left/right or top/bottom
+			if abs(collision_direction.x) > abs(collision_direction.y):
+				# Collision direction is left/right
+				if collision_direction.x < 0:
+					impulse_direction = Vector2(-1, 0)
+				else:
+					impulse_direction = Vector2(1, 0)
+			else:
+				# Collision direction is up/down
+				if collision_direction.y < 0:
+					impulse_direction = Vector2(0,-1)
+				else:
+					impulse_direction = Vector2(0, 1)
+			c.get_collider().apply_central_impulse(impulse_direction * push_force)
+			
+			pushing = true
+	return pushing
 
 ## call at fixed interval for physics calculations
 func _physics_process(delta: float) -> void:
@@ -389,6 +422,9 @@ func _physics_process(delta: float) -> void:
 	elif (direction_vert > 0):
 		# updates our direction_vert
 		dir = 0
+		
+	# handles pushing blocks
+	var pushing = collision_handler()
 	
 	# animation handling
 	if !waitforanimationend:

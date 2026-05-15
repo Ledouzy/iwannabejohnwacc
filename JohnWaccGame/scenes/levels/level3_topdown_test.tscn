@@ -5,8 +5,11 @@
 [ext_resource type="Script" uid="uid://clu3xijl2ddsp" path="res://scripts/global/camera_topdown.gd" id="2_253u8"]
 [ext_resource type="TileSet" uid="uid://ve75kdpktk4j" path="res://assets/Tilemaps/topdown_test.tres" id="3_253u8"]
 [ext_resource type="PackedScene" uid="uid://ku2eobc64brn" path="res://scenes/character/amangoose.tscn" id="4_5di5l"]
+[ext_resource type="PackedScene" uid="uid://c8mfj41nk7n5s" path="res://scenes/objects/box_test.tscn" id="6_5dbrn"]
+[ext_resource type="PackedScene" uid="uid://ckpcnh36p766g" path="res://scenes/character/mage.tscn" id="7_xcocy"]
 
 [node name="TopdownTest" type="Node2D" unique_id=488593241]
+y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=806243544 instance=ExtResource("1_5di5l")]
 position = Vector2(8, 8)
@@ -39,3 +42,9 @@ tile_set = ExtResource("3_253u8")
 
 [node name="Amangoose" parent="." unique_id=875060791 instance=ExtResource("4_5di5l")]
 position = Vector2(-32, -32)
+
+[node name="BoxTest" parent="." unique_id=924173968 instance=ExtResource("6_5dbrn")]
+position = Vector2(0, -80)
+
+[node name="Mage" parent="." unique_id=1649577332 instance=ExtResource("7_xcocy")]
+position = Vector2(64, -160)

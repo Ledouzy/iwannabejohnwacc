@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ckpcnh36p766g"]
+
+[ext_resource type="Texture2D" uid="uid://dio04psl7ji8l" path="res://assets/sprites/Characters/mage.png" id="1_66bqm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep7d6"]
+atlas = ExtResource("1_66bqm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5l8ob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep7d6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tm7lq"]
+size = Vector2(14, 11)
+
+[node name="Mage" type="CharacterBody2D" unique_id=1649577332]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2146832337]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_5l8ob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=291647205]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_tm7lq")
