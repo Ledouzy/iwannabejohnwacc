@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://b34tbckjtxd73" path="res://assets/audio/sounds/death.wav" id="8_pc3ia"]
 [ext_resource type="AudioStream" uid="uid://dugkgoilqj7pe" path="res://assets/audio/sounds/sword.wav" id="9_hhrbd"]
 [ext_resource type="AudioStream" uid="uid://bnom6e03tfwvg" path="res://assets/audio/sounds/menu_back.wav" id="9_siidf"]
+[ext_resource type="AudioStream" uid="uid://h8x07cd37d5j" path="res://assets/audio/music/sword.ogg" id="10_pum6a"]
 [ext_resource type="AudioStream" uid="uid://6eka5b8pid7x" path="res://assets/audio/sounds/spring.wav" id="10_y3xji"]
 [ext_resource type="AudioStream" uid="uid://b3qpqepnxnr7s" path="res://assets/audio/sounds/menu_confirm.wav" id="11_hhrbd"]
 
@@ -61,6 +62,9 @@ bus = &"Music"
 [node name="TheFinalDecisiveBattle" type="AudioStreamPlayer" parent="Musics" unique_id=1591937285]
 stream = ExtResource("6_6fkjv")
 bus = &"Music"
+
+[node name="Sword" type="AudioStreamPlayer" parent="Musics" unique_id=1947828363]
+stream = ExtResource("10_pum6a")
 
 [node name="Sounds" type="Node" parent="." unique_id=1718301511]
 

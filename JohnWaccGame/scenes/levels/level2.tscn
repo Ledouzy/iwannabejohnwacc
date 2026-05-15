@@ -21,6 +21,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wmb1"]
 size = Vector2(1093, 63)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqrei"]
+size = Vector2(32, 32)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5qtw0"]
 distance = -192.0
 
@@ -107,6 +110,15 @@ next_stage_number = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition" unique_id=763177316]
 position = Vector2(-2061, 55)
 shape = SubResource("RectangleShape2D_4wmb1")
+
+[node name="level_transition2" parent="Level" unique_id=376149092 instance=ExtResource("9_sqrei")]
+position = Vector2(192, -912)
+next_scene_name = "level3"
+next_stage_number = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition2" unique_id=1076785783]
+position = Vector2(16, -16)
+shape = SubResource("RectangleShape2D_sqrei")
 
 [node name="Enemies" type="Node2D" parent="Level" unique_id=211671693]
 
