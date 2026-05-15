@@ -1,17 +1,17 @@
 extends CharacterBody2D
-class_name player_topdown
+class_name player
 
 # Movement Parameters
 # Speed
-@export var SPEED = 10 ## base speed value
-@export var SPEED_CAP = 120
-@export var WALK_CAP = 45
-@export var RUN_CAP = 80
+@export var SPEED = 20 ## base speed value
+@export var SPEED_CAP = 240
+@export var WALK_CAP = 90
+@export var RUN_CAP = 135
 @export var RUN_MULT = 1.5 ## Sprint multiplier
 var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 # Jump
-#@export var JUMP_VELOCITY = -200.0 ## How high you jump
-#@export var MAX_FALL_VELOCITY = 300 ## How fast you fall
+@export var JUMP_VELOCITY = -200.0 ## How high you jump
+@export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
 @onready var jumps = MAX_JUMPS # number of jumps left
 @export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
@@ -22,11 +22,9 @@ var can_jump = true
 @export var deadzone = 0.25 ## min value before input is registered
 
 # direction
-var dir = 1 # direction of the player (N-0,E-1,S-2,W-3)
-var side_dir = 1 # act as the old dir did
+var dir = 1 # direction of the player
 var lock_direction = false
 
-# health related
 @export var MAX_HEALTH = 10 ## max hp
 @onready var health = MAX_HEALTH # number of hits before dying
 var invulnerable = false
@@ -36,14 +34,10 @@ var invulnerable = false
 # pickup/throw objects
 var pickedUp # stores the object that you picked up
 
-# pushing blocks
-@export var push_force = 10.0
-
 # animation flags
 var jumpanim = false # play the animation once
 var deathanim = false # play the animation once
 var pickupanim = false # will change to pickup variants of animations
-var pushanim = false
 var waitforanimationend = false # stop other animations from playing until finished with current
 var skipMoveProcess = false # stop the calculations for user input movement, letting only gravity affect player
 
@@ -68,8 +62,6 @@ func _ready() -> void:
 	# make sure one frame occurs with the position not smoothed
 	await get_tree().create_timer(0.1).timeout
 	camera.position_smoothing_enabled = true
-	
-	motion_mode = MOTION_MODE_FLOATING
 
 ## Getter: returns value of dead, i.e. is player dead or not
 func is_dead() -> bool:
@@ -166,79 +158,38 @@ func spring_jump(jump_height):
 	velocity = jump_height
 
 ## Handles the playing of animations not specific to an action
-func process_animation(direction_hori, direction_vert) -> void:
+func process_animation(direction) -> void:
 	# grounded animation
-	# if we are not moving, play the idle animation
-	if direction_hori == 0 && direction_vert == 0:
-		# if we are holding an object/enemy, play the variant
-		match dir:
-			0:
-				animated_sprite.play("PlayerIdleFront")
-			1:
-				animated_sprite.play("PlayerIdleSide")
-			2:
-				animated_sprite.play("PlayerIdleBack")
-			3:
-				animated_sprite.play("PlayerIdleSide")
-			_:
-				print("Error: Direction isn't between 0 and 3")
-	# else, we are moving, play the walk animation
-	else:
-		# if we are holding an object/enemy, play the variant
-		if (pickupanim):
-			animated_sprite.play("PlayerPickupWalkSide")
-		else:
-			match dir:
-				0:
-					if pushanim:
-						animated_sprite.play("PlayerPushFront")
-					else:
-						animated_sprite.play("PlayerWalkFront")
-				1:
-					if pushanim:
-						animated_sprite.play("PlayerPushSide")
-					else:
-						animated_sprite.play("PlayerWalkSide")
-				2:
-					if pushanim:
-						animated_sprite.play("PlayerPushBack")
-					else:
-						animated_sprite.play("PlayerWalkBack")
-				3:
-					if pushanim:
-						animated_sprite.play("PlayerPushSide")
-					else:
-						animated_sprite.play("PlayerWalkSide")
-				_:
-					print("Error: Direction isn't between 0 and 3")
-			
-## process pushing blocks
-func collision_handler() -> bool:
-	var pushing = false
-	
-	# https://forum.godotengine.org/t/need-an-easy-solution-to-top-down-block-pushing-being-buggy/104033
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
-			var collision_direction = -c.get_normal()
-			var impulse_direction = Vector2.ZERO
-			# Check whether collision is from the left/right or top/bottom
-			if abs(collision_direction.x) > abs(collision_direction.y):
-				# Collision direction is left/right
-				if collision_direction.x < 0:
-					impulse_direction = Vector2(-1, 0)
-				else:
-					impulse_direction = Vector2(1, 0)
+	if is_on_floor():
+		# we are not jumping and we can reset our number of jumps
+		jumpanim = false
+		
+		# if we are not moving, play the idle animation
+		if direction == 0:
+			# if we are holding an object/enemy, play the variant
+			if (pickupanim):
+				animated_sprite.play("PlayerPickupIdleSide")
 			else:
-				# Collision direction is up/down
-				if collision_direction.y < 0:
-					impulse_direction = Vector2(0,-1)
-				else:
-					impulse_direction = Vector2(0, 1)
-			c.get_collider().apply_central_impulse(impulse_direction * push_force)
+				animated_sprite.play("PlayerIdleSide")
+		# else, we are moving, play the walk animation
+		else:
+			# if we are holding an object/enemy, play the variant
+			if (pickupanim):
+				animated_sprite.play("PlayerPickupWalkSide")
+			else:
+				animated_sprite.play("PlayerWalkSide")
+	# we are in the air
+	else:
+		if !jumpanim:
+			# play the jump animation, but only once
+			jumpanim = true
 			
-			pushing = true
-	return pushing
+			# if we are holding an object/enemy, play the variant
+			if (pickupanim):
+				animated_sprite.play("PlayerPickupJumpSide")
+			else:
+				animated_sprite.play("PlayerJumpSide")
+				
 
 ## call at fixed interval for physics calculations
 func _physics_process(delta: float) -> void:
@@ -253,112 +204,113 @@ func _physics_process(delta: float) -> void:
 		skipMoveProcess = true
 		waitforanimationend = true
 			
-	#if is_on_floor():
-	#	can_jump = true
-	#	coyote_timer = 0
-	#	jumps = MAX_JUMPS
+	if is_on_floor():
+		can_jump = true
+		coyote_timer = 0
+		jumps = MAX_JUMPS
 		
 	# Add the gravity.
-	#if not is_on_floor():
+	if not is_on_floor():
 		# coyote time aka jumping when leaving ground
-	#	coyote_timer += delta
+		coyote_timer += delta
 		
-	#	if coyote_timer > MAXCOYOTETIME:
+		if coyote_timer > MAXCOYOTETIME:
 			# can't jump if we're in the air for too long
-	#		if can_jump:
+			if can_jump:
 				# remove the jump since we're in the air
-	#			jumps = min(jumps, MAX_JUMPS-1)
-	#		can_jump = false
-#		if velocity.y < MAX_FALL_VELOCITY:
-#			velocity += get_gravity() * delta * 0.5
+				jumps = min(jumps, MAX_JUMPS-1)
+			can_jump = false
+		if velocity.y < MAX_FALL_VELOCITY:
+			velocity += get_gravity() * delta * 0.5
 
 	# Jump Handling
 	# If light tap, we decrease our velocity
-	#if Input.is_action_just_released("jump") and velocity.y < 0 and !waitforanimationend:
+	if Input.is_action_just_released("jump") and velocity.y < 0 and !waitforanimationend:
 		# updates the velocity
-#		velocity.y = JUMP_VELOCITY * 0.25
-	#	pass
+		velocity.y = JUMP_VELOCITY * 0.25
 	
 	# If held, or first tapped we give full height, also handles multiple jumps
-	#if Input.is_action_just_pressed("jump") and (can_jump or (jumps > 0)) and !waitforanimationend :
-	#	# removes 1 jump to number of jumps (jumps variable)
-	#	jumps -= 1
-	#	#print("jumps: ",jumps)
-	#	
-	#	# play the jump sfx
-	#	play_sfx("Jump")
-	#	
+	if Input.is_action_just_pressed("jump") and (can_jump or (jumps > 0)) and !waitforanimationend :
+		# removes 1 jump to number of jumps (jumps variable)
+		jumps -= 1
+		#print("jumps: ",jumps)
+		
+		# play the jump sfx
+		play_sfx("Jump")
+		
 		# updates the velocity
-#		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY
 		
 	# Handles PickUp objects and enemies
-	#if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend and is_on_floor():
-	#	# indicates that we use pickup variants of animations
-	#	pickupanim = true
-	#	
-	#	# stop animations and stop player from moving
-	#	waitforanimationend = true
-	#	skipMoveProcess = true
-	#	
-	#	# Play the animation for picking up
-	#	animated_sprite.play("PlayerPickupSide")
-	#	# TODO: Add sfx for pickup
-	#	
-	#	# freezes the player in place for the duration of the animation
-	#	velocity.x = 0
-	#	
-	#	# waits for a fixed amount for the animation to play
-	#	await animated_sprite.animation_finished
-	#	
-	#	# tries to pickUp the item right below us
-	#	if !pickUp():
-	#		# if we did not pick anything up, or the object wasn't pickable (same shit really)
-	#		# stop the animation
-	#		pickupanim = false
-	#		
-	#		# makes the player shrug to waste his time
-	#		animated_sprite.play("PlayerShrug")
-	#		
-	#		# wait for shrug animation end
-	#		await animated_sprite.animation_finished
-	#		
-	#	# allows animation to play and player to move again
-	#	waitforanimationend = false
-	#	skipMoveProcess = false
-	#	
+	if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend and is_on_floor():
+		# indicates that we use pickup variants of animations
+		pickupanim = true
+		
+		# stop animations and stop player from moving
+		waitforanimationend = true
+		skipMoveProcess = true
+		
+		# Play the animation for picking up
+		animated_sprite.play("PlayerPickupFront")
+		# TODO: Add sfx for pickup
+		
+		# freezes the player in place for the duration of the animation
+		velocity.x = 0
+		
+		# waits for a fixed amount for the animation to play
+		await animated_sprite.animation_finished
+		
+		# tries to pickUp the item right below us
+		if !pickUp():
+			# if we did not pick anything up, or the object wasn't pickable (same shit really)
+			# stop the animation
+			pickupanim = false
+			
+			# makes the player shrug to waste his time
+			animated_sprite.play("PlayerShrug")
+			
+			# wait for shrug animation end
+			await animated_sprite.animation_finished
+			
+		# allows animation to play and player to move again
+		waitforanimationend = false
+		skipMoveProcess = false
+		
 	# Handles throwing objects and enemies
-	#if Input.is_action_just_pressed("pick") and pickupanim == true and !waitforanimationend:
-	#	# indicate that we aren't holding anything anymore and locks animations
-	#	pickupanim = false
-	#	waitforanimationend = true
-	#	
-	#	# Play the throw animation
-	#	animated_sprite.play("PlayerThrow")
-	#	
-	#	# Throw the held object/enemy
-	#	throw()
-	#	
-	#	# wait for throw to finish and then allows animation to play again
-	#	await animated_sprite.animation_finished
-	#	waitforanimationend = false
+	if Input.is_action_just_pressed("pick") and pickupanim == true and !waitforanimationend:
+		# indicate that we aren't holding anything anymore and locks animations
+		pickupanim = false
+		waitforanimationend = true
+		
+		# Play the throw animation
+		animated_sprite.play("PlayerThrow")
+		await get_tree().create_timer(.1).timeout
+		
+		# Throw the held object/enemy
+		throw()
+		
+		# wait for throw to finish and then allows animation to play again
+		await animated_sprite.animation_finished
+		waitforanimationend = false
 		
 	# Handles attacking, right now only for sword and on side
+	# TODO: Handle attack in all direction if in air and 2 directions on the ground (up side down and up side respectively)
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
 		print("attack") # debug message
 		
-		var changed_dir = side_dir
+		var changed_dir = dir
 		lock_direction = true
 		
 		# play the attack animation and locks animation for the length of the animation
-		if dir == 0:
+		if Input.is_action_pressed("down"):
 			print("down")
-			if side_dir == -1:
+			if dir <= -1:
 				changed_dir = 1
 				player_body.scale.x = -1
 			animation_player.play("attackFront")
-		elif dir == 2:
+		elif Input.is_action_pressed("up"):
 			print("up")
-			if side_dir == -1:
+			if dir <= -1:
 				changed_dir = 1
 				player_body.scale.x = -1
 			animation_player.play("attackBack")
@@ -371,30 +323,17 @@ func _physics_process(delta: float) -> void:
 		waitforanimationend = false
 		jumpanim = false
 		
-		if changed_dir != side_dir:
-			if side_dir == 1:
+		if changed_dir != dir:
+			if dir == 1:
 				player_body.scale.x = -1
-			elif side_dir == -1:
+			elif dir == -1:
 				player_body.scale.x = -1
 		lock_direction = false
 	
 	# Get the input direction and handle the movement/deceleration.
-	var direction_hori := Input.get_axis("left", "right")
-	var direction_vert := Input.get_axis("up", "down")
-	
-	if abs(direction_hori)+abs(direction_vert) < deadzone:
-		direction_hori = 0
-		direction_vert = 0
-		
-	if direction_hori > 0:
-		direction_hori = 1
-	elif direction_hori < 0:
-		direction_hori = -1
-		
-	if direction_vert > 0:
-		direction_vert = 1
-	elif direction_vert < 0:
-		direction_vert = -1
+	var direction := Input.get_axis("left", "right")
+	if abs(direction) < deadzone:
+		direction = 0
 	
 	# check if running
 	if Input.is_action_just_pressed("run"):
@@ -406,69 +345,42 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("run"):
 		# defaults back to 1 speed multiplier
 		speedMult = 1.0
-		velocity.x = WALK_CAP*direction_hori
+		velocity.x = WALK_CAP*direction
 		
-	# Flip sprite if changed direction_hori
-	if (direction_hori < 0):
-		# flip sprite if we changed direction_hori
-		if side_dir != -1 && !lock_direction:
+	# Flip sprite if changed direction
+	if (direction < 0):
+		# flip sprite if we changed direction
+		if dir != -1 && !lock_direction:
 			player_body.scale.x = -1
 				
-		# updates our direction_hori
-		dir = 3
-		side_dir = -1
-	elif (direction_hori > 0):
-		# flip sprite if we changed direction_hori
-		if side_dir != 1 && !lock_direction:
+		# updates our direction
+		dir = -1
+	elif (direction > 0):
+		# flip sprite if we changed direction
+		if dir != 1 && !lock_direction:
 			player_body.scale.x = -1
 				
-		# updates our direction_hori
+		# updates our direction
 		dir = 1
-		side_dir = 1
-	
-	# Flip sprite if changed direction_vert
-	if (direction_vert < 0):
-		# updates our direction_vert
-		dir = 2
-	elif (direction_vert > 0):
-		# updates our direction_vert
-		dir = 0
-		
-	# handles pushing blocks
-	pushanim = collision_handler()
 	
 	# animation handling
 	if !waitforanimationend:
-		process_animation(direction_hori, direction_vert)
+		process_animation(direction)
 			
 	if !skipMoveProcess:
 		# Apply Movement
-		if direction_hori:
-			if (velocity.x*direction_hori < WALK_CAP and speedMult == 1.0) or (velocity.x*direction_hori < RUN_CAP and speedMult != 1.0):
-				velocity.x += direction_hori * SPEED * speedMult
+		if direction:
+			if (velocity.x*direction < WALK_CAP and speedMult == 1.0) or (velocity.x*direction < RUN_CAP and speedMult != 1.0):
+				velocity.x += direction * SPEED * speedMult
 			if velocity.x > 0:
 				velocity.x = min(velocity.x, SPEED_CAP * speedMult)
 			else:
 				velocity.x = max(velocity.x, -SPEED_CAP * speedMult)
 			# if over the speed cap, slow down until under
 			if abs(velocity.x) > RUN_CAP:
-				velocity.x -= direction_hori * 10
+				velocity.x -= direction * 10
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-		# movement for y axis
-		if direction_vert:
-			if (velocity.y*direction_vert < WALK_CAP and speedMult == 1.0) or (velocity.y*direction_vert < RUN_CAP and speedMult != 1.0):
-				velocity.y += direction_vert * SPEED * speedMult
-			if velocity.y > 0:
-				velocity.y = min(velocity.y, SPEED_CAP * speedMult)
-			else:
-				velocity.y = max(velocity.y, -SPEED_CAP * speedMult)
-			# if over the speed cap, slow down until under
-			if abs(velocity.y) > RUN_CAP:
-				velocity.y -= direction_vert * 10
-		else:
-			velocity.y = move_toward(velocity.y, 0, SPEED)
 			
 	move_and_slide()
 	
