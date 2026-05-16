@@ -18,7 +18,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm7lq"]
-size = Vector2(14, 11)
+size = Vector2(12, 11)
 
 [node name="Mage" type="CharacterBody2D" unique_id=1649577332]
 

@@ -141,7 +141,7 @@ _data = {
 size = Vector2(12, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sfmc"]
-size = Vector2(16, 9)
+size = Vector2(12, 9)
 
 [node name="Spring" type="Node2D" unique_id=109024424]
 script = ExtResource("1_2h5a8")
@@ -171,6 +171,5 @@ shape = SubResource("RectangleShape2D_2h5a8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1635214985]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_1sfmc")
-disabled = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]

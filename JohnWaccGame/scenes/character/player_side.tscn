@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dotnn6exktd2d" path="res://scripts/character/player.gd" id="1_hmm4i"]
 
 [node name="PlayerSide" type="Node2D" unique_id=1165610629]
+z_index = 5
 script = ExtResource("1_hmm4i")
 
 [node name="PlayerBody" parent="." unique_id=1264691691 instance=ExtResource("1_amd7u")]
