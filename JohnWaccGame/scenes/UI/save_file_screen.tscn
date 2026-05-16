@@ -86,14 +86,16 @@ alignment = 1
 
 [node name="LevelSelectButton" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1194301000 instance=ExtResource("3_hgemg")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_right = NodePath("../BackButton")
 text = "Level Sel"
 
 [node name="BackButton" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=260244897 instance=ExtResource("3_hgemg")]
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_left = NodePath(".")
+focus_neighbor_left = NodePath("../LevelSelectButton")
 focus_neighbor_top = NodePath("../../VBoxContainer/SaveFile2")
-focus_neighbor_right = NodePath(".")
+focus_neighbor_right = NodePath("../LevelSelectButton")
 focus_neighbor_bottom = NodePath("../../VBoxContainer/SaveFile0")
 text = "Back"
 script = ExtResource("5_b4efw")

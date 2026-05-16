@@ -22,6 +22,9 @@ func _ready() -> void:
 	back_button.focus_neighbor_top = NodePath(str(save_file_2.get_path())+"/HBoxContainer/PlayButton")
 	back_button.focus_neighbor_bottom = NodePath(str(save_file_0.get_path())+"/HBoxContainer/PlayButton")
 	
+	level_select_button.focus_neighbor_top = NodePath(str(save_file_2.get_path())+"/HBoxContainer/PlayButton")
+	level_select_button.focus_neighbor_bottom = NodePath(str(save_file_0.get_path())+"/HBoxContainer/PlayButton")
+	
 	get_node(str(save_file_0.get_path())+"/HBoxContainer/PlayButton").focus_neighbor_top = back_button.get_path()
 	get_node(str(save_file_0.get_path())+"/HBoxContainer/PlayButton").focus_neighbor_bottom = NodePath(str(save_file_1.get_path())+"/HBoxContainer/PlayButton")
 	

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfeuiua35doyh" path="res://scripts/global/game_manager.gd" id="1_ggb4a"]
 [ext_resource type="PackedScene" uid="uid://bipvhwh20w3xj" path="res://scenes/UI/pause_screen.tscn" id="2_p6koq"]
+[ext_resource type="PackedScene" uid="uid://bmnccdjwt6fnd" path="res://scenes/UI/dialogue_box.tscn" id="2_suis6"]
 [ext_resource type="Texture2D" uid="uid://drpgmcseogtpc" path="res://assets/UI/ui_statusbar.png" id="3_suis6"]
 [ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="4_3gp8j"]
 
@@ -19,6 +20,9 @@ offset_bottom = 40.0
 script = ExtResource("1_ggb4a")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1582219963]
+
+[node name="DialogueBox" parent="CanvasLayer" unique_id=1013334707 instance=ExtResource("2_suis6")]
+visible = false
 
 [node name="pause_menu" parent="CanvasLayer" unique_id=1261421658 instance=ExtResource("2_p6koq")]
 visible = false
