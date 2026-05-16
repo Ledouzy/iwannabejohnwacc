@@ -67,9 +67,10 @@ func thrown() -> void:
 	hurtbox_collison.disabled = false
 	animated_sprite.flip_v = false
 	
-func take_damage(damage) -> void:
+func take_damage(damage, direction) -> void:
 	if !invulnerable:
 		invulnerable = true
+		velocity.x = 100*direction
 		damage_timer.start()
 		health -= damage
 		if health <= 0:
@@ -100,11 +101,9 @@ func _physics_process(delta: float) -> void:
 		#return # skip the entire physics calculation
 	# process gravity
 	if startThrow:
-		velocity.x += 500 * delta * direction
-		velocity.y -= 500 * delta
+		velocity.x += 18 * direction
+		velocity.y -= 10
 	elif pickedUpBy != null:
-		hurtbox_collison.disabled = true
-		animated_sprite.flip_v = true
 		var temp = Input.get_axis("left", "right")
 		if temp != 0:
 			direction = temp
@@ -137,6 +136,8 @@ func _physics_process(delta: float) -> void:
 					position.x += direction * delta * speed
 		else:
 			animated_sprite.play("CarGrabbed")
+	if !startThrow:
+		velocity.x = move_toward(velocity.x, 0, 5)
 	
 	move_and_slide()
 	

@@ -96,7 +96,8 @@ func _on_death_timer_timeout() -> void:
 	scene_manager.reload_scene()
 
 ## proccess taking damage
-func take_damage(damage) -> void:
+#TODO: implement direction knockback
+func take_damage(damage,direction) -> void:
 	if !invulnerable:
 		invulnerable = true
 		damage_timer.start()
@@ -317,7 +318,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			print("other")
 			animation_player.play("attackSide")
-		
+			
 		waitforanimationend = true
 		await animation_player.animation_finished
 		waitforanimationend = false

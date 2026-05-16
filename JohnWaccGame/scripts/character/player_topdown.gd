@@ -104,7 +104,8 @@ func _on_death_timer_timeout() -> void:
 	scene_manager.reload_scene()
 
 ## proccess taking damage
-func take_damage(damage) -> void:
+#TODO: Implement direction knockback
+func take_damage(damage, direction) -> void:
 	if !invulnerable:
 		invulnerable = true
 		damage_timer.start()
