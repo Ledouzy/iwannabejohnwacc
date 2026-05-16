@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bcfnr3wci4rq3" path="res://scenes/UI/base_button.tscn" id="3_hgemg"]
 [ext_resource type="PackedScene" uid="uid://daw2eekshyb83" path="res://scenes/UI/save_file.tscn" id="3_uvu0l"]
 [ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="5_b4efw"]
+[ext_resource type="PackedScene" uid="uid://dbyhe8aolu8j3" path="res://scenes/UI/level_select.tscn" id="7_hgemg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kutwd"]
 line_spacing = 4.0
@@ -62,7 +63,7 @@ alignment = 1
 
 [node name="SaveFile0" parent="UI_elements/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1428793453 instance=ExtResource("3_uvu0l")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../BackButton")
+focus_neighbor_top = NodePath("../../HBoxContainer/BackButton")
 focus_neighbor_bottom = NodePath("../SaveFile1")
 focus_mode = 2
 
@@ -76,17 +77,30 @@ file_id = 1
 [node name="SaveFile2" parent="UI_elements/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=636465128 instance=ExtResource("3_uvu0l")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../SaveFile1")
-focus_neighbor_bottom = NodePath("../../BackButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer/BackButton")
 file_id = 2
 
-[node name="BackButton" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=1194301000 instance=ExtResource("3_hgemg")]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=157264450]
+layout_mode = 2
+alignment = 1
+
+[node name="LevelSelectButton" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1194301000 instance=ExtResource("3_hgemg")]
+layout_mode = 2
+text = "Level Sel"
+
+[node name="BackButton" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=260244897 instance=ExtResource("3_hgemg")]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../VBoxContainer/SaveFile2")
+focus_neighbor_top = NodePath("../../VBoxContainer/SaveFile2")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../VBoxContainer/SaveFile0")
+focus_neighbor_bottom = NodePath("../../VBoxContainer/SaveFile0")
 text = "Back"
 script = ExtResource("5_b4efw")
 
-[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
+[node name="LevelSelect" parent="." unique_id=1288948395 instance=ExtResource("7_hgemg")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

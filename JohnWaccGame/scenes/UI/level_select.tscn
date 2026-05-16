@@ -1,0 +1,284 @@
+[gd_scene format=3 uid="uid://dbyhe8aolu8j3"]
+
+[ext_resource type="Texture2D" uid="uid://co3l8muxahw75" path="res://assets/UI/ui_bigboxfull.png" id="1_0i6e4"]
+[ext_resource type="Script" uid="uid://001gydeqonaw" path="res://scripts/UI/level_select.gd" id="1_0ra34"]
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="2_1fmgh"]
+[ext_resource type="PackedScene" uid="uid://bcfnr3wci4rq3" path="res://scenes/UI/base_button.tscn" id="3_0ra34"]
+[ext_resource type="Script" uid="uid://c3v4khsceub7u" path="res://scripts/UI/level_select_button.gd" id="4_1fmgh"]
+[ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="4_ty08u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mi1ok"]
+line_spacing = 4.0
+font = ExtResource("2_1fmgh")
+font_color = Color(0, 0, 0, 1)
+
+[node name="LevelSelect" type="Control" unique_id=1288948395]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ra34")
+
+[node name="UI_elements" type="MarginContainer" parent="." unique_id=132239020]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="UI_elements" unique_id=693253527]
+layout_mode = 2
+texture = ExtResource("1_0i6e4")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_elements" unique_id=742013293]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI_elements/MarginContainer" unique_id=39544051]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=875944798]
+layout_mode = 2
+text = "Level Select"
+label_settings = SubResource("LabelSettings_mi1ok")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=1743332048]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="World1" type="VBoxContainer" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1109328340]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="1-1" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1" unique_id=1194301000 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1-1"
+script = ExtResource("4_1fmgh")
+level_id = 0
+
+[node name="1-2" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1" unique_id=2045047250 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1-2"
+script = ExtResource("4_1fmgh")
+level_id = 1
+
+[node name="1-3" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1" unique_id=1643089295 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1-3"
+script = ExtResource("4_1fmgh")
+level_id = 2
+
+[node name="1-4" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1" unique_id=687753458 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1-4"
+script = ExtResource("4_1fmgh")
+level_id = 3
+
+[node name="World2" type="VBoxContainer" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=529591022]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="2-1" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2" unique_id=1335555401 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "2-1"
+script = ExtResource("4_1fmgh")
+level_id = 4
+
+[node name="2-2" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2" unique_id=963530161 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "2-2"
+script = ExtResource("4_1fmgh")
+level_id = 5
+
+[node name="2-3" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2" unique_id=123142653 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "2-3"
+script = ExtResource("4_1fmgh")
+level_id = 6
+
+[node name="2-4" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2" unique_id=853555277 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "2-4"
+script = ExtResource("4_1fmgh")
+level_id = 7
+
+[node name="World3" type="VBoxContainer" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1479850756]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="3-1" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3" unique_id=2036766066 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "3-1"
+script = ExtResource("4_1fmgh")
+level_id = 8
+
+[node name="3-2" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3" unique_id=1230042662 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "3-2"
+script = ExtResource("4_1fmgh")
+level_id = 9
+
+[node name="3-3" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3" unique_id=1320292822 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "3-3"
+script = ExtResource("4_1fmgh")
+level_id = 10
+
+[node name="3-4" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3" unique_id=2124278411 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "3-4"
+script = ExtResource("4_1fmgh")
+level_id = 11
+
+[node name="World4" type="VBoxContainer" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1229698363]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="4-1" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4" unique_id=444413620 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "4-1"
+script = ExtResource("4_1fmgh")
+level_id = 12
+
+[node name="4-2" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4" unique_id=1456495637 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "4-2"
+script = ExtResource("4_1fmgh")
+level_id = 13
+
+[node name="4-3" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4" unique_id=636219337 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "4-3"
+script = ExtResource("4_1fmgh")
+level_id = 14
+
+[node name="4-4" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4" unique_id=970975611 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "4-4"
+script = ExtResource("4_1fmgh")
+level_id = 15
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=2111321227]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="5-1" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3" unique_id=94681990 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+text = "5-1"
+script = ExtResource("4_1fmgh")
+level_id = 16
+
+[node name="5-2" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3" unique_id=483874673 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+text = "5-2"
+script = ExtResource("4_1fmgh")
+level_id = 17
+
+[node name="6-1" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3" unique_id=1452507326 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+text = "6-1"
+script = ExtResource("4_1fmgh")
+level_id = 18
+
+[node name="6-2" parent="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3" unique_id=1183759925 instance=ExtResource("3_0ra34")]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+text = "6-2"
+script = ExtResource("4_1fmgh")
+level_id = 19
+
+[node name="BackButton" parent="UI_elements/MarginContainer/VBoxContainer2" unique_id=445839380 instance=ExtResource("3_0ra34")]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+text = "Back"
+script = ExtResource("4_ty08u")
+
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1/1-1" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1/1-1" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1/1-2" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1/1-2" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1/1-3" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1/1-3" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1/1-4" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World1/1-4" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2/2-1" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2/2-1" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2/2-2" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2/2-2" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2/2-3" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2/2-3" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2/2-4" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World2/2-4" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3/3-1" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3/3-1" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3/3-2" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3/3-2" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3/3-3" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3/3-3" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3/3-4" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World3/3-4" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4/4-1" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4/4-1" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4/4-2" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4/4-2" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4/4-3" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4/4-3" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4/4-4" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer/World4/4-4" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3/5-1" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3/5-1" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3/5-2" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3/5-2" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3/6-1" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3/6-1" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3/6-2" to="UI_elements/MarginContainer/VBoxContainer2/HBoxContainer3/6-2" method="_on_level_button_pressed"]
+[connection signal="pressed" from="UI_elements/MarginContainer/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
