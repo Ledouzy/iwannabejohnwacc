@@ -22,6 +22,7 @@ script = ExtResource("1_ggb4a")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1582219963]
 
 [node name="DialogueBox" parent="CanvasLayer" unique_id=1013334707 instance=ExtResource("2_suis6")]
+visible = false
 
 [node name="pause_menu" parent="CanvasLayer" unique_id=1261421658 instance=ExtResource("2_p6koq")]
 visible = false
