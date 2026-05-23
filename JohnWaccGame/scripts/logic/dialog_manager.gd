@@ -35,7 +35,6 @@ func next_line():
 	if selected_text.size() > 0:
 		var text = selected_text.pop_front()
 		display_text(text)
-		print(text)
 	else:
 		finish()
 		

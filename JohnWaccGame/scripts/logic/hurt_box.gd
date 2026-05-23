@@ -7,13 +7,9 @@ var direction = 1
 func _on_body_entered(body: Node2D) -> void:
 	if (body != null && body != self.get_parent()):
 		if (body.has_method("take_damage")):
-			print("Body: ",body.position.x)
-			print("Self: ", self.get_parent().position.x)
 			if body.position.x < self.get_parent().position.x:
-				print("direction set to -1")
 				direction = -1
 			else:
-				print("and its 1 now")
 				direction = 1
 			body.call_deferred("take_damage",damage, direction)
 			target = body
