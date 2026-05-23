@@ -160,6 +160,11 @@ func throw() -> void:
 func spring_jump(jump_height):
 	# updates the velocity
 	velocity = jump_height
+	
+func _on_sword_down_body_entered(body: Node2D) -> void:
+	print("hello chat")
+	if body != null:
+		velocity.y = JUMP_VELOCITY
 
 ## Handles the playing of animations not specific to an action
 func process_animation(direction) -> void:
@@ -390,3 +395,4 @@ func _physics_process(delta: float) -> void:
 	
 func play_sfx(sfx_name):
 	audio_manager.play_sfx(sfx_name, 0, self.position)
+	

@@ -27,11 +27,16 @@ grow_vertical = 2
 script = ExtResource("1_e54dn")
 
 [node name="version number" type="Label" parent="." unique_id=47339485]
-layout_mode = 0
-offset_left = 110.0
-offset_top = 121.0
-offset_right = 160.0
-offset_bottom = 144.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "v0.0.1"
 label_settings = SubResource("LabelSettings_e54dn")
 horizontal_alignment = 2
@@ -39,9 +44,18 @@ vertical_alignment = 2
 
 [node name="Background" type="TextureRect" parent="." unique_id=328635746]
 z_index = -10
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 144.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -72.0
+offset_right = 80.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_fgkus")
 
 [node name="grid" type="TextureRect" parent="." unique_id=1557400561]

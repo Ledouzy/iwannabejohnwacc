@@ -4,9 +4,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _on_area_body_entered(body: Node2D) -> void:
-	print("area entered")
 	if body == null:
-		print("body was null")
 		return
 	if body.has_method("spring_jump"):
 		body.call_deferred("spring_jump", spring_jump_height)

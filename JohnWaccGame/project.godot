@@ -181,6 +181,10 @@ interact={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Dialog"
 
+[physics]
+
+3d/default_gravity=7.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
