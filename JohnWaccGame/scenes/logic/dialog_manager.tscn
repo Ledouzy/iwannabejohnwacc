@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dlfuuuyjvddts"]
+
+[ext_resource type="Script" uid="uid://dghu4ip4x433j" path="res://scripts/logic/dialog_manager.gd" id="1_tfr6o"]
+[ext_resource type="PackedScene" uid="uid://bmnccdjwt6fnd" path="res://scenes/UI/dialog_box.tscn" id="2_o6u8y"]
+
+[node name="dialog_manager" type="Node" unique_id=824194023]
+script = ExtResource("1_tfr6o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1565615430]
+layer = 2
+
+[node name="DialogBox" parent="CanvasLayer" unique_id=1013334707 instance=ExtResource("2_o6u8y")]
+visible = false

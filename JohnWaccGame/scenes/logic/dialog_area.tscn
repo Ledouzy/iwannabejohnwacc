@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dytiwk522x40r"]
+
+[ext_resource type="Script" uid="uid://b8ppc5h1v8why" path="res://scripts/logic/dialog_area.gd" id="1_ib0er"]
+
+[node name="DialogArea" type="Area2D" unique_id=1991960453]
+process_mode = 3
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_ib0er")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1841346173]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
