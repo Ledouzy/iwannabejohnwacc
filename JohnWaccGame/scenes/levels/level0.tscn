@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="9_wcmim"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="10_d7a8j"]
 [ext_resource type="PackedScene" uid="uid://dytiwk522x40r" path="res://scenes/logic/dialog_area.tscn" id="10_rbahy"]
-[ext_resource type="Texture2D" uid="uid://dx1xlya0ssdhi" path="res://assets/UI/save_file_icon.png" id="11_al08y"]
 [ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="11_nqtv8"]
 [ext_resource type="PackedScene" uid="uid://m7yeuqk3ioq6" path="res://scenes/objects/platform.tscn" id="12_e1tke"]
 [ext_resource type="PackedScene" uid="uid://ck5adci3iyhod" path="res://scenes/objects/platformwide.tscn" id="13_6xu13"]
@@ -216,6 +215,13 @@ unique_name_in_owner = true
 z_index = 4
 position = Vector2(1368, -31)
 
+[node name="DialogAreaTest" parent="Hime" unique_id=1991960453 instance=ExtResource("10_rbahy")]
+dialog_key = "princess1"
+
+[node name="CollisionShape2D" parent="Hime/DialogAreaTest" index="0" unique_id=1841346173]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_cam4b")
+
 [node name="Lance" parent="." unique_id=1868515835 instance=ExtResource("8_j4kqp")]
 z_index = 4
 position = Vector2(55, -127)
@@ -228,30 +234,6 @@ position_smoothing_enabled = true
 script = ExtResource("9_wcmim")
 
 [node name="Level" type="Node2D" parent="." unique_id=1139344455]
-
-[node name="DialogAreaTest" parent="Level" unique_id=1991960453 instance=ExtResource("10_rbahy")]
-position = Vector2(55, 0)
-dialog_key = "test_1"
-
-[node name="CollisionShape2D" parent="Level/DialogAreaTest" index="0" unique_id=1841346173]
-position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_cam4b")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level/DialogAreaTest" unique_id=671902766]
-position = Vector2(0, -10)
-texture = ExtResource("11_al08y")
-
-[node name="DialogAreaTest2" parent="Level" unique_id=1409647644 instance=ExtResource("10_rbahy")]
-position = Vector2(101, 0)
-dialog_key = "test_2"
-
-[node name="CollisionShape2D" parent="Level/DialogAreaTest2" index="0" unique_id=1841346173]
-position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_cam4b")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level/DialogAreaTest2" unique_id=962687299]
-position = Vector2(0, -10)
-texture = ExtResource("11_al08y")
 
 [node name="Killzone" parent="Level" unique_id=631934805 instance=ExtResource("10_d7a8j")]
 
@@ -551,7 +533,6 @@ position = Vector2(713, -127)
 unique_name_in_owner = true
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("25_al08y")]
-scene_text_file = "res://assets/json/test_dialogue.json"
+scene_text_file = "res://assets/json/level0.json"
 
-[editable path="Level/DialogAreaTest"]
-[editable path="Level/DialogAreaTest2"]
+[editable path="Hime/DialogAreaTest"]
