@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cfhjn46f5v8xr" path="res://scenes/character/player_side.tscn" id="6_g7tkf"]
 [ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="9_g7tkf"]
 [ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="9_sbmf2"]
+[ext_resource type="PackedScene" uid="uid://vilx3cwlkfli" path="res://scenes/character/KingCar.tscn" id="10_4fww7"]
 [ext_resource type="PackedScene" uid="uid://ck5adci3iyhod" path="res://scenes/objects/platformwide.tscn" id="11_nkeig"]
 [ext_resource type="PackedScene" uid="uid://m7yeuqk3ioq6" path="res://scenes/objects/platform.tscn" id="12_nfihu"]
 [ext_resource type="PackedScene" uid="uid://bytkg1aao2wyn" path="res://scenes/objects/spring.tscn" id="13_lgguw"]
@@ -110,6 +111,9 @@ position = Vector2(-2061, 55)
 shape = SubResource("RectangleShape2D_4fww7")
 
 [node name="Enemies" type="Node2D" parent="Level" unique_id=1634673464]
+
+[node name="KingCar" parent="Level/Enemies" unique_id=374207838 instance=ExtResource("10_4fww7")]
+position = Vector2(751, -192)
 
 [node name="Car" parent="Level/Enemies" unique_id=1027794888 instance=ExtResource("9_sbmf2")]
 position = Vector2(665, 133)
