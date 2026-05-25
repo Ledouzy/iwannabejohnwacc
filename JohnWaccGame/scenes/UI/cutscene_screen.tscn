@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bflslxo4o1xhb"]
+
+[ext_resource type="Texture2D" uid="uid://dam15rr1to8xv" path="res://assets/Images/jack_upgrade_bg.png" id="1_sdsos"]
+[ext_resource type="Texture2D" uid="uid://b3i1aijtwufcs" path="res://assets/Images/hime_reveal_bg.png" id="2_iimv4"]
+[ext_resource type="Texture2D" uid="uid://cl746l3ivthqg" path="res://assets/Images/jack_upgrade.png" id="2_ndytl"]
+[ext_resource type="Texture2D" uid="uid://cvu8xqe4xrbhg" path="res://assets/Images/hime_reveal.png" id="3_djo4e"]
+[ext_resource type="PackedScene" uid="uid://bmnccdjwt6fnd" path="res://scenes/UI/dialog_box.tscn" id="3_iimv4"]
+
+[node name="CutsceneScreen" type="CanvasLayer" unique_id=1126385940]
+
+[node name="HimeliaReveal" type="CanvasLayer" parent="." unique_id=71132422]
+
+[node name="Background" type="TextureRect" parent="HimeliaReveal" unique_id=1681885462]
+offset_right = 160.0
+offset_bottom = 240.0
+texture = ExtResource("2_iimv4")
+
+[node name="Sprite" type="TextureRect" parent="HimeliaReveal" unique_id=227341901]
+offset_right = 160.0
+offset_bottom = 240.0
+texture = ExtResource("3_djo4e")
+
+[node name="JackUpgrade" type="CanvasLayer" parent="." unique_id=1726214291]
+visible = false
+
+[node name="Background" type="TextureRect" parent="JackUpgrade" unique_id=1485437305]
+offset_left = -40.0
+offset_right = 200.0
+offset_bottom = 240.0
+texture = ExtResource("1_sdsos")
+
+[node name="ColorRect" type="ColorRect" parent="JackUpgrade" unique_id=1009172612]
+offset_left = -48.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="JackUpgrade" unique_id=2089360209]
+offset_left = 160.0
+offset_right = 208.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite" type="TextureRect" parent="JackUpgrade" unique_id=611982666]
+offset_left = -40.0
+offset_right = 200.0
+offset_bottom = 240.0
+texture = ExtResource("2_ndytl")
+
+[node name="Dialog" type="CanvasLayer" parent="." unique_id=1965712044]
+
+[node name="TopDialogBox" parent="Dialog" unique_id=1013334707 instance=ExtResource("3_iimv4")]
+visible = false
+z_index = 1
+
+[node name="BottomDialogBox" parent="Dialog" unique_id=1287262378 instance=ExtResource("3_iimv4")]
+visible = false
+z_index = 1
+offset_top = 112.0
+offset_bottom = 112.032
