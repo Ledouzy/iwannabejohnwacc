@@ -3,13 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://clkpoj4jo0u07" path="res://assets/sprites/Characters/hime.png" id="1_4ben4"]
 [ext_resource type="Script" uid="uid://c6u51hf3lhbjj" path="res://scripts/character/hime.gd" id="1_kjsfy"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_avru3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wqj8"]
 atlas = ExtResource("1_4ben4")
-region = Rect2(176, 16, 16, 16)
+region = Rect2(224, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vrhxh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyp1x"]
 atlas = ExtResource("1_4ben4")
-region = Rect2(192, 16, 16, 16)
+region = Rect2(240, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjsfy"]
 atlas = ExtResource("1_4ben4")
@@ -67,22 +67,22 @@ region = Rect2(16, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 2.0,
-"texture": SubResource("AtlasTexture_avru3")
+"texture": SubResource("AtlasTexture_7wqj8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vrhxh")
+"texture": SubResource("AtlasTexture_kyp1x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_avru3")
+"texture": SubResource("AtlasTexture_7wqj8")
 }, {
 "duration": 2.0,
-"texture": SubResource("AtlasTexture_vrhxh")
+"texture": SubResource("AtlasTexture_kyp1x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_avru3")
+"texture": SubResource("AtlasTexture_7wqj8")
 }, {
 "duration": 2.0,
-"texture": SubResource("AtlasTexture_vrhxh")
+"texture": SubResource("AtlasTexture_kyp1x")
 }],
 "loop": true,
 "name": &"HimeGrabbed",
@@ -176,9 +176,9 @@ script = ExtResource("1_kjsfy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=594908979]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4ben4")
-animation = &"HimeIdleSide"
+animation = &"HimeGrabbed"
 autoplay = "HimeIdleFront"
-frame_progress = 0.8803335
+frame_progress = 0.38811505
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462337660]
 position = Vector2(0, -8)
