@@ -1,67 +1,51 @@
 [gd_scene format=3 uid="uid://buvvr7qcrxbru"]
 
-[ext_resource type="Texture2D" uid="uid://dq0d6rh8nq875" path="res://assets/sprites/Characters/hime2.png" id="2_2m0bj"]
+[ext_resource type="Texture2D" uid="uid://b1i41bnk6ocjh" path="res://assets/sprites/Characters/hime3.png" id="1_3qdc1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0b8xf"]
 radius = 4.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3qaf"]
-atlas = ExtResource("2_2m0bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr8y1"]
+atlas = ExtResource("1_3qdc1")
 region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2m0bj"]
-atlas = ExtResource("2_2m0bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_o28l2"]
+atlas = ExtResource("1_3qdc1")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1g6do"]
-atlas = ExtResource("2_2m0bj")
-region = Rect2(0, 208, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ggvn"]
-atlas = ExtResource("2_2m0bj")
-region = Rect2(32, 208, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a4i4t"]
-atlas = ExtResource("2_2m0bj")
-region = Rect2(16, 208, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_auu4a"]
-atlas = ExtResource("2_2m0bj")
-region = Rect2(48, 208, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c7hx0"]
-atlas = ExtResource("2_2m0bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xcvt"]
+atlas = ExtResource("1_3qdc1")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wfau2"]
-atlas = ExtResource("2_2m0bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb1gx"]
+atlas = ExtResource("1_3qdc1")
 region = Rect2(16, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vhfcu"]
-atlas = ExtResource("2_2m0bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_r386h"]
+atlas = ExtResource("1_3qdc1")
 region = Rect2(32, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n3s1r"]
-atlas = ExtResource("2_2m0bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7esv"]
+atlas = ExtResource("1_3qdc1")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nb0dy"]
-atlas = ExtResource("2_2m0bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpsl5"]
+atlas = ExtResource("1_3qdc1")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ihkc0"]
-atlas = ExtResource("2_2m0bj")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n1ho6"]
-atlas = ExtResource("2_2m0bj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_onx3j"]
+atlas = ExtResource("1_3qdc1")
 region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a11i5"]
+atlas = ExtResource("1_3qdc1")
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n3s1r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m3qaf")
+"texture": SubResource("AtlasTexture_xr8y1")
 }],
 "loop": true,
 "name": &"HimeIdleBack",
@@ -69,28 +53,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2m0bj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1g6do")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ggvn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a4i4t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2m0bj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1g6do")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_auu4a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a4i4t")
+"texture": SubResource("AtlasTexture_o28l2")
 }],
 "loop": true,
 "name": &"HimeIdleFront",
@@ -98,7 +61,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c7hx0")
+"texture": SubResource("AtlasTexture_7xcvt")
 }],
 "loop": true,
 "name": &"HimeIdleSide",
@@ -106,10 +69,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wfau2")
+"texture": SubResource("AtlasTexture_tb1gx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vhfcu")
+"texture": SubResource("AtlasTexture_r386h")
 }],
 "loop": true,
 "name": &"HimeWalkBack",
@@ -117,10 +80,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n3s1r")
+"texture": SubResource("AtlasTexture_k7esv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nb0dy")
+"texture": SubResource("AtlasTexture_mpsl5")
 }],
 "loop": true,
 "name": &"HimeWalkFront",
@@ -128,10 +91,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ihkc0")
+"texture": SubResource("AtlasTexture_onx3j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n1ho6")
+"texture": SubResource("AtlasTexture_a11i5")
 }],
 "loop": true,
 "name": &"HimeWalkSide",
@@ -149,3 +112,4 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_n3s1r")
 animation = &"HimeWalkSide"
 autoplay = "HimeIdleFront"
+frame_progress = 0.26435092
