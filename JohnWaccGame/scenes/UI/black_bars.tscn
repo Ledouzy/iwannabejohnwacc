@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dprkl7382iol2"]
+
+[node name="BlackBars" type="CanvasLayer" unique_id=1804627209]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=855400031]
+offset_right = 48.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=745701265]
+offset_left = 208.0
+offset_right = 256.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)

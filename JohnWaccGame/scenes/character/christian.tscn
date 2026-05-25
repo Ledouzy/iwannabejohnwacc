@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dadn0bgh2bybx"]
+
+[ext_resource type="Texture2D" uid="uid://ck88qjafjvumc" path="res://assets/sprites/Characters/christian.png" id="1_ovyx5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovyx5"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4qeq"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1x13"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83owi"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djbsa"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7inn"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7724f"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhr78"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rin5"]
+atlas = ExtResource("1_ovyx5")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1x13"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovyx5")
+}],
+"loop": true,
+"name": &"ChristianIdleBack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4qeq")
+}],
+"loop": true,
+"name": &"ChristianIdleFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1x13")
+}],
+"loop": true,
+"name": &"ChristianIdleSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83owi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djbsa")
+}],
+"loop": true,
+"name": &"ChristianWalkBack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7inn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7724f")
+}],
+"loop": true,
+"name": &"ChristianWalkFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhr78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rin5")
+}],
+"loop": true,
+"name": &"ChristianWalkSide",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83owi"]
+size = Vector2(10, 15)
+
+[node name="Christian" type="CharacterBody2D" unique_id=1675222595]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=837515853]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_s1x13")
+animation = &"ChristianWalkSide"
+frame_progress = 0.5880929
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=573179741]
+visible = false
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_83owi")

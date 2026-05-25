@@ -323,6 +323,9 @@ position = Vector2(1072, 0)
 [node name="Platform11" parent="Level/Platforms" unique_id=623685464 instance=ExtResource("12_e1tke")]
 position = Vector2(960, -208)
 
+[node name="Platform12" parent="Level/Platforms" unique_id=1242930655 instance=ExtResource("12_e1tke")]
+position = Vector2(960, -112)
+
 [node name="Coins" type="Node2D" parent="Level" unique_id=1211179548]
 
 [node name="Coin" parent="Level/Coins" unique_id=901343369 instance=ExtResource("14_74bpm")]
