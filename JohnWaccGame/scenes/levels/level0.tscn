@@ -533,6 +533,6 @@ position = Vector2(713, -127)
 unique_name_in_owner = true
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("25_al08y")]
-scene_text_file = "res://assets/json/level0.json"
+scene_text_file = "res://assets/dialogue/level0.json"
 
 [editable path="Hime/DialogAreaTest"]
