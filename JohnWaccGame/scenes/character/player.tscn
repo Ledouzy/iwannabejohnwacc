@@ -1094,7 +1094,7 @@ visible = false
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_7jfl7")
 frame = 1
-frame_progress = 0.25694755
+frame_progress = 0.49308175
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=415068813]
 texture_filter = 1
