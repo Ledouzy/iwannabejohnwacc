@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://deyxs280gkpok"]
+
+[ext_resource type="Texture2D" uid="uid://dam15rr1to8xv" path="res://assets/Images/jack_upgrade_bg.png" id="1_ck0at"]
+[ext_resource type="Texture2D" uid="uid://cl746l3ivthqg" path="res://assets/Images/jack_upgrade.png" id="2_obdsx"]
+
+[node name="JackUpgrade" type="CanvasLayer" unique_id=1518194160]
+visible = false
+
+[node name="Background" type="TextureRect" parent="." unique_id=1882286643]
+offset_left = -40.0
+offset_right = 200.0
+offset_bottom = 240.0
+texture = ExtResource("1_ck0at")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=163145418]
+offset_left = -48.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=493432013]
+offset_left = 160.0
+offset_right = 208.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite" type="TextureRect" parent="." unique_id=739298852]
+offset_left = -40.0
+offset_right = 200.0
+offset_bottom = 240.0
+texture = ExtResource("2_obdsx")

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b1da8pc61vjp3"]
+
+[ext_resource type="Texture2D" uid="uid://b3i1aijtwufcs" path="res://assets/Images/hime_reveal_bg.png" id="1_xqee6"]
+[ext_resource type="Texture2D" uid="uid://cvu8xqe4xrbhg" path="res://assets/Images/hime_reveal.png" id="2_o5fsi"]
+
+[node name="HimeliaReveal" type="CanvasLayer" unique_id=1039499203]
+
+[node name="Background" type="TextureRect" parent="." unique_id=1302516708]
+offset_right = 160.0
+offset_bottom = 240.0
+texture = ExtResource("1_xqee6")
+
+[node name="Sprite" type="TextureRect" parent="." unique_id=745018085]
+offset_right = 160.0
+offset_bottom = 240.0
+texture = ExtResource("2_o5fsi")
