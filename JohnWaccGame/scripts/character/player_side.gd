@@ -17,6 +17,8 @@ var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 @export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
 var coyote_timer = 0
 var can_jump = true
+var springjump = false
+var skipisonfloor = false # bc godot is cringe
 
 # deadzone
 @export var deadzone = 0.25 ## min value before input is registered
@@ -159,10 +161,20 @@ func throw() -> void:
 ## Handles jumping on springs
 func spring_jump(jump_height):
 	# updates the velocity
-	velocity = jump_height
+	jumps -= 1
+	velocity += jump_height
+	
+	# cap the velocity so that we don't go too far up
+	velocity.y = max(jump_height.y*1.25, velocity.y)
+	
+	#coyote_timer = MAXCOYOTETIME
+	if jumps == 0:
+		skipisonfloor = true
+		springjump = true
+		await get_tree().create_timer(1).timeout
+		skipisonfloor = false
 	
 func _on_sword_down_body_entered(body: Node2D) -> void:
-	print("hello chat")
 	if body != null:
 		velocity.y = JUMP_VELOCITY
 
@@ -213,8 +225,9 @@ func _physics_process(delta: float) -> void:
 		skipMoveProcess = true
 		waitforanimationend = true
 			
-	if is_on_floor():
+	if is_on_floor() and !skipisonfloor:
 		can_jump = true
+		springjump = false
 		coyote_timer = 0
 		jumps = MAX_JUMPS
 		
@@ -234,7 +247,7 @@ func _physics_process(delta: float) -> void:
 
 	# Jump Handling
 	# If light tap, we decrease our velocity
-	if Input.is_action_just_released("jump") and velocity.y < 0 and !waitforanimationend:
+	if Input.is_action_just_released("jump") and velocity.y < 0 and !waitforanimationend and !springjump:
 		# updates the velocity
 		velocity.y = JUMP_VELOCITY * 0.25
 	
@@ -248,7 +261,14 @@ func _physics_process(delta: float) -> void:
 		play_sfx("Jump")
 		
 		# updates the velocity
-		velocity.y = JUMP_VELOCITY
+		velocity.y += JUMP_VELOCITY
+		
+		print("Velocity y: ", velocity.y)
+		print("Jump Velocity: ", JUMP_VELOCITY)
+		
+		# cap the velocity so that we don't go too far up
+		velocity.y = max(JUMP_VELOCITY*1, velocity.y)
+		print("fixed velocity: ", velocity.y)
 		
 	# Handles PickUp objects and enemies
 	if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend and is_on_floor():
