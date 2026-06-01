@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xdtd"]
 atlas = ExtResource("1_ewmib")
-region = Rect2(32, 32, 16, 16)
+region = Rect2(96, 48, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewmib"]
 size = Vector2(16, 16)
