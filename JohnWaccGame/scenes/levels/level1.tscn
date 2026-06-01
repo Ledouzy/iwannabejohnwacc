@@ -422,3 +422,4 @@ offset_left = 1.0
 offset_right = 41.0
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("20_gvm5i")]
+scene_text_file = "res://assets/dialogue/level0.json"

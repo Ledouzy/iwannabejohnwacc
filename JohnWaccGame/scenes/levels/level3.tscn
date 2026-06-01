@@ -37,7 +37,6 @@ tile_map_data = PackedByteArray("AAD9//7/AAABAAQAAAD+//7/AAAGAAMAAAD///7/AAABAAQ
 tile_set = ExtResource("3_253u8")
 
 [node name="Amangoose" parent="." unique_id=875060791 instance=ExtResource("4_5di5l")]
-visible = false
 position = Vector2(-32, -32)
 
 [node name="BoxTest" parent="." unique_id=924173968 instance=ExtResource("6_5dbrn")]
@@ -64,8 +63,6 @@ shape = SubResource("RectangleShape2D_hadiw")
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("2_5di5l")]
 unique_name_in_owner = true
-offset_left = 1.0
-offset_right = 41.0
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("10_hadiw")]
 scene_text_file = "res://assets/dialogue/level3.json"
