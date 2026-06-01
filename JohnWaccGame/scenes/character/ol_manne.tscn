@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://xj0mr3a0p75k"]
+
+[ext_resource type="Texture2D" uid="uid://cqf7hj4e5bcsn" path="res://assets/sprites/Characters/oldman.png" id="1_0iwjd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qqjg"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxn0g"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdlg5"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iwjd"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_327yi"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma5en"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6i7m"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05x2d"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p8aq"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebg5b"]
+atlas = ExtResource("1_0iwjd")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tx0r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qqjg")
+}],
+"loop": true,
+"name": &"IdleBack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxn0g")
+}],
+"loop": true,
+"name": &"IdleFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdlg5")
+}],
+"loop": true,
+"name": &"IdleSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iwjd")
+}],
+"loop": true,
+"name": &"SitFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_327yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma5en")
+}],
+"loop": true,
+"name": &"WalkBack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6i7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05x2d")
+}],
+"loop": true,
+"name": &"WalkFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p8aq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebg5b")
+}],
+"loop": true,
+"name": &"WalkSide",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1951986268]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=556190486]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_6tx0r")
+animation = &"SitFront"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=415025186]
