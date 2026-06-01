@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="9_sqrei"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="9_yhrca"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="10_4eecq"]
+[ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="13_hgky1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wmb1"]
 size = Vector2(1093, 63)
@@ -151,3 +152,5 @@ shape = SubResource("WorldBoundaryShape2D_5qtw0")
 [node name="Springs" type="Node2D" parent="Level" unique_id=1450567687]
 
 [node name="Coins" type="Node2D" parent="Level" unique_id=1622836636]
+
+[node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("13_hgky1")]

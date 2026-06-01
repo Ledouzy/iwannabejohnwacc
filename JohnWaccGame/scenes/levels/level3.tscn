@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://ku2eobc64brn" path="res://scenes/character/amangoose.tscn" id="4_5di5l"]
 [ext_resource type="PackedScene" uid="uid://c8mfj41nk7n5s" path="res://scenes/objects/box_test.tscn" id="6_5dbrn"]
 [ext_resource type="PackedScene" uid="uid://ckpcnh36p766g" path="res://scenes/character/mage.tscn" id="7_xcocy"]
+[ext_resource type="PackedScene" uid="uid://dytiwk522x40r" path="res://scenes/logic/dialog_area.tscn" id="9_7eb4w"]
+[ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="10_hadiw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hadiw"]
 
 [node name="TopdownTest" type="Node2D" unique_id=488593241]
 y_sort_enabled = true
@@ -23,11 +27,6 @@ limit_right = 504
 limit_bottom = 96
 limit_smoothed = true
 script = ExtResource("2_253u8")
-
-[node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("2_5di5l")]
-unique_name_in_owner = true
-offset_left = 1.0
-offset_right = 41.0
 
 [node name="Level" type="Node2D" parent="." unique_id=1009897138]
 z_index = -10
@@ -45,3 +44,30 @@ position = Vector2(0, -80)
 
 [node name="Mage" parent="." unique_id=1649577332 instance=ExtResource("7_xcocy")]
 position = Vector2(64, -160)
+
+[node name="DialogAreaTest" parent="." unique_id=1991960453 instance=ExtResource("9_7eb4w")]
+position = Vector2(-32, -30)
+dialog_key = "mogus1"
+
+[node name="CollisionShape2D" parent="DialogAreaTest" index="0" unique_id=1841346173]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_hadiw")
+
+[node name="DialogAreaTest2" parent="." unique_id=421092421 instance=ExtResource("9_7eb4w")]
+position = Vector2(64, -158)
+dialog_key = "mage1"
+
+[node name="CollisionShape2D" parent="DialogAreaTest2" index="0" unique_id=1841346173]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_hadiw")
+
+[node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("2_5di5l")]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_right = 41.0
+
+[node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("10_hadiw")]
+scene_text_file = "res://assets/dialogue/level3.json"
+
+[editable path="DialogAreaTest"]
+[editable path="DialogAreaTest2"]

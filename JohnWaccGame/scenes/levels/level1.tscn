@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="14_jprdt"]
 [ext_resource type="PackedScene" uid="uid://6lbf6y0p3txv" path="res://scenes/objects/coin.tscn" id="15_ps2vj"]
 [ext_resource type="PackedScene" uid="uid://drf1doidx3rhd" path="res://scenes/objects/checkpoint.tscn" id="16_1xax6"]
+[ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="20_gvm5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fww7"]
 size = Vector2(1093, 63)
@@ -419,3 +420,5 @@ position = Vector2(216, -208)
 unique_name_in_owner = true
 offset_left = 1.0
 offset_right = 41.0
+
+[node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("20_gvm5i")]
