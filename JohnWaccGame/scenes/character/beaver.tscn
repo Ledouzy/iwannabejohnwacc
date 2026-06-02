@@ -1,6 +1,23 @@
 [gd_scene format=3 uid="uid://1uqlk2q32rv4"]
 
+[ext_resource type="Script" uid="uid://crcd46s4jvkg8" path="res://scripts/character/beaver.gd" id="1_3wayd"]
 [ext_resource type="Texture2D" uid="uid://cnxv404xpghfl" path="res://assets/sprites/Characters/beaver.png" id="1_cke00"]
+[ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/logic/throw_hurt_box.tscn" id="3_yp1mp"]
+[ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="4_mrwi6"]
+[ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/logic/hurt_box.gd" id="5_p6haj"]
+[ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="6_x5011"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp1mp"]
+atlas = ExtResource("1_cke00")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6haj"]
+atlas = ExtResource("1_cke00")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5011"]
+atlas = ExtResource("1_cke00")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1872"]
 atlas = ExtResource("1_cke00")
@@ -13,6 +30,10 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_owjge"]
 atlas = ExtResource("1_cke00")
 region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrwi6"]
+atlas = ExtResource("1_cke00")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uikgk"]
 atlas = ExtResource("1_cke00")
@@ -58,6 +79,25 @@ region = Rect2(16, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_yp1mp")
+}],
+"loop": true,
+"name": &"BeaverDeath",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6haj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5011")
+}],
+"loop": true,
+"name": &"BeaverGrabbed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_b1872")
 }],
 "loop": true,
@@ -78,6 +118,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"BeaverIdleSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrwi6")
+}],
+"loop": true,
+"name": &"BeaverTakeDamage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -127,23 +175,238 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cke00"]
-size = Vector2(11.25, 2)
+size = Vector2(8, 2)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cke00"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j1i4f"]
 radius = 7.0
 
+[sub_resource type="Animation" id="Animation_50v30"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D3:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RayCastRight:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RayCastLeft:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jtldb"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D3:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RayCastRight:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RayCastLeft:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"set_dead"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ah7ws"]
+_data = {
+&"RESET": SubResource("Animation_50v30"),
+&"death": SubResource("Animation_jtldb")
+}
+
 [node name="Beaver" type="CharacterBody2D" unique_id=588698386]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_3wayd")
+speed = 30
+MAX_HEALTH = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1783104354]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ebhbi")
-animation = &"BeaverWalkSide"
+animation = &"BeaverIdleSide"
+frame_progress = 0.42058375
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1864582220]
-position = Vector2(0.625, -15)
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_cke00")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=298362402]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_cke00")
+
+[node name="ThrowHurtBox" parent="." unique_id=631934805 instance=ExtResource("3_yp1mp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowHurtBox" unique_id=1343191308]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_j1i4f")
 disabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=298362402]
+[node name="HurtBox" parent="." unique_id=1345927244 instance=ExtResource("4_mrwi6")]
+script = ExtResource("5_p6haj")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1159768383]
 position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_cke00")
+shape = SubResource("CircleShape2D_j1i4f")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1371815581]
+position = Vector2(0, -6)
+target_position = Vector2(-10, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=858081482]
+position = Vector2(0, -6)
+target_position = Vector2(11, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=576094270]
+libraries/ = SubResource("AnimationLibrary_ah7ws")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=1246546987]
+
+[node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("6_x5011")]
+
+[connection signal="body_exited" from="HurtBox" to="HurtBox" method="_on_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_death_timer_timeout"]
