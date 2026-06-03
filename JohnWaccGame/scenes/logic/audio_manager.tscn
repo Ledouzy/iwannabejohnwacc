@@ -37,7 +37,7 @@ back_sfx = NodePath("UI/MenuBack")
 stream = ExtResource("2_acg88")
 bus = &"Music"
 
-[node name="TheBoysGotWings" type="AudioStreamPlayer" parent="Musics" unique_id=1012878382]
+[node name="TheBoyWhoHadWings" type="AudioStreamPlayer" parent="Musics" unique_id=1012878382]
 stream = ExtResource("3_pum6a")
 bus = &"Music"
 
