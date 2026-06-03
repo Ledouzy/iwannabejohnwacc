@@ -177,8 +177,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cke00"]
 size = Vector2(8, 2)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cke00"]
-radius = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yp1mp"]
+size = Vector2(10, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j1i4f"]
 radius = 7.0
@@ -236,7 +236,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("RayCastRight:enabled")
+tracks/4/path = NodePath("WallCheckRight:enabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -248,7 +248,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("RayCastLeft:enabled")
+tracks/5/path = NodePath("WallCheckLeft:enabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -312,7 +312,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("RayCastRight:enabled")
+tracks/4/path = NodePath("WallCheckRight:enabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -324,7 +324,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("RayCastLeft:enabled")
+tracks/5/path = NodePath("WallCheckLeft:enabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -358,7 +358,7 @@ _data = {
 }
 
 [node name="Beaver" type="CharacterBody2D" unique_id=588698386]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_3wayd")
 speed = 30
@@ -375,8 +375,8 @@ position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_cke00")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=298362402]
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_cke00")
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_yp1mp")
 
 [node name="ThrowHurtBox" parent="." unique_id=631934805 instance=ExtResource("3_yp1mp")]
 
@@ -393,13 +393,23 @@ damage = 1
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_j1i4f")
 
-[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1371815581]
+[node name="PlayerCheckRight" type="RayCast2D" parent="." unique_id=283426229]
+position = Vector2(0, -6)
+target_position = Vector2(-80, 0)
+collision_mask = 2
+
+[node name="PlayerCheckLeft" type="RayCast2D" parent="." unique_id=989064135]
+position = Vector2(0, -6)
+target_position = Vector2(80, 0)
+collision_mask = 2
+
+[node name="WallCheckRight" type="RayCast2D" parent="." unique_id=1371815581]
 position = Vector2(0, -6)
 target_position = Vector2(-10, 0)
 
-[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=858081482]
+[node name="WallCheckLeft" type="RayCast2D" parent="." unique_id=858081482]
 position = Vector2(0, -6)
-target_position = Vector2(11, 0)
+target_position = Vector2(10, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=576094270]
 libraries/ = SubResource("AnimationLibrary_ah7ws")

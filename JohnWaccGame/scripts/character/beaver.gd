@@ -16,16 +16,26 @@ var waitforanimationend = false
 var skipMoveProcess = false
 var walkDisabled = false
 
+# behaviour
+enum states {WAIT, CHARGE}
+var current_state = states.WAIT
+@export var detection_range = 80 # base of 5 blocks for now
+
 # Death Flags
 @export var dead = false
 
-@onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
+@onready var wall_check_right: RayCast2D = $WallCheckRight
+@onready var wall_check_left: RayCast2D = $WallCheckLeft
+
+@onready var player_check_right: RayCast2D = $PlayerCheckRight
+@onready var player_check_left: RayCast2D = $PlayerCheckLeft
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox_collison: CollisionShape2D = $HurtBox/CollisionShape2D
 @onready var collision_shape_2: CollisionShape2D = $CollisionShape2D2
 @onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
 @onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 
@@ -112,8 +122,21 @@ func _physics_process(delta: float) -> void:
 	elif not is_on_floor():
 		if velocity.y < MAX_FALL_VELOCITY:
 			velocity += get_gravity() * delta * 0.5
+			
+	# WAIT LOGIC
+	if !waitforanimationend and current_state == states.WAIT:
+		if player_check_right.is_colliding():
+			direction = -1
+			animated_sprite.flip_h = false
+			current_state = states.CHARGE
+		if player_check_left.is_colliding():
+			direction = 1
+			animated_sprite.flip_h = true
+			current_state = states.CHARGE
+		animated_sprite.play("BeaverIdleFront")
 	
-	if !waitforanimationend:
+	# CHARGE LOGIC
+	if !waitforanimationend and current_state == states.CHARGE:
 		if (direction < 0):
 			animated_sprite.flip_h = true
 		elif (direction > 0):
@@ -121,15 +144,20 @@ func _physics_process(delta: float) -> void:
 			
 		if pickedUpBy == null:
 			# check for walls and change direction if yes
-			if ray_cast_right.is_colliding():
+			if wall_check_right.is_colliding():
 				direction = 1
 				animated_sprite.flip_h = true
-			if ray_cast_left.is_colliding():
+				current_state = states.WAIT
+				
+			if wall_check_left.is_colliding():
 				direction = -1
 				animated_sprite.flip_h = false
-			if ray_cast_left.is_colliding() && ray_cast_right.is_colliding():
+				current_state = states.WAIT
+				
+			if wall_check_left.is_colliding() && wall_check_right.is_colliding():
 				animated_sprite.play("BeaverIdleFront")
 				pass
+				
 			else:
 				animated_sprite.play("BeaverWalkSide")
 				if !walkDisabled:

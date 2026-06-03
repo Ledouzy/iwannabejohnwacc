@@ -188,10 +188,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50v30"]
-size = Vector2(7.5, 2)
+size = Vector2(9, 2)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_50v30"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj0f0"]
+size = Vector2(11, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ra3w"]
 radius = 6.0
@@ -371,7 +371,7 @@ _data = {
 }
 
 [node name="Car" type="CharacterBody2D" unique_id=1027794888]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_50v30")
 
@@ -382,12 +382,12 @@ autoplay = "CarIdleSide"
 frame_progress = 0.3998875
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1995339573]
-position = Vector2(-0.25, -3)
+position = Vector2(-0.5, -3)
 shape = SubResource("RectangleShape2D_50v30")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=326158773]
-position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_50v30")
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_sj0f0")
 
 [node name="ThrowHurtBox" parent="." unique_id=631934805 instance=ExtResource("3_3mrxu")]
 
@@ -410,7 +410,7 @@ target_position = Vector2(-10, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=175754584]
 position = Vector2(0, 2)
-target_position = Vector2(11, 0)
+target_position = Vector2(10, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1166779148]
 libraries/ = SubResource("AnimationLibrary_3mrxu")

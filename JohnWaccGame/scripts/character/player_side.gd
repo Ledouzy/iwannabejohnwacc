@@ -102,6 +102,8 @@ func _on_death_timer_timeout() -> void:
 func take_damage(damage,direction) -> void:
 	if !invulnerable:
 		invulnerable = true
+		player_body.collision_mask = 1
+		
 		damage_timer.start()
 		health -= damage
 		health = max(health,0)
@@ -120,6 +122,7 @@ func take_damage(damage,direction) -> void:
 			waitforanimationend = false
 			blink_animation_player.play("blink")
 			await blink_animation_player.animation_finished
+		player_body.collision_mask = 3
 	
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false
