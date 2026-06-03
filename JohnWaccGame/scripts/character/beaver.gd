@@ -27,6 +27,9 @@ var current_state = states.WAIT
 @onready var wall_check_right: RayCast2D = $WallCheckRight
 @onready var wall_check_left: RayCast2D = $WallCheckLeft
 
+@onready var floor_check_left: RayCast2D = $FloorCheckLeft
+@onready var floor_check_right: RayCast2D = $FloorCheckRight
+
 @onready var player_check_right: RayCast2D = $PlayerCheckRight
 @onready var player_check_left: RayCast2D = $PlayerCheckLeft
 
@@ -143,6 +146,9 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.flip_h = false
 			
 		if pickedUpBy == null:
+			if direction == 1 and !floor_check_right.is_colliding() or direction == -1 and !floor_check_left.is_colliding():
+				current_state = states.WAIT
+				
 			# check for walls and change direction if yes
 			if wall_check_right.is_colliding():
 				direction = 1

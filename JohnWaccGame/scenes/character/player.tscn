@@ -1328,6 +1328,7 @@ libraries/ = SubResource("AnimationLibrary_70d11")
 [node name="RayCastThrow" type="RayCast2D" parent="." unique_id=2033770049]
 position = Vector2(0, -5)
 target_position = Vector2(0, 8)
+collision_mask = 5
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1506339776]
 one_shot = true

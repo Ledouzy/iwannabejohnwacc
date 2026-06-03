@@ -393,14 +393,22 @@ damage = 1
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_j1i4f")
 
+[node name="FloorCheckLeft" type="RayCast2D" parent="." unique_id=1123366367]
+position = Vector2(-7, -6)
+target_position = Vector2(0, 8)
+
+[node name="FloorCheckRight" type="RayCast2D" parent="." unique_id=1248666348]
+position = Vector2(6, -6)
+target_position = Vector2(0, 8)
+
 [node name="PlayerCheckRight" type="RayCast2D" parent="." unique_id=283426229]
 position = Vector2(0, -6)
-target_position = Vector2(-80, 0)
+target_position = Vector2(-48, 0)
 collision_mask = 2
 
 [node name="PlayerCheckLeft" type="RayCast2D" parent="." unique_id=989064135]
 position = Vector2(0, -6)
-target_position = Vector2(80, 0)
+target_position = Vector2(48, 0)
 collision_mask = 2
 
 [node name="WallCheckRight" type="RayCast2D" parent="." unique_id=1371815581]
