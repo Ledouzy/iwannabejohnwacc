@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfghsbda2mjfu"
+path="res://.godot/imported/Valestine Castle.ogg-98636089a14d1cb53533ca3cce54d86b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/music/Valestine Castle.ogg"
+dest_files=["res://.godot/imported/Valestine Castle.ogg-98636089a14d1cb53533ca3cce54d86b.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

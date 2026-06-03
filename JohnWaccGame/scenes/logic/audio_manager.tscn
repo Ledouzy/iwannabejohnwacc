@@ -16,8 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://bnom6e03tfwvg" path="res://assets/audio/sounds/menu_back.wav" id="9_siidf"]
 [ext_resource type="AudioStream" uid="uid://h8x07cd37d5j" path="res://assets/audio/music/sword.ogg" id="10_pum6a"]
 [ext_resource type="AudioStream" uid="uid://6eka5b8pid7x" path="res://assets/audio/sounds/spring.wav" id="10_y3xji"]
+[ext_resource type="AudioStream" uid="uid://dfghsbda2mjfu" path="res://assets/audio/music/Valestine Castle.ogg" id="11_cd3cl"]
 [ext_resource type="AudioStream" uid="uid://b3qpqepnxnr7s" path="res://assets/audio/sounds/menu_confirm.wav" id="11_hhrbd"]
-[ext_resource type="AudioStream" uid="uid://cjydu8ltq8fws" path="res://assets/audio/music/Valestine Castle.wav" id="11_k6j7t"]
+[ext_resource type="AudioStream" uid="uid://dlmuq3eysv76n" path="res://assets/audio/music/Tidal Tempest.ogg" id="12_6xeo7"]
 [ext_resource type="AudioStream" uid="uid://ocn3y12my2yy" path="res://assets/audio/sounds/Rain.wav" id="16_t0aqn"]
 
 [node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "BGS", "confirm_sfx", "move_sfx", "back_sfx")]
@@ -71,7 +72,10 @@ stream = ExtResource("10_pum6a")
 bus = &"Music"
 
 [node name="ValestineCastle" type="AudioStreamPlayer" parent="Musics" unique_id=521968896]
-stream = ExtResource("11_k6j7t")
+stream = ExtResource("11_cd3cl")
+
+[node name="TidalTempest" type="AudioStreamPlayer" parent="Musics" unique_id=1029524371]
+stream = ExtResource("12_6xeo7")
 
 [node name="Sounds" type="Node" parent="." unique_id=1718301511]
 

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dco16c140bcbc"]
 
-[ext_resource type="Script" uid="uid://dculgsbuubryt" path="res://scripts/level/level2.gd" id="1_qvnao"]
+[ext_resource type="Script" uid="uid://bhmlpvk5wmvo6" path="res://scripts/level/level4.gd" id="1_xx6b8"]
 [ext_resource type="Texture2D" uid="uid://dpkikvlih64s8" path="res://assets/sprites/Background/bg2_layer0.png" id="2_qvnao"]
 [ext_resource type="Texture2D" uid="uid://5rfxd3ygcxfm" path="res://assets/sprites/Background/bg2_layer1.png" id="3_hsvsk"]
 [ext_resource type="Texture2D" uid="uid://cl6bav6oryl1m" path="res://assets/sprites/Background/bg2_layer2.png" id="4_fcb7b"]
@@ -23,7 +23,7 @@ size = Vector2(64, 32)
 distance = -192.0
 
 [node name="level4" type="Node2D" unique_id=1373667370]
-script = ExtResource("1_qvnao")
+script = ExtResource("1_xx6b8")
 
 [node name="Background" type="Node2D" parent="." unique_id=1755661873]
 position = Vector2(-235, -295)
@@ -122,7 +122,7 @@ shape = SubResource("RectangleShape2D_4wmb1")
 [node name="level_transition2" parent="Level" unique_id=376149092 instance=ExtResource("10_05se8")]
 position = Vector2(384, -399)
 next_scene_name = "level3"
-next_stage_number = 3
+next_stage_number = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition2" unique_id=1076785783]
 position = Vector2(32, -16)
