@@ -122,7 +122,7 @@ func take_damage(damage,direction) -> void:
 			waitforanimationend = false
 			blink_animation_player.play("blink")
 			await blink_animation_player.animation_finished
-		player_body.collision_mask = 3
+		player_body.collision_mask = 5
 	
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false

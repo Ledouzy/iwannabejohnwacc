@@ -19,9 +19,7 @@ linear_damp = 20.0
 script = ExtResource("1_6xdtd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1562236904]
-position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_6xdtd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1489487715]
-position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_ewmib")
