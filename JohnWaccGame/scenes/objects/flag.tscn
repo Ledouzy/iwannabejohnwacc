@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://qi1ndjspalke"]
+
+[ext_resource type="Texture2D" uid="uid://ds68jxxwqwc31" path="res://assets/sprites/Objects/flag.png" id="1_coexl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61o2d"]
+atlas = ExtResource("1_coexl")
+region = Rect2(0, 0, 16, 32)
+
+[node name="flag" type="Node2D" unique_id=695068015]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=956221220]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_61o2d")
