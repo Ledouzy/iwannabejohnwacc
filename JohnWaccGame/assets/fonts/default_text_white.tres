@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://c2pov8ob6w6s6"]
+
+[ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="1_4lpav"]
+
+[resource]
+line_spacing = 0.0
+paragraph_spacing = -2.0
+font = ExtResource("1_4lpav")

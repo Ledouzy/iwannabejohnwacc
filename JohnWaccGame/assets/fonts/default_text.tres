@@ -6,3 +6,4 @@
 line_spacing = 0.0
 paragraph_spacing = -2.0
 font = ExtResource("1_jpkfe")
+font_color = Color(0, 0, 0, 1)

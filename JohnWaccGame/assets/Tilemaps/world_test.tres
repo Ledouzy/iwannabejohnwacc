@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c8mfj41nk7n5s" path="res://scenes/objects/box_test.tscn" id="4_3olhp"]
 [ext_resource type="PackedScene" uid="uid://drf1doidx3rhd" path="res://scenes/objects/checkpoint.tscn" id="5_hr3u2"]
 [ext_resource type="PackedScene" uid="uid://6lbf6y0p3txv" path="res://scenes/objects/coin.tscn" id="6_xhfnf"]
-[ext_resource type="PackedScene" path="res://scenes/objects/earth_deeple.tscn" id="7_i7t13"]
+[ext_resource type="PackedScene" uid="uid://vbjfpw6a14wj" path="res://scenes/objects/earth_deeple.tscn" id="7_i7t13"]
 [ext_resource type="PackedScene" uid="uid://m7yeuqk3ioq6" path="res://scenes/objects/platform.tscn" id="8_vvds4"]
 [ext_resource type="PackedScene" uid="uid://ck5adci3iyhod" path="res://scenes/objects/platformwide.tscn" id="9_ora5l"]
 [ext_resource type="PackedScene" uid="uid://bjy8d1i5fhi8x" path="res://scenes/objects/spikes.tscn" id="10_auwb8"]
