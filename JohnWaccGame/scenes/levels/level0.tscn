@@ -512,6 +512,7 @@ position = Vector2(5689, -217)
 position = Vector2(5736, -496)
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("21_ecdks")]
+unique_name_in_owner = true
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("25_al08y")]
 scene_text_file = "res://assets/dialogue/level0.json"
