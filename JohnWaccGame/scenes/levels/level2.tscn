@@ -1,0 +1,140 @@
+[gd_scene format=4 uid="uid://cj3q41k6im12h"]
+
+[ext_resource type="Script" uid="uid://dculgsbuubryt" path="res://scripts/level/level2.gd" id="1_b0vvs"]
+[ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/bg4_layer0.png" id="2_oyk6k"]
+[ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/bg4_layer1.png" id="3_gycjm"]
+[ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/bg4_layer2.png" id="4_8i1lk"]
+[ext_resource type="Texture2D" uid="uid://cjm1h87kvh1xm" path="res://assets/sprites/Background/bg4_layer3.png" id="5_hgky1"]
+[ext_resource type="PackedScene" uid="uid://cfhjn46f5v8xr" path="res://scenes/character/player_side.tscn" id="6_b4tpv"]
+[ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="6_hgky1"]
+[ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="7_b4tpv"]
+[ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="7_hkuam"]
+[ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="8_f3b2k"]
+[ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="8_hkuam"]
+[ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="9_sqrei"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sqrei"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yhrca"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4eecq"]
+normal = Vector2(1, 0)
+distance = -80.0
+
+[node name="level2" type="Node2D" unique_id=2053820744]
+script = ExtResource("1_b0vvs")
+
+[node name="Player" parent="." unique_id=1165610629 instance=ExtResource("6_b4tpv")]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=60925575]
+process_callback = 0
+limit_bottom = 192
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("7_hkuam")
+
+[node name="Level" type="Node2D" parent="." unique_id=2057335532]
+
+[node name="TutorialText" type="Control" parent="Level" unique_id=393983303]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Node2D" parent="Level" unique_id=1226976648]
+
+[node name="Parallax2D" type="Parallax2D" parent="Level/Background" unique_id=20962245]
+z_index = -4096
+scroll_scale = Vector2(0.1, 0)
+scroll_offset = Vector2(0, -16)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(4, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D" unique_id=1381749568]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("2_oyk6k")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Level/Background" unique_id=936825531]
+z_index = -4096
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(256, 256)
+autoscroll = Vector2(0.5, -0.25)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D2" unique_id=954540888]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("3_gycjm")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Level/Background" unique_id=709583437]
+z_index = -4096
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, -16)
+repeat_size = Vector2(256, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D3" unique_id=1932085138]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("4_8i1lk")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="Level/Background" unique_id=1699082497]
+z_index = -4096
+scroll_scale = Vector2(0.005, 0.005)
+scroll_offset = Vector2(-296, -16)
+autoscroll = Vector2(4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D4" unique_id=407103696]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("5_hgky1")
+centered = false
+
+[node name="Tiles" type="Node2D" parent="Level" unique_id=1189390533]
+
+[node name="BackgroundTiles" type="TileMapLayer" parent="Level/Tiles" unique_id=780685492]
+z_index = -2
+tile_set = ExtResource("6_hgky1")
+collision_enabled = false
+
+[node name="GroundTiles" type="TileMapLayer" parent="Level/Tiles" unique_id=1744475546]
+z_index = -1
+tile_map_data = PackedByteArray("AAAEAAQAAAAAAAcAAAAEAAMAAAAAAAcAAAAEAAIAAAAAAAcAAAAEAAEAAAAAAAcAAAAEAAAAAAACAAkAAAADAAQAAAAAAAcAAAADAAMAAAAAAAcAAAADAAIAAAAAAAcAAAADAAEAAAAAAAcAAAADAAAAAAACAAkAAAACAAQAAAAAAAcAAAACAAMAAAAAAAcAAAACAAIAAAAAAAcAAAACAAEAAAAAAAcAAAACAAAAAAACAAkAAAABAAQAAAAAAAcAAAABAAMAAAAAAAcAAAABAAIAAAAAAAcAAAABAAEAAAAAAAcAAAABAAAAAAACAAkAAAAAAAQAAAAAAAcAAAAAAAMAAAAAAAcAAAAAAAIAAAAAAAcAAAAAAAEAAAAAAAcAAAAAAAAAAAACAAkAAAD//wQAAAAAAAcAAAD//wMAAAAAAAcAAAD//wIAAAAAAAcAAAD//wEAAAAAAAcAAAD//wAAAAACAAkAAAD+/wQAAAAAAAcAAAD+/wMAAAAAAAcAAAD+/wIAAAAAAAcAAAD+/wEAAAAAAAcAAAD+/wAAAAACAAkAAAD9/wQAAAAAAAcAAAD9/wMAAAAAAAcAAAD9/wIAAAAAAAcAAAD9/wEAAAAAAAcAAAD9/wAAAAACAAkAAAD8/wQAAAAAAAcAAAD8/wMAAAAAAAcAAAD8/wIAAAAAAAcAAAD8/wEAAAAAAAcAAAD8/wAAAAACAAkAAAD7/wQAAAAAAAcAAAD7/wMAAAAAAAcAAAD7/wIAAAAAAAcAAAD7/wEAAAAAAAcAAAD7/wAAAAACAAkAAAAFAAAAAAAAAAgAAAAGAAAAAAAAAAkAAAAHAAAAAAAAAAkAAAAIAAAAAAAAAAkAAAAJAAAAAAAAAAkAAAAKAAAAAAAAAAkAAAALAAAAAAAAAAkAAAAMAAAAAAAAAAgAABANAAAAAAACAAkAAAAUAAQAAAACAAIAAAAUAAMAAAACAAEAAAAUAAIAAAACAAEAAAAUAAEAAAACAAEAAAAUAAAAAAACAAAAAAATAAQAAAABAAIAAAATAAMAAAABAAEAAAATAAIAAAABAAEAAAATAAEAAAABAAEAAAATAAAAAAABAAAAAAASAAQAAAABAAIAAAASAAMAAAABAAEAAAASAAIAAAABAAEAAAASAAEAAAABAAEAAAASAAAAAAABAAAAAAARAAQAAAABAAIAAAARAAMAAAABAAEAAAARAAIAAAABAAEAAAARAAEAAAABAAEAAAARAAAAAAABAAAAAAAQAAQAAAABAAIAAAAQAAMAAAABAAEAAAAQAAIAAAABAAEAAAAQAAEAAAABAAEAAAAQAAAAAAABAAAAAAAPAAQAAAABAAIAAAAPAAMAAAABAAEAAAAPAAIAAAABAAEAAAAPAAEAAAABAAEAAAAPAAAAAAABAAAAAAAOAAQAAAABAAIAAAAOAAMAAAABAAEAAAAOAAIAAAABAAEAAAAOAAEAAAABAAEAAAAOAAAAAAABAAAAAAANAAQAAAAAAAIAAAANAAMAAAAAAAEAAAANAAIAAAAAAAEAAAANAAEAAAAAAAEAAAA=")
+tile_set = ExtResource("6_hgky1")
+
+[node name="level_transition" parent="Level" unique_id=1807414438 instance=ExtResource("7_b4tpv")]
+position = Vector2(-1, 26)
+next_scene_name = "level2"
+next_stage_number = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition" unique_id=983946626]
+position = Vector2(2977, -1055)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_sqrei")
+
+[node name="Killzone" parent="Level" unique_id=631934805 instance=ExtResource("8_hkuam")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Killzone" unique_id=376491142]
+position = Vector2(0, 192)
+shape = SubResource("WorldBoundaryShape2D_yhrca")
+
+[node name="LevelBorder" type="StaticBody2D" parent="Level" unique_id=810123792]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/LevelBorder" unique_id=1614852914]
+shape = SubResource("WorldBoundaryShape2D_4eecq")
+
+[node name="Objects" type="Node2D" parent="Level" unique_id=1381330509]
+
+[node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("8_f3b2k")]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_right = 41.0
+
+[node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("9_sqrei")]
+scene_text_file = "res://assets/dialogue/level0.json"

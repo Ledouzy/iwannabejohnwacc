@@ -59,7 +59,7 @@ parameters/looping = true
 stream = ExtResource("4_4brc7")
 bus = &"Music"
 
-[node name="StarLightZone" type="AudioStreamPlayer" parent="Musics" unique_id=352814736]
+[node name="StarlightZone" type="AudioStreamPlayer" parent="Musics" unique_id=352814736]
 stream = ExtResource("5_gh300")
 bus = &"Music"
 
