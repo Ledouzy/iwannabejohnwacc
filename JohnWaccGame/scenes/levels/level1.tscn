@@ -1,0 +1,190 @@
+[gd_scene format=4 uid="uid://cemyp1ovlkmab"]
+
+[ext_resource type="Script" uid="uid://c5itgkvy7hbdm" path="res://scripts/level/level1.gd" id="1_1xax6"]
+[ext_resource type="PackedScene" uid="uid://cfhjn46f5v8xr" path="res://scenes/character/player_side.tscn" id="2_g7tkf"]
+[ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="3_4fww7"]
+[ext_resource type="Texture2D" uid="uid://dpkikvlih64s8" path="res://assets/sprites/Background/bg2_layer0.png" id="4_lgguw"]
+[ext_resource type="Texture2D" uid="uid://5rfxd3ygcxfm" path="res://assets/sprites/Background/bg2_layer1.png" id="5_jprdt"]
+[ext_resource type="Texture2D" uid="uid://cl6bav6oryl1m" path="res://assets/sprites/Background/bg2_layer2.png" id="6_ps2vj"]
+[ext_resource type="Texture2D" uid="uid://cul3r31acpiiv" path="res://assets/sprites/Background/bg2_layer3.png" id="7_sbmf2"]
+[ext_resource type="Texture2D" uid="uid://c3eyscl8wgq73" path="res://assets/sprites/Background/bg2_layer4.png" id="8_1xax6"]
+[ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="10_arkx4"]
+[ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="11_jqv5m"]
+[ext_resource type="PackedScene" uid="uid://bytkg1aao2wyn" path="res://scenes/objects/spring.tscn" id="12_jprdt"]
+[ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="12_noix2"]
+[ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="16_3gp1u"]
+[ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="17_igeo0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y71nm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6d4iq"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7plwd"]
+normal = Vector2(1, 0)
+distance = -80.0
+
+[node name="level1" type="Node2D" unique_id=1775480749]
+script = ExtResource("1_1xax6")
+
+[node name="Player" parent="." unique_id=1165610629 instance=ExtResource("2_g7tkf")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1440516805]
+process_callback = 0
+limit_left = -80
+limit_bottom = 192
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("3_4fww7")
+
+[node name="Level" type="Node2D" parent="." unique_id=2074736864]
+
+[node name="Background" type="Node2D" parent="Level" unique_id=1342346886]
+position = Vector2(-235, -295)
+
+[node name="Parallax2D5" type="Parallax2D" parent="Level/Background" unique_id=1697307086]
+z_index = -4096
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 256)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D5" unique_id=4309374]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("4_lgguw")
+centered = false
+
+[node name="Parallax2D" type="Parallax2D" parent="Level/Background" unique_id=1997527188]
+z_index = -4096
+scroll_scale = Vector2(0.001, 0.1)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D" unique_id=1996673513]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("5_jprdt")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="Level/Background" unique_id=1748541402]
+z_index = -4096
+scroll_scale = Vector2(0.05, 0.1)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(4, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D4" unique_id=381989564]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("6_ps2vj")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Level/Background" unique_id=1794387810]
+z_index = -4096
+scroll_scale = Vector2(0.1, 0.15)
+scroll_offset = Vector2(-102, 240)
+repeat_size = Vector2(256, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D3" unique_id=374785971]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("7_sbmf2")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Level/Background" unique_id=108226117]
+z_index = -4096
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D2" unique_id=1544512955]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("8_1xax6")
+centered = false
+
+[node name="TutorialText" type="Control" parent="Level" unique_id=665959316]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Tiles" type="Node2D" parent="Level" unique_id=1499451118]
+
+[node name="BackgroundTiles" type="TileMapLayer" parent="Level/Tiles" unique_id=510992362]
+z_index = -2
+tile_set = ExtResource("10_arkx4")
+collision_enabled = false
+
+[node name="GroundTiles" type="TileMapLayer" parent="Level/Tiles" unique_id=1772603478]
+z_index = -1
+rotation = 2.9706829e-05
+tile_map_data = PackedByteArray("AAD+/wAABQAAAAAAAAD//wAABQABAAAAAAAAAAAABQABAAAAAAABAAAABQABAAAAAAACAAAABQAAAAQAAAACAAEABQABAAEAAAABAAEABQABAAEAAAAAAAEABQABAAEAAAD//wEABQABAAEAAAD+/wEABQAAAAEAAAD+/wIABQAAAAIAAAD//wIABQABAAIAAAAAAAIABQABAAIAAAABAAIABQABAAIAAAACAAIABQABAAIAAAACAP//BQACAAUAAAADAAAABQACAAAAAAADAAEABQACAAEAAAADAAIABQACAAIAAAAIAAAABQAAAAAAAAAIAAEABQAAAAEAAAAIAAIABQAAAAIAAAAJAAIABQABAAIAAAAJAAEABQABAAEAAAAJAAAABQABAAAAAAAKAAAABQACAAAAAAAKAAEABQACAAEAAAAKAAIABQACAAIAAAAPAAAABQAAAAAAAAAPAAEABQAAAAEAAAAPAAIABQAAAAIAAAAQAAIABQABAAIAAAAQAAEABQABAAEAAAAQAAAABQABAAAAAAARAAAABQACAAAAAAARAAEABQACAAEAAAARAAIABQACAAIAAAAWAAAABQAAAAAAAAAWAAEABQAAAAEAAAAWAAIABQAAAAEAAAAXAAIABQABAAEAAAAYAAIABQABAAEAAAAYAAEABQABAAEAAAAYAAAABQABAAAAAAAXAAAABQABAAAAAAAXAAEABQABAAEAAAAZAAAABQABAAAAAAAZAAEABQABAAEAAAAZAAIABQABAAEAAAAaAAIABQABAAEAAAAbAAIABQABAAEAAAAbAAEABQABAAEAAAAaAAEABQABAAEAAAAaAAAABQABAAAAAAAbAAAABQABAAAAAAAgAAIABQABAAEAAAAgAAEABQABAAEAAAAgAAAABQABAAEAAAAfAAIABQABAAEAAAAfAAEABQABAAEAAAAfAAAABQABAAEAAAAeAAIABQABAAEAAAAeAAEABQABAAEAAAAeAAAABQABAAAAAAAdAAIABQABAAEAAAAdAAEABQABAAEAAAAdAAAABQABAAAAAAAcAAIABQABAAEAAAAcAAEABQABAAEAAAAcAAAABQABAAAAAAAgAP//BQABAAEAAAAgAP7/BQABAAEAAAAgAP3/BQACAAEAAAAgAPz/BQACAAAAAAAfAP//BQAAAAEAAAAfAP7/BQAAAAEAAAAfAP3/BQAAAAEAAAAfAPz/BQAAAAAAAAApAAAABQABAAEAAAApAP//BQABAAEAAAAoAAAABQABAAEAAAAoAP//BQABAAEAAAAnAAAABQABAAEAAAAnAP//BQABAAEAAAAmAAAABQABAAEAAAAmAP//BQABAAEAAAAlAAAABQABAAEAAAAlAP//BQABAAEAAAAkAAAABQABAAEAAAAkAP//BQABAAEAAAAjAAAABQABAAEAAAAjAP//BQABAAEAAAAiAAAABQABAAEAAAAiAP//BQABAAEAAAAhAAAABQABAAEAAAAhAP//BQABAAEAAAApAAIABQABAAEAAAApAAEABQABAAEAAAAoAAIABQABAAEAAAAoAAEABQABAAEAAAAnAAIABQABAAEAAAAnAAEABQABAAEAAAAmAAIABQABAAEAAAAmAAEABQABAAEAAAAlAAIABQABAAEAAAAlAAEABQABAAEAAAAkAAIABQABAAEAAAAkAAEABQABAAEAAAAjAAIABQABAAEAAAAjAAEABQABAAEAAAAiAAIABQABAAEAAAAiAAEABQABAAEAAAAhAAIABQABAAEAAAAhAAEABQABAAEAAAApAAQABQABAAIAAAApAAMABQABAAEAAAAoAAQABQABAAIAAAAoAAMABQABAAEAAAAnAAQABQABAAIAAAAnAAMABQABAAEAAAAmAAQABQABAAIAAAAmAAMABQABAAEAAAAlAAQABQABAAIAAAAlAAMABQABAAEAAAAkAAQABQABAAIAAAAkAAMABQABAAEAAAAjAAQABQABAAIAAAAjAAMABQABAAEAAAAiAAQABQABAAIAAAAiAAMABQABAAEAAAAhAAQABQABAAIAAAAhAAMABQABAAEAAAAgAAQABQABAAIAAAAgAAMABQABAAEAAAAfAAQABQABAAIAAAAfAAMABQABAAEAAAAeAAQABQABAAIAAAAeAAMABQABAAEAAAAdAAQABQABAAIAAAAdAAMABQABAAEAAAAcAAQABQABAAIAAAAcAAMABQABAAEAAAAbAAQABQABAAIAAAAbAAMABQABAAEAAAAaAAQABQABAAIAAAAaAAMABQABAAEAAAAZAAQABQABAAIAAAAZAAMABQABAAEAAAAYAAQABQABAAIAAAAYAAMABQABAAEAAAAXAAQABQABAAIAAAAXAAMABQABAAEAAAAWAAQABQAAAAIAAAAWAAMABQAAAAEAAAAiAPr/AwAAAAAACAAmAPb/BQACAAMAAAAiAPL/BQACAAMAAAAmAPD/BQACAAMAAAAyAPD/BQACAAIAAAAyAO//BQACAAEAAAAyAO7/BQACAAAAAAAxAPD/BQABAAIAAAAxAO//BQABAAEAAAAxAO7/BQABAAAAAAAwAPD/BQABAAIAAAAwAO//BQABAAEAAAAwAO7/BQABAAAAAAAvAPD/BQABAAIAAAAvAO//BQABAAEAAAAvAO7/BQABAAAAAAAuAPD/BQABAAIAAAAuAO//BQABAAEAAAAuAO7/BQABAAAAAAAtAPD/BQABAAIAAAAtAO//BQABAAEAAAAtAO7/BQABAAAAAAAsAPD/BQABAAIAAAAsAO//BQABAAEAAAAsAO7/BQABAAAAAAArAPD/BQABAAIAAAArAO//BQABAAEAAAArAO7/BQABAAAAAAAqAPD/BQABAAIAAAAqAO//BQABAAEAAAAqAO7/BQABAAAAAAApAPD/BQAAAAIAAAApAO//BQAAAAEAAAApAO7/BQAAAAAAAAAuAAQABQACAAIAAAAuAAMABQACAAEAAAAuAAIABQACAAEAAAAuAAEABQACAAEAAAAuAAAABQACAAEAAAAuAP//BQACAAEAAAAtAAQABQABAAIAAAAtAAMABQABAAEAAAAtAAIABQABAAEAAAAtAAEABQABAAEAAAAtAAAABQABAAEAAAAtAP//BQABAAEAAAAsAAQABQABAAIAAAAsAAMABQABAAEAAAAsAAIABQABAAEAAAAsAAEABQABAAEAAAAsAAAABQABAAEAAAAsAP//BQABAAEAAAArAAQABQABAAIAAAArAAMABQABAAEAAAArAAIABQABAAEAAAArAAEABQABAAEAAAArAAAABQABAAEAAAArAP//BQABAAEAAAAqAAQABQABAAIAAAAqAAMABQABAAEAAAAqAAIABQABAAEAAAAqAAEABQABAAEAAAAqAAAABQABAAEAAAAqAP//BQABAAEAAAA3AO7/BQACAAMAAABPAOz/BQACAAMAAABbAO7/BQABAAIAAABbAO3/BQABAAEAAABbAOz/BQABAAAAAABaAO7/BQABAAIAAABaAO3/BQABAAEAAABaAOz/BQABAAAAAABZAO7/BQABAAIAAABZAO3/BQABAAEAAABZAOz/BQABAAAAAABYAO7/BQABAAIAAABYAO3/BQABAAEAAABYAOz/BQABAAAAAABXAO7/BQABAAIAAABXAO3/BQABAAEAAABXAOz/BQABAAAAAABWAO7/BQABAAIAAABWAO3/BQABAAEAAABWAOz/BQABAAAAAABVAO7/BQABAAIAAABVAO3/BQABAAEAAABVAOz/BQABAAAAAABUAO7/BQABAAIAAABUAO3/BQABAAEAAABUAOz/BQABAAAAAABTAO7/BQABAAIAAABTAO3/BQABAAEAAABTAOz/BQABAAAAAABSAO7/BQAAAAIAAABSAO3/BQAAAAEAAABSAOz/BQAAAAAAAABhAO7/BQACAAIAAABhAO3/BQACAAEAAABhAOz/BQACAAEAAABhAOv/BQACAAEAAABhAOr/BQACAAEAAABhAOn/BQACAAEAAABhAOj/BQACAAEAAABhAOf/BQACAAEAAABhAOb/BQACAAEAAABhAOX/BQACAAEAAABhAOT/BQACAAEAAABhAOP/BQACAAEAAABhAOL/BQACAAAAAABgAO7/BQABAAIAAABgAO3/BQABAAEAAABgAOz/BQABAAEAAABgAOv/BQABAAEAAABgAOr/BQABAAEAAABgAOn/BQABAAEAAABgAOj/BQABAAEAAABgAOf/BQABAAEAAABgAOb/BQABAAEAAABgAOX/BQABAAEAAABgAOT/BQABAAEAAABgAOP/BQABAAEAAABgAOL/BQABAAAAAABfAO7/BQABAAIAAABfAO3/BQABAAEAAABfAOz/BQABAAEAAABfAOv/BQABAAEAAABfAOr/BQABAAEAAABfAOn/BQABAAEAAABfAOj/BQABAAEAAABfAOf/BQABAAEAAABfAOb/BQABAAEAAABfAOX/BQABAAEAAABfAOT/BQABAAEAAABfAOP/BQABAAEAAABfAOL/BQABAAEAAABeAO7/BQABAAIAAABeAO3/BQABAAEAAABeAOz/BQABAAEAAABeAOv/BQABAAEAAABeAOr/BQABAAEAAABeAOn/BQAAAAEAAABeAOj/BQAAAAEAAABeAOf/BQABAAEAAABeAOb/BQABAAEAAABeAOX/BQAAAAEAAABeAOT/BQAAAAEAAABeAOP/BQABAAEAAABeAOL/BQABAAEAAABdAO7/BQABAAIAAABdAO3/BQABAAEAAABdAOz/BQABAAEAAABdAOv/BQABAAEAAABdAOr/BQABAAAAAABdAOf/BQABAAIAAABdAOb/BQABAAAAAABcAO7/BQABAAIAAABcAO3/BQABAAEAAABcAOz/BQABAAEAAABcAOv/BQABAAEAAABcAOr/BQAAAAAAAABcAOf/BQAAAAIAAABcAOb/BQAAAAAAAABYAOj/BQACAAAAAABYAOT/BQACAAAAAABYAOD/BQACAAEAAABYAN//BQACAAAAAABXAOj/BQABAAAAAABXAOT/BQABAAAAAABXAOD/BQABAAEAAABXAN//BQABAAAAAABWAOj/BQABAAEAAABWAOf/BQACAAEAAABWAOb/BQACAAEAAABWAOX/BQABAAEAAABWAOT/BQABAAEAAABWAOP/BQACAAEAAABWAOL/BQACAAEAAABWAOH/BQABAAEAAABWAOD/BQABAAEAAABWAN//BQABAAAAAABVAOj/BQABAAEAAABVAOf/BQABAAEAAABVAOb/BQABAAEAAABVAOX/BQABAAEAAABVAOT/BQABAAEAAABVAOP/BQABAAEAAABVAOL/BQABAAEAAABVAOH/BQABAAEAAABVAOD/BQABAAEAAABVAN//BQABAAAAAABUAOj/BQABAAEAAABUAOf/BQABAAEAAABUAOb/BQABAAEAAABUAOX/BQABAAEAAABUAOT/BQABAAEAAABUAOP/BQABAAEAAABUAOL/BQABAAEAAABUAOH/BQABAAEAAABUAOD/BQABAAEAAABUAN//BQABAAAAAABTAOj/BQABAAEAAABTAOf/BQABAAEAAABTAOb/BQABAAEAAABTAOX/BQABAAEAAABTAOT/BQABAAEAAABTAOP/BQABAAEAAABTAOL/BQABAAEAAABTAOH/BQABAAEAAABTAOD/BQABAAEAAABTAN//BQABAAAAAABSAOj/BQAAAAEAAABSAOf/BQAAAAEAAABSAOb/BQAAAAEAAABSAOX/BQAAAAEAAABSAOT/BQAAAAEAAABSAOP/BQAAAAEAAABSAOL/BQAAAAEAAABSAOH/BQAAAAEAAABSAOD/BQAAAAEAAABSAN//BQAAAAAAAABdAOL/BQABAAEAAABcAOL/BQAAAAAAAAAeAP//AwAAAAAACAAmAPX/AwAAAAAACAAiAPv/BQACAAMAAAAiAPH/AwAAAAAACAAmAO//AwAAAAAACABPAOv/AwAAAAAACAA3AOr/AwAAAAAAAwA3AOv/AwAAAAAAAwA3AOn/AwAAAAAAAwA3AOj/AwAAAAAAAwBPAOn/AwAAAAAAAwBPAOj/AwAAAAAAAwBPAOf/AwAAAAAAAwADAP7/AwAAAAAAAwA8AO7/BQACAAMAAABBAO7/BQACAAMAAABGAO7/BQACAAMAAABLAO7/BQACAAMAAABLAO3/AwAAAAAACABGAO3/AwAAAAAACABBAO3/AwAAAAAACAA8AO3/AwAAAAAACAA3AO3/AwAAAAAACABLAOv/AwAAAAAAAwBLAOr/AwAAAAAAAwBLAOn/AwAAAAAAAwBLAOj/AwAAAAAAAwBGAOv/AwAAAAAAAwBGAOr/AwAAAAAAAwBGAOn/AwAAAAAAAwBGAOj/AwAAAAAAAwBBAOv/AwAAAAAAAwBBAOr/AwAAAAAAAwBBAOn/AwAAAAAAAwBBAOj/AwAAAAAAAwA8AOv/AwAAAAAAAwA8AOr/AwAAAAAAAwA8AOn/AwAAAAAAAwA8AOj/AwAAAAAAAwBSAOn/BQAAAAIAAABTAOn/BQABAAIAAABUAOn/BQABAAIAAABVAOn/BQABAAIAAABWAOn/BQABAAIAAABXAOn/BQABAAIAAABYAOn/BQACAAIAAABXAOX/BQABAAIAAABYAOX/BQACAAIAAABcAOP/BQAAAAIAAABdAOP/BQABAAIAAABXAOH/BQABAAIAAABYAOH/BQACAAIAAABqAOT/BQABAAIAAABqAOP/BQAAAAEAAABqAOL/BQAAAAAAAABdAOH/BQAAAAAAAABfAOH/BQACAAAAAABeAOH/BQABAAAAAABeAOD/AwAAAAAAAgAhAP7/BQABAAAAAAAiAP7/BQABAAAAAAAjAP7/BQABAAAAAAAkAP7/BQABAAAAAAAlAP7/BQABAAAAAAAmAP7/BQABAAAAAAAnAP7/BQABAAAAAAAoAP7/BQABAAAAAAApAP7/BQABAAAAAAAqAP7/BQABAAAAAAArAP7/BQABAAAAAAAsAP7/BQABAAAAAAAtAP7/BQABAAAAAAAuAP7/BQACAAAAAABrAOH/BQACAAMAAABrAOL/BQACAAAAAABrAOP/BQACAAEAAABrAOT/BQACAAIAAAA=")
+tile_set = ExtResource("10_arkx4")
+
+[node name="level_transition" parent="Level" unique_id=1807414438 instance=ExtResource("11_jqv5m")]
+position = Vector2(-1, 26)
+next_scene_name = "level2"
+next_stage_number = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition" unique_id=686371226]
+position = Vector2(7089, 134)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_y71nm")
+
+[node name="Killzone" parent="Level" unique_id=631934805 instance=ExtResource("12_noix2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Killzone" unique_id=1851117414]
+position = Vector2(0, 192)
+shape = SubResource("WorldBoundaryShape2D_6d4iq")
+
+[node name="LevelBorder" type="StaticBody2D" parent="Level" unique_id=1982422965]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level/LevelBorder" unique_id=2110663723]
+shape = SubResource("WorldBoundaryShape2D_7plwd")
+
+[node name="Objects" type="Node2D" parent="Level" unique_id=1945121486]
+
+[node name="Spring" parent="Level/Objects" unique_id=109024424 instance=ExtResource("12_jprdt")]
+position = Vector2(1544, -488)
+rotation = 1.5707964
+spring_jump_height = Vector2(600, -300)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1210549546]
+
+[node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("16_3gp1u")]
+unique_name_in_owner = true
+
+[node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("17_igeo0")]
+scene_text_file = "res://assets/dialogue/level0.json"
+
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/Coin" to="Level/Tiles/GroundTiles/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88414" to="Level/Tiles/GroundTiles/@Area2D@88414" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88415" to="Level/Tiles/GroundTiles/@Area2D@88415" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88416" to="Level/Tiles/GroundTiles/@Area2D@88416" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88417" to="Level/Tiles/GroundTiles/@Area2D@88417" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88418" to="Level/Tiles/GroundTiles/@Area2D@88418" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88419" to="Level/Tiles/GroundTiles/@Area2D@88419" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88420" to="Level/Tiles/GroundTiles/@Area2D@88420" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88426" to="Level/Tiles/GroundTiles/@Area2D@88426" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88427" to="Level/Tiles/GroundTiles/@Area2D@88427" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88428" to="Level/Tiles/GroundTiles/@Area2D@88428" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88429" to="Level/Tiles/GroundTiles/@Area2D@88429" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88430" to="Level/Tiles/GroundTiles/@Area2D@88430" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88431" to="Level/Tiles/GroundTiles/@Area2D@88431" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88432" to="Level/Tiles/GroundTiles/@Area2D@88432" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88433" to="Level/Tiles/GroundTiles/@Area2D@88433" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88434" to="Level/Tiles/GroundTiles/@Area2D@88434" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88435" to="Level/Tiles/GroundTiles/@Area2D@88435" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88436" to="Level/Tiles/GroundTiles/@Area2D@88436" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88437" to="Level/Tiles/GroundTiles/@Area2D@88437" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88438" to="Level/Tiles/GroundTiles/@Area2D@88438" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88439" to="Level/Tiles/GroundTiles/@Area2D@88439" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88440" to="Level/Tiles/GroundTiles/@Area2D@88440" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/@Area2D@88441" to="Level/Tiles/GroundTiles/@Area2D@88441" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Tiles/GroundTiles/Checkpoint" to="Level/Tiles/GroundTiles/Checkpoint" method="_on_body_entered"]

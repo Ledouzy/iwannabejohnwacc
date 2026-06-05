@@ -76,6 +76,7 @@ stream = ExtResource("11_cd3cl")
 
 [node name="TidalTempest" type="AudioStreamPlayer" parent="Musics" unique_id=1029524371]
 stream = ExtResource("12_6xeo7")
+volume_db = -6.0
 
 [node name="Sounds" type="Node" parent="." unique_id=1718301511]
 

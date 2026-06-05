@@ -141,7 +141,7 @@ _data = {
 size = Vector2(12, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sfmc"]
-size = Vector2(12, 9)
+size = Vector2(16, 9)
 
 [node name="Spring" type="Node2D" unique_id=109024424]
 script = ExtResource("1_2h5a8")

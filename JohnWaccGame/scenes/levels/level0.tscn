@@ -184,7 +184,7 @@ tile_set = ExtResource("11_nqtv8")
 
 [node name="level_transition" parent="Level" unique_id=1807414438 instance=ExtResource("18_4k6ad")]
 position = Vector2(-1, 26)
-next_scene_name = "test1"
+next_scene_name = "level1"
 next_stage_number = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition" unique_id=958364543]
