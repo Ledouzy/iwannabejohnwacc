@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cl5s5ti2in3je" path="res://assets/sprites/Tiles/world5_side.png" id="3_4fkou"]
 [ext_resource type="PackedScene" uid="uid://c8mfj41nk7n5s" path="res://scenes/objects/box_test.tscn" id="4_3olhp"]
 [ext_resource type="PackedScene" uid="uid://drf1doidx3rhd" path="res://scenes/objects/checkpoint.tscn" id="5_hr3u2"]
+[ext_resource type="PackedScene" uid="uid://skc0soyeshy0" path="res://scenes/objects/spring_diagonal.tscn" id="5_ora5l"]
 [ext_resource type="PackedScene" uid="uid://6lbf6y0p3txv" path="res://scenes/objects/coin.tscn" id="6_xhfnf"]
 [ext_resource type="PackedScene" uid="uid://vbjfpw6a14wj" path="res://scenes/objects/earth_deeple.tscn" id="7_i7t13"]
 [ext_resource type="PackedScene" uid="uid://m7yeuqk3ioq6" path="res://scenes/objects/platform.tscn" id="8_vvds4"]
@@ -356,6 +357,7 @@ scenes/6/scene = ExtResource("9_ora5l")
 scenes/7/scene = ExtResource("10_auwb8")
 scenes/8/scene = ExtResource("11_r14xe")
 scenes/9/scene = ExtResource("12_vvds4")
+scenes/10/scene = ExtResource("5_ora5l")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_auwb8"]
 texture = ExtResource("12_i7t13")

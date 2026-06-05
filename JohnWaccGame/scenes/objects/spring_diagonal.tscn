@@ -1,3 +1,235 @@
 [gd_scene format=3 uid="uid://skc0soyeshy0"]
 
+[ext_resource type="Script" uid="uid://c2g2st1toc7um" path="res://scripts/objects/spring.gd" id="1_tly1g"]
+[ext_resource type="Texture2D" uid="uid://bm08xomr4e27y" path="res://assets/sprites/Objects/springs.png" id="1_twdvr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tly1g"]
+atlas = ExtResource("1_twdvr")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boloy"]
+atlas = ExtResource("1_twdvr")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gupgu"]
+atlas = ExtResource("1_twdvr")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e4ocr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tly1g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boloy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gupgu")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g45ac"]
+atlas = ExtResource("1_twdvr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujjm3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g45ac")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_25je1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pad:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spring:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spring:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spring:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump"]
+}
+
+[sub_resource type="Animation" id="Animation_r03wr"]
+resource_name = "jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(5, -7), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pad:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spring:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spring:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spring:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.033333335, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"jump", &"idle"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lsuhk"]
+_data = {
+&"RESET": SubResource("Animation_25je1"),
+&"jump": SubResource("Animation_r03wr")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiww0"]
+size = Vector2(12, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xv1ng"]
+size = Vector2(16, 5.2071066)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twdvr"]
+size = Vector2(9, 9.000001)
+
 [node name="SpringDiagonal" type="Node2D" unique_id=1116115355]
+script = ExtResource("1_tly1g")
+spring_jump_height = Vector2(400, -200)
+
+[node name="Spring" type="AnimatedSprite2D" parent="." unique_id=1921537739]
+sprite_frames = SubResource("SpriteFrames_e4ocr")
+animation = &"jump"
+autoplay = "idle"
+
+[node name="Pad" type="AnimatedSprite2D" parent="." unique_id=2034436348]
+sprite_frames = SubResource("SpriteFrames_ujjm3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1098931208]
+libraries/ = SubResource("AnimationLibrary_lsuhk")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=806778630]
+position = Vector2(0, 8)
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=300838331]
+position = Vector2(0, -8)
+rotation = 0.7853982
+shape = SubResource("RectangleShape2D_kiww0")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=857555895]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1265118702]
+position = Vector2(-0.6590098, -7.34099)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_xv1ng")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=772547923]
+position = Vector2(-3.5, -4.4999995)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_twdvr")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]

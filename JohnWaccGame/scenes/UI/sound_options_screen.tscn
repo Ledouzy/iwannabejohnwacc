@@ -104,6 +104,23 @@ focus_neighbor_bottom = NodePath("../../../../VBoxContainer/BackButton")
 value = 1.0
 bus_name = "SFX"
 
+[node name="HSplitContainer4" type="HSplitContainer" parent="UI_elements/VBoxContainer2/Container/VBoxContainer" unique_id=1739031601]
+layout_mode = 2
+split_offsets = PackedInt32Array(66)
+split_offset = 66
+
+[node name="Label" type="Label" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer4" unique_id=1434117251]
+layout_mode = 2
+text = "BGS"
+label_settings = ExtResource("2_v6f2x")
+
+[node name="VolumeSlider" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer4" unique_id=1158612506 instance=ExtResource("4_v6f2x")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../HSplitContainer3/VolumeSlider")
+focus_neighbor_bottom = NodePath("../../../../VBoxContainer/BackButton")
+value = 1.0
+bus_name = "BGS"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2" unique_id=1347025351]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
