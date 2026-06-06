@@ -82,6 +82,12 @@ bus = &"Music"
 
 [node name="Sounds" type="Node" parent="." unique_id=1718301511]
 
+[node name="Deeple" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1283208682]
+stream = ExtResource("6_2hsro")
+volume_db = 6.0
+pitch_scale = 1.25
+bus = &"SFX"
+
 [node name="Coin" type="AudioStreamPlayer2D" parent="Sounds" unique_id=301775852]
 stream = ExtResource("6_2hsro")
 volume_db = 6.0
@@ -108,6 +114,10 @@ volume_db = 10.0
 bus = &"SFX"
 
 [node name="BGS" type="Node" parent="." unique_id=1326326623]
+
+[node name="Test" type="AudioStreamPlayer" parent="BGS" unique_id=1863189058]
+stream = ExtResource("6_2hsro")
+bus = &"BGS"
 
 [node name="Rain" type="AudioStreamPlayer" parent="BGS" unique_id=152296207]
 stream = ExtResource("16_t0aqn")

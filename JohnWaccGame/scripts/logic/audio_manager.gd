@@ -20,6 +20,12 @@ func play_music(audio_name: String, from_position: float = 0.0, restart: bool = 
 		active_music_stream.stop()
 	active_music_stream = music.get_node(audio_name)
 	active_music_stream.play(from_position)
+
+func stop_music():
+	active_music_stream.stop()
+	
+func stop_bgs():
+	active_music_stream.stop()
 	
 func play_bgs(audio_name: String, from_position: float = 0.0, restart: bool = false) -> void:
 	if !restart and active_bgs_stream and active_bgs_stream.name == audio_name:
