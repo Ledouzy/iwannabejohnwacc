@@ -263,6 +263,9 @@ func _physics_process(delta: float) -> void:
 		# play the jump sfx
 		play_sfx("Jump")
 		
+		# reset velocity if going down
+		velocity.y = min(0, velocity.y)
+		
 		# updates the velocity
 		velocity.y += JUMP_VELOCITY
 		
