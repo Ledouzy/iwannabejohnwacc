@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://1lcboknfjbhi"]
+
+[ext_resource type="Texture2D" uid="uid://bwt57uafb7q4p" path="res://assets/sprites/Objects/deeples.png" id="1_tjbnc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjbnc"]
+atlas = ExtResource("1_tjbnc")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iorhx"]
+atlas = ExtResource("1_tjbnc")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qfl4"]
+atlas = ExtResource("1_tjbnc")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdqi6"]
+atlas = ExtResource("1_tjbnc")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_527nc"]
+atlas = ExtResource("1_tjbnc")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpgxp"]
+atlas = ExtResource("1_tjbnc")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpgxu"]
+atlas = ExtResource("1_tjbnc")
+region = Rect2(48, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2200"]
+atlas = ExtResource("1_tjbnc")
+region = Rect2(48, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iorhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjbnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iorhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qfl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdqi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_527nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpgxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpgxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2200")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qfl4"]
+size = Vector2(16, 16)
+
+[node name="WindDeeple" type="Node2D" unique_id=711549449]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=145545499]
+sprite_frames = SubResource("SpriteFrames_iorhx")
+autoplay = "default"
+frame_progress = 0.5118374
+
+[node name="Area2D" type="Area2D" parent="." unique_id=921740439]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1231840244]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_0qfl4")

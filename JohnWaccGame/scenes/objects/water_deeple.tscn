@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://dp3tnmk48fsew"]
+
+[ext_resource type="Texture2D" uid="uid://bwt57uafb7q4p" path="res://assets/sprites/Objects/deeples.png" id="1_l0xf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghgkc"]
+atlas = ExtResource("1_l0xf6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1m6e"]
+atlas = ExtResource("1_l0xf6")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ld75"]
+atlas = ExtResource("1_l0xf6")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yask3"]
+atlas = ExtResource("1_l0xf6")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5vht"]
+atlas = ExtResource("1_l0xf6")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxkcg"]
+atlas = ExtResource("1_l0xf6")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckpmq"]
+atlas = ExtResource("1_l0xf6")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc007"]
+atlas = ExtResource("1_l0xf6")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5caf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghgkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1m6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ld75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yask3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5vht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxkcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckpmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc007")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8bll"]
+size = Vector2(16, 16)
+
+[node name="WaterDeeple" type="Node2D" unique_id=1471843434]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=74949533]
+sprite_frames = SubResource("SpriteFrames_5caf0")
+autoplay = "default"
+frame_progress = 0.72581697
+
+[node name="Area2D" type="Area2D" parent="." unique_id=475550183]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1354268632]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_g8bll")
