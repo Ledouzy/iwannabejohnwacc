@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dp3tnmk48fsew"]
 
+[ext_resource type="Script" uid="uid://c34ds5ptjes6q" path="res://scripts/objects/deeple.gd" id="1_ghgkc"]
 [ext_resource type="Texture2D" uid="uid://bwt57uafb7q4p" path="res://assets/sprites/Objects/deeples.png" id="1_l0xf6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ghgkc"]
@@ -69,16 +70,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8bll"]
 size = Vector2(16, 16)
 
-[node name="WaterDeeple" type="Node2D" unique_id=1471843434]
+[node name="WaterDeeple" type="Area2D" unique_id=475550183]
+collision_mask = 2
+script = ExtResource("1_ghgkc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=74949533]
 sprite_frames = SubResource("SpriteFrames_5caf0")
 autoplay = "default"
 frame_progress = 0.72581697
 
-[node name="Area2D" type="Area2D" parent="." unique_id=475550183]
-position = Vector2(0, 8)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1354268632]
-position = Vector2(0, -8)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1354268632]
 shape = SubResource("RectangleShape2D_g8bll")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

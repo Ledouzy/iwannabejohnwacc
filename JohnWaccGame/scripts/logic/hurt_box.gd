@@ -6,15 +6,12 @@ var direction = 1
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body != null && body != self.get_parent()):
-		print("body entered of sword")
 		if (body.has_method("take_damage")):
-			print("Has method")
 			if body.position.x < self.get_parent().position.x:
 				direction = -1
 			else:
 				direction = 1
 			body.call_deferred("take_damage",damage, direction)
-			print("called deffered")
 			target = body
 		else:
 			if body.has_node("AnimationPlayer"):

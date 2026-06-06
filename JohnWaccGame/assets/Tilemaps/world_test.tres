@@ -350,6 +350,7 @@ texture = ExtResource("3_4fkou")
 3:4/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_kdmft"]
+resource_name = "Objects"
 scenes/1/scene = ExtResource("4_3olhp")
 scenes/2/scene = ExtResource("5_hr3u2")
 scenes/3/scene = ExtResource("6_xhfnf")
