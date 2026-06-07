@@ -8,7 +8,6 @@ var direction = 1 # direction that the knockback will be applied
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body != null && body != self.get_parent()):
-		print("body entered")
 		if (body.has_method("take_damage")):
 			if body.position.x < self.get_parent().position.x:
 				direction = -1
