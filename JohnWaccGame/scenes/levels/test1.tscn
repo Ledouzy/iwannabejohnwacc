@@ -423,3 +423,6 @@ offset_right = 41.0
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("20_phk3v")]
 scene_text_file = "res://assets/dialogue/level0.json"
+
+[editable path="Player"]
+[editable path="Player/PlayerBody"]

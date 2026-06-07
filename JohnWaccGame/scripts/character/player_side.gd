@@ -174,7 +174,7 @@ func spring_jump(jump_height):
 	if jumps == 0:
 		skipisonfloor = true
 		springjump = true
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.01).timeout
 		skipisonfloor = false
 	
 func _on_sword_down_body_entered(body: Node2D) -> void:
@@ -376,7 +376,8 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("run"):
 		# defaults back to 1 speed multiplier
 		speedMult = 1.0
-		velocity.x = WALK_CAP*direction
+		# limits back to the walking speed cap the speed
+		velocity.x = min(WALK_CAP*direction, velocity.x)
 		
 	# Flip sprite if changed direction
 	if (direction < 0):
