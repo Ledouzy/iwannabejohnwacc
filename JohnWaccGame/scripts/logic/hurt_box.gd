@@ -23,13 +23,11 @@ func _on_body_entered(body: Node2D) -> void:
 					x.play("death")
 
 func _physics_process(delta: float) -> void:
-	if collision_shape == null or collision_shape.disabled == true:
-		print("collision disabled")
+	if collision_shape != null and collision_shape.disabled == true:
 		target = null
 	if target != null:
 		target.call_deferred("take_damage",damage, direction)
 
 func _on_body_exited(body: Node2D) -> void:
-	print("body exited")
 	if body == target:
 		target = null

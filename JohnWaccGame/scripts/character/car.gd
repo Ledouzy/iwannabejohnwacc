@@ -62,10 +62,11 @@ func thrown() -> void:
 	await get_tree().create_timer(0.5).timeout
 	velocity.x = move_toward(velocity.x, 0, 100)
 	await get_tree().create_timer(2).timeout
-	walkDisabled = false
-	thrown_hurt_box.disabled = true
-	hurtbox_collison.disabled = false
-	animated_sprite.flip_v = false
+	if pickedUpBy == null:
+		walkDisabled = false
+		thrown_hurt_box.disabled = true
+		hurtbox_collison.disabled = false
+		animated_sprite.flip_v = false
 	
 func take_damage(damage, direction) -> void:
 	if !invulnerable:
