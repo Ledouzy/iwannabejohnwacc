@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 10
 var direction = -1
+var dir = -1 # sames as direction but only -1 and 1 basically left or right
 @export var MAX_FALL_VELOCITY = 300
 
 @export var MAX_HEALTH = 2
@@ -114,26 +115,34 @@ func _physics_process(delta: float) -> void:
 		#return # skip the entire physics calculation
 	# process gravity
 	if startThrow:
-		velocity.x += 18 * direction
+		velocity.x += 18 * dir
 		velocity.y -= 10
 	elif pickedUpBy != null:
 		var temp = Input.get_axis("left", "right")
 		if temp != 0:
 			direction = temp
 			
-		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-16)
+		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-20)
 	elif not is_on_floor():
 		if velocity.y < MAX_FALL_VELOCITY:
 			velocity += get_gravity() * delta * 0.5
-			
+	
+	# sets dir for anything that only need
+	if direction > 0:
+		dir = 1
+	elif direction < 0:
+		dir = -1	
+	
 	# WAIT LOGIC
 	if !waitforanimationend and current_state == states.WAIT:
 		if player_check_right.is_colliding():
 			direction = -1
+			dir = -1
 			animated_sprite.flip_h = false
 			current_state = states.CHARGE
 		if player_check_left.is_colliding():
 			direction = 1
+			dir = 1
 			animated_sprite.flip_h = true
 			current_state = states.CHARGE
 		animated_sprite.play("BeaverIdleFront")

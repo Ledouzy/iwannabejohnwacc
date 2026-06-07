@@ -365,23 +365,21 @@ speed = 30
 MAX_HEALTH = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1783104354]
-position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ebhbi")
 animation = &"BeaverIdleSide"
 frame_progress = 0.42058375
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1864582220]
-position = Vector2(0, -15)
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_cke00")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=298362402]
-position = Vector2(0, -7.5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_yp1mp")
 
 [node name="ThrowHurtBox" parent="." unique_id=631934805 instance=ExtResource("3_yp1mp")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowHurtBox" unique_id=1343191308]
-position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_j1i4f")
 disabled = true
 
@@ -390,33 +388,32 @@ script = ExtResource("5_p6haj")
 damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1159768383]
-position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_j1i4f")
 
 [node name="FloorCheckLeft" type="RayCast2D" parent="." unique_id=1123366367]
-position = Vector2(-7, -6)
+position = Vector2(-7, 2)
 target_position = Vector2(0, 8)
 
 [node name="FloorCheckRight" type="RayCast2D" parent="." unique_id=1248666348]
-position = Vector2(6, -6)
+position = Vector2(6, 2)
 target_position = Vector2(0, 8)
 
 [node name="PlayerCheckRight" type="RayCast2D" parent="." unique_id=283426229]
-position = Vector2(0, -6)
+position = Vector2(0, 2)
 target_position = Vector2(-48, 0)
 collision_mask = 2
 
 [node name="PlayerCheckLeft" type="RayCast2D" parent="." unique_id=989064135]
-position = Vector2(0, -6)
+position = Vector2(0, 2)
 target_position = Vector2(48, 0)
 collision_mask = 2
 
 [node name="WallCheckRight" type="RayCast2D" parent="." unique_id=1371815581]
-position = Vector2(0, -6)
+position = Vector2(0, 2)
 target_position = Vector2(-10, 0)
 
 [node name="WallCheckLeft" type="RayCast2D" parent="." unique_id=858081482]
-position = Vector2(0, -6)
+position = Vector2(0, 2)
 target_position = Vector2(10, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=576094270]
