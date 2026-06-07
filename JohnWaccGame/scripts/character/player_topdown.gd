@@ -167,10 +167,10 @@ func spring_jump(jump_height):
 	velocity = jump_height
 
 ## Handles the playing of animations not specific to an action
-func process_animation(direction_hori, direction_vert) -> void:
+func process_animation(direction_x, direction_y) -> void:
 	# grounded animation
 	# if we are not moving, play the idle animation
-	if direction_hori == 0 && direction_vert == 0:
+	if direction_x == 0 && direction_y == 0:
 		# if we are holding an object/enemy, play the variant
 		match dir:
 			0:
@@ -380,22 +380,17 @@ func _physics_process(delta: float) -> void:
 		lock_direction = false
 	
 	# Get the input direction and handle the movement/deceleration.
-	var direction_hori := Input.get_axis("left", "right")
-	var direction_vert := Input.get_axis("up", "down")
+	var direction = Vector2(0,0)
+	direction.x = Input.get_axis("left", "right")
+	direction.y = Input.get_axis("up", "down")
 	
-	if abs(direction_hori)+abs(direction_vert) < deadzone:
-		direction_hori = 0
-		direction_vert = 0
-		
-	if direction_hori > 0:
-		direction_hori = 1
-	elif direction_hori < 0:
-		direction_hori = -1
-		
-	if direction_vert > 0:
-		direction_vert = 1
-	elif direction_vert < 0:
-		direction_vert = -1
+	print("direction: ", direction)
+	direction = direction.normalized()
+	print("direction normalized: ", direction)
+	
+	if abs(direction.x)+abs(direction.y) < deadzone:
+		direction.x = 0
+		direction.y = 0
 	
 	# check if running
 	if Input.is_action_just_pressed("run"):
@@ -407,32 +402,32 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("run"):
 		# defaults back to 1 speed multiplier
 		speedMult = 1.0
-		velocity.x = WALK_CAP*direction_hori
+		velocity.x = min(WALK_CAP*direction.x, velocity.x) 
 		
-	# Flip sprite if changed direction_hori
-	if (direction_hori < 0):
-		# flip sprite if we changed direction_hori
+	# Flip sprite if changed direction.x
+	if (direction.x < 0):
+		# flip sprite if we changed direction.x
 		if side_dir != -1 && !lock_direction:
 			player_body.scale.x = -1
 				
-		# updates our direction_hori
+		# updates our direction.x
 		dir = 3
 		side_dir = -1
-	elif (direction_hori > 0):
-		# flip sprite if we changed direction_hori
+	elif (direction.x > 0):
+		# flip sprite if we changed direction.x
 		if side_dir != 1 && !lock_direction:
 			player_body.scale.x = -1
 				
-		# updates our direction_hori
+		# updates our direction.x
 		dir = 1
 		side_dir = 1
 	
-	# Flip sprite if changed direction_vert
-	if (direction_vert < 0):
-		# updates our direction_vert
+	# Flip sprite if changed direction.y
+	if (direction.y < 0):
+		# updates our direction.y
 		dir = 2
-	elif (direction_vert > 0):
-		# updates our direction_vert
+	elif (direction.y > 0):
+		# updates our direction.y
 		dir = 0
 		
 	# handles pushing blocks
@@ -440,36 +435,40 @@ func _physics_process(delta: float) -> void:
 	
 	# animation handling
 	if !waitforanimationend:
-		process_animation(direction_hori, direction_vert)
+		process_animation(direction.x, direction.y)
 			
 	if !skipMoveProcess:
 		# Apply Movement
-		if direction_hori:
-			if (velocity.x*direction_hori < WALK_CAP and speedMult == 1.0) or (velocity.x*direction_hori < RUN_CAP and speedMult != 1.0):
-				velocity.x += direction_hori * SPEED * speedMult
+		if direction.x:
+			if (velocity.x*direction.x < WALK_CAP * abs(direction.x) and speedMult == 1.0) or (velocity.x*direction.x < RUN_CAP * abs(direction.x) and speedMult != 1.0):
+				velocity.x += direction.x * SPEED * speedMult
 			if velocity.x > 0:
-				velocity.x = min(velocity.x, SPEED_CAP * speedMult)
+				velocity.x = min(velocity.x, SPEED_CAP * speedMult * abs(direction.x))
 			else:
-				velocity.x = max(velocity.x, -SPEED_CAP * speedMult)
+				velocity.x = max(velocity.x, -SPEED_CAP * speedMult * abs(direction.x))
 			# if over the speed cap, slow down until under
-			if abs(velocity.x) > RUN_CAP:
-				velocity.x -= direction_hori * 10
+			if abs(velocity.x) > RUN_CAP * abs(direction.x):
+				velocity.x -= direction.x * 10
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 		# movement for y axis
-		if direction_vert:
-			if (velocity.y*direction_vert < WALK_CAP and speedMult == 1.0) or (velocity.y*direction_vert < RUN_CAP and speedMult != 1.0):
-				velocity.y += direction_vert * SPEED * speedMult
+		if direction.y:
+			if (velocity.y*direction.y < WALK_CAP * abs(direction.y) and speedMult == 1.0) or (velocity.y*direction.y < RUN_CAP * abs(direction.y) and speedMult != 1.0):
+				velocity.y += direction.y * SPEED * speedMult
 			if velocity.y > 0:
-				velocity.y = min(velocity.y, SPEED_CAP * speedMult)
+				velocity.y = min(velocity.y, SPEED_CAP * speedMult * abs(direction.y))
 			else:
-				velocity.y = max(velocity.y, -SPEED_CAP * speedMult)
+				velocity.y = max(velocity.y, -SPEED_CAP * speedMult * abs(direction.y))
 			# if over the speed cap, slow down until under
-			if abs(velocity.y) > RUN_CAP:
-				velocity.y -= direction_vert * 10
+			if abs(velocity.y) > RUN_CAP * abs(direction.y):
+				velocity.y -= direction.y * 10
 		else:
 			velocity.y = move_toward(velocity.y, 0, SPEED)
+			
+		if velocity.length() > 1:
+			print("velocity.length: ", velocity.length())
+			velocity.normalized()
 			
 	move_and_slide()
 	
