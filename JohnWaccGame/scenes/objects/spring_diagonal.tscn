@@ -186,7 +186,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiww0"]
-size = Vector2(12, 6)
+size = Vector2(15.556352, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv1ng"]
 size = Vector2(16, 5.2071066)
@@ -214,8 +214,9 @@ position = Vector2(0, 8)
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=300838331]
-position = Vector2(0, -8)
+position = Vector2(2.3841858e-07, -8)
 rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_kiww0")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=857555895]

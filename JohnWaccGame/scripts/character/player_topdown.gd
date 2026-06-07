@@ -383,10 +383,8 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector2(0,0)
 	direction.x = Input.get_axis("left", "right")
 	direction.y = Input.get_axis("up", "down")
-	
-	print("direction: ", direction)
+
 	direction = direction.normalized()
-	print("direction normalized: ", direction)
 	
 	if abs(direction.x)+abs(direction.y) < deadzone:
 		direction.x = 0
@@ -401,8 +399,8 @@ func _physics_process(delta: float) -> void:
 		
 	elif Input.is_action_just_released("run"):
 		# defaults back to 1 speed multiplier
+		velocity = velocity/speedMult
 		speedMult = 1.0
-		velocity.x = min(WALK_CAP*direction.x, velocity.x) 
 		
 	# Flip sprite if changed direction.x
 	if (direction.x < 0):
@@ -440,7 +438,7 @@ func _physics_process(delta: float) -> void:
 	if !skipMoveProcess:
 		# Apply Movement
 		if direction.x:
-			if (velocity.x*direction.x < WALK_CAP * abs(direction.x) and speedMult == 1.0) or (velocity.x*direction.x < RUN_CAP * abs(direction.x) and speedMult != 1.0):
+			if (abs(velocity.x) < WALK_CAP * abs(direction.x) and speedMult == 1.0) or (abs(velocity.x) < RUN_CAP * abs(direction.x) and speedMult != 1.0):
 				velocity.x += direction.x * SPEED * speedMult
 			if velocity.x > 0:
 				velocity.x = min(velocity.x, SPEED_CAP * speedMult * abs(direction.x))
@@ -449,12 +447,13 @@ func _physics_process(delta: float) -> void:
 			# if over the speed cap, slow down until under
 			if abs(velocity.x) > RUN_CAP * abs(direction.x):
 				velocity.x -= direction.x * 10
+			print("velocity x: ", velocity.x)
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 		# movement for y axis
 		if direction.y:
-			if (velocity.y*direction.y < WALK_CAP * abs(direction.y) and speedMult == 1.0) or (velocity.y*direction.y < RUN_CAP * abs(direction.y) and speedMult != 1.0):
+			if (abs(velocity.y) < WALK_CAP * abs(direction.y) and speedMult == 1.0) or (abs(velocity.y) < RUN_CAP * abs(direction.y) and speedMult != 1.0):
 				velocity.y += direction.y * SPEED * speedMult
 			if velocity.y > 0:
 				velocity.y = min(velocity.y, SPEED_CAP * speedMult * abs(direction.y))
@@ -463,12 +462,13 @@ func _physics_process(delta: float) -> void:
 			# if over the speed cap, slow down until under
 			if abs(velocity.y) > RUN_CAP * abs(direction.y):
 				velocity.y -= direction.y * 10
+			print("velocity y: ", velocity.y)
 		else:
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 			
-		if velocity.length() > 1:
-			print("velocity.length: ", velocity.length())
-			velocity.normalized()
+		#if velocity.length() > 50:
+			#print("velocity.length: ", velocity.length())
+			#velocity = velocity.normalized()*50
 			
 	move_and_slide()
 	
