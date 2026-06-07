@@ -1,11 +1,14 @@
 extends Area2D
 
-@export var damage = 1
-var target: Node2D
-var direction = 1
+@export var damage = 1 # damage that the attack will do
+var target: Node2D # the entity that will receive the damage
+var direction = 1 # direction that the knockback will be applied
+
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body != null && body != self.get_parent()):
+		print("body entered")
 		if (body.has_method("take_damage")):
 			if body.position.x < self.get_parent().position.x:
 				direction = -1
@@ -20,9 +23,13 @@ func _on_body_entered(body: Node2D) -> void:
 					x.play("death")
 
 func _physics_process(delta: float) -> void:
+	if collision_shape == null or collision_shape.disabled == true:
+		print("collision disabled")
+		target = null
 	if target != null:
 		target.call_deferred("take_damage",damage, direction)
 
 func _on_body_exited(body: Node2D) -> void:
+	print("body exited")
 	if body == target:
 		target = null
