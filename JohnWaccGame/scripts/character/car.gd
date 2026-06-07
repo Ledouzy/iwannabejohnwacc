@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 10
 var direction = -1
+var dir = -1 # same thing has direction but stores only values -1 and 1
 @export var MAX_FALL_VELOCITY = 300
 
 @export var MAX_HEALTH = 2
@@ -71,7 +72,7 @@ func thrown() -> void:
 func take_damage(damage, direction) -> void:
 	if !invulnerable:
 		invulnerable = true
-		velocity.x = 100*direction
+		velocity.x = 100*-dir
 		damage_timer.start()
 		health -= damage
 		if health <= 0:
@@ -102,7 +103,7 @@ func _physics_process(delta: float) -> void:
 		#return # skip the entire physics calculation
 	# process gravity
 	if startThrow:
-		velocity.x += 18 * direction
+		velocity.x += 18 * dir
 		velocity.y -= 10
 	elif pickedUpBy != null:
 		var temp = Input.get_axis("left", "right")
@@ -113,6 +114,12 @@ func _physics_process(delta: float) -> void:
 	elif not is_on_floor():
 		if velocity.y < MAX_FALL_VELOCITY:
 			velocity += get_gravity() * delta * 0.5
+	
+	# sets dir for anything that only need
+	if direction > 0:
+		dir = 1
+	elif direction < 0:
+		dir = -1	
 	
 	if !waitforanimationend:
 		if (direction < 0):

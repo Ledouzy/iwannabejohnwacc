@@ -443,6 +443,7 @@ collision_mask = 5
 libraries/ = SubResource("AnimationLibrary_3mrxu")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=223963880]
+wait_time = 0.5
 
 [node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("7_4clw4")]
 

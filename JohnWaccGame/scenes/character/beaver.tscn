@@ -423,6 +423,7 @@ target_position = Vector2(10, 0)
 libraries/ = SubResource("AnimationLibrary_ah7ws")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1246546987]
+wait_time = 0.5
 
 [node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("6_x5011")]
 
