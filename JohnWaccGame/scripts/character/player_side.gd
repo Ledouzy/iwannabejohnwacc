@@ -377,9 +377,8 @@ func _physics_process(delta: float) -> void:
 		
 	elif Input.is_action_just_released("run"):
 		# defaults back to 1 speed multiplier
+		velocity = velocity/speedMult
 		speedMult = 1.0
-		# limits back to the walking speed cap the speed
-		velocity.x = min(WALK_CAP*direction, velocity.x)
 		
 	# Flip sprite if changed direction
 	if (direction < 0):
