@@ -150,48 +150,48 @@ position = Vector2(944, 53)
 position = Vector2(1008, 21)
 
 [node name="Platform" parent="Level/Platforms" unique_id=1113361876 instance=ExtResource("15_0mcxu")]
-position = Vector2(968, -11)
+position = Vector2(968, -8)
 
 [node name="Platform2" parent="Level/Platforms" unique_id=1068562962 instance=ExtResource("15_0mcxu")]
-position = Vector2(936, -27)
+position = Vector2(936, -24)
 
 [node name="Springs" type="Node2D" parent="Level" unique_id=1404141933]
 
 [node name="Spring" parent="Level/Springs" unique_id=109024424 instance=ExtResource("16_6m803")]
-position = Vector2(-24, 0)
+position = Vector2(-24, -8)
 
 [node name="Spring4" parent="Level/Springs" unique_id=760796481 instance=ExtResource("16_6m803")]
-position = Vector2(153, -208)
+position = Vector2(153, -216)
 
 [node name="Spring5" parent="Level/Springs" unique_id=972888520 instance=ExtResource("16_6m803")]
-position = Vector2(88, -448)
+position = Vector2(88, -456)
 
 [node name="Spring6" parent="Level/Springs" unique_id=551796584 instance=ExtResource("16_6m803")]
-position = Vector2(40, -528)
+position = Vector2(40, -536)
 
 [node name="Spring8" parent="Level/Springs" unique_id=500744400 instance=ExtResource("16_6m803")]
-position = Vector2(72, -688)
+position = Vector2(72, -696)
 
 [node name="Spring9" parent="Level/Springs" unique_id=1008486118 instance=ExtResource("16_6m803")]
-position = Vector2(40, -752)
+position = Vector2(40, -760)
 
 [node name="Spring10" parent="Level/Springs" unique_id=424448804 instance=ExtResource("16_6m803")]
-position = Vector2(-8, -816)
+position = Vector2(-8, -824)
 
 [node name="Spring11" parent="Level/Springs" unique_id=1443541739 instance=ExtResource("16_6m803")]
-position = Vector2(40, -880)
+position = Vector2(40, -888)
 
 [node name="Spring12" parent="Level/Springs" unique_id=1164678940 instance=ExtResource("16_6m803")]
-position = Vector2(120, -864)
+position = Vector2(120, -872)
 
 [node name="Spring7" parent="Level/Springs" unique_id=367889366 instance=ExtResource("16_6m803")]
-position = Vector2(104, -608)
+position = Vector2(104, -616)
 
 [node name="Spring2" parent="Level/Springs" unique_id=1412757266 instance=ExtResource("16_6m803")]
-position = Vector2(488, 144)
+position = Vector2(488, 136)
 
 [node name="Spring3" parent="Level/Springs" unique_id=148812886 instance=ExtResource("16_6m803")]
-position = Vector2(896, 120)
+position = Vector2(896, 112)
 rotation = -1.5707964
 spring_jump_height = Vector2(-500, 0)
 
@@ -423,6 +423,8 @@ offset_right = 41.0
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("20_phk3v")]
 scene_text_file = "res://assets/dialogue/level0.json"
+
+[connection signal="body_entered" from="Player/PlayerBody/SwordFrontHurtBox2" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]

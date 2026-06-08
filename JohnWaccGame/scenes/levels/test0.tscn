@@ -136,7 +136,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(240, 32), Vector2(352, 32)]
+"values": [Vector2(248, 32), Vector2(344, 32)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gee14"]
@@ -250,21 +250,22 @@ tile_set = ExtResource("12_x7137")
 position = Vector2(-24, -27)
 
 [node name="Platform10" parent="Level/Platforms" unique_id=84610057 instance=ExtResource("13_as33e")]
-position = Vector2(960, -176)
+position = Vector2(960, -173)
 
 [node name="Platform9" parent="Level/Platforms" unique_id=1242495843 instance=ExtResource("13_as33e")]
-position = Vector2(960, -144)
+position = Vector2(960, -141)
 
 [node name="Platform1" parent="Level/Platforms" unique_id=997043669 instance=ExtResource("13_as33e")]
+position = Vector2(0, 3)
 
 [node name="Platform6" parent="Level/Platforms" unique_id=1591014198 instance=ExtResource("13_as33e")]
-position = Vector2(368, -112)
+position = Vector2(368, -109)
 
 [node name="Platform7" parent="Level/Platforms" unique_id=1856691316 instance=ExtResource("13_as33e")]
-position = Vector2(592, -176)
+position = Vector2(592, -173)
 
 [node name="Platform8" parent="Level/Platforms" unique_id=1901160217 instance=ExtResource("13_as33e")]
-position = Vector2(512, -160)
+position = Vector2(512, -157)
 
 [node name="PlatformWide2" parent="Level/Platforms" unique_id=1575449284 instance=ExtResource("14_q46uo")]
 position = Vector2(248, -48)
@@ -309,22 +310,22 @@ libraries/ = SubResource("AnimationLibrary_gee14")
 autoplay = &"RESET"
 
 [node name="Platform4" parent="Level/Platforms" unique_id=50048577 instance=ExtResource("13_as33e")]
-position = Vector2(384, -16)
+position = Vector2(384, -13)
 
 [node name="Platform3" parent="Level/Platforms" unique_id=607757754 instance=ExtResource("13_as33e")]
-position = Vector2(368, -48)
+position = Vector2(368, -45)
 
 [node name="Platform2" parent="Level/Platforms" unique_id=1559429059 instance=ExtResource("13_as33e")]
-position = Vector2(336, -32)
+position = Vector2(336, -29)
 
 [node name="Platform5" parent="Level/Platforms" unique_id=954092445 instance=ExtResource("13_as33e")]
-position = Vector2(1072, 0)
+position = Vector2(1072, 3)
 
 [node name="Platform11" parent="Level/Platforms" unique_id=623685464 instance=ExtResource("13_as33e")]
-position = Vector2(960, -208)
+position = Vector2(960, -205)
 
 [node name="Platform12" parent="Level/Platforms" unique_id=1242930655 instance=ExtResource("13_as33e")]
-position = Vector2(960, -112)
+position = Vector2(960, -109)
 
 [node name="Coins" type="Node2D" parent="Level" unique_id=1211179548]
 
@@ -513,7 +514,7 @@ position = Vector2(536.5, 21.5)
 shape = SubResource("RectangleShape2D_fqlro")
 
 [node name="checkpoint" parent="Level" unique_id=2123040548 instance=ExtResource("20_1u6qs")]
-position = Vector2(344, -16)
+position = Vector2(344, -24)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1279079287]
 
