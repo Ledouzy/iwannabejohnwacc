@@ -23,7 +23,7 @@ var walkDisabled = false
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hurtbox_collison: CollisionShape2D = $HurtBox/CollisionShape2D
+@onready var hurtbox_collision: CollisionShape2D = $HurtBox/CollisionShape2D
 @onready var collision_shape_2: CollisionShape2D = $CharacterBody2D/CollisionShape2D2
 @onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
 @onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
@@ -43,7 +43,7 @@ func pickedUp(player: CharacterBody2D) -> void:
 	#print("car picked")
 	pickedUpBy = player
 	walkDisabled = true
-	hurtbox_collison.disabled = true
+	hurtbox_collision.disabled = true
 	animated_sprite.flip_v = true
 	collision_shape_2.disabled = true
 	collision_shape_3.disabled = true
@@ -66,7 +66,7 @@ func thrown() -> void:
 	thrown_hurt_box.disabled = true
 	if pickedUpBy == null:
 		walkDisabled = false
-		hurtbox_collison.disabled = false
+		hurtbox_collision.disabled = false
 		animated_sprite.flip_v = false
 	
 func take_damage(damage, direction) -> void:
@@ -81,13 +81,13 @@ func take_damage(damage, direction) -> void:
 			animated_sprite.play("CarTakeDamage")
 			skipMoveProcess = true
 			waitforanimationend = true
-			hurtbox_collison.disabled = true
+			hurtbox_collision.disabled = true
 			blink_animation_player.play("blink")
 			await get_tree().create_timer(0.5).timeout
 			skipMoveProcess = false
 			waitforanimationend = false
 			await get_tree().create_timer(.5).timeout
-			hurtbox_collison.disabled = false
+			hurtbox_collision.disabled = false
 
 func _on_death_timer_timeout() -> void:
 	invulnerable = false

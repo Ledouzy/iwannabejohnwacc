@@ -8,6 +8,8 @@ var direction = 1 # direction that the knockback will be applied
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body != null && body != self.get_parent()):
+		print("body entered")
+		print("collision shape: ", collision_shape)
 		if (body.has_method("take_damage")):
 			if body.position.x < self.get_parent().position.x:
 				direction = -1
@@ -22,11 +24,15 @@ func _on_body_entered(body: Node2D) -> void:
 					x.play("death")
 
 func _physics_process(delta: float) -> void:
-	if collision_shape != null and collision_shape.disabled == true:
+	if collision_shape.disabled == true and target != null:
+		print("these hold btw")
+	if collision_shape != null and collision_shape.disabled == true and target != null:
+		print("collision disabled")
 		target = null
 	if target != null:
 		target.call_deferred("take_damage",damage, direction)
 
 func _on_body_exited(body: Node2D) -> void:
+	print("body exited")
 	if body == target:
 		target = null
