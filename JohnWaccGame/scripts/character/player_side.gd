@@ -402,15 +402,20 @@ func _physics_process(delta: float) -> void:
 	if !skipMoveProcess:
 		# Apply Movement
 		if direction:
-			if (velocity.x*direction < WALK_CAP * abs(direction) and speedMult == 1.0) or (velocity.x*direction < RUN_CAP * abs(direction) and speedMult != 1.0):
+			if (velocity.x * direction < 0) or (abs(velocity.x) < WALK_CAP * abs(direction)
+			and speedMult == 1.0) or (abs(velocity.x) < RUN_CAP * abs(direction) and speedMult != 1.0):
 				velocity.x += direction * SPEED * speedMult
+				
 			if velocity.x > 0:
 				velocity.x = min(velocity.x, SPEED_CAP * speedMult * abs(direction))
+				
 			else:
 				velocity.x = max(velocity.x, -SPEED_CAP * speedMult * abs(direction))
+				
 			# if over the speed cap, slow down until under
 			if abs(velocity.x) > RUN_CAP * abs(direction):
 				velocity.x -= direction * 10
+				
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
