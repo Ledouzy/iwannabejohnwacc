@@ -141,6 +141,8 @@ func pickUp() -> bool:
 	
 	if object == null:
 		return false
+	if !object.has_method("pickedUp"):
+		object = object.get_parent()
 	if object.has_method("pickedUp"):
 		# call the pickedUp method on the object
 		object.call("pickedUp", self)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crcd46s4jvkg8" path="res://scripts/character/beaver.gd" id="1_3wayd"]
 [ext_resource type="Texture2D" uid="uid://cnxv404xpghfl" path="res://assets/sprites/Characters/beaver.png" id="1_cke00"]
+[ext_resource type="Script" uid="uid://dqpv3dl2j385i" path="res://scripts/character/enemy_platform.gd" id="3_mrwi6"]
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/logic/throw_hurt_box.tscn" id="3_yp1mp"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="4_mrwi6"]
 [ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/logic/hurt_box.gd" id="5_p6haj"]
@@ -175,13 +176,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cke00"]
-size = Vector2(8, 2)
+size = Vector2(10, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yp1mp"]
 size = Vector2(10, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j1i4f"]
-radius = 7.0
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrwi6"]
+size = Vector2(12, 13)
 
 [sub_resource type="Animation" id="Animation_50v30"]
 length = 0.001
@@ -200,7 +204,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/path = NodePath("CharacterBody2D/CollisionShape2D2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -276,7 +280,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/path = NodePath("CharacterBody2D/CollisionShape2D2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -369,9 +373,15 @@ sprite_frames = SubResource("SpriteFrames_ebhbi")
 animation = &"BeaverIdleSide"
 frame_progress = 0.42058375
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1864582220]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=749576392]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("3_mrwi6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1864582220]
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_cke00")
+one_way_collision = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=298362402]
 position = Vector2(0, 0.5)
@@ -388,7 +398,8 @@ script = ExtResource("5_p6haj")
 damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1159768383]
-shape = SubResource("CircleShape2D_j1i4f")
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_mrwi6")
 
 [node name="FloorCheckLeft" type="RayCast2D" parent="." unique_id=1123366367]
 position = Vector2(-7, 2)

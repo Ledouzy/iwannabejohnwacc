@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/character/car.gd" id="1_50v30"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="2_md0e3"]
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/logic/throw_hurt_box.tscn" id="3_3mrxu"]
+[ext_resource type="Script" uid="uid://dqpv3dl2j385i" path="res://scripts/character/enemy_platform.gd" id="3_5xkyk"]
 [ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/logic/hurt_box.gd" id="5_cp117"]
 [ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="7_4clw4"]
 
@@ -188,13 +189,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50v30"]
-size = Vector2(9, 2)
+size = Vector2(11, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj0f0"]
 size = Vector2(11, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ra3w"]
 radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xkyk"]
+size = Vector2(13, 9)
 
 [sub_resource type="Animation" id="Animation_50v30"]
 length = 0.001
@@ -213,7 +217,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/path = NodePath("CharacterBody2D/CollisionShape2D2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -301,7 +305,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/path = NodePath("CharacterBody2D/CollisionShape2D2:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -401,11 +405,15 @@ script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"CarWalkFront"
+animation = &"CarWalkSide"
 autoplay = "CarIdleSide"
-frame_progress = 0.3998875
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1995339573]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1917337681]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("3_5xkyk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1995339573]
 position = Vector2(-0.5, -3)
 shape = SubResource("RectangleShape2D_50v30")
 one_way_collision = true
@@ -426,8 +434,8 @@ script = ExtResource("5_cp117")
 damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1319252143]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_4ra3w")
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_5xkyk")
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=388195486]
 position = Vector2(0, 2)

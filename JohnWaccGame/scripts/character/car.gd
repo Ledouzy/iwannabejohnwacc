@@ -24,7 +24,7 @@ var walkDisabled = false
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox_collison: CollisionShape2D = $HurtBox/CollisionShape2D
-@onready var collision_shape_2: CollisionShape2D = $CollisionShape2D2
+@onready var collision_shape_2: CollisionShape2D = $CharacterBody2D/CollisionShape2D2
 @onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
 @onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -63,9 +63,9 @@ func thrown() -> void:
 	await get_tree().create_timer(0.5).timeout
 	velocity.x = move_toward(velocity.x, 0, 100)
 	await get_tree().create_timer(2).timeout
+	thrown_hurt_box.disabled = true
 	if pickedUpBy == null:
 		walkDisabled = false
-		thrown_hurt_box.disabled = true
 		hurtbox_collison.disabled = false
 		animated_sprite.flip_v = false
 	

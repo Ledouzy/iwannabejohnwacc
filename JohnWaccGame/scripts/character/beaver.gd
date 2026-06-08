@@ -36,7 +36,7 @@ var current_state = states.WAIT
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox_collison: CollisionShape2D = $HurtBox/CollisionShape2D
-@onready var collision_shape_2: CollisionShape2D = $CollisionShape2D2
+@onready var collision_shape_2: CollisionShape2D = $CharacterBody2D/CollisionShape2D2
 @onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
 @onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
 
@@ -76,10 +76,11 @@ func thrown() -> void:
 	await get_tree().create_timer(0.5).timeout
 	velocity.x = move_toward(velocity.x, 0, 100)
 	await get_tree().create_timer(2).timeout
-	walkDisabled = false
 	thrown_hurt_box.disabled = true
-	hurtbox_collison.disabled = false
-	animated_sprite.flip_v = false
+	if pickedUpBy == null:
+		walkDisabled = false
+		hurtbox_collison.disabled = false
+		animated_sprite.flip_v = false
 	
 func take_damage(damage, direction) -> void:
 	if !invulnerable:
