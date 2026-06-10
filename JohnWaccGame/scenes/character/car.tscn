@@ -422,7 +422,8 @@ one_way_collision = true
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_sj0f0")
 
-[node name="ThrowHurtBox" parent="." unique_id=631934805 instance=ExtResource("3_3mrxu")]
+[node name="ThrowHurtBox" parent="." unique_id=631934805 node_paths=PackedStringArray("character_body") instance=ExtResource("3_3mrxu")]
+character_body = NodePath("../CharacterBody2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowHurtBox" unique_id=2117886572]
 position = Vector2(0, 2)
