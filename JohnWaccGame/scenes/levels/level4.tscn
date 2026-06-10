@@ -43,7 +43,7 @@ script = ExtResource("2_irrt8")
 z_index = -4096
 scroll_scale = Vector2(0.02, 0.02)
 scroll_offset = Vector2(-259, -57)
-repeat_size = Vector2(256, 0)
+repeat_size = Vector2(256, 256)
 repeat_times = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Background/Parallax2D" unique_id=961501735]
@@ -68,7 +68,7 @@ centered = false
 z_index = -4096
 scroll_scale = Vector2(0.2, 0.2)
 scroll_offset = Vector2(-3, -57)
-repeat_size = Vector2(256, 0)
+repeat_size = Vector2(256, 256)
 autoscroll = Vector2(4, 0)
 repeat_times = 4
 
