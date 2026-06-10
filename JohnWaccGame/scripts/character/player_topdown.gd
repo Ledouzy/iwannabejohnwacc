@@ -383,7 +383,7 @@ func _physics_process(delta: float) -> void:
 	var direction : Vector2  = Input.get_vector("left","right","up","down", deadzone)
 
 	direction = direction.normalized()
-	print(direction)
+	#print(direction)
 	
 	# check if running
 	if Input.is_action_just_pressed("run"):

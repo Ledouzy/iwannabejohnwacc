@@ -78,7 +78,8 @@ scene_text_file = "res://assets/dialogue/level3.json"
 
 [node name="level_transition" parent="." unique_id=1807414438 instance=ExtResource("11_72x3h")]
 position = Vector2(190, -202)
-next_scene_name = "test0"
+next_scene_name = "level4"
+next_stage_number = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="level_transition" unique_id=2143949405]
 position = Vector2(2, 2)
