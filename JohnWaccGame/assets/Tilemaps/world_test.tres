@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ck5adci3iyhod" path="res://scenes/objects/platformwide.tscn" id="9_ora5l"]
 [ext_resource type="PackedScene" uid="uid://disoesm5ie3oe" path="res://scenes/objects/rotating_platforms.tscn" id="9_x7xd1"]
 [ext_resource type="PackedScene" uid="uid://bjy8d1i5fhi8x" path="res://scenes/objects/spikes.tscn" id="10_auwb8"]
+[ext_resource type="PackedScene" uid="uid://bl5lhy300j1f2" path="res://scenes/objects/breakable_block.tscn" id="10_xxhiw"]
 [ext_resource type="PackedScene" uid="uid://bytkg1aao2wyn" path="res://scenes/objects/spring.tscn" id="11_r14xe"]
 [ext_resource type="Texture2D" uid="uid://48idgkmst6m5" path="res://assets/sprites/Tiles/world1_side.png" id="12_i7t13"]
 [ext_resource type="PackedScene" uid="uid://qi1ndjspalke" path="res://scenes/objects/flag.tscn" id="12_vvds4"]
@@ -381,6 +382,7 @@ scenes/11/scene = ExtResource("6_auwb8")
 scenes/12/scene = ExtResource("7_r14xe")
 scenes/13/scene = ExtResource("8_kdmft")
 scenes/14/scene = ExtResource("9_x7xd1")
+scenes/15/scene = ExtResource("10_xxhiw")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_auwb8"]
 texture = ExtResource("12_i7t13")
