@@ -1,8 +1,12 @@
 extends Camera2D
+
+# player and offset
 @onready var player: CharacterBody2D = $"../Player".get_player()
 @export var CameraOffset = 16
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	# if player exists and is not dead
 	if player != null && !player.is_dead():
+		# follows the position of the character with an offset
 		position = Vector2(player.position.x + CameraOffset * int(player.get_direction()), player.position.y)

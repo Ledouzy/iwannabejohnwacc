@@ -454,7 +454,11 @@ libraries/ = SubResource("AnimationLibrary_3mrxu")
 [node name="DamageTimer" type="Timer" parent="." unique_id=223963880]
 wait_time = 0.5
 
+[node name="ThrowTimer" type="Timer" parent="." unique_id=1091058904]
+wait_time = 2.0
+
 [node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("7_4clw4")]
 
 [connection signal="body_exited" from="HurtBox" to="HurtBox" method="_on_body_exited"]
-[connection signal="timeout" from="DamageTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

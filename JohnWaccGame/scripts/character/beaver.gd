@@ -21,6 +21,7 @@ var invulnerable = false
 var startThrow = false
 var deathanim = false
 var waitforanimationend = false
+@onready var throw_timer: Timer = $ThrowTimer
 
 # Movement logic
 var pickedUpBy
@@ -73,6 +74,9 @@ func pickedUp(player: CharacterBody2D) -> void:
 	# disable movement
 	walkDisabled = true
 	
+	# stop the timer for getting up
+	throw_timer.stop()
+	
 	# disable collision and hurtbox
 	hurtbox_collision.disabled = true
 	collision_shape_2.disabled = true
@@ -89,7 +93,7 @@ func pickedUp(player: CharacterBody2D) -> void:
 func thrown() -> void:
 	# indicate that we are starting the throw for the physics process
 	startThrow = true
-	# initiate movement (not needed it seems)
+	# initiate movement
 	#move_and_slide()
 	
 	# wait until throw is finished
@@ -108,18 +112,20 @@ func thrown() -> void:
 	# wait a while, stop the object and wait again
 	await get_tree().create_timer(0.5).timeout
 	velocity.x = move_toward(velocity.x, 0, 100)
+	throw_timer.start()
 	await get_tree().create_timer(2).timeout
 	
 	# disable the hurtbox for the throw
 	thrown_hurt_box.disabled = true
-	
+		
+func _on_throw_timer_timeout() -> void:
 	# if we haven't been picked up again
 	if pickedUpBy == null:
 		# re-enable walking and the hurtbox for the object and flip back up
 		walkDisabled = false
 		hurtbox_collision.disabled = false
 		animated_sprite.flip_v = false
-	
+
 # logic for taking damage
 func take_damage(damage, direction) -> void:
 	# check if we are still in invulnerability frames
@@ -179,7 +185,11 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= 10
 	elif pickedUpBy != null:
 		# apply the same movement as the player and direction
-		var direction = Input.get_axis("left", "right")
+		var temp = Input.get_axis("left", "right")
+		
+		# make sure that direction is not 0 since else we're stuck in place
+		if temp != 0:
+			direction = temp
 			
 		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-20)
 		
@@ -192,7 +202,7 @@ func _physics_process(delta: float) -> void:
 	if direction > 0:
 		dir = 1
 	elif direction < 0:
-		dir = -1	
+		dir = -1
 	
 	# WAIT LOGIC
 	if !waitforanimationend and current_state == states.WAIT:
