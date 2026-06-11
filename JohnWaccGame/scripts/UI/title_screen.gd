@@ -10,6 +10,7 @@ func _ready() -> void:
 	save_system.checkpoint_reset()
 	
 	audio_manager.play_music("DivineBloodlines")
+	audio_manager.stop_bgs()
 	focused()
 
 func focused():

@@ -78,7 +78,6 @@ bus = &"Music"
 
 [node name="TidalTempest" type="AudioStreamPlayer" parent="Musics" unique_id=1029524371]
 stream = ExtResource("12_6xeo7")
-volume_db = -6.0
 bus = &"Music"
 
 [node name="MoatOfBurnedbless" type="AudioStreamPlayer" parent="Musics" unique_id=1521805266]
