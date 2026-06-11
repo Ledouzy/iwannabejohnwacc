@@ -132,6 +132,9 @@ shape = SubResource("WorldBoundaryShape2D_3fbce")
 
 [node name="Objects" type="Node2D" parent="Level" unique_id=893011376]
 
+[node name="PickableBlock" parent="Level/Objects" unique_id=337589352 instance=ExtResource("14_w24lh")]
+position = Vector2(103, -16)
+
 [node name="Platforms" type="Node2D" parent="Level/Objects" unique_id=1100951389]
 
 [node name="Enemies" type="Node2D" parent="Level" unique_id=468023354]
@@ -144,6 +147,3 @@ metadata/_edit_use_anchors_ = true
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("17_2c5pw")]
 scene_text_file = "res://assets/dialogue/level0.json"
-
-[node name="PickableBlock" parent="." unique_id=337589352 instance=ExtResource("14_w24lh")]
-position = Vector2(103, -16)

@@ -100,7 +100,7 @@ label_settings = ExtResource("2_v6f2x")
 [node name="VolumeSlider" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer2" unique_id=1435973895 instance=ExtResource("4_v6f2x")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../HSplitContainer3/VolumeSlider")
-focus_neighbor_bottom = NodePath("../../../../VBoxContainer/BackButton")
+focus_neighbor_bottom = NodePath("../../HSplitContainer4/VolumeSlider")
 value = 1.0
 bus_name = "SFX"
 
@@ -116,7 +116,7 @@ label_settings = ExtResource("2_v6f2x")
 
 [node name="VolumeSlider" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer4" unique_id=1158612506 instance=ExtResource("4_v6f2x")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../HSplitContainer3/VolumeSlider")
+focus_neighbor_top = NodePath("../../HSplitContainer2/VolumeSlider")
 focus_neighbor_bottom = NodePath("../../../../VBoxContainer/BackButton")
 value = 1.0
 bus_name = "BGS"
@@ -131,7 +131,7 @@ alignment = 1
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../../Container/VBoxContainer/HSplitContainer2/VolumeSlider")
+focus_neighbor_top = NodePath("../../Container/VBoxContainer/HSplitContainer4/VolumeSlider")
 focus_neighbor_bottom = NodePath("../../Container/VBoxContainer/HSplitContainer/VolumeSlider")
 theme = ExtResource("4_ftuep")
 text = "Back"
