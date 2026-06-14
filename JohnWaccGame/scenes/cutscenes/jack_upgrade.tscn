@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cl746l3ivthqg" path="res://assets/Images/jack_upgrade.png" id="2_obdsx"]
 
 [node name="JackUpgrade" type="CanvasLayer" unique_id=1518194160]
-visible = false
 
 [node name="Background" type="TextureRect" parent="." unique_id=1882286643]
 offset_left = -40.0
