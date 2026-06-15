@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d4e4bswot0hco"]
 
-[ext_resource type="Script" uid="uid://dss8457tptdjb" path="res://scripts/level/level3.gd" id="1_hadiw"]
+[ext_resource type="Script" uid="uid://dlh31ifduhpq8" path="res://scripts/level/level.gd" id="1_72x3h"]
 [ext_resource type="PackedScene" uid="uid://pgsyxf38iyvp" path="res://scenes/character/player_topdown.tscn" id="2_72x3h"]
 [ext_resource type="Script" uid="uid://clu3xijl2ddsp" path="res://scripts/global/camera_topdown.gd" id="3_wb0vq"]
 [ext_resource type="TileSet" uid="uid://ve75kdpktk4j" path="res://assets/Tilemaps/topdown_test.tres" id="4_ah4rv"]
@@ -19,7 +19,9 @@ size = Vector2(16, 16)
 
 [node name="TopdownTest" type="Node2D" unique_id=488593241]
 y_sort_enabled = true
-script = ExtResource("1_hadiw")
+script = ExtResource("1_72x3h")
+music_name = "Sword"
+level_id = 4
 
 [node name="Player" parent="." unique_id=806243544 instance=ExtResource("2_72x3h")]
 

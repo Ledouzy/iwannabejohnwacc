@@ -46,7 +46,7 @@ func thrown() -> void:
 func take_damage(damage, direction) -> void:
 	if !invulnerable:
 		invulnerable = true
-		velocity.x = 100*direction
+		velocity = 0*direction
 		damage_timer.start()
 		health -= damage
 		if health <= 0:

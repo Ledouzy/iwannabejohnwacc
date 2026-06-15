@@ -13,7 +13,7 @@ atlas = ExtResource("1_yqomq")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1npa"]
-size = Vector2(16, 7)
+size = Vector2(16, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1s3wa"]
 size = Vector2(16, 7)
@@ -60,6 +60,7 @@ _data = {
 z_index = -1
 
 [node name="CrushObject" type="AnimatableBody2D" parent="." unique_id=1790724961]
+collision_layer = 7
 collision_mask = 7
 
 [node name="Sprite2D2" type="Sprite2D" parent="CrushObject" unique_id=1490225429]
@@ -80,7 +81,7 @@ texture = SubResource("AtlasTexture_r2ml2")
 flip_v = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrushObject" unique_id=185121215]
-position = Vector2(0, 3.5)
+position = Vector2(0, -16.5)
 shape = SubResource("RectangleShape2D_q1npa")
 
 [node name="HurtBox" parent="CrushObject" unique_id=631934805 instance=ExtResource("2_d465g")]

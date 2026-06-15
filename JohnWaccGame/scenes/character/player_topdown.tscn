@@ -11,4 +11,7 @@ script = ExtResource("1_3jx12")
 [node name="PlayerBody" parent="." unique_id=1264691691 instance=ExtResource("1_w5wd0")]
 script = ExtResource("1_c64y4")
 
+[node name="CollisionShape2D" parent="PlayerBody/SwordSideHurtBox" parent_id_path=PackedInt32Array(1264691691, 631934805) index="0" unique_id=234974590]
+position = Vector2(11, -13)
+
 [editable path="PlayerBody"]
