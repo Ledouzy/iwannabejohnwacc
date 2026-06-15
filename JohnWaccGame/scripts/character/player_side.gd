@@ -113,7 +113,7 @@ func take_damage(damage,direction) -> void:
 		health -= damage
 		health = max(health,0)
 		
-		velocity.x = 60*direction
+		velocity = 60*direction
 		
 		if health <= 0:
 			animation_player.play("death")

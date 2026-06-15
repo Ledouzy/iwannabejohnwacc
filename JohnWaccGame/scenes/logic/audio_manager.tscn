@@ -125,6 +125,7 @@ bus = &"BGS"
 
 [node name="Rain" type="AudioStreamPlayer" parent="BGS" unique_id=152296207]
 stream = ExtResource("16_t0aqn")
+volume_db = -4.0
 bus = &"BGS"
 
 [node name="UI" type="Node" parent="." unique_id=1757287764]
