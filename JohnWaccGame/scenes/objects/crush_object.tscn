@@ -60,6 +60,7 @@ _data = {
 z_index = -1
 
 [node name="CrushObject" type="AnimatableBody2D" parent="." unique_id=1790724961]
+collision_mask = 7
 
 [node name="Sprite2D2" type="Sprite2D" parent="CrushObject" unique_id=1490225429]
 position = Vector2(0, -16)

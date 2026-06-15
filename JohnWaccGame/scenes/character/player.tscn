@@ -1283,13 +1283,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(26, 24)
+size = Vector2(25, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uicah"]
-size = Vector2(26, 28.5)
+size = Vector2(16, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iinkm"]
-size = Vector2(26, 28.5)
+size = Vector2(16, 28)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_smehm"]
 _data = {
@@ -1341,7 +1341,7 @@ animation = &"Idle"
 [node name="SwordSideHurtBox" parent="." unique_id=631934805 instance=ExtResource("6_tuyoq")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordSideHurtBox" unique_id=234974590]
-position = Vector2(11, -11)
+position = Vector2(11, -13.5)
 shape = SubResource("RectangleShape2D_fjrip")
 disabled = true
 

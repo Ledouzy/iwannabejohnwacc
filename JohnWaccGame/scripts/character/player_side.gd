@@ -64,6 +64,11 @@ func _ready() -> void:
 	# make sure one frame occurs with the position not smoothed
 	await get_tree().create_timer(0.1).timeout
 	camera.position_smoothing_enabled = true
+	
+	# check if sprint is being held
+	if Input.is_action_pressed("run"):
+		# updates the speed multiplier with run speed
+		speedMult = RUN_MULT
 
 ## Getter: returns value of dead, i.e. is player dead or not
 func is_dead() -> bool:
@@ -180,8 +185,10 @@ func spring_jump(jump_height):
 		skipisonfloor = false
 	
 func _on_sword_down_body_entered(body: Node2D) -> void:
-	if body != null:
-		velocity.y = JUMP_VELOCITY
+	# disabled for now as it's a bit wack
+	pass
+	#if body != null:
+	#	velocity.y = JUMP_VELOCITY
 
 ## Handles the playing of animations not specific to an action
 func process_animation(direction) -> void:
