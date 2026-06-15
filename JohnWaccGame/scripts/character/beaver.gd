@@ -152,6 +152,7 @@ func take_damage(damage, direction) -> void:
 			# disable hurtbox of the enemy
 			hurtbox_collision.disabled = true
 			# make the enemy blink
+			blink_animation_player.stop()
 			blink_animation_player.play("blink")
 			# wait until blinking ends
 			await get_tree().create_timer(0.5).timeout

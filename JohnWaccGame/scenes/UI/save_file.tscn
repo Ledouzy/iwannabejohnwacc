@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://cde66hxhumpbd" path="res://scripts/UI/save_files.gd" id="1_icqg6"]
 [ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/UI_no_box.tres" id="2_43el8"]
 [ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="3_rne80"]
-[ext_resource type="Texture2D" uid="uid://dsbny4c2d444a" path="res://assets/sprites/Characters/player.png" id="4_rne80"]
+[ext_resource type="Texture2D" uid="uid://ihbkwhcw3ra4" path="res://assets/sprites/Characters/player.png" id="4_rne80"]
 [ext_resource type="PackedScene" uid="uid://bcfnr3wci4rq3" path="res://scenes/UI/base_button.tscn" id="5_78sj6"]
-[ext_resource type="Theme" uid="uid://cgdmm8t24aysm" path="res://assets/thrash_button.tres" id="6_43el8"]
+[ext_resource type="Theme" uid="uid://cgdmm8t24aysm" path="res://assets/trash_button.tres" id="6_43el8"]
 [ext_resource type="Script" uid="uid://cdlkq4n4b3a7n" path="res://scripts/UI/delete_button.gd" id="7_rne80"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d6a30"]
