@@ -191,7 +191,7 @@ position = Vector2(104, -616)
 position = Vector2(488, 136)
 
 [node name="Spring3" parent="Level/Springs" unique_id=148812886 instance=ExtResource("16_6m803")]
-position = Vector2(896, 112)
+position = Vector2(888, 120)
 rotation = -1.5707964
 spring_jump_height = Vector2(-500, 0)
 
@@ -414,7 +414,7 @@ position = Vector2(120, -919)
 position = Vector2(120, -935)
 
 [node name="Checkpoint" parent="Level" unique_id=2123040548 instance=ExtResource("18_thrlb")]
-position = Vector2(216, -208)
+position = Vector2(216, -216)
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("19_lmb4s")]
 unique_name_in_owner = true
@@ -423,8 +423,6 @@ offset_right = 41.0
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("20_phk3v")]
 scene_text_file = "res://assets/dialogue/level0.json"
-
-[connection signal="body_entered" from="Player/PlayerBody/SwordFrontHurtBox2" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]

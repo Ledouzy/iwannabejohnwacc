@@ -165,6 +165,16 @@ func take_damage(damage, direction) -> void:
 # when damage timer timeouts, removes invulnerability
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false
+	
+## Handles jumping on springs
+func spring_jump(jump_height):
+	# changes direction in case we need to
+	if jump_height.x < 0:
+		direction = -1
+	else:
+		direction = 1
+	# updates the velocity
+	velocity = Vector2(jump_height.x * 0.6, jump_height.y)
 
 func _physics_process(delta: float) -> void:
 	# play when the object dies

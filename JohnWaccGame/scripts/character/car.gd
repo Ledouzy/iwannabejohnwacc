@@ -84,10 +84,6 @@ func thrown() -> void:
 	# initiate movement (basically direction fix)
 	#move_and_slide()
 	
-	print("player direction: ")
-	print("direction: ", direction)
-	print("dir: ", dir)
-	
 	# wait until throw is finished
 	await get_tree().create_timer(0.1).timeout
 	# re-enable collisions
@@ -157,6 +153,16 @@ func take_damage(damage, direction) -> void:
 # when damage timer timeouts, removes invulnerability
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false
+	
+## Handles jumping on springs
+func spring_jump(jump_height):
+	# changes direction in case we need to
+	if jump_height.x < 0:
+		direction = -1
+	else:
+		direction = 1
+	# updates the velocity
+	velocity = Vector2(jump_height.x * 0.6, jump_height.y)
 
 func _physics_process(delta: float) -> void:
 	# play when the object dies
