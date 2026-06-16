@@ -366,26 +366,23 @@ func _physics_process(delta: float) -> void:
 		
 	# Handles attacking, right now only for sword and on side
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
-		print("attack") # debug message
+		#print("attack") # debug message
 		
 		var changed_dir = side_dir
 		lock_direction = true
 		
 		# play the attack animation and locks animation for the length of the animation
 		if dir == 0:
-			print("down")
 			if side_dir == -1:
 				changed_dir = 1
 				player_body.scale.x = -1
 			animation_player.play("attackFront")
 		elif dir == 2:
-			print("up")
 			if side_dir == -1:
 				changed_dir = 1
 				player_body.scale.x = -1
 			animation_player.play("attackBack")
 		else:
-			print("other")
 			animation_player.play("attackSide")
 		
 		waitforanimationend = true
