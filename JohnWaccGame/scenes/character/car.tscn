@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blxo7j5lbqkgk"]
 
-[ext_resource type="Texture2D" uid="uid://i6dqm26in8ru" path="res://assets/sprites/Characters/Car.png" id="1_7p1mj"]
+[ext_resource type="Texture2D" uid="uid://choofjd4tvopo" path="res://assets/sprites/Characters/Car.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/character/car.gd" id="1_50v30"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="2_md0e3"]
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/logic/throw_hurt_box.tscn" id="3_3mrxu"]
@@ -405,8 +405,9 @@ script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"CarWalkSide"
+animation = &"CarWalkFront"
 autoplay = "CarIdleSide"
+frame_progress = 0.8074494
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1917337681]
 collision_layer = 5

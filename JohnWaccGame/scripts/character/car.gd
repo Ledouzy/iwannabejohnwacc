@@ -207,21 +207,21 @@ func _physics_process(delta: float) -> void:
 	if !waitforanimationend:
 		# flip the sprite in the correct direction
 		if (direction < 0):
-			animated_sprite.flip_h = false
-		elif (direction > 0):
 			animated_sprite.flip_h = true
+		elif (direction > 0):
+			animated_sprite.flip_h = false
 		
 		# if not picked up
 		if pickedUpBy == null:
 			# check for walls on the right and change direction if yes
 			if ray_cast_right.is_colliding():
 				direction = 1
-				animated_sprite.flip_h = false
+				animated_sprite.flip_h = true
 				
 			# same but on the left
 			if ray_cast_left.is_colliding():
 				direction = -1
-				animated_sprite.flip_h = true
+				animated_sprite.flip_h = false
 				
 			# if between two walls
 			if ray_cast_left.is_colliding() && ray_cast_right.is_colliding():
