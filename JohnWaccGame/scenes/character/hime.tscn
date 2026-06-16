@@ -205,9 +205,9 @@ script = ExtResource("1_kjsfy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=594908979]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4ben4")
-animation = &"HimeDown"
+animation = &"HimeGrabbed"
 autoplay = "HimeIdleFront"
-frame_progress = 0.35456732
+frame_progress = 0.67113334
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462337660]
 position = Vector2(0, -8)
@@ -215,5 +215,6 @@ shape = SubResource("RectangleShape2D_4ben4")
 
 [node name="ThrowTimer" type="Timer" parent="." unique_id=302900770]
 wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

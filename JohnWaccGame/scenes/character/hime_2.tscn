@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://buvvr7qcrxbru"]
 
 [ext_resource type="Texture2D" uid="uid://b1i41bnk6ocjh" path="res://assets/sprites/Characters/hime3.png" id="1_3qdc1"]
+[ext_resource type="Script" uid="uid://c6u51hf3lhbjj" path="res://scripts/character/hime.gd" id="1_xr8y1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dlswd"]
 atlas = ExtResource("1_3qdc1")
@@ -270,6 +271,30 @@ region = Rect2(224, 16, 16, 16)
 atlas = ExtResource("1_3qdc1")
 region = Rect2(240, 16, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ww0x"]
+atlas = ExtResource("1_3qdc1")
+region = Rect2(176, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cujo7"]
+atlas = ExtResource("1_3qdc1")
+region = Rect2(192, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppdno"]
+atlas = ExtResource("1_3qdc1")
+region = Rect2(176, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55o5t"]
+atlas = ExtResource("1_3qdc1")
+region = Rect2(192, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxl8d"]
+atlas = ExtResource("1_3qdc1")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5um8v"]
+atlas = ExtResource("1_3qdc1")
+region = Rect2(192, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tb1gx"]
 atlas = ExtResource("1_3qdc1")
 region = Rect2(16, 32, 16, 16)
@@ -403,7 +428,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"HimeGrabbed",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -689,20 +714,38 @@ animations = [{
 }],
 "loop": false,
 "name": &"HimeTakeDamage",
-"speed": 5.0
+"speed": 15.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ww0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cujo7")
+}],
+"loop": false,
 "name": &"HimeThrowBack",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppdno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55o5t")
+}],
+"loop": false,
 "name": &"HimeThrowFront",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxl8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5um8v")
+}],
+"loop": false,
 "name": &"HimeThrowSide",
 "speed": 5.0
 }, {
@@ -744,19 +787,19 @@ animations = [{
 size = Vector2(10, 14)
 
 [node name="Hime2" type="CharacterBody2D" unique_id=1227297899]
+script = ExtResource("1_xr8y1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=500741014]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_n3s1r")
-animation = &"HimeTakeDamage"
-autoplay = "HimeIdleFront"
-frame = 2
-frame_progress = 1.0
+animation = &"HimeGrabbed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=576741577]
-visible = false
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_qty7g")
 
 [node name="ThrowTimer" type="Timer" parent="." unique_id=48240543]
 wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

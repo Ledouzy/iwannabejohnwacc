@@ -454,9 +454,11 @@ libraries/ = SubResource("AnimationLibrary_3mrxu")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=223963880]
 wait_time = 0.5
+one_shot = true
 
 [node name="ThrowTimer" type="Timer" parent="." unique_id=1091058904]
 wait_time = 2.0
+one_shot = true
 
 [node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("7_4clw4")]
 

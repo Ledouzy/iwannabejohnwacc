@@ -457,11 +457,13 @@ libraries/ = SubResource("AnimationLibrary_ah7ws")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1246546987]
 wait_time = 0.5
+one_shot = true
 
 [node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("6_x5011")]
 
 [node name="ThrowTimer" type="Timer" parent="." unique_id=1026028961]
 wait_time = 2.0
+one_shot = true
 
 [connection signal="body_exited" from="HurtBox" to="HurtBox" method="_on_body_exited"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

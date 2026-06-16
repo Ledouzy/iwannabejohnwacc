@@ -9,6 +9,7 @@ var dir = -1 # sames as direction but only -1 and 1 basically left or right
 
 # animation
 var startThrow = false
+var grabanim = false
 var waitforanimationend = false
 
 # Movement logic
@@ -39,10 +40,14 @@ func pickedUp(player: CharacterBody2D) -> void:
 	
 # logic for the object being thrown
 func thrown() -> void:
+	print("Thrown") 
 	# indicate that we are starting the throw for the physics process
 	startThrow = true
 	# initiate movement (basically direction fix)
 	#move_and_slide()
+	
+	# wait until the animation ended
+	waitforanimationend = true
 	
 	# wait until throw is finished
 	await get_tree().create_timer(0.1).timeout
@@ -52,9 +57,11 @@ func thrown() -> void:
 	startThrow = false
 	# no longer picked up by the player
 	pickedUpBy = null
+	grabanim = false
 	
 	# wait a while, stop the object and wait again
 	await get_tree().create_timer(0.5).timeout
+	
 	# play recovery animation for hime
 	animated_sprite.play("HimeDown")
 	velocity.x = move_toward(velocity.x, 0, 100)
@@ -63,7 +70,7 @@ func thrown() -> void:
 
 func _on_throw_timer_timeout() -> void:
 	animated_sprite.play("HimeIdleFront")
-	pass # Replace with function body.
+	waitforanimationend = false
 
 ## Handles jumping on springs
 func spring_jump(jump_height):
@@ -107,7 +114,7 @@ func _physics_process(delta: float) -> void:
 	elif direction < 0:
 		dir = -1
 	
-	# movement logic
+	# animation logic
 	if !waitforanimationend:
 		# flip the sprite in the correct direction
 		if (direction < 0):
@@ -117,11 +124,15 @@ func _physics_process(delta: float) -> void:
 		
 		# if not picked up
 		if pickedUpBy == null:
-			pass
+			# if idle, play the animation
+			animated_sprite.play("HimeIdleFront")
 			
 		else:
-			# if grabbed, play the animation
-			animated_sprite.play("HimeGrabbed")
+			if !grabanim:
+				grabanim = true
+				# if grabbed, play the animation
+				animated_sprite.play("HimeGrabbed")
+	
 	# if not thrown, apply friction to the princess
 	if !startThrow:
 		velocity.x = move_toward(velocity.x, 0, 5)
