@@ -15,9 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if (body.has_method("take_damage")):
 			# get normal for the direction
 			direction = self.get_parent().position.direction_to(body.position)
-			print("self: ", self.get_parent().position)
-			print("body: ", body.position)
-			print("direction: ", direction)
+
 			# call take damage on the body
 			body.call_deferred("take_damage",damage, direction)
 			# add the body to the targets
@@ -37,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	if collision_shape != null and collision_shape.disabled == true and target != null:
 		# clear the list
 		target.clear()
+		
 	if !target.is_empty():
 		# if it's not empty
 		for t in target:

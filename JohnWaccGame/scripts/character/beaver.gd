@@ -113,10 +113,6 @@ func thrown() -> void:
 	await get_tree().create_timer(0.5).timeout
 	velocity.x = move_toward(velocity.x, 0, 100)
 	throw_timer.start()
-	await get_tree().create_timer(2).timeout
-	
-	# disable the hurtbox for the throw
-	thrown_hurt_box.disabled = true
 		
 func _on_throw_timer_timeout() -> void:
 	# if we haven't been picked up again
@@ -208,6 +204,10 @@ func _physics_process(delta: float) -> void:
 		# process gravity
 		if velocity.y < MAX_FALL_VELOCITY:
 			velocity += get_gravity() * delta * 0.5
+	# if on floor
+	else:
+		# disable the hurtbox for the throw
+		thrown_hurt_box.disabled = true
 	
 	# sets dir for anything that only need the sign
 	if direction > 0:

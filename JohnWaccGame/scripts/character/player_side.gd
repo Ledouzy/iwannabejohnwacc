@@ -3,35 +3,37 @@ class_name player
 
 # Movement Parameters
 # Speed
+@export_group("Movement")
 @export var SPEED = 20 ## base speed value
 @export var SPEED_CAP = 240
 @export var WALK_CAP = 90
 @export var RUN_CAP = 135
 @export var RUN_MULT = 1.5 ## Sprint multiplier
-var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
+# deadzone
+@export var deadzone = 0.25 ## min value before input is registered
+# Stats
+@export_group("HP")
+@export var MAX_HEALTH = 10 ## max hp
+@export var dead = false # indicates that the player is dead
 # Jump
+@export_group("Jumping")
 @export var JUMP_VELOCITY = -200.0 ## How high you jump
 @export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
 @onready var jumps = MAX_JUMPS # number of jumps left
 @export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
+
+var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 var coyote_timer = 0
 var can_jump = true
 var springjump = false
 var skipisonfloor = false # bc godot is cringe
 
-# deadzone
-@export var deadzone = 0.25 ## min value before input is registered
-
 # direction
 var dir = 1 # direction of the player
 var lock_direction = false
 
-@export var MAX_HEALTH = 10 ## max hp
-@onready var health = MAX_HEALTH # number of hits before dying
 var invulnerable = false
-@onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
-#var healthLock : Mutex # lock for not taking damage until invul frames end
 
 # pickup/throw objects
 var pickedUp # stores the object that you picked up
@@ -43,11 +45,9 @@ var pickupanim = false # will change to pickup variants of animations
 var waitforanimationend = false # stop other animations from playing until finished with current
 var skipMoveProcess = false # stop the calculations for user input movement, letting only gravity affect player
 
-# Death Flags
-@export var dead = false # indicates that the player is dead
-
 # Component references
-#@onready var game_manager: Control = %GameManager
+@onready var health = MAX_HEALTH # number of hits before dying
+@onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
 @onready var player_body: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var throw_rayCast: RayCast2D = $RayCastThrow
@@ -56,13 +56,17 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var camera: Camera2D = $"../../Camera2D"
 
-# ready just for camera lmao
+
+# ready just for camera lmao. Else the camera will scroll while loading checkpoint
 func _ready() -> void:
+	# disable camera smoothing and set the camera to the player's location
 	camera.position_smoothing_enabled = false
 	camera.position = self.position
 	
 	# make sure one frame occurs with the position not smoothed
 	await get_tree().create_timer(0.1).timeout
+	
+	# re-enable camera smoothing
 	camera.position_smoothing_enabled = true
 	
 	# check if sprint is being held
@@ -70,10 +74,12 @@ func _ready() -> void:
 		# updates the speed multiplier with run speed
 		speedMult = RUN_MULT
 
+
 ## Getter: returns value of dead, i.e. is player dead or not
 func is_dead() -> bool:
 	return dead
-	
+
+
 ## Setter: Set the bools for true so that we can call from other scripts
 func set_dead():
 	# set health to 0 so it doesn't look weird
@@ -88,54 +94,79 @@ func set_dead():
 	
 	# start the (2) seconds timer before reload
 	death_timer.start()
-	
+
+
 ## get value of health
 func get_health() -> int:
 	return health
-	
+
+
 ## get value of MAX_HEALTH
 func get_max_health() -> int:
 	return MAX_HEALTH
-	
+
+
 ## when death timer runs out, reload current scene
 func _on_death_timer_timeout() -> void:
 	save_system.checkpoint_load(self)
 	scene_manager.reload_scene()
 
+
 ## proccess taking damage
-#TODO: implement direction knockback
 func take_damage(damage,direction) -> void:
+	# check if we are still in invulnerability frames
 	if !invulnerable:
+		# set invulnerable
 		invulnerable = true
+		
+		# make us not collide with enemies 
 		player_body.collision_mask = 1
 		
+		# start invulnerability timer
 		damage_timer.start()
+		# apply knockback
+		velocity = 60*direction
+		
+		# deal damage
 		health -= damage
 		health = max(health,0)
 		
-		velocity = 60*direction
-		
+		# check if below 0
 		if health <= 0:
+			# death if below 0
 			animation_player.play("death")
 		else:
+			# plays damage animation
 			animated_sprite.play("PlayerTakeDamage")
 			
+			# stop movement and lock until animation end
 			skipMoveProcess = true
 			waitforanimationend = true
 			await animated_sprite.animation_finished
+			# resume normal movement
 			skipMoveProcess = false
 			waitforanimationend = false
+			
+			# make the player blink
 			blink_animation_player.play("blink")
+			
+			# wait until blinking ends
 			await blink_animation_player.animation_finished
+			
+		# set mask back to collide with enemies
 		player_body.collision_mask = 5
-	
+
+
+# when damage timer timeouts, removes invulnerability
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false
-	
+
+
 ## returns the direction, it's called dir since direction already existed
 func get_direction() -> int:
 	return dir
-	
+
+
 ## handles picking up objects and enemies
 func pickUp() -> bool:
 	# get the enemy or object right below the player
@@ -167,7 +198,8 @@ func throw() -> void:
 	if pickedUp.has_method("thrown"):
 		# call the thrown method on the object
 		pickedUp.call("thrown")
-		
+
+
 ## Handles jumping on springs
 func spring_jump(jump_height):
 	# updates the velocity
@@ -183,12 +215,14 @@ func spring_jump(jump_height):
 		springjump = true
 		await get_tree().create_timer(0.01).timeout
 		skipisonfloor = false
-	
+
+
 func _on_sword_down_body_entered(body: Node2D) -> void:
 	# disabled for now as it's a bit wack
 	pass
 	#if body != null:
 	#	velocity.y = JUMP_VELOCITY
+
 
 ## Handles the playing of animations not specific to an action
 func process_animation(direction) -> void:
@@ -223,6 +257,7 @@ func process_animation(direction) -> void:
 			else:
 				animated_sprite.play("PlayerJumpSide")
 				
+
 
 ## call at fixed interval for physics calculations
 func _physics_process(delta: float) -> void:
@@ -428,7 +463,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
 	move_and_slide()
-	
+
+
+# play a sound by calling the audio manager
 func play_sfx(sfx_name):
 	audio_manager.play_sfx(sfx_name, 0, self.position)
-	

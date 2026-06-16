@@ -3,55 +3,52 @@ class_name player_topdown
 
 # Movement Parameters
 # Speed
+@export_group("Movement")
 @export var SPEED = 10 ## base speed value
 @export var SPEED_CAP = 120
 @export var WALK_CAP = 45
 @export var RUN_CAP = 80
 @export var RUN_MULT = 1.5 ## Sprint multiplier
-var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
+# pushing blocks
+@export var push_force = 10.0
+# deadzone
+@export var deadzone = 0.25 ## min value before input is registered
+# stats
+@export_group("HP")
+@export var MAX_HEALTH = 10 ## max hp
+@export var dead = false # indicates that the player is dead
 # Jump
 #@export var JUMP_VELOCITY = -200.0 ## How high you jump
 #@export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
 @onready var jumps = MAX_JUMPS # number of jumps left
 @export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
+
+var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 var coyote_timer = 0
 var can_jump = true
-
-# deadzone
-@export var deadzone = 0.25 ## min value before input is registered
 
 # direction
 var dir = 1 # direction of the player (N-0,E-1,S-2,W-3)
 var side_dir = 1 # act as the old dir did
 var lock_direction = false
 
-# health related
-@export var MAX_HEALTH = 10 ## max hp
-@onready var health = MAX_HEALTH # number of hits before dying
 var invulnerable = false
-@onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
-#var healthLock : Mutex # lock for not taking damage until invul frames end
 
 # pickup/throw objects
 var pickedUp # stores the object that you picked up
-
-# pushing blocks
-@export var push_force = 10.0
 
 # animation flags
 var jumpanim = false # play the animation once
 var deathanim = false # play the animation once
 var pickupanim = false # will change to pickup variants of animations
-var pushanim = false
+var pushanim = false # indicates that we are pushing a block right now
 var waitforanimationend = false # stop other animations from playing until finished with current
 var skipMoveProcess = false # stop the calculations for user input movement, letting only gravity affect player
 
-# Death Flags
-@export var dead = false # indicates that the player is dead
-
+@onready var health = MAX_HEALTH # number of hits before dying
 # Component references
-#@onready var game_manager: Control = %GameManager
+@onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
 @onready var player_body: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var throw_rayCast: RayCast2D = $RayCastThrow
@@ -60,21 +57,32 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var camera: Camera2D = $"../../Camera2D"
 
+
 # ready just for camera lmao
 func _ready() -> void:
+	# disable camera smoothing and set the camera to the player's location
 	camera.position_smoothing_enabled = false
 	camera.position = self.position
 	
 	# make sure one frame occurs with the position not smoothed
 	await get_tree().create_timer(0.1).timeout
+	# re-enable camera smoothing
 	camera.position_smoothing_enabled = true
 	
+	# I think this enable top down movement irc
 	motion_mode = MOTION_MODE_FLOATING
+	
+	# check if sprint is being held
+	if Input.is_action_pressed("run"):
+		# updates the speed multiplier with run speed
+		speedMult = RUN_MULT
+
 
 ## Getter: returns value of dead, i.e. is player dead or not
 func is_dead() -> bool:
 	return dead
-	
+
+
 ## Setter: Set the bools for true so that we can call from other scripts
 func set_dead():
 	# set health to 0 so it doesn't look weird
@@ -89,19 +97,23 @@ func set_dead():
 	
 	# start the (2) seconds timer before reload
 	death_timer.start()
-	
+
+
 ## get value of health
 func get_health() -> int:
 	return health
-	
+
+
 ## get value of MAX_HEALTH
 func get_max_health() -> int:
 	return MAX_HEALTH
-	
+
+
 ## when death timer runs out, reload current scene
 func _on_death_timer_timeout() -> void:
 	save_system.checkpoint_load(self)
 	scene_manager.reload_scene()
+
 
 ## proccess taking damage
 #TODO: Implement direction knockback
@@ -123,14 +135,17 @@ func take_damage(damage, direction) -> void:
 			waitforanimationend = false
 			blink_animation_player.play("blink")
 			await blink_animation_player.animation_finished
-	
+
+
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false
-	
+
+
 ## returns the direction, it's called dir since direction already existed
 func get_direction() -> int:
 	return dir
-	
+
+
 ## handles picking up objects and enemies
 func pickUp() -> bool:
 	# get the enemy or object right below the player
@@ -151,6 +166,7 @@ func pickUp() -> bool:
 		
 	return false
 
+
 ## Handles throwing objects and enemies
 func throw() -> void:
 	# check first if we do have an item that we picked up, and check if that method does have a thrown method
@@ -160,11 +176,13 @@ func throw() -> void:
 	if pickedUp.has_method("thrown"):
 		# call the thrown method on the object
 		pickedUp.call("thrown")
-		
+
+
 ## Handles jumping on springs
 func spring_jump(jump_height):
 	# updates the velocity
 	velocity = jump_height
+
 
 ## Handles the playing of animations not specific to an action
 func process_animation(direction_x, direction_y) -> void:
@@ -212,7 +230,9 @@ func process_animation(direction_x, direction_y) -> void:
 						animated_sprite.play("PlayerWalkSide")
 				_:
 					print("Error: Direction isn't between 0 and 3")
-			
+
+
+
 ## process pushing blocks
 func collision_handler() -> bool:
 	var pushing = false
@@ -240,6 +260,7 @@ func collision_handler() -> bool:
 			
 			pushing = true
 	return pushing
+
 
 ## call at fixed interval for physics calculations
 func _physics_process(delta: float) -> void:
@@ -469,6 +490,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 			
 	move_and_slide()
-	
+
+# play a sound by calling the audio manager
 func play_sfx(sfx_name):
 	audio_manager.play_sfx(sfx_name, 0, self.position)
