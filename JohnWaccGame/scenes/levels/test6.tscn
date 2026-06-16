@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="6_2p150"]
 [ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="6_eswb4"]
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="7_uidxl"]
+[ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="9_kocsj"]
+[ext_resource type="PackedScene" uid="uid://buvvr7qcrxbru" path="res://scenes/character/hime_2.tscn" id="10_b5w2o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_22n77"]
 
@@ -78,3 +80,9 @@ offset_right = 41.0
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("7_uidxl")]
 scene_text_file = "res://assets/dialogue/level0.json"
+
+[node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("9_kocsj")]
+position = Vector2(104, -4)
+
+[node name="Hime2" parent="." unique_id=411270829 instance=ExtResource("10_b5w2o")]
+position = Vector2(153, -20)
