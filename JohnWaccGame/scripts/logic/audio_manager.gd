@@ -3,6 +3,7 @@ extends Node
 # music streams
 var active_music_stream: AudioStreamPlayer
 var active_sound_stream: AudioStreamPlayer2D
+var active_ui_stream: AudioStreamPlayer
 var active_bgs_stream: AudioStreamPlayer
 
 @export_group("Main")
@@ -12,6 +13,8 @@ var active_bgs_stream: AudioStreamPlayer
 @export var sounds: Node
 ## Node that stores the AudioStreamPlayer for background sound (looping sounds)
 @export var BGS: Node
+## Node that stores the AudioStreamPlayer for ui sounds
+@export var ui: Node
 
 # UI sound effects to avoid having to specify the filename every time
 @export_group("UI")
@@ -115,6 +118,20 @@ func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Ve
 	active_sound_stream.position = sound_position
 	# play the sound
 	active_sound_stream.play(from_position)
+
+## plays the sfx with the corresponding audio name starting from the from_position.
+## the audio will play from the sound_position and get gradually quieter the farther away
+func play_ui_sfx(audio_name: String, from_position: float = 0.0) -> void:
+	# get the audio stream for the sound we want to play
+	active_ui_stream = ui.get_node(audio_name)
+	
+	# check if we found the stream
+	if !active_ui_stream:
+		print("error: ui sound doesn't exist")
+		return
+	
+	# play the sound
+	active_ui_stream.play(from_position)
 
 ## plays the ui confirm sfx
 func play_ui_confirm() -> void:

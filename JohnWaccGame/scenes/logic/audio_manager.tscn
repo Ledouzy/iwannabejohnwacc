@@ -21,13 +21,15 @@
 [ext_resource type="AudioStream" uid="uid://dlmuq3eysv76n" path="res://assets/audio/music/Tidal Tempest.ogg" id="12_6xeo7"]
 [ext_resource type="AudioStream" uid="uid://blvctyuwfxuo0" path="res://assets/audio/music/Moat of Burnedbless.wav" id="13_6xeo7"]
 [ext_resource type="AudioStream" uid="uid://ocn3y12my2yy" path="res://assets/audio/sounds/Rain.wav" id="16_t0aqn"]
+[ext_resource type="AudioStream" uid="uid://bswbloqac1r6i" path="res://assets/audio/sounds/dogi.wav" id="19_qhr3l"]
 
-[node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "BGS", "confirm_sfx", "move_sfx", "back_sfx")]
+[node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "BGS", "ui", "confirm_sfx", "move_sfx", "back_sfx")]
 process_mode = 3
 script = ExtResource("1_qxga5")
 music = NodePath("Musics")
 sounds = NodePath("Sounds")
 BGS = NodePath("BGS")
+ui = NodePath("UI")
 confirm_sfx = NodePath("UI/MenuConfirm")
 move_sfx = NodePath("UI/MenuMove")
 back_sfx = NodePath("UI/MenuBack")
@@ -129,6 +131,10 @@ volume_db = -4.0
 bus = &"BGS"
 
 [node name="UI" type="Node" parent="." unique_id=1757287764]
+
+[node name="Dogi" type="AudioStreamPlayer" parent="UI" unique_id=240363883]
+stream = ExtResource("19_qhr3l")
+bus = &"SFX"
 
 [node name="MenuConfirm" type="AudioStreamPlayer" parent="UI" unique_id=1837801471]
 stream = ExtResource("11_hhrbd")

@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dr50mtgpwg5mj" path="res://assets/UI/character_portrait.png" id="8_cl66x"]
 [ext_resource type="Texture2D" uid="uid://c2k1mj8tbtqus" path="res://assets/UI/ui_box_square.png" id="9_aaxak"]
 [ext_resource type="Texture2D" uid="uid://di8sfpu2w62jk" path="res://assets/UI/ui_pause_box.png" id="10_pksm6"]
+[ext_resource type="Script" uid="uid://ut6em1otfded" path="res://scripts/UI/serious_button.gd" id="11_6lhc8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_88e76"]
 line_spacing = 4.0
@@ -29,6 +30,16 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2ekw"]
 atlas = ExtResource("10_pksm6")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pksm6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lhc8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bbhgf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_je8bx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p55f2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cl66x"]
 atlas = ExtResource("8_40d3o")
@@ -186,6 +197,18 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_p2ekw")
 stretch_mode = 2
 
+[node name="SeriousButton" type="Button" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer3/PlayerSprite" unique_id=8143034]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 24.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pksm6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6lhc8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bbhgf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_je8bx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p55f2")
+script = ExtResource("11_6lhc8")
+
 [node name="Spacer2" type="Control" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer" unique_id=1185880968]
 visible = false
 layout_mode = 2
@@ -266,3 +289,4 @@ layout_mode = 1
 [connection signal="mouse_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_title_button_pressed"]
 [connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer3/PlayerSprite/SeriousButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer3/PlayerSprite/SeriousButton" method="_on_pressed"]
