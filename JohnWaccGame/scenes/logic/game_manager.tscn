@@ -7,6 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://ttjol3gwxiof" path="res://assets/UI/coin.png" id="4_suis6"]
 [ext_resource type="Texture2D" uid="uid://dyfb5peqq2w8f" path="res://assets/UI/heart.png" id="6_3gp8j"]
 [ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="7_3gp8j"]
+[ext_resource type="Texture2D" uid="uid://ihbkwhcw3ra4" path="res://assets/sprites/Characters/player.png" id="8_2doo1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cvsq"]
+atlas = ExtResource("3_suis6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gp8j"]
+atlas = ExtResource("3_suis6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7lb1"]
+atlas = ExtResource("3_suis6")
+region = Rect2(144, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3d5k"]
 atlas = ExtResource("6_3gp8j")
@@ -21,6 +34,26 @@ shadow_offset = Vector2(0, 0)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2doo1"]
 atlas = ExtResource("4_suis6")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tth27"]
+atlas = ExtResource("8_2doo1")
+region = Rect2(64, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfotl"]
+atlas = ExtResource("8_2doo1")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atgrn"]
+atlas = ExtResource("8_2doo1")
+region = Rect2(16, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s5ou"]
+atlas = ExtResource("8_2doo1")
+region = Rect2(32, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fuyv"]
+atlas = ExtResource("8_2doo1")
+region = Rect2(48, 144, 16, 16)
 
 [node name="GameManager" type="Control" unique_id=2047177381]
 layout_mode = 3
@@ -45,17 +78,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Base" unique_id=1237986463]
-custom_minimum_size = Vector2(160, 16)
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Base" unique_id=463292573]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("3_suis6")
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Base/HBoxContainer" unique_id=1652558510]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_1cvsq")
 expand_mode = 2
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Base/HBoxContainer" unique_id=1237986463]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_3gp8j")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Base/HBoxContainer" unique_id=2061700891]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_q7lb1")
+expand_mode = 2
+stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Base" unique_id=91836293]
 layout_mode = 1
@@ -71,6 +125,7 @@ theme_override_constants/margin_right = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Base/MarginContainer" unique_id=1469044287]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Hearts" type="HBoxContainer" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=2062394656]
 layout_mode = 2
@@ -106,9 +161,56 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
+[node name="Spacer3" type="Control" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1048480102]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
 [node name="NameLabel" type="Label" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1779395756]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Jack"
+label_settings = ExtResource("7_3gp8j")
+
+[node name="Spacer2" type="Control" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1698112325]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="Gloves" type="TextureRect" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1495502461]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_tth27")
+
+[node name="Sword" type="TextureRect" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=34684753]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_vfotl")
+
+[node name="Hookshot" type="TextureRect" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1641270886]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_atgrn")
+
+[node name="Boots" type="TextureRect" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1801212811]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_5s5ou")
+
+[node name="Armor" type="TextureRect" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=588296376]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_2fuyv")
+
+[node name="Spacer4" type="Control" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1536621823]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="StageLabel" type="Label" parent="CanvasLayer/Base/MarginContainer/HBoxContainer" unique_id=1674325081]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "1-1"
 label_settings = ExtResource("7_3gp8j")

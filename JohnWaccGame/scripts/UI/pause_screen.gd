@@ -6,7 +6,7 @@ var opened : bool = false
 # reference to the options screen
 @onready var options_screen: Control = $options_screen
 # reference to the resume button
-@onready var resume_button: Button = $UI_elements/VBoxContainer2/VBoxContainer/ResumeButton
+@onready var resume_button: Button = $UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton
 # reference to the player
 @onready var player = $"../../../Player"
 

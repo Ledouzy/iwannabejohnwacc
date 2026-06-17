@@ -7,10 +7,13 @@ var health = -1
 
 var hearts: Array[TextureRect] = []
 
+var stage_names: Array = ["1-1","1-2","1-3","1-4","2-1","2-2","2-3","2-4","3-1","3-2","3-3","3-4","4-1","4-2","4-3","4-4","5-1","5-2","6-1","6-2"] # and so on and so forth, yeah it's shit
+
 # text for the UI
 @onready var coins_label: Label = $CanvasLayer/Base/MarginContainer/HBoxContainer/CoinsLabel
 @onready var health_label: Label = $CanvasLayer/Base/MarginContainer/HBoxContainer/HealthLabel
 @onready var name_label: Label = $CanvasLayer/Base/MarginContainer/HBoxContainer/NameLabel
+@onready var stage_label: Label = $CanvasLayer/Base/MarginContainer/HBoxContainer/StageLabel
 @onready var heartsContainer: HBoxContainer = $CanvasLayer/Base/MarginContainer/HBoxContainer/Hearts
 @onready var HEART = preload("uid://bfkt5jeh8r31c") # heart scene
 
@@ -43,7 +46,8 @@ func _ready() -> void:
 	# update coins and health
 	coins_label.text = str(score)
 	health_label.text = str(player.get_health()) + "/" + str(player.get_max_health())
-	name_label.text = save_system.current_data.name+" "
+	name_label.text = save_system.current_data.name
+	stage_label.text = stage_names.get(int(save_system.current_data.stage))
 
 func _process(delta: float) -> void:
 	# update health in process, technically could just have a function to do that like for coins

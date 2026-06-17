@@ -8,20 +8,65 @@
 [ext_resource type="Script" uid="uid://dak7y1gd3ajdl" path="res://scripts/UI/first_button.gd" id="5_v4r4p"]
 [ext_resource type="Script" uid="uid://b1wjcwgadqxqt" path="res://scripts/UI/base_button.gd" id="6_11xym"]
 [ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="7_40d3o"]
+[ext_resource type="Texture2D" uid="uid://ihbkwhcw3ra4" path="res://assets/sprites/Characters/player.png" id="8_40d3o"]
+[ext_resource type="Texture2D" uid="uid://dr50mtgpwg5mj" path="res://assets/UI/character_portrait.png" id="8_cl66x"]
+[ext_resource type="Texture2D" uid="uid://c2k1mj8tbtqus" path="res://assets/UI/ui_box_square.png" id="9_aaxak"]
+[ext_resource type="Texture2D" uid="uid://di8sfpu2w62jk" path="res://assets/UI/ui_pause_box.png" id="10_pksm6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_88e76"]
 line_spacing = 4.0
 font = ExtResource("2_7l7mv")
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi0dc"]
+atlas = ExtResource("8_cl66x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0f3fp"]
+atlas = ExtResource("8_40d3o")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2ekw"]
+atlas = ExtResource("10_pksm6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl66x"]
+atlas = ExtResource("8_40d3o")
+region = Rect2(64, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p55f2"]
+atlas = ExtResource("9_aaxak")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pksm6"]
+atlas = ExtResource("8_40d3o")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lhc8"]
+atlas = ExtResource("8_40d3o")
+region = Rect2(16, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbhgf"]
+atlas = ExtResource("8_40d3o")
+region = Rect2(32, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je8bx"]
+atlas = ExtResource("8_40d3o")
+region = Rect2(48, 144, 16, 16)
+
 [node name="pause_menu" type="Control" unique_id=1261421658]
 process_mode = 2
+z_index = -1
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_7l7mv")
 
 [node name="UI_elements" type="MarginContainer" parent="." unique_id=1290708349]
@@ -51,13 +96,21 @@ label_settings = SubResource("LabelSettings_88e76")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2" unique_id=2066754480]
+[node name="MarginContainer" type="MarginContainer" parent="UI_elements/VBoxContainer2" unique_id=1102390234]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_elements/VBoxContainer2/MarginContainer" unique_id=1903128312]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer" unique_id=2066754480]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="ResumeButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1593347430]
+[node name="ResumeButton" type="Button" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1593347430]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -68,7 +121,7 @@ text = "Resume
 "
 script = ExtResource("5_v4r4p")
 
-[node name="OptionButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1056014080]
+[node name="OptionButton" type="Button" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1056014080]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -78,7 +131,7 @@ theme = ExtResource("3_v4r4p")
 text = "Options"
 script = ExtResource("6_11xym")
 
-[node name="RetryButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1456981781]
+[node name="RetryButton" type="Button" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1456981781]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -88,7 +141,7 @@ theme = ExtResource("3_v4r4p")
 text = "Retry"
 script = ExtResource("6_11xym")
 
-[node name="QuitButton" type="Button" parent="UI_elements/VBoxContainer2/VBoxContainer" unique_id=1014345925]
+[node name="QuitButton" type="Button" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1014345925]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -98,23 +151,118 @@ theme = ExtResource("3_v4r4p")
 text = "Title"
 script = ExtResource("7_40d3o")
 
+[node name="Spacer3" type="Control" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer" unique_id=2017081991]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer" unique_id=213281309]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PlayerPortrait" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer3" unique_id=2052607125]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_gi0dc")
+
+[node name="PlayerSprite" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer3" unique_id=1464879801]
+z_index = 1
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_0f3fp")
+stretch_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer3/PlayerSprite" unique_id=522192606]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_p2ekw")
+stretch_mode = 2
+
+[node name="Spacer2" type="Control" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer" unique_id=1185880968]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer" unique_id=764592087]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Gloves" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=102626804]
+z_index = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_cl66x")
+
+[node name="box" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2/Gloves" unique_id=122032301]
+z_index = -1
+layout_mode = 0
+texture = SubResource("AtlasTexture_p55f2")
+
+[node name="Sword" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1708904748]
+z_index = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_pksm6")
+
+[node name="box" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2/Sword" unique_id=1505173587]
+z_index = -1
+layout_mode = 0
+texture = SubResource("AtlasTexture_p55f2")
+
+[node name="Hookshot" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1663955470]
+z_index = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_6lhc8")
+
+[node name="box" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2/Hookshot" unique_id=1547345376]
+z_index = -1
+layout_mode = 0
+texture = SubResource("AtlasTexture_p55f2")
+
+[node name="Boots" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1484829771]
+z_index = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_bbhgf")
+
+[node name="box" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2/Boots" unique_id=129339295]
+z_index = -1
+layout_mode = 0
+texture = SubResource("AtlasTexture_p55f2")
+
+[node name="Armor" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1792696409]
+z_index = 1
+layout_mode = 2
+texture = SubResource("AtlasTexture_je8bx")
+
+[node name="box" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer2/Armor" unique_id=2093289327]
+z_index = -1
+layout_mode = 0
+texture = SubResource("AtlasTexture_p55f2")
+
 [node name="options_screen" parent="." unique_id=1561367031 instance=ExtResource("4_1s2dm")]
 visible = false
 layout_mode = 1
 
-[connection signal="focus_entered" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/VBoxContainer/ResumeButton" method="_on_pressed"]
-[connection signal="focus_entered" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/VBoxContainer/OptionButton" method="_on_pressed"]
-[connection signal="focus_entered" from="UI_elements/VBoxContainer2/VBoxContainer/RetryButton" to="UI_elements/VBoxContainer2/VBoxContainer/RetryButton" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/VBoxContainer/RetryButton" to="UI_elements/VBoxContainer2/VBoxContainer/RetryButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/RetryButton" to="UI_elements/VBoxContainer2/VBoxContainer/RetryButton" method="_on_pressed"]
-[connection signal="focus_entered" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" method="_on_focus_entered"]
-[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" method="_on_mouse_entered"]
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="." method="_on_title_button_pressed"]
-[connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="focus_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" method="_on_pressed"]
+[connection signal="focus_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/OptionButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/OptionButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/OptionButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/OptionButton" method="_on_pressed"]
+[connection signal="focus_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/RetryButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/RetryButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/RetryButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/RetryButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/RetryButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/RetryButton" method="_on_pressed"]
+[connection signal="focus_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" method="_on_focus_entered"]
+[connection signal="mouse_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" method="_on_mouse_entered"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_title_button_pressed"]
+[connection signal="pressed" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/QuitButton" method="_on_pressed"]
