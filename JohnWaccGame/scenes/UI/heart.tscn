@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bfkt5jeh8r31c"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2qp0s"]
+load_path = "res://.godot/imported/heart.png-6999328bfb64a62fea425f551e56579d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sj5p"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_2qp0s")
+region = Rect2(16, 0, 8, 8)
+
+[node name="TextureRect" type="TextureRect" unique_id=307157109]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_3sj5p")
