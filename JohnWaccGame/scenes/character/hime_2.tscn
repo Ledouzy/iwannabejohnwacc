@@ -784,7 +784,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qty7g"]
-size = Vector2(10, 14)
+size = Vector2(10, 15)
 
 [node name="Hime2" type="CharacterBody2D" unique_id=1227297899]
 script = ExtResource("1_xr8y1")
@@ -795,7 +795,7 @@ sprite_frames = SubResource("SpriteFrames_n3s1r")
 animation = &"HimeGrabbed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=576741577]
-position = Vector2(0, -8)
+position = Vector2(0, -8.5)
 shape = SubResource("RectangleShape2D_qty7g")
 
 [node name="ThrowTimer" type="Timer" parent="." unique_id=48240543]
