@@ -15,7 +15,9 @@ func _ready() -> void:
 	# change the value of the slider to the value stored in the settings
 	value = global_manager.loaded_settings.get(bus_name.to_lower())
 	#AudioServer.set_bus_volume_db(bus_index,linear_to_db(value))
-	
+
+
+# when the value of the slider changes
 func _on_value_changed(value: float) -> void:
 	# play a sound to test out the volume of the corresponding audio bus
 	if bus_name == "SFX" && self.get_tree().root.visible == true:
