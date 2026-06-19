@@ -20,7 +20,7 @@ class_name player
 @export var JUMP_VELOCITY = -200.0 ## How high you jump
 @export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
-@onready var jumps = MAX_JUMPS # number of jumps left
+
 @export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
 
 var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
@@ -45,8 +45,10 @@ var pickupanim = false # will change to pickup variants of animations
 var waitforanimationend = false # stop other animations from playing until finished with current
 var skipMoveProcess = false # stop the calculations for user input movement, letting only gravity affect player
 
-# Component references
+# Initialized variables
+@onready var jumps = MAX_JUMPS # number of jumps left
 @onready var health = MAX_HEALTH # number of hits before dying
+# Component references
 @onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
 @onready var player_body: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -175,10 +177,15 @@ func pickUp() -> bool:
 	# check if that object exists and that it can be pickedUp
 	# TODO: change so it checks for class throwable when that class is added
 	
+	# check if we picked up something
 	if object == null:
+		# we didn't, return false
 		return false
+		
+	# if it doesn't have method picked up, check it's parent
 	if !object.has_method("pickedUp"):
 		object = object.get_parent()
+	# if it has the method, call it
 	if object.has_method("pickedUp"):
 		# call the pickedUp method on the object
 		object.call("pickedUp", self)
@@ -194,6 +201,7 @@ func throw() -> void:
 	# check first if we do have an item that we picked up, and check if that method does have a thrown method
 	# TODO: change so it checks for class throwable when that class is added
 	if pickedUp == null:
+		# if we don't have something picked up, just return
 		return
 	if pickedUp.has_method("thrown"):
 		# call the thrown method on the object
@@ -209,11 +217,14 @@ func spring_jump(jump_height):
 	# cap the velocity so that we don't go too far up
 	velocity.y = max(jump_height.y*1.25, velocity.y)
 	
-	#coyote_timer = MAXCOYOTETIME
+	# if we don't have any jumps left
 	if jumps == 0:
+		# don't check if we're on the floor since we're on a spring
 		skipisonfloor = true
+		# we are doing a spring jump so skip things that don't need to be used
 		springjump = true
 		await get_tree().create_timer(0.01).timeout
+		# reactive the check for on the floor after .01 seconds to not fuck things up
 		skipisonfloor = false
 
 
@@ -255,6 +266,7 @@ func process_animation(direction) -> void:
 			if (pickupanim):
 				animated_sprite.play("PlayerPickupJumpSide")
 			else:
+				# normal jump then
 				animated_sprite.play("PlayerJumpSide")
 				
 
@@ -369,44 +381,55 @@ func _physics_process(delta: float) -> void:
 		waitforanimationend = false
 		
 	# Handles attacking, right now only for sword and on side
-	# TODO: Handle attack in all direction if in air and 2 directions on the ground (up side down and up side respectively)
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
 		# print("attack") # debug message
 		
+		# check for if we changed direction while we are attacking
 		var changed_dir = dir
+		# lock our direction
 		lock_direction = true
 		
 		# play the attack animation and locks animation for the length of the animation
 		if Input.is_action_pressed("down"):
 			# print("down")
+			# change the direction so the animation plays properly
 			if dir <= -1:
 				changed_dir = 1
 				player_body.scale.x = -1
+			# plays the front attack animation
 			animation_player.play("attackFront")
+			
 		elif Input.is_action_pressed("up"):
 			# print("up")
+			# change the direction so the animation plays properly
 			if dir <= -1:
 				changed_dir = 1
 				player_body.scale.x = -1
+			# plays the back attack animation
 			animation_player.play("attackBack")
 		else:
 			# print("other")
+			# plays the side attack animation
 			animation_player.play("attackSide")
-			
+		
+		# wait for the end of animations before renabling jump animations or other shit
 		waitforanimationend = true
 		await animation_player.animation_finished
 		waitforanimationend = false
 		jumpanim = false
 		
+		# change back our direction to what it's supposed to be
 		if changed_dir != dir:
 			if dir == 1:
 				player_body.scale.x = -1
 			elif dir == -1:
 				player_body.scale.x = -1
+		# unlock our direction
 		lock_direction = false
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
+	# apply deadzone to movement direction
 	if abs(direction) < deadzone:
 		direction = 0
 	
@@ -443,25 +466,31 @@ func _physics_process(delta: float) -> void:
 		process_animation(direction)
 			
 	if !skipMoveProcess:
-		# Apply Movement
+		# if moving
 		if direction:
+			# if if we are moving or if we are below the walk cap and walking or below the run cap and running
 			if (velocity.x * direction < 0) or (abs(velocity.x) < WALK_CAP * abs(direction)
 			and speedMult == 1.0) or (abs(velocity.x) < RUN_CAP * abs(direction) and speedMult != 1.0):
-				velocity.x += direction * SPEED * speedMult
-				
+				# add velocity each frame
+				velocity.x += direction * SPEED * speedMult * delta
+			
+			# if velocity greater than 0, cap it to the speed cap
 			if velocity.x > 0:
 				velocity.x = min(velocity.x, SPEED_CAP * speedMult * abs(direction))
 				
+			# if we are below 0, cap it to the speed cap in the other direction
 			else:
 				velocity.x = max(velocity.x, -SPEED_CAP * speedMult * abs(direction))
 				
 			# if over the speed cap, slow down until under
 			if abs(velocity.x) > RUN_CAP * abs(direction):
-				velocity.x -= direction * 10
-				
+				velocity.x -= direction * 10 * delta
+		# if not moving
 		else:
+			# apply friction
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-			
+	
+	# apply movement	
 	move_and_slide()
 
 
