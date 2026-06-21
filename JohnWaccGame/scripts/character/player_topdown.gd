@@ -15,7 +15,7 @@ class_name player_topdown
 @export var deadzone = 0.25 ## min value before input is registered
 # stats
 @export_group("HP")
-@export var MAX_HEALTH = 10 ## max hp
+@export var MAX_HEALTH = 6 ## max hp
 @export var dead = false # indicates that the player is dead
 # Jump
 #@export var JUMP_VELOCITY = -200.0 ## How high you jump

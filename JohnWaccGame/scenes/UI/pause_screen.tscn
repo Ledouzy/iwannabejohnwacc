@@ -172,7 +172,6 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="PlayerPortrait" type="TextureRect" parent="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer3" unique_id=2052607125]
-z_index = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -271,6 +270,7 @@ texture = SubResource("AtlasTexture_p55f2")
 
 [node name="options_screen" parent="." unique_id=1561367031 instance=ExtResource("4_1s2dm")]
 visible = false
+z_index = 1
 layout_mode = 1
 
 [connection signal="focus_entered" from="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" to="UI_elements/VBoxContainer2/MarginContainer/HBoxContainer/VBoxContainer/ResumeButton" method="_on_focus_entered"]

@@ -4,16 +4,16 @@ class_name player
 # Movement Parameters
 # Speed
 @export_group("Movement")
-@export var SPEED = 20 ## base speed value
+@export var SPEED = 1000 ## base speed value
 @export var SPEED_CAP = 240
-@export var WALK_CAP = 90
-@export var RUN_CAP = 135
+@export var WALK_CAP = 110
+@export var RUN_CAP = 145
 @export var RUN_MULT = 1.5 ## Sprint multiplier
 # deadzone
 @export var deadzone = 0.25 ## min value before input is registered
 # Stats
 @export_group("HP")
-@export var MAX_HEALTH = 10 ## max hp
+@export var MAX_HEALTH = 6 ## max hp
 @export var dead = false # indicates that the player is dead
 # Jump
 @export_group("Jumping")
@@ -484,7 +484,7 @@ func _physics_process(delta: float) -> void:
 				
 			# if over the speed cap, slow down until under
 			if abs(velocity.x) > RUN_CAP * abs(direction):
-				velocity.x -= direction * 10 * delta
+				velocity.x -= direction * 10 * delta * 100
 		# if not moving
 		else:
 			# apply friction

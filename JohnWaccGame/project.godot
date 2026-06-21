@@ -42,7 +42,9 @@ SignalBus="*uid://cy1b3fl3pacpy"
 window/size/viewport_width=160
 window/size/viewport_height=144
 window/size/mode=4
+window/size/sharp_corners=true
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 mouse_cursor/custom_image="uid://0l6awu6fxxuk"
 
 [gui]
@@ -182,6 +184,10 @@ interact={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[input_devices]
+
+joypads/ignore_joypad_on_unfocused_application=true
 
 [layer_names]
 
