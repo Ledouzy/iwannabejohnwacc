@@ -1,10 +1,12 @@
 extends HSlider
 
-# the index of the bus we are accessing
-var bus_index: int
 
 # name of the bus we want to access
 @export var bus_name: String
+
+# the index of the bus we are accessing
+var bus_index: int
+
 
 func _ready() -> void:
 	# get the bus index of the bus with the name bus_name

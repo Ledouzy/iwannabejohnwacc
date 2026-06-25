@@ -1,5 +1,6 @@
 extends Node
 
+
 # music streams
 var active_music_stream: AudioStreamPlayer
 var active_sound_stream: AudioStreamPlayer2D
@@ -21,6 +22,7 @@ var active_bgs_stream: AudioStreamPlayer
 @export var confirm_sfx: AudioStreamPlayer
 @export var move_sfx: AudioStreamPlayer
 @export var back_sfx: AudioStreamPlayer
+
 
 ## plays the music with the corresponding audio name starting from the from_position.
 ## If restart is true, then the music will restart even if the music was already playing
@@ -56,6 +58,7 @@ func play_music(audio_name: String, from_position: float = 0.0, restart: bool = 
 	# play the audio
 	active_music_stream.play(from_position)
 
+
 ## stops music
 func stop_music(fadeout: bool = true):
 	if !active_music_stream:
@@ -73,6 +76,7 @@ func stop_music(fadeout: bool = true):
 	# stop the music
 	active_music_stream.stop()
 	active_music_stream = null
+
 
 ## plays looping sound effects (Ex. Rain), works the same as music but without the fadeout
 func play_bgs(audio_name: String, from_position: float = 0.0, restart: bool = false) -> void:
@@ -96,12 +100,14 @@ func play_bgs(audio_name: String, from_position: float = 0.0, restart: bool = fa
 	# play the audio
 	active_bgs_stream.play(from_position)
 
+
 ## stops bgs
 func stop_bgs():
 	if !active_bgs_stream:
 		return
 	active_bgs_stream.stop()
 	active_bgs_stream = null
+
 
 ## plays the sfx with the corresponding audio name starting from the from_position.
 ## the audio will play from the sound_position and get gradually quieter the farther away
@@ -119,6 +125,7 @@ func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Ve
 	# play the sound
 	active_sound_stream.play(from_position)
 
+
 ## plays the sfx with the corresponding audio name starting from the from_position.
 ## the audio will play from the sound_position and get gradually quieter the farther away
 func play_ui_sfx(audio_name: String, from_position: float = 0.0) -> void:
@@ -133,13 +140,16 @@ func play_ui_sfx(audio_name: String, from_position: float = 0.0) -> void:
 	# play the sound
 	active_ui_stream.play(from_position)
 
+
 ## plays the ui confirm sfx
 func play_ui_confirm() -> void:
 	confirm_sfx.play()
 	
+	
 ## plays the ui move sfx
 func play_ui_move() -> void:
 	move_sfx.play()
+	
 	
 ## plays the ui back sfx
 func play_ui_back() -> void:

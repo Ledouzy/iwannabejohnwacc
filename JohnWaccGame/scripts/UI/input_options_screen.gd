@@ -1,5 +1,12 @@
 extends Control
 
+#  are we remapping right now
+var is_remapping = false
+# the action we are remapping
+var action_to_remap = null
+# the button of the action that we're remapping
+var remapping_button = null
+
 # the scene for the input remapping button
 @onready var input_button_scene = preload("res://scenes/UI/input_button.tscn")
 
@@ -7,13 +14,6 @@ extends Control
 @onready var action_list = $UI_elements/VBoxContainer2/VBoxContainer/MarginContainer/ScrollContainer/ActionList
 # the back button
 @onready var back_button: Button = $UI_elements/VBoxContainer2/VBoxContainer/HBoxContainer/BackButton
-
-#  are we remapping right now
-var is_remapping = false
-# the action we are remapping
-var action_to_remap = null
-# the button of the action that we're remapping
-var remapping_button = null
 
 # the dictionary for the inputs and what they correspond to
 var input_actions = {

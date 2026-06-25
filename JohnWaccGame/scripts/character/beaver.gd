@@ -1,19 +1,19 @@
 extends CharacterBody2D
 
+# Movement related
 @export_group("Movement")
 @export var speed = 10
 @export var MAX_FALL_VELOCITY = 300
+# Health related
+@export_group("Health")
+@export var MAX_HEALTH = 2
+@export var dead = false
+# behaviour related
+@export_group("Behaviour")
+@export var detection_range = 80 # base of 5 blocks for now
 
 var direction = -1
 var dir = -1 # sames as direction but only -1 and 1 basically left or right
-
-@export_group("Stats")
-@export var MAX_HEALTH = 2
-
-# taking damage
-@onready var health = MAX_HEALTH
-@onready var damage_timer: Timer = $DamageTimer # invulnerability frames basically
-@export var dead = false
 
 var invulnerable = false
 
@@ -21,20 +21,21 @@ var invulnerable = false
 var startThrow = false
 var deathanim = false
 var waitforanimationend = false
-@onready var throw_timer: Timer = $ThrowTimer
 
 # Movement logic
 var pickedUpBy
 var skipMoveProcess = false
 var walkDisabled = false
 
-
-# behaviour
-@export_group("Behaviour")
-@export var detection_range = 80 # base of 5 blocks for now
-
+# States
 enum states {WAIT, CHARGE}
 var current_state = states.WAIT
+
+# taking damage
+@onready var health = MAX_HEALTH
+@onready var damage_timer: Timer = $DamageTimer # invulnerability frames basically
+
+@onready var throw_timer: Timer = $ThrowTimer
 
 # Checks for Walls, Floor and Player
 @onready var wall_check_right: RayCast2D = $WallCheckRight

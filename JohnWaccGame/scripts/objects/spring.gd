@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var spring_jump_height = Vector2(0.0,-300.0)
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
