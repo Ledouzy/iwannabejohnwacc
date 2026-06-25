@@ -4,9 +4,9 @@ class_name player_topdown
 # Movement Parameters
 # Speed
 @export_group("Movement")
-@export var SPEED = 10 ## base speed value
+@export var SPEED = 500 ## base speed value
 @export var SPEED_CAP = 120
-@export var WALK_CAP = 45
+@export var WALK_CAP = 40
 @export var RUN_CAP = 80
 @export var RUN_MULT = 1.5 ## Sprint multiplier
 # pushing blocks
@@ -21,7 +21,7 @@ class_name player_topdown
 #@export var JUMP_VELOCITY = -200.0 ## How high you jump
 #@export var MAX_FALL_VELOCITY = 300 ## How fast you fall
 @export var MAX_JUMPS = 1 ## number of jumps        
-@onready var jumps = MAX_JUMPS # number of jumps left
+
 @export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
 
 var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
@@ -29,7 +29,7 @@ var coyote_timer = 0
 var can_jump = true
 
 # direction
-var dir = 1 # direction of the player (N-0,E-1,S-2,W-3)
+var dir = 1 # direction of the player (S-0,E-1,N-2,W-3)
 var side_dir = 1 # act as the old dir did
 var lock_direction = false
 
@@ -46,6 +46,8 @@ var pushanim = false # indicates that we are pushing a block right now
 var waitforanimationend = false # stop other animations from playing until finished with current
 var skipMoveProcess = false # stop the calculations for user input movement, letting only gravity affect player
 
+# initialize at runtime
+@onready var jumps = MAX_JUMPS # number of jumps left
 @onready var health = MAX_HEALTH # number of hits before dying
 # Component references
 @onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
@@ -116,27 +118,51 @@ func _on_death_timer_timeout() -> void:
 
 
 ## proccess taking damage
-#TODO: Implement direction knockback
-func take_damage(damage, direction) -> void:
+func take_damage(damage,direction) -> void:
+	# check if we are still in invulnerability frames
 	if !invulnerable:
+		# set invulnerable
 		invulnerable = true
+		
+		# make us not collide with enemies 
+		player_body.collision_mask = 1
+		
+		# start invulnerability timer
 		damage_timer.start()
+		# apply knockback
+		velocity = 60*direction
+		
+		# deal damage
 		health -= damage
 		health = max(health,0)
+		
+		# check if below 0
 		if health <= 0:
+			# death if below 0
 			animation_player.play("death")
 		else:
+			# plays damage animation
 			animated_sprite.play("PlayerTakeDamage")
 			
+			# stop movement and lock until animation end
 			skipMoveProcess = true
 			waitforanimationend = true
 			await animated_sprite.animation_finished
+			# resume normal movement
 			skipMoveProcess = false
 			waitforanimationend = false
+			
+			# make the player blink
 			blink_animation_player.play("blink")
+			
+			# wait until blinking ends
 			await blink_animation_player.animation_finished
+			
+		# set mask back to collide with enemies
+		player_body.collision_mask = 5
 
 
+# when damage timer timeouts, removes invulnerability
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false
 
@@ -154,8 +180,15 @@ func pickUp() -> bool:
 	# check if that object exists and that it can be pickedUp
 	# TODO: change so it checks for class throwable when that class is added
 	
+	# check if we picked up something
 	if object == null:
+		# we didn't, return false
 		return false
+		
+	# if it doesn't have method picked up, check it's parent
+	if !object.has_method("pickedUp"):
+		object = object.get_parent()
+	# if it has the method, call it
 	if object.has_method("pickedUp"):
 		# call the pickedUp method on the object
 		object.call("pickedUp", self)
@@ -178,10 +211,25 @@ func throw() -> void:
 		pickedUp.call("thrown")
 
 
+## TODO: Implement as xy spring, add other code for z spring
 ## Handles jumping on springs
 func spring_jump(jump_height):
 	# updates the velocity
-	velocity = jump_height
+	jumps -= 1
+	velocity += jump_height
+	
+	# cap the velocity so that we don't go too far up
+	velocity.y = max(jump_height.y*1.25, velocity.y)
+	
+	# if we don't have any jumps left
+	if jumps == 0:
+		# don't check if we're on the floor since we're on a spring
+		#skipisonfloor = true
+		# we are doing a spring jump so skip things that don't need to be used
+		#springjump = true
+		await get_tree().create_timer(0.01).timeout
+		# reactive the check for on the floor after .01 seconds to not fuck things up
+		#skipisonfloor = false
 
 
 ## Handles the playing of animations not specific to an action
@@ -191,14 +239,19 @@ func process_animation(direction_x, direction_y) -> void:
 	if direction_x == 0 && direction_y == 0:
 		# if we are holding an object/enemy, play the variant
 		match dir:
+			# Down
 			0:
 				animated_sprite.play("PlayerIdleFront")
+			# Right
 			1:
 				animated_sprite.play("PlayerIdleSide")
+			# Up
 			2:
 				animated_sprite.play("PlayerIdleBack")
+			# Left
 			3:
 				animated_sprite.play("PlayerIdleSide")
+			# Error
 			_:
 				print("Error: Direction isn't between 0 and 3")
 	# else, we are moving, play the walk animation
@@ -208,41 +261,53 @@ func process_animation(direction_x, direction_y) -> void:
 			animated_sprite.play("PlayerPickupWalkSide")
 		else:
 			match dir:
+				# Down
 				0:
 					if pushanim:
 						animated_sprite.play("PlayerPushFront")
 					else:
 						animated_sprite.play("PlayerWalkFront")
+				# Right
 				1:
 					if pushanim:
 						animated_sprite.play("PlayerPushSide")
 					else:
 						animated_sprite.play("PlayerWalkSide")
+				# Up
 				2:
 					if pushanim:
 						animated_sprite.play("PlayerPushBack")
 					else:
 						animated_sprite.play("PlayerWalkBack")
+				# Left
 				3:
 					if pushanim:
 						animated_sprite.play("PlayerPushSide")
 					else:
 						animated_sprite.play("PlayerWalkSide")
+				# Error
 				_:
 					print("Error: Direction isn't between 0 and 3")
 
 
-
 ## process pushing blocks
 func collision_handler() -> bool:
+	# initialise to fall pushing
 	var pushing = false
 	
 	# https://forum.godotengine.org/t/need-an-easy-solution-to-top-down-block-pushing-being-buggy/104033
+	# for every collision with the characterbody
 	for i in get_slide_collision_count():
+		# get the object colliding
 		var c = get_slide_collision(i)
+		
+		# if it is a rigidbody
 		if c.get_collider() is RigidBody2D:
+			# the direction we're pushing is the normal between us and that object
 			var collision_direction = -c.get_normal()
+			# the impulse direction (?) is 0 (i'm guessing it's the force direction)
 			var impulse_direction = Vector2.ZERO
+			
 			# Check whether collision is from the left/right or top/bottom
 			if abs(collision_direction.x) > abs(collision_direction.y):
 				# Collision direction is left/right
@@ -256,9 +321,14 @@ func collision_handler() -> bool:
 					impulse_direction = Vector2(0,-1)
 				else:
 					impulse_direction = Vector2(0, 1)
+			
+			# apply the force to the object
 			c.get_collider().apply_central_impulse(impulse_direction * push_force)
 			
+			# we are pushing the object
 			pushing = true
+			
+	# returns whether we are pushing or not
 	return pushing
 
 
@@ -364,44 +434,56 @@ func _physics_process(delta: float) -> void:
 	#	await animated_sprite.animation_finished
 	#	waitforanimationend = false
 		
-	# Handles attacking, right now only for sword and on side
+	# Handles attacking
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
-		#print("attack") # debug message
+		# print("attack") # debug message
 		
+		# check for if we changed direction while we are attacking
 		var changed_dir = side_dir
+		# lock our direction
 		lock_direction = true
 		
 		# play the attack animation and locks animation for the length of the animation
 		if dir == 0:
 			if side_dir == -1:
+			# print("down")
+			# change the direction so the animation plays properly
 				changed_dir = 1
 				player_body.scale.x = -1
+			# plays the front attack animation
 			animation_player.play("attackFront")
 		elif dir == 2:
+			# print("up")
+			# change the direction so the animation plays properly
 			if side_dir == -1:
 				changed_dir = 1
 				player_body.scale.x = -1
+			# plays the back attack animation
 			animation_player.play("attackBack")
 		else:
+			# print("other")
+			# plays the side attack animation
 			animation_player.play("attackSide")
 		
+		# wait for the end of animations before renabling jump animations or other shit
 		waitforanimationend = true
 		await animation_player.animation_finished
 		waitforanimationend = false
 		jumpanim = false
 		
+		# change back our direction to what it's supposed to be
 		if changed_dir != side_dir:
 			if side_dir == 1:
 				player_body.scale.x = -1
 			elif side_dir == -1:
 				player_body.scale.x = -1
+		# unlock our direction
 		lock_direction = false
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction : Vector2  = Input.get_vector("left","right","up","down", deadzone)
 
 	direction = direction.normalized()
-	#print(direction)
 	
 	# check if running
 	if Input.is_action_just_pressed("run"):
@@ -424,6 +506,7 @@ func _physics_process(delta: float) -> void:
 		# updates our direction.x
 		dir = 3
 		side_dir = -1
+		
 	elif (direction.x > 0):
 		# flip sprite if we changed direction.x
 		if side_dir != 1 && !lock_direction:
@@ -449,43 +532,55 @@ func _physics_process(delta: float) -> void:
 		process_animation(direction.x, direction.y)
 			
 	if !skipMoveProcess:
-		# Apply Movement
+		# if moving in x axis
 		if direction.x:
+			# if if we are moving or if we are below the walk cap and walking or below the run cap and running
 			if (velocity.x * direction.x < 0) or (abs(velocity.x) < WALK_CAP * abs(direction.x)
 			and speedMult == 1.0) or (abs(velocity.x) < RUN_CAP * abs(direction.x) and speedMult != 1.0):
-				velocity.x += direction.x * SPEED * speedMult
-				
+				# add velocity each frame
+				velocity.x += direction.x * SPEED * speedMult * delta
+			
+			# if velocity greater than 0, cap it to the speed cap
 			if direction.x > 0:
 				velocity.x = min(velocity.x, SPEED_CAP * speedMult * abs(direction.x))
-				
+			
+			# if we are below 0, cap it to the speed cap in the other direction
 			else:
 				velocity.x = max(velocity.x, -SPEED_CAP * speedMult * abs(direction.x))
 				
 			# if over the speed cap, slow down until under
 			if abs(velocity.x) > RUN_CAP * abs(direction.x):
-				velocity.x -= direction.x * 10
-				
+				velocity.x -= direction.x * 1000 * delta
+		# if not moving
 		else:
+			# apply friction
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
-		# movement for y axis
+		# if moving in y axis
 		if direction.y:
-			if (velocity.y * direction.y < 0) or (abs(velocity.y) < WALK_CAP * abs(direction.y) and speedMult == 1.0) or (abs(velocity.y) < RUN_CAP * abs(direction.y) and speedMult != 1.0):
-				velocity.y += direction.y * SPEED * speedMult
-				
+			# if if we are moving or if we are below the walk cap and walking or below the run cap and running
+			if (velocity.y * direction.y < 0) or (abs(velocity.y) < WALK_CAP * abs(direction.y)
+			 and speedMult == 1.0) or (abs(velocity.y) < RUN_CAP * abs(direction.y) and speedMult != 1.0):
+				# add velocity each frame
+				velocity.y += direction.y * SPEED * speedMult * delta
+			
+			# if velocity greater than 0, cap it to the speed cap
 			if direction.y > 0:
 				velocity.y = min(velocity.y, SPEED_CAP * speedMult * abs(direction.y))
-				
+			
+			# if we are below 0, cap it to the speed cap in the other direction
 			else:
 				velocity.y = max(velocity.y, -SPEED_CAP * speedMult * abs(direction.y))
 				
 			# if over the speed cap, slow down until under
 			if abs(velocity.y) > RUN_CAP * abs(direction.y):
-				velocity.y -= direction.y * 10
-				
+				velocity.y -= direction.y * 1000 * delta
+		# if not moving
 		else:
+			# apply friction
 			velocity.y = move_toward(velocity.y, 0, SPEED)
-			
+	
+	# apply movement
 	move_and_slide()
 
 # play a sound by calling the audio manager
