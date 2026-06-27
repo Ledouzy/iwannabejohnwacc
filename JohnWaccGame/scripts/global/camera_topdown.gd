@@ -1,5 +1,12 @@
 extends Camera2D
+
+## Camera Topdown - By Ledouzy
+## Camera controller script for Topdown
+## Make the camera follow the player without an offset
+
+
 @onready var player: CharacterBody2D = $"../Player".get_player()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

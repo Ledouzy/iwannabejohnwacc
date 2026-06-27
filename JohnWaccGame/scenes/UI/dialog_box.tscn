@@ -22,11 +22,13 @@ grow_horizontal = 2
 texture = ExtResource("2_3c0qx")
 
 [node name="Label" type="Label" parent="." unique_id=2121677881]
+custom_minimum_size = Vector2(158, 30)
 layout_mode = 0
 offset_left = -78.0
 offset_top = -1.0
 offset_right = 80.0
 offset_bottom = 34.0
+theme_override_constants/line_spacing = 0
 text = "Example Text that auto wraps around."
 label_settings = ExtResource("3_0te4t")
 autowrap_mode = 3

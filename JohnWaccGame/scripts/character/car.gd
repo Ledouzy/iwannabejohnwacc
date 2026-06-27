@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+## Car - By Ledouzy
+## Dictate the movement and functions that a car has.
+## Walks left and right, turning at an obstacle.
+
+
 @export_group("Movement")
 @export var speed = 10
 @export var MAX_FALL_VELOCITY = 300

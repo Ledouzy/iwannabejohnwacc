@@ -1,5 +1,11 @@
 extends CharacterBody2D
 
+## Beaver - By Ledouzy
+## Dictate the movement and functions that a beaver has.
+## Wait until a player is nearby, then charge until it is stopped by a wall or
+## no ground beneath.
+
+
 # Movement related
 @export_group("Movement")
 @export var speed = 10

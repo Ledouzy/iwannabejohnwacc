@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+## Box - By Ledouzy
+## Generic Box that can be pushed
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

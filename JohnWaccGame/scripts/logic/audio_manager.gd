@@ -1,5 +1,11 @@
 extends Node
 
+## Audio Manager - By Ledouzy (That's me BTW)
+## Manages audio for the entire game.
+## Play Music, SFX, BGS or UI sounds
+## Settings for restarting the track if played when already plaing.
+## Or starting at a different point in the track
+
 
 # music streams
 var active_music_stream: AudioStreamPlayer
