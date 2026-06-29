@@ -71,20 +71,56 @@ theme_override_constants/margin_right = 16
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="HSplitContainer" type="HSplitContainer" parent="UI_elements/VBoxContainer2/Container/VBoxContainer" unique_id=438606363]
+[node name="Fullscreen" type="HSplitContainer" parent="UI_elements/VBoxContainer2/Container/VBoxContainer" unique_id=438606363]
 layout_mode = 2
-split_offsets = PackedInt32Array(66)
+split_offsets = PackedInt32Array(66, 0)
 split_offset = 66
 
-[node name="Label" type="Label" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer" unique_id=1675227230]
+[node name="Label" type="Label" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen" unique_id=1675227230]
 layout_mode = 2
 text = "Fullscreen"
 label_settings = ExtResource("3_x3dci")
 
-[node name="CheckBox" type="CheckBox" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer" unique_id=251459603]
+[node name="Spacer" type="Control" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen" unique_id=804158985]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="CheckBox" type="CheckBox" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen" unique_id=251459603]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../../../VBoxContainer/BackButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../AspectRatio/CheckBox")
+theme = ExtResource("4_vq1c8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x3dci")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vq1c8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_t2gth")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tn7r2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ois3x")
+theme_override_styles/focus = SubResource("StyleBoxTexture_t2gth")
+button_pressed = true
+script = ExtResource("5_x3dci")
+
+[node name="AspectRatio" type="HSplitContainer" parent="UI_elements/VBoxContainer2/Container/VBoxContainer" unique_id=301962418]
+layout_mode = 2
+split_offsets = PackedInt32Array(66, 0)
+split_offset = 66
+
+[node name="Label" type="Label" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio" unique_id=1812940981]
+layout_mode = 2
+text = "Widescreen"
+label_settings = ExtResource("3_x3dci")
+
+[node name="Spacer" type="Control" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio" unique_id=717009114]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="CheckBox" type="CheckBox" parent="UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio" unique_id=405295563]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../Fullscreen/CheckBox")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../../VBoxContainer/BackButton")
 theme = ExtResource("4_vq1c8")
@@ -108,15 +144,17 @@ custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../Container/VBoxContainer/HSplitContainer/CheckBox")
+focus_neighbor_top = NodePath("../../Container/VBoxContainer/Fullscreen/CheckBox")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../Container/VBoxContainer/HSplitContainer/CheckBox")
+focus_neighbor_bottom = NodePath("../../Container/VBoxContainer/Fullscreen/CheckBox")
 theme = ExtResource("5_t2gth")
 text = "Back"
 script = ExtResource("7_vq1c8")
 
-[connection signal="toggled" from="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer/CheckBox" to="." method="_on_check_box_toggled"]
-[connection signal="toggled" from="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer/CheckBox" to="UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer/CheckBox" method="_on_toggled"]
+[connection signal="toggled" from="UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen/CheckBox" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen/CheckBox" to="UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen/CheckBox" method="_on_toggled"]
+[connection signal="toggled" from="UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio/CheckBox" to="." method="_on_widescreen_toggled"]
+[connection signal="toggled" from="UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio/CheckBox" to="UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio/CheckBox" method="_on_toggled"]
 [connection signal="focus_entered" from="UI_elements/VBoxContainer2/VBoxContainer/BackButton" to="UI_elements/VBoxContainer2/VBoxContainer/BackButton" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="UI_elements/VBoxContainer2/VBoxContainer/BackButton" to="UI_elements/VBoxContainer2/VBoxContainer/BackButton" method="_on_mouse_entered"]
 [connection signal="pressed" from="UI_elements/VBoxContainer2/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

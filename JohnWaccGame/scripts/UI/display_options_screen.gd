@@ -1,7 +1,8 @@
 extends Control
 
 # buttons in the screen
-@onready var check_box: CheckBox = $UI_elements/VBoxContainer2/Container/VBoxContainer/HSplitContainer/CheckBox
+@onready var fullscreen_check_box: base_button = $UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen/CheckBox
+@onready var aspect_check_box: base_button = $UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio/CheckBox
 @onready var back_button: Button = $UI_elements/VBoxContainer2/VBoxContainer/BackButton
 
 # give focus to this screen
@@ -12,11 +13,18 @@ func focused():
 	back_button.grab_focus()
 
 func _process(delta) -> void:
-	# check settings and game to make sure the check is accurate, there's probably a better way
-	if (DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN):
-		check_box.button_pressed = false
+	# check settings and game to make sure the check box is accurate, there's probably a better way
+	if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		fullscreen_check_box.button_pressed = false
 	else:
-		check_box.button_pressed = true
+		fullscreen_check_box.button_pressed = true
+		
+	# check aspect ratio to see if the check box is accurate
+	if get_window().content_scale_size == Vector2i(256,144):
+		aspect_check_box.button_pressed = true
+	else:
+		aspect_check_box.button_pressed = false
+		
 
 # hide the screen and give focus to the parent
 func _on_back_button_pressed() -> void:
@@ -24,10 +32,22 @@ func _on_back_button_pressed() -> void:
 	self.get_parent().focused()
 
 # toggle on fullscreen or off fullscreen
-func _on_check_box_toggled(toggled_on: bool) -> void:
+func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		#print("fullscreen")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		#print("windowed")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+func _on_widescreen_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		print("16:9")
+		DisplayServer.window_set_size(Vector2i(256,144))
+		get_window().content_scale_size = Vector2i(256,144)
+
+	else:
+		print("4:3")
+		DisplayServer.window_set_size(Vector2i(160,144))
+		get_window().content_scale_size = Vector2i(160,144)
