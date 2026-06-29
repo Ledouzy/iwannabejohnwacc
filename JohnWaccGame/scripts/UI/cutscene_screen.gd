@@ -1,8 +1,12 @@
 extends CanvasLayer
 
-var cutscene_instance
+# Cutscene Screen - By Ledouzy
+# Handles cutscene playback
 
+
+var cutscene_instance
 var test # delete later
+
 
 # plays a cutscene
 func play_cutscene(cutscene_name: String):
@@ -22,12 +26,13 @@ func play_cutscene(cutscene_name: String):
 	
 	# add code to get text for the cutscene
 	
+
 # ends the cutscene by removing the cutscene node
 func end_cutscene():
 	remove_child(cutscene_instance)
 	cutscene_instance = null
-	
-	
+
+
 func _process(delta: float) -> void:
 	# debug code
 	if Input.is_action_just_pressed("debug"):

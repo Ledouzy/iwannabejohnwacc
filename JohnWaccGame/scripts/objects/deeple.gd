@@ -1,6 +1,11 @@
 extends Area2D
 
+# Deeple - By Ledouzy
+# Handle Deeple collection logic
+
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 func _on_body_entered(body: Node2D) -> void:
 	print("body of deeple entered")

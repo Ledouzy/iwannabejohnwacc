@@ -119,6 +119,11 @@ stream = ExtResource("10_y3xji")
 volume_db = 10.0
 bus = &"SFX"
 
+[node name="Heal" type="AudioStreamPlayer2D" parent="Sounds" unique_id=2029183781]
+stream = ExtResource("6_2hsro")
+volume_db = 6.0
+pitch_scale = 1.2
+
 [node name="BGS" type="Node" parent="." unique_id=1326326623]
 
 [node name="Test" type="AudioStreamPlayer" parent="BGS" unique_id=1863189058]

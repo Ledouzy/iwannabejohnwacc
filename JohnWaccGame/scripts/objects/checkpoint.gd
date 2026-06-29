@@ -9,3 +9,5 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	# save to the checkpoint slot
 	save_system.checkpoint_save(self.position.x, self.position.y)
+	if body.has_method("set_health_to_max"):
+		body.call_deferred("set_health_to_max")

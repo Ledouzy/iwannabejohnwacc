@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="7_uidxl"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="9_kocsj"]
 [ext_resource type="PackedScene" uid="uid://buvvr7qcrxbru" path="res://scenes/character/hime_2.tscn" id="10_b5w2o"]
+[ext_resource type="PackedScene" uid="uid://c4xvlbve5ig7b" path="res://scenes/objects/heal_area.tscn" id="11_b5w2o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_22n77"]
 
@@ -17,10 +18,15 @@
 normal = Vector2(1, 0)
 distance = -80.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
+
 [node name="Node2D" type="Node2D" unique_id=898645644]
 
 [node name="Player" parent="." unique_id=1165610629 instance=ExtResource("1_6gi7g")]
 unique_name_in_owner = true
+
+[node name="PlayerBody" parent="Player" index="0" unique_id=1264691691]
+MAX_HEALTH = 10
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=305464099]
 process_callback = 0
@@ -86,3 +92,14 @@ position = Vector2(132, -21)
 
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("9_kocsj")]
 position = Vector2(89, -12)
+
+[node name="HealArea" parent="." unique_id=1384866757 instance=ExtResource("11_b5w2o")]
+position = Vector2(152, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealArea" unique_id=2070968074]
+shape = SubResource("RectangleShape2D_ihebq")
+
+[connection signal="body_entered" from="Player/PlayerBody/SwordBackHurtBox3" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
+
+[editable path="Player"]
+[editable path="Player/PlayerBody"]

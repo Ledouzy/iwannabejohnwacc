@@ -162,6 +162,18 @@ func take_damage(damage,direction) -> void:
 		player_body.collision_mask = 5
 
 
+# increase the health of the player by the amount specified
+func heal_damage(heal_amount) -> void:
+	play_sfx("Heal")
+	health = min(health+heal_amount, MAX_HEALTH)
+	
+
+# set the player's health to max
+func set_health_to_max():
+	play_sfx("Heal")
+	health = MAX_HEALTH
+
+
 # when damage timer timeouts, removes invulnerability
 func _on_damage_timer_timeout() -> void:
 	invulnerable = false
