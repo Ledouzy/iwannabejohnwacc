@@ -7,7 +7,7 @@ extends Camera2D
 
 # player and offset
 @onready var player: CharacterBody2D = $"../Player".get_player()
-@export var CameraOffset = 16
+@export var CameraOffset = 24
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

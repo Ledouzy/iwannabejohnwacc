@@ -46,7 +46,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2eb3b")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 12.0
 }]
@@ -68,7 +68,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kykwg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 2.0
 }]
@@ -169,6 +169,7 @@ process_callback = 0
 limit_bottom = 192
 limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 script = ExtResource("10_0j21q")
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("11_1ufm4")]
