@@ -139,7 +139,7 @@ func take_damage(damage,direction) -> void:
 			animation_player.play("death")
 		else:
 			# plays damage animation
-			animated_sprite.play("PlayerTakeDamage")
+			animated_sprite.play("TakeDamage")
 			
 			# stop movement and lock until animation end
 			skipMoveProcess = true
@@ -258,16 +258,16 @@ func process_animation(direction) -> void:
 		if direction == 0:
 			# if we are holding an object/enemy, play the variant
 			if (pickupanim):
-				animated_sprite.play("PlayerPickupIdleSide")
+				animated_sprite.play("PickupIdleSide")
 			else:
-				animated_sprite.play("PlayerIdleSide")
+				animated_sprite.play("IdleSide")
 		# else, we are moving, play the walk animation
 		else:
 			# if we are holding an object/enemy, play the variant
 			if (pickupanim):
-				animated_sprite.play("PlayerPickupWalkSide")
+				animated_sprite.play("PickupWalkSide")
 			else:
-				animated_sprite.play("PlayerWalkSide")
+				animated_sprite.play("WalkSide")
 	# we are in the air
 	else:
 		if !jumpanim:
@@ -276,10 +276,10 @@ func process_animation(direction) -> void:
 			
 			# if we are holding an object/enemy, play the variant
 			if (pickupanim):
-				animated_sprite.play("PlayerPickupJumpSide")
+				animated_sprite.play("PickupJumpSide")
 			else:
 				# normal jump then
-				animated_sprite.play("PlayerJumpSide")
+				animated_sprite.play("JumpSide")
 				
 
 
@@ -289,7 +289,7 @@ func _physics_process(delta: float) -> void:
 	if (dead):
 		# play the death animation once
 		if (deathanim):
-			animated_sprite.play("PlayerDeath")
+			animated_sprite.play("Death")
 			deathanim = false
 			
 		# lock movement and animation
@@ -350,7 +350,7 @@ func _physics_process(delta: float) -> void:
 		skipMoveProcess = true
 		
 		# Play the animation for picking up
-		animated_sprite.play("PlayerPickupFront")
+		animated_sprite.play("PickupFront")
 		# TODO: Add sfx for pickup
 		
 		# freezes the player in place for the duration of the animation
@@ -366,7 +366,7 @@ func _physics_process(delta: float) -> void:
 			pickupanim = false
 			
 			# makes the player shrug to waste his time
-			animated_sprite.play("PlayerShrug")
+			animated_sprite.play("Shrug")
 			
 			# wait for shrug animation end
 			await animated_sprite.animation_finished
@@ -382,7 +382,7 @@ func _physics_process(delta: float) -> void:
 		waitforanimationend = true
 		
 		# Play the throw animation
-		animated_sprite.play("PlayerThrowSide")
+		animated_sprite.play("ThrowSide")
 		await get_tree().create_timer(.1).timeout
 		
 		# Throw the held object/enemy

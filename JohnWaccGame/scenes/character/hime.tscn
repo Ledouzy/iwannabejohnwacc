@@ -90,8 +90,8 @@ animations = [{
 "duration": 4.0,
 "texture": SubResource("AtlasTexture_6td0o")
 }],
-"loop": true,
-"name": &"HimeDown",
+"loop": 1,
+"name": &"Down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -113,16 +113,16 @@ animations = [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_kyp1x")
 }],
-"loop": true,
-"name": &"HimeGrabbed",
+"loop": 1,
+"name": &"Grabbed",
 "speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kjsfy")
 }],
-"loop": true,
-"name": &"HimeIdleBack",
+"loop": 1,
+"name": &"IdleBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -150,16 +150,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0b8xf")
 }],
-"loop": true,
-"name": &"HimeIdleFront",
+"loop": 1,
+"name": &"IdleFront",
 "speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gce6y")
 }],
-"loop": true,
-"name": &"HimeIdleSide",
+"loop": 1,
+"name": &"IdleSide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -169,8 +169,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6pply")
 }],
-"loop": true,
-"name": &"HimeWalkBack",
+"loop": 1,
+"name": &"WalkBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -180,8 +180,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v4p8a")
 }],
-"loop": true,
-"name": &"HimeWalkFront",
+"loop": 1,
+"name": &"WalkFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -191,8 +191,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a4fj4")
 }],
-"loop": true,
-"name": &"HimeWalkSide",
+"loop": 1,
+"name": &"WalkSide",
 "speed": 5.0
 }]
 
@@ -205,8 +205,8 @@ script = ExtResource("1_kjsfy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=594908979]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4ben4")
-animation = &"HimeIdleFront"
-autoplay = "HimeIdleFront"
+animation = &"WalkSide"
+autoplay = "IdleFront"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462337660]
 position = Vector2(0, -8.5)

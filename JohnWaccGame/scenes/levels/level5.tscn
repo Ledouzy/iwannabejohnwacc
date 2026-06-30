@@ -164,12 +164,13 @@ unique_name_in_owner = true
 [node name="PlayerBody" parent="Player" index="0" unique_id=1264691691]
 MAX_JUMPS = 2
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=827557238]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=827557238 node_paths=PackedStringArray("player")]
 process_callback = 0
 limit_bottom = 192
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("10_0j21q")
+player = NodePath("../Player/PlayerBody")
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("11_1ufm4")]
 unique_name_in_owner = true

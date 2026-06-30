@@ -12,8 +12,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ep7d6")
 }],
-"loop": true,
-"name": &"default",
+"loop": 1,
+"name": &"IdleFront",
 "speed": 5.0
 }]
 
@@ -25,6 +25,7 @@ size = Vector2(12, 11)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2146832337]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_5l8ob")
+animation = &"IdleFront"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=291647205]
 position = Vector2(0, -5.5)

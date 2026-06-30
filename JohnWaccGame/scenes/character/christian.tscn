@@ -44,24 +44,24 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ovyx5")
 }],
-"loop": true,
-"name": &"ChristianIdleBack",
+"loop": 1,
+"name": &"IdleBack",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a4qeq")
 }],
-"loop": true,
-"name": &"ChristianIdleFront",
+"loop": 1,
+"name": &"IdleFront",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s1x13")
 }],
-"loop": true,
-"name": &"ChristianIdleSide",
+"loop": 1,
+"name": &"IdleSide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -71,8 +71,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_djbsa")
 }],
-"loop": true,
-"name": &"ChristianWalkBack",
+"loop": 1,
+"name": &"WalkBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -82,8 +82,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7724f")
 }],
-"loop": true,
-"name": &"ChristianWalkFront",
+"loop": 1,
+"name": &"WalkFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -93,8 +93,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3rin5")
 }],
-"loop": true,
-"name": &"ChristianWalkSide",
+"loop": 1,
+"name": &"WalkSide",
 "speed": 5.0
 }]
 
@@ -106,8 +106,7 @@ size = Vector2(10, 15)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=837515853]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_s1x13")
-animation = &"ChristianWalkSide"
-frame_progress = 0.5880929
+animation = &"WalkSide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=573179741]
 visible = false

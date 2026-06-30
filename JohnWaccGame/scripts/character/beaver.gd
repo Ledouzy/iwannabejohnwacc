@@ -148,7 +148,7 @@ func take_damage(damage, direction) -> void:
 			animation_player.play("death")
 		else:
 			# plays damage animation
-			animated_sprite.play("BeaverTakeDamage")
+			animated_sprite.play("TakeDamage")
 			# stop movement and lock until animation end
 			skipMoveProcess = true
 			waitforanimationend = true
@@ -186,7 +186,7 @@ func _physics_process(delta: float) -> void:
 		# play the death animation once
 		if (deathanim):
 			# play the animation
-			animated_sprite.play("BeaverDeath")
+			animated_sprite.play("Death")
 			# mark that the animation has been played once
 			deathanim = false
 			# skip move and wait for the end of the animation
@@ -248,7 +248,7 @@ func _physics_process(delta: float) -> void:
 			# change state to charge
 			current_state = states.CHARGE
 		# play the front idle animation
-		animated_sprite.play("BeaverIdleFront")
+		animated_sprite.play("IdleFront")
 	
 	# CHARGE LOGIC
 	if !waitforanimationend and current_state == states.CHARGE:
@@ -277,18 +277,18 @@ func _physics_process(delta: float) -> void:
 				
 				# if surrounded by walls, switch back to waiting state
 				if wall_check_left.is_colliding() && wall_check_right.is_colliding():
-					#animated_sprite.play("BeaverIdleFront")
+					#animated_sprite.play("IdleFront")
 					current_state = states.WAIT
 					
 				else:
 					# play the walk animation
-					animated_sprite.play("BeaverWalkSide")
+					animated_sprite.play("WalkSide")
 					# move the enemy if movement is not disabled
 					if !walkDisabled:
 						position.x += direction * delta * speed
 		else:
 			# if grabbed, play the grabbed animation
-			animated_sprite.play("BeaverGrabbed")
+			animated_sprite.play("Grabbed")
 	# if a throw hasn't been started, apply friction
 	if !startThrow:
 		velocity.x = move_toward(velocity.x, 0, 5)

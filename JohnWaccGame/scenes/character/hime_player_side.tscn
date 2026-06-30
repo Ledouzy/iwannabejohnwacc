@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c6w4orp3cavyv"]
+
+[ext_resource type="Script" uid="uid://dotnn6exktd2d" path="res://scripts/character/player.gd" id="1_atwoi"]
+[ext_resource type="PackedScene" uid="uid://ctg63e6apacwd" path="res://scenes/character/hime_player.tscn" id="1_pwipo"]
+[ext_resource type="Script" uid="uid://nvd00fbdfpq5" path="res://scripts/character/player_side.gd" id="3_d1qd2"]
+
+[node name="HimePlayer" type="Node2D" unique_id=491204032]
+z_index = 5
+script = ExtResource("1_atwoi")
+
+[node name="PlayerBody" parent="." unique_id=1694802743 instance=ExtResource("1_pwipo")]
+script = ExtResource("3_d1qd2")
+
+[editable path="PlayerBody"]

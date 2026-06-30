@@ -135,7 +135,7 @@ func take_damage(damage, direction) -> void:
 			animation_player.play("death")
 		else:
 			# plays damage animation
-			animated_sprite.play("CarTakeDamage")
+			animated_sprite.play("TakeDamage")
 			# stop movement and lock until animation end
 			skipMoveProcess = true
 			waitforanimationend = true
@@ -172,7 +172,7 @@ func _physics_process(delta: float) -> void:
 		# play the death animation once
 		if (deathanim):
 			# play the animation
-			animated_sprite.play("CarDeath")
+			animated_sprite.play("Death")
 			# mark that the animation has been played once
 			deathanim = false
 			# skip move and wait for the end of the animation
@@ -232,17 +232,17 @@ func _physics_process(delta: float) -> void:
 			# if between two walls
 			if ray_cast_left.is_colliding() && ray_cast_right.is_colliding():
 				# just wait
-				animated_sprite.play("CarIdleFront")
+				animated_sprite.play("IdleFront")
 			else:
 				# play walk animation
-				animated_sprite.play("CarWalkSide")
+				animated_sprite.play("WalkSide")
 				
 				# move the enemy if movement is not disabled
 				if !walkDisabled:
 					position.x += direction * delta * speed
 		else:
 			# if grabbed, play the animation
-			animated_sprite.play("CarGrabbed")
+			animated_sprite.play("Grabbed")
 	# if not thrown, apply friction to the car
 	if !startThrow:
 		velocity.x = move_toward(velocity.x, 0, 5)

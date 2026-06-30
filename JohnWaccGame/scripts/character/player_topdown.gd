@@ -253,16 +253,16 @@ func process_animation(direction_x, direction_y) -> void:
 		match dir:
 			# Down
 			0:
-				animated_sprite.play("PlayerIdleFront")
+				animated_sprite.play("IdleFront")
 			# Right
 			1:
-				animated_sprite.play("PlayerIdleSide")
+				animated_sprite.play("IdleSide")
 			# Up
 			2:
-				animated_sprite.play("PlayerIdleBack")
+				animated_sprite.play("IdleBack")
 			# Left
 			3:
-				animated_sprite.play("PlayerIdleSide")
+				animated_sprite.play("IdleSide")
 			# Error
 			_:
 				print("Error: Direction isn't between 0 and 3")
@@ -270,33 +270,33 @@ func process_animation(direction_x, direction_y) -> void:
 	else:
 		# if we are holding an object/enemy, play the variant
 		if (pickupanim):
-			animated_sprite.play("PlayerPickupWalkSide")
+			animated_sprite.play("PickupWalkSide")
 		else:
 			match dir:
 				# Down
 				0:
 					if pushanim:
-						animated_sprite.play("PlayerPushFront")
+						animated_sprite.play("PushFront")
 					else:
-						animated_sprite.play("PlayerWalkFront")
+						animated_sprite.play("WalkFront")
 				# Right
 				1:
 					if pushanim:
-						animated_sprite.play("PlayerPushSide")
+						animated_sprite.play("PushSide")
 					else:
-						animated_sprite.play("PlayerWalkSide")
+						animated_sprite.play("WalkSide")
 				# Up
 				2:
 					if pushanim:
-						animated_sprite.play("PlayerPushBack")
+						animated_sprite.play("PushBack")
 					else:
-						animated_sprite.play("PlayerWalkBack")
+						animated_sprite.play("WalkBack")
 				# Left
 				3:
 					if pushanim:
-						animated_sprite.play("PlayerPushSide")
+						animated_sprite.play("PushSide")
 					else:
-						animated_sprite.play("PlayerWalkSide")
+						animated_sprite.play("WalkSide")
 				# Error
 				_:
 					print("Error: Direction isn't between 0 and 3")
@@ -350,7 +350,7 @@ func _physics_process(delta: float) -> void:
 	if (dead):
 		# play the death animation once
 		if (deathanim):
-			animated_sprite.play("PlayerDeath")
+			animated_sprite.play("Death")
 			deathanim = false
 			
 		# lock movement and animation

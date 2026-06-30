@@ -6,7 +6,7 @@ extends Camera2D
 
 
 # player and offset
-@onready var player: CharacterBody2D = $"../Player".get_player()
+@export var player: CharacterBody2D
 @export var CameraOffset = 24
 
 

@@ -24,8 +24,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u2007")
 }],
-"loop": true,
-"name": &"AmangooseIdle",
+"loop": 1,
+"name": &"IdleFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -41,8 +41,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v11bw")
 }],
-"loop": true,
-"name": &"AmangooseWalk",
+"loop": 1,
+"name": &"WalkFront",
 "speed": 5.0
 }]
 
@@ -55,8 +55,8 @@ z_index = -1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=192920219]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_nruos")
-animation = &"AmangooseIdle"
-autoplay = "AmangooseIdle"
+animation = &"WalkFront"
+autoplay = "IdleFront"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=910790235]
 position = Vector2(0, -7.5)

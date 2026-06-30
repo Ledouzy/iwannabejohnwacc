@@ -63,13 +63,13 @@ func thrown() -> void:
 	await get_tree().create_timer(0.5).timeout
 	
 	# play recovery animation for hime
-	animated_sprite.play("HimeDown")
+	animated_sprite.play("Down")
 	velocity.x = move_toward(velocity.x, 0, 100)
 	throw_timer.start()
 	await get_tree().create_timer(2).timeout
 
 func _on_throw_timer_timeout() -> void:
-	animated_sprite.play("HimeIdleFront")
+	animated_sprite.play("IdleFront")
 	waitforanimationend = false
 
 ## Handles jumping on springs
@@ -125,13 +125,13 @@ func _physics_process(delta: float) -> void:
 		# if not picked up
 		if pickedUpBy == null:
 			# if idle, play the animation
-			animated_sprite.play("HimeIdleFront")
+			animated_sprite.play("IdleFront")
 			
 		else:
 			if !grabanim:
 				grabanim = true
 				# if grabbed, play the animation
-				animated_sprite.play("HimeGrabbed")
+				animated_sprite.play("Grabbed")
 	
 	# if not thrown, apply friction to the princess
 	if !startThrow:

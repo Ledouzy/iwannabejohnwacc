@@ -31,13 +31,14 @@ level_id = 4
 [node name="Player" parent="." unique_id=1165610629 instance=ExtResource("1_y3vdi")]
 unique_name_in_owner = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1310489893]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1310489893 node_paths=PackedStringArray("player")]
 process_callback = 0
 limit_left = -80
 limit_bottom = 1596
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("2_irrt8")
+player = NodePath("../Player/PlayerBody")
 
 [node name="Level" type="Node2D" parent="." unique_id=824431197]
 

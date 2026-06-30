@@ -2,6 +2,26 @@
 
 [ext_resource type="Texture2D" uid="uid://dj0l5slcvsb17" path="res://assets/sprites/Characters/octahedron.png" id="1_oshe1"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnybi"]
+atlas = ExtResource("1_oshe1")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28db0"]
+atlas = ExtResource("1_oshe1")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txhbm"]
+atlas = ExtResource("1_oshe1")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqe4m"]
+atlas = ExtResource("1_oshe1")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_104jl"]
+atlas = ExtResource("1_oshe1")
+region = Rect2(64, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ky3fn"]
 atlas = ExtResource("1_oshe1")
 region = Rect2(0, 0, 16, 16)
@@ -34,28 +54,34 @@ region = Rect2(96, 0, 16, 16)
 atlas = ExtResource("1_oshe1")
 region = Rect2(112, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hnybi"]
-atlas = ExtResource("1_oshe1")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_28db0"]
-atlas = ExtResource("1_oshe1")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_txhbm"]
-atlas = ExtResource("1_oshe1")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xqe4m"]
-atlas = ExtResource("1_oshe1")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_104jl"]
-atlas = ExtResource("1_oshe1")
-region = Rect2(64, 16, 16, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_lblac"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnybi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28db0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txhbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqe4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnybi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_104jl")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"Death",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ky3fn")
@@ -81,34 +107,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2o0ih")
 }],
-"loop": true,
-"name": &"Octahedron_Idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hnybi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_28db0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_txhbm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xqe4m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hnybi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_104jl")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"Octahedron_death",
+"loop": 1,
+"name": &"Idle",
 "speed": 10.0
 }]
 
@@ -123,7 +123,7 @@ radius = 7.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1600816500]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_lblac")
-animation = &"Octahedron_Idle"
+animation = &"Death"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1970240833]
 position = Vector2(0.625, -15)

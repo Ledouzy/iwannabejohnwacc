@@ -5,7 +5,7 @@ extends Camera2D
 ## Make the camera follow the player without an offset
 
 
-@onready var player: CharacterBody2D = $"../Player".get_player()
+@export var player: CharacterBody2D
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

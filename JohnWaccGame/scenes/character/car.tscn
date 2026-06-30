@@ -92,8 +92,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7vqyg")
 }],
-"loop": false,
-"name": &"CarDeath",
+"loop": 0,
+"name": &"Death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -103,16 +103,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6mia2")
 }],
-"loop": true,
-"name": &"CarGrabbed",
+"loop": 1,
+"name": &"Grabbed",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jtldb")
 }],
-"loop": true,
-"name": &"CarIdleBack",
+"loop": 1,
+"name": &"IdleBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -122,24 +122,24 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_50v30")
 }],
-"loop": true,
-"name": &"CarIdleFront",
+"loop": 1,
+"name": &"IdleFront",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4ra3w")
 }],
-"loop": true,
-"name": &"CarIdleSide",
+"loop": 1,
+"name": &"IdleSide",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ctevm")
 }],
-"loop": false,
-"name": &"CarTakeDamage",
+"loop": 0,
+"name": &"TakeDamage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -155,8 +155,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gm33m")
 }],
-"loop": true,
-"name": &"CarWalkBack",
+"loop": 1,
+"name": &"WalkBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -172,8 +172,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cp117")
 }],
-"loop": true,
-"name": &"CarWalkFront",
+"loop": 1,
+"name": &"WalkFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -183,8 +183,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c4w8v")
 }],
-"loop": true,
-"name": &"CarWalkSide",
+"loop": 1,
+"name": &"WalkSide",
 "speed": 5.0
 }]
 
@@ -405,9 +405,8 @@ script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"CarWalkFront"
-autoplay = "CarIdleSide"
-frame_progress = 0.8074494
+animation = &"WalkSide"
+autoplay = "IdleSide"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1917337681]
 collision_layer = 5

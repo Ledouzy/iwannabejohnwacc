@@ -25,7 +25,7 @@ level_id = 4
 
 [node name="Player" parent="." unique_id=806243544 instance=ExtResource("2_72x3h")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1814646841]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1814646841 node_paths=PackedStringArray("player")]
 process_callback = 0
 limit_left = -264
 limit_top = -288
@@ -33,6 +33,7 @@ limit_right = 504
 limit_bottom = 96
 limit_smoothed = true
 script = ExtResource("3_wb0vq")
+player = NodePath("../Player/PlayerBody")
 
 [node name="Level" type="Node2D" parent="." unique_id=1009897138]
 z_index = -10
@@ -87,5 +88,7 @@ next_stage_number = 4
 position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_wb0vq")
 
+[editable path="Player"]
+[editable path="Player/PlayerBody"]
 [editable path="DialogAreaTest"]
 [editable path="DialogAreaTest2"]

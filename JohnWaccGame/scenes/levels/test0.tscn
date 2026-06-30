@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://buvoxkpjj2c3b"]
 
-[ext_resource type="Script" uid="uid://bb6f7ojwbjx3n" path="res://scripts/level/level0.gd" id="1_x7137"]
 [ext_resource type="Texture2D" uid="uid://xdhbhghxd6sf" path="res://assets/sprites/Background/bg4_layer0.png" id="2_x7tt0"]
 [ext_resource type="Texture2D" uid="uid://cxfudmh3d7yo6" path="res://assets/sprites/Background/bg4_layer1.png" id="3_x4yw1"]
 [ext_resource type="Texture2D" uid="uid://4251l5cs65a7" path="res://assets/sprites/Background/bg4_layer2.png" id="4_u08cr"]
@@ -152,7 +151,6 @@ font = ExtResource("17_kvqi1")
 size = Vector2(1093, 63)
 
 [node name="Game" type="Node2D" unique_id=1170486435]
-script = ExtResource("1_x7137")
 
 [node name="Background" type="Node2D" parent="." unique_id=190998599]
 position = Vector2(-230, -259)
@@ -226,12 +224,13 @@ shape = SubResource("RectangleShape2D_cam4b")
 z_index = 4
 position = Vector2(55, -127)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=483693143]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=483693143 node_paths=PackedStringArray("player")]
 process_callback = 0
 limit_bottom = 160
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("10_ob3r6")
+player = NodePath("../Player/PlayerBody")
 
 [node name="Level" type="Node2D" parent="." unique_id=1139344455]
 
@@ -539,4 +538,6 @@ unique_name_in_owner = true
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("24_qg7kj")]
 scene_text_file = "res://assets/dialogue/level0.json"
 
+[editable path="Player"]
+[editable path="Player/PlayerBody"]
 [editable path="Hime/DialogAreaTest"]

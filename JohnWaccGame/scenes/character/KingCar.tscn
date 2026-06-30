@@ -39,8 +39,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fnp5g")
 }],
-"loop": true,
-"name": &"KingCarIdleFront",
+"loop": 1,
+"name": &"IdleFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -56,8 +56,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e60a2")
 }],
-"loop": true,
-"name": &"KingCarWalkFront",
+"loop": 1,
+"name": &"WalkFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -67,8 +67,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_okwsv")
 }],
-"loop": true,
-"name": &"KingCarWalkSide",
+"loop": 1,
+"name": &"WalkSide",
 "speed": 5.0
 }]
 
@@ -77,6 +77,5 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058641899]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_okwsv")
-animation = &"KingCarIdleFront"
-autoplay = "KingCarIdleFront"
-frame_progress = 0.34713763
+animation = &"WalkSide"
+autoplay = "IdleFront"

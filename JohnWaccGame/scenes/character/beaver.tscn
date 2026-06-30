@@ -82,8 +82,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yp1mp")
 }],
-"loop": true,
-"name": &"BeaverDeath",
+"loop": 1,
+"name": &"Death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -93,40 +93,40 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x5011")
 }],
-"loop": true,
-"name": &"BeaverGrabbed",
+"loop": 1,
+"name": &"Grabbed",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b1872")
 }],
-"loop": true,
-"name": &"BeaverIdleBack",
+"loop": 1,
+"name": &"IdleBack",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cke00")
 }],
-"loop": true,
-"name": &"BeaverIdleFront",
+"loop": 1,
+"name": &"IdleFront",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_owjge")
 }],
-"loop": true,
-"name": &"BeaverIdleSide",
+"loop": 1,
+"name": &"IdleSide",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mrwi6")
 }],
-"loop": true,
-"name": &"BeaverTakeDamage",
+"loop": 1,
+"name": &"TakeDamage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -142,8 +142,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dorug")
 }],
-"loop": true,
-"name": &"BeaverWalkBack",
+"loop": 1,
+"name": &"WalkBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -159,8 +159,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ojngg")
 }],
-"loop": true,
-"name": &"BeaverWalkFront",
+"loop": 1,
+"name": &"WalkFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -170,8 +170,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s172u")
 }],
-"loop": true,
-"name": &"BeaverWalkSide",
+"loop": 1,
+"name": &"WalkSide",
 "speed": 5.0
 }]
 
@@ -394,8 +394,7 @@ MAX_HEALTH = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1783104354]
 sprite_frames = SubResource("SpriteFrames_ebhbi")
-animation = &"BeaverIdleSide"
-frame_progress = 0.42058375
+animation = &"WalkSide"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=749576392]
 collision_layer = 5

@@ -164,8 +164,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hqjr2")
 }],
-"loop": false,
-"name": &"LanceAttackBack",
+"loop": 0,
+"name": &"AttackBack",
 "speed": 8.0
 }, {
 "frames": [{
@@ -175,8 +175,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nx6r6")
 }],
-"loop": false,
-"name": &"LanceAttackFront",
+"loop": 0,
+"name": &"AttackFront",
 "speed": 8.0
 }, {
 "frames": [{
@@ -186,8 +186,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gef1u")
 }],
-"loop": false,
-"name": &"LanceAttackSide",
+"loop": 0,
+"name": &"AttackSide",
 "speed": 8.0
 }, {
 "frames": [{
@@ -200,32 +200,32 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1sqwv")
 }],
-"loop": false,
-"name": &"LanceDeath",
+"loop": 0,
+"name": &"Death",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dwhhy")
 }],
-"loop": true,
-"name": &"LanceIdleBack",
+"loop": 1,
+"name": &"IdleBack",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qdtm7")
 }],
-"loop": true,
-"name": &"LanceIdleFront",
+"loop": 1,
+"name": &"IdleFront",
 "speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_87htg")
 }],
-"loop": true,
-"name": &"LanceIdleSide",
+"loop": 1,
+"name": &"IdleSide",
 "speed": 2.0
 }, {
 "frames": [{
@@ -238,8 +238,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1v3am")
 }],
-"loop": false,
-"name": &"LanceJumpSide",
+"loop": 0,
+"name": &"JumpSide",
 "speed": 15.0
 }, {
 "frames": [{
@@ -252,24 +252,24 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w5exm")
 }],
-"loop": false,
-"name": &"LancePickup",
+"loop": 0,
+"name": &"Pickup",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_51vsg")
 }],
-"loop": true,
-"name": &"LancePickupIdleSide",
+"loop": 1,
+"name": &"PickupIdleSide",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v6os1")
 }],
-"loop": true,
-"name": &"LancePickupJumpSide",
+"loop": 1,
+"name": &"PickupJumpSide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -279,8 +279,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_depys")
 }],
-"loop": true,
-"name": &"LancePickupWalkSide",
+"loop": 1,
+"name": &"PickupWalkSide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -296,8 +296,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_15ua7")
 }],
-"loop": false,
-"name": &"LanceShrug",
+"loop": 0,
+"name": &"Shrug",
 "speed": 5.0
 }, {
 "frames": [{
@@ -307,8 +307,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0xid3")
 }],
-"loop": false,
-"name": &"LanceThrow",
+"loop": 0,
+"name": &"Throw",
 "speed": 5.0
 }, {
 "frames": [{
@@ -318,8 +318,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e60lt")
 }],
-"loop": true,
-"name": &"LanceWalkBack",
+"loop": 1,
+"name": &"WalkBack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -329,8 +329,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y31f1")
 }],
-"loop": true,
-"name": &"LanceWalkFront",
+"loop": 1,
+"name": &"WalkFront",
 "speed": 5.0
 }, {
 "frames": [{
@@ -340,8 +340,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j1yin")
 }],
-"loop": true,
-"name": &"LanceWalkSide",
+"loop": 1,
+"name": &"WalkSide",
 "speed": 5.0
 }, {
 "frames": [{
@@ -360,7 +360,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"death",
 "speed": 8.0
 }]
@@ -376,8 +376,8 @@ collision_layer = 2
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_d3wef")
-animation = &"LanceWalkSide"
-autoplay = "LanceIdleSide"
+animation = &"WalkSide"
+autoplay = "IdleSide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049596249]
 position = Vector2(0, -5)
