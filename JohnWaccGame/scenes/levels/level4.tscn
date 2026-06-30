@@ -37,7 +37,6 @@ limit_left = -80
 limit_bottom = 1596
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 8.0
 script = ExtResource("2_irrt8")
 
 [node name="Level" type="Node2D" parent="." unique_id=824431197]

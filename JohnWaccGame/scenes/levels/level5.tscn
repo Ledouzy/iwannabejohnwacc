@@ -169,7 +169,6 @@ process_callback = 0
 limit_bottom = 192
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 8.0
 script = ExtResource("10_0j21q")
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("11_1ufm4")]
