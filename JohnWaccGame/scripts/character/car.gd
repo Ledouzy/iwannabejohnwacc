@@ -136,6 +136,10 @@ func take_damage(damage, direction) -> void:
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")
+			
+			# play sfx
+			play_sfx("Car")
+			
 			# stop movement and lock until animation end
 			skipMoveProcess = true
 			waitforanimationend = true

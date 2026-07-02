@@ -135,10 +135,13 @@ func take_damage(damage, direction) -> void:
 	if !invulnerable:
 		# set invulnerable
 		invulnerable = true
+		
 		# start invulnerability timer
 		damage_timer.start()
+		
 		# apply knockback
 		velocity = 100*direction
+		
 		# deal damage
 		health -= damage
 		
@@ -149,20 +152,31 @@ func take_damage(damage, direction) -> void:
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")
+			
+			# play sfx
+			play_sfx("Beaver")
+			
 			# stop movement and lock until animation end
 			skipMoveProcess = true
 			waitforanimationend = true
+			
 			# disable hurtbox of the enemy
 			hurtbox_collision.disabled = true
+			
 			# make the enemy blink
 			blink_animation_player.stop()
 			blink_animation_player.play("blink")
+			
 			# wait until blinking ends
+			
 			await get_tree().create_timer(0.5).timeout
+			
 			# resume normal movement
 			skipMoveProcess = false
 			waitforanimationend = false
+			
 			await get_tree().create_timer(0.5).timeout
+			
 			# reactivate hurtbox
 			hurtbox_collision.disabled = false
 

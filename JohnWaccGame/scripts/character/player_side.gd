@@ -137,9 +137,11 @@ func take_damage(damage,direction) -> void:
 		if health <= 0:
 			# death if below 0
 			animation_player.play("death")
+			
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")
+			play_sfx("Damage")
 			
 			# stop movement and lock until animation end
 			skipMoveProcess = true
@@ -162,12 +164,16 @@ func take_damage(damage,direction) -> void:
 # increase the health of the player by the amount specified
 func heal_damage(heal_amount) -> void:
 	play_sfx("Heal")
+	
 	health = min(health+heal_amount, MAX_HEALTH)
 	
 
 # set the player's health to max
 func set_health_to_max():
-	play_sfx("Heal")
+	# only play sfx when not full health
+	if health != MAX_HEALTH:
+		play_sfx("Heal")
+		
 	health = MAX_HEALTH
 
 
@@ -202,6 +208,9 @@ func pickUp() -> bool:
 		# call the pickedUp method on the object
 		object.call("pickedUp", self)
 		
+		# play sfx for pickup
+		play_sfx("Pickup")
+		
 		# set the pickedUp field to the object we picked up
 		pickedUp = object
 		return true
@@ -216,6 +225,7 @@ func throw() -> void:
 		# if we don't have something picked up, just return
 		return
 	if pickedUp.has_method("thrown"):
+		play_sfx("Throw")
 		# call the thrown method on the object
 		pickedUp.call("thrown")
 
