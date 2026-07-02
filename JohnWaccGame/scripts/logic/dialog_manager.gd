@@ -47,8 +47,17 @@ func next_line():
 	# if there is text left,
 	if selected_text.size() > 0:
 		# get the next line and display it
-		var text = selected_text.pop_front()
-		display_text(text)
+		var next_line = selected_text.pop_front()
+		var text = next_line.text
+		var portrait = null
+		if next_line.portrait:
+			portrait = next_line.portrait
+			
+		
+		if portrait == null:
+			display_text(text)
+		else:
+			display_text(text, portrait)
 	else:
 		# end the dialogue
 		finish()

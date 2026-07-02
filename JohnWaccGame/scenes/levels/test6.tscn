@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://cedr4drvxkhja"]
 
-[ext_resource type="PackedScene" uid="uid://c6w4orp3cavyv" path="res://scenes/character/hime_player_side.tscn" id="1_2p150"]
 [ext_resource type="PackedScene" uid="uid://cfhjn46f5v8xr" path="res://scenes/character/player_side.tscn" id="1_6gi7g"]
 [ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="2_eswb4"]
 [ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="3_mjbfn"]
@@ -11,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="7_uidxl"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="9_kocsj"]
 [ext_resource type="PackedScene" uid="uid://buvvr7qcrxbru" path="res://scenes/character/hime_2.tscn" id="10_b5w2o"]
+[ext_resource type="PackedScene" uid="uid://dytiwk522x40r" path="res://scenes/logic/dialog_area.tscn" id="11_2p150"]
 [ext_resource type="PackedScene" uid="uid://c4xvlbve5ig7b" path="res://scenes/objects/heal_area.tscn" id="11_b5w2o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_22n77"]
@@ -19,11 +19,11 @@
 normal = Vector2(1, 0)
 distance = -80.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uidxl"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
 
 [node name="Node2D" type="Node2D" unique_id=898645644]
-
-[node name="Player2" parent="." unique_id=491204032 instance=ExtResource("1_2p150")]
 
 [node name="Player" parent="." unique_id=1165610629 instance=ExtResource("1_6gi7g")]
 unique_name_in_owner = true
@@ -97,13 +97,21 @@ position = Vector2(132, -21)
 [node name="Hime" parent="." unique_id=1227297899 instance=ExtResource("9_kocsj")]
 position = Vector2(89, -12)
 
+[node name="DialogAreaTest" parent="Hime" unique_id=1991960453 instance=ExtResource("11_2p150")]
+dialog_key = "princess1"
+
+[node name="CollisionShape2D" parent="Hime/DialogAreaTest" index="0" unique_id=1841346173]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_uidxl")
+
 [node name="HealArea" parent="." unique_id=1384866757 instance=ExtResource("11_b5w2o")]
 position = Vector2(152, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealArea" unique_id=2070968074]
 shape = SubResource("RectangleShape2D_ihebq")
 
-[editable path="Player2"]
-[editable path="Player2/HimePlayer"]
+[connection signal="body_entered" from="Player/PlayerBody/SwordBackHurtBox3" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
+
 [editable path="Player"]
 [editable path="Player/PlayerBody"]
+[editable path="Hime/DialogAreaTest"]

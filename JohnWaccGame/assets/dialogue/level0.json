@@ -1,15 +1,22 @@
 {
     "princess1": [
-        "Hello, I am the Princess.",
-        "Please do not throw me off this cliff."
+        {"portrait" : "princess_neutral", "text" : "Hello, I am the Princess."},
+        {"portrait" : "princess_sad", "text" : "Please do not throw me off this cliff."}
+    ],
+
+    "lance1": [
+        {"portrait" : "lance_neutral", "text" : "Damn, you look like a total loser."},
+        {"portrait" : "jack_neutral", "text" : "How bout you stop eating grapes."},
+        {"portrait" : "jack_serious", "text" : "Or... I just throw you off this cliff?"},
+        {"portrait" : "lance_thinking", "text" : "Nah, I think I'm good."}
     ],
 
     "test_1": [
-        "This is le test dialogue.",
-        "You are le jack Wacke"
+        {"portrait" : "", "text" : "This is le test dialogue."},
+        {"portrait" : "", "text" : "You are le jack Wacke"}
     ],
     "test_2": [
-        "'tis the second test dialogue.",
-        "Idk WTF i'm writing"
+        {"portrait" : "", "text" : "'tis the second test dialogue."},
+        {"portrait" : "", "text" : "Idk WTF i'm writing"}
     ]
 }
