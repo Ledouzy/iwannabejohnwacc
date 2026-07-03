@@ -7,4 +7,3 @@ extends Node2D
 
 func play_sfx(name: String):
 	audio_manager.play_sfx(name, 0.0, position)
-	print("position of sound: ", position)

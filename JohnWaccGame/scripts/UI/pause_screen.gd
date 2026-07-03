@@ -1,5 +1,6 @@
 extends Control
 
+
 # is the menu opened
 var opened : bool = false
 
@@ -10,18 +11,22 @@ var opened : bool = false
 # reference to the player
 @onready var player = $"../../../Player"
 
+
 func focused():
 	resume_button.grab_focus()
+
 
 func _on_resume_button_pressed() -> void:
 	# unpause the game and hide the screen
 	get_tree().paused = false
 	self.visible = false
 
+
 func _on_option_button_pressed() -> void:
 	# show the options screen and focus it
 	options_screen.visible = true
 	options_screen.focused()
+
 
 func _on_title_button_pressed() -> void:
 	# TODO: probably have a confirmation popup
@@ -29,6 +34,7 @@ func _on_title_button_pressed() -> void:
 	get_tree().paused = false
 	# load the title screen
 	scene_manager.go_to_title(get_tree())
+
 
 func _process(delta: float) -> void:
 	# check for pause input

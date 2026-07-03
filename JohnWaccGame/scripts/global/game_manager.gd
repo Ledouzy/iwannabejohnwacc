@@ -1,12 +1,11 @@
 extends Control
 
+
 # number of coins, variable name is a little off since this is from a tutorial at the start of the project
 var score = 0
 var max_health = -1
 var health = -1
-
 var hearts: Array[TextureRect] = []
-
 var stage_names: Array = ["1-1","1-2","1-3","1-4","2-1","2-2","2-3","2-4","3-1","3-2","3-3","3-4","4-1","4-2","4-3","4-4","5-1","5-2","6-1","6-2"] # and so on and so forth, yeah it's shit
 
 # text for the UI
@@ -23,12 +22,12 @@ var stage_names: Array = ["1-1","1-2","1-3","1-4","2-1","2-2","2-3","2-4","3-1",
 # reference to the pause menu
 @onready var pause_menu: Control = $CanvasLayer/pause_menu
 
+
 func _ready() -> void:
 	# set up the number of hearts
 	# only run this once
 	if max_health == -1:
 		for number_of_hearts in player.MAX_HEALTH/2:
-			print(number_of_hearts)
 			# instantiate a heart and add it to the list
 			var heart = HEART.instantiate()
 			
@@ -48,6 +47,7 @@ func _ready() -> void:
 	health_label.text = str(player.get_health()) + "/" + str(player.get_max_health())
 	name_label.text = save_system.current_data.name
 	stage_label.text = stage_names.get(int(save_system.current_data.stage))
+
 
 func _process(delta: float) -> void:
 	# update health in process, technically could just have a function to do that like for coins
@@ -93,6 +93,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = true
 		pause_menu.visible = true
+
 
 # add n coin to the counter, defaults to 1
 func add_point(n: int = 1):

@@ -9,18 +9,19 @@ var timer: float = 0.0 # timer for when to heal
 # the collision for the hurtbox
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
+
 func _on_body_entered(body: Node2D) -> void:
 	print("entered")
 	# if body is not the parent of the hurtbox
 	if (body != null && body != self.get_parent()):
-		print("body exists")
 		# if it can get healed
 		if body.has_method("heal_damage"):
-			print("can be healed")
 			# call heal damage on the body
 			body.call_deferred("heal_damage",heal_amount)
+			
 			# add the body to the targets
 			target.append(body)
+
 
 func _physics_process(delta: float) -> void:
 	# if the hurtbox is disabled
@@ -42,6 +43,7 @@ func _physics_process(delta: float) -> void:
 			for t in target:
 				# call heals damage on every target
 				t.call_deferred("heal_damage", heal_amount)
+
 
 func _on_body_exited(body: Node2D) -> void:
 	# when exiting the body, remove it from the list

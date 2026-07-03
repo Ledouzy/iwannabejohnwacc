@@ -7,6 +7,7 @@ var direction = Vector2(1,0) # direction that the knockback will be applied
 # the collision for the hurtbox
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
+
 # when a body enters the area
 func _on_body_entered(body: Node2D) -> void:
 	# if body is not the parent of the hurtbox
@@ -30,6 +31,7 @@ func _on_body_entered(body: Node2D) -> void:
 					# play the death animation
 					x.play("death")
 
+
 func _physics_process(delta: float) -> void:
 	# if the hurtbox is disabled
 	if collision_shape != null and collision_shape.disabled == true and target != null:
@@ -41,6 +43,7 @@ func _physics_process(delta: float) -> void:
 		for t in target:
 			# call take damage on every target
 			t.call_deferred("take_damage",damage, direction)
+
 
 func _on_body_exited(body: Node2D) -> void:
 	# when exiting the body, remove it from the list

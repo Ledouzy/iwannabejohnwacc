@@ -77,13 +77,16 @@ var portrait_dict = {
 # portrait
 @onready var portrait: TextureRect = $HBoxContainer/Portrait
 
+
 # returns the value of done
 func is_done():
 	return done
 
+
 # changes skip text to true
 func set_skip_text():
 	skip_text = true
+
 
 # displays text to the label
 func display_text(text: String):
@@ -112,12 +115,14 @@ func display_text(text: String):
 	skip_text = false
 	# we are done
 	done = true
-		
-# TODO: not currently implemented, just calls the normal method
+
+
+# Displays text with a portrait
 func display_text_portrait(text: String, portrait_name: String):
 	# Call base function
 	display_text(text)
 	
+	# if no portrait specified
 	if portrait_name == null or portrait_name == "":
 		return
 	# show portrait
@@ -128,10 +133,12 @@ func display_text_portrait(text: String, portrait_name: String):
 	
 	# change the region of the texture to the coordinates we got
 	portrait.texture.region = Rect2(portrait_position.x, portrait_position.y, 32.0, 32.0)
-		
+
+
 # set the textbox to visible
 func toggle_on_dialog_box():
 	self.visible = true
+
 
 # set the textbox to invisible
 func toggle_off_dialog_box():

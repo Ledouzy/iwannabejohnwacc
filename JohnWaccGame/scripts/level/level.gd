@@ -10,6 +10,7 @@ extends Node2D
 # reference to the in-game UI and logic
 @onready var game_manager: Control = %GameManager
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# if the checkpoint is not for the correct level, save the checkpoint to the beginning of the stage
