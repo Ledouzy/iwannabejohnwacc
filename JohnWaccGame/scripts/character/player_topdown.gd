@@ -272,6 +272,7 @@ func process_animation(direction_x, direction_y) -> void:
 		if (pickupanim):
 			animated_sprite.play("PickupWalkSide")
 		else:
+			print("dir: ", dir)
 			match dir:
 				# Down
 				0:
@@ -509,32 +510,31 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity/speedMult
 		speedMult = 1.0
 		
-	# Flip sprite if changed direction.x
-	if (direction.x < 0):
-		# flip sprite if we changed direction.x
-		if side_dir != -1 && !lock_direction:
-			player_body.scale.x = -1
-				
-		# updates our direction.x
-		dir = 3
-		side_dir = -1
+	# check for the direction facing
+	if abs(direction.x) > abs(direction.y):
+		if direction.x > 0:
+			# flip sprite if we changed direction.x
+			if side_dir != 1 && !lock_direction:
+				player_body.scale.x = -1
+					
+			# updates our direction.x
+			dir = 1
+			side_dir = 1
 		
-	elif (direction.x > 0):
-		# flip sprite if we changed direction.x
-		if side_dir != 1 && !lock_direction:
-			player_body.scale.x = -1
-				
-		# updates our direction.x
-		dir = 1
-		side_dir = 1
-	
-	# Flip sprite if changed direction.y
-	if (direction.y < 0):
-		# updates our direction.y
-		dir = 2
-	elif (direction.y > 0):
-		# updates our direction.y
-		dir = 0
+		elif direction.x < 0:
+			# flip sprite if we changed direction.x
+			if side_dir != -1 && !lock_direction:
+				player_body.scale.x = -1
+					
+			# updates our direction.x
+			dir = 3
+			side_dir = -1
+			
+	elif abs(direction.x) < abs(direction.y):
+		if direction.y > 0:
+			dir = 0
+		elif direction.y < 0:
+			dir = 2
 		
 	# handles pushing blocks
 	pushanim = collision_handler()

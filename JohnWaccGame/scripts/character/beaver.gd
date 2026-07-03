@@ -145,6 +145,9 @@ func take_damage(damage, direction) -> void:
 		# deal damage
 		health -= damage
 		
+		# play sfx
+		play_sfx("Beaver")
+		
 		# check if below 0
 		if health <= 0:
 			# death if below 0
@@ -152,9 +155,6 @@ func take_damage(damage, direction) -> void:
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")
-			
-			# play sfx
-			play_sfx("Beaver")
 			
 			# stop movement and lock until animation end
 			skipMoveProcess = true

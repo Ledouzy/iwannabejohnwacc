@@ -119,7 +119,8 @@ func stop_bgs():
 ## the audio will play from the sound_position and get gradually quieter the farther away
 func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Vector2 = Vector2(0,0)) -> void:
 	# get the audio stream for the sound we want to play
-	active_sound_stream = sounds.get_node(audio_name)
+	active_sound_stream = sounds.get_node(audio_name).duplicate()
+	get_tree().root.add_child(active_sound_stream)
 	
 	# check if we found the stream
 	if !active_sound_stream:
@@ -130,6 +131,13 @@ func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Ve
 	active_sound_stream.position = sound_position
 	# play the sound
 	active_sound_stream.play(from_position)
+	
+	#if active_sound_stream != null:
+		#await active_sound_stream.finished
+		
+		#active_sound_stream.queue_free()
+		
+		#active_sound_stream = null
 
 
 ## plays the sfx with the corresponding audio name starting from the from_position.
