@@ -40,7 +40,8 @@ func pickedUp(player: CharacterBody2D) -> void:
 	
 # logic for the object being thrown
 func thrown() -> void:
-	print("Thrown") 
+	#print("Thrown") 
+	
 	# indicate that we are starting the throw for the physics process
 	startThrow = true
 	# initiate movement (basically direction fix)
@@ -48,6 +49,8 @@ func thrown() -> void:
 	
 	# wait until the animation ended
 	waitforanimationend = true
+	
+	animated_sprite.play("Thrown")
 	
 	# wait until throw is finished
 	await get_tree().create_timer(0.1).timeout
@@ -62,7 +65,7 @@ func thrown() -> void:
 	# wait a while, stop the object and wait again
 	await get_tree().create_timer(0.5).timeout
 	
-	# play recovery animation for hime
+	# play recovery animation for npc
 	animated_sprite.play("Down")
 	velocity.x = move_toward(velocity.x, 0, 100)
 	throw_timer.start()

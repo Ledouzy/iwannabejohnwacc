@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqfvfe8griydo"]
 
 [ext_resource type="Texture2D" uid="uid://clkpoj4jo0u07" path="res://assets/sprites/Characters/hime.png" id="1_4ben4"]
-[ext_resource type="Script" uid="uid://c6u51hf3lhbjj" path="res://scripts/character/hime.gd" id="1_kjsfy"]
+[ext_resource type="Script" uid="uid://c6u51hf3lhbjj" path="res://scripts/character/npc.gd" id="1_kjsfy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kioyx"]
 atlas = ExtResource("1_4ben4")
@@ -50,6 +50,14 @@ region = Rect2(48, 208, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gce6y"]
 atlas = ExtResource("1_4ben4")
 region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3amuq"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(224, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8o3i"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(240, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tjwd"]
 atlas = ExtResource("1_4ben4")
@@ -164,6 +172,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3amuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8o3i")
+}],
+"loop": 0,
+"name": &"Thrown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0tjwd")
 }, {
 "duration": 1.0,
@@ -205,7 +224,7 @@ script = ExtResource("1_kjsfy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=594908979]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4ben4")
-animation = &"WalkSide"
+animation = &"Thrown"
 autoplay = "IdleFront"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462337660]

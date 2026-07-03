@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="6_t5p8u"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="7_ptnqk"]
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="8_tt7i6"]
+[ext_resource type="PackedScene" uid="uid://d3x5bi32l5htu" path="res://scenes/character/lance.tscn" id="9_sleal"]
 [ext_resource type="PackedScene" uid="uid://buvvr7qcrxbru" path="res://scenes/character/hime_2.tscn" id="9_sw5bh"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="10_kwa7s"]
+[ext_resource type="PackedScene" uid="uid://dytiwk522x40r" path="res://scenes/logic/dialog_area.tscn" id="10_oxtmp"]
 [ext_resource type="PackedScene" uid="uid://c4xvlbve5ig7b" path="res://scenes/objects/heal_area.tscn" id="11_tmnj1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_22n77"]
@@ -17,6 +19,8 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4pku8"]
 normal = Vector2(1, 0)
 distance = -80.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydev5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
 
@@ -85,6 +89,19 @@ offset_right = 41.0
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("8_tt7i6")]
 scene_text_file = "res://assets/dialogue/level0.json"
 
+[node name="Lance" parent="." unique_id=1264691691 instance=ExtResource("9_sleal")]
+z_index = 4
+position = Vector2(109, -22)
+rotation = -3.1415925
+scale = Vector2(1, -1)
+
+[node name="DialogAreaTest" parent="Lance" unique_id=1991960453 instance=ExtResource("10_oxtmp")]
+dialog_key = "lance1"
+
+[node name="CollisionShape2D" parent="Lance/DialogAreaTest" index="0" unique_id=1841346173]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ydev5")
+
 [node name="Hime2" parent="." unique_id=411270829 instance=ExtResource("9_sw5bh")]
 position = Vector2(132, -21)
 
@@ -99,3 +116,4 @@ shape = SubResource("RectangleShape2D_ihebq")
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]
+[editable path="Lance/DialogAreaTest"]
