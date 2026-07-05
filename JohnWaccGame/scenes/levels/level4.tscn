@@ -151,5 +151,7 @@ metadata/_edit_use_anchors_ = true
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("17_2c5pw")]
 scene_text_file = "res://assets/dialogue/level0.json"
 
+[connection signal="body_entered" from="Player/PlayerBody/SwordBackHurtBox3" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
+
 [editable path="Player"]
 [editable path="Player/PlayerBody"]

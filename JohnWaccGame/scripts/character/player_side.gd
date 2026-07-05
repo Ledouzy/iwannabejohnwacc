@@ -328,7 +328,7 @@ func _physics_process(delta: float) -> void:
 
 	# Jump Handling
 	# If light tap, we decrease our velocity
-	if Input.is_action_just_released("jump") and velocity.y < 0 and !waitforanimationend and !springjump:
+	if Input.is_action_just_released("jump") and velocity.y < 0 and !springjump:
 		# updates the velocity
 		velocity.y = JUMP_VELOCITY * 0.25
 	

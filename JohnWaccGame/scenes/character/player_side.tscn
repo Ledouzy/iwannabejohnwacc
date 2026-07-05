@@ -11,15 +11,6 @@ script = ExtResource("1_hmm4i")
 [node name="PlayerBody" parent="." unique_id=1264691691 instance=ExtResource("1_amd7u")]
 script = ExtResource("1_5nlcr")
 
-[node name="CollisionShape2D" parent="PlayerBody/SwordSideHurtBox" parent_id_path=PackedInt32Array(1264691691, 631934805) index="0" unique_id=234974590]
-position = Vector2(10.5, -10)
-
-[node name="CollisionShape2D" parent="PlayerBody/SwordFrontHurtBox2" parent_id_path=PackedInt32Array(1264691691, 1639574454) index="0" unique_id=2076995877]
-position = Vector2(-2, 1)
-
-[node name="CollisionShape2D" parent="PlayerBody/SwordBackHurtBox3" parent_id_path=PackedInt32Array(1264691691, 1708009677) index="0" unique_id=361076622]
-position = Vector2(1, -17)
-
 [connection signal="body_entered" from="PlayerBody/SwordBackHurtBox3" to="PlayerBody" method="_on_sword_down_body_entered"]
 
 [editable path="PlayerBody"]

@@ -1436,14 +1436,14 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrryv"]
-size = Vector2(28, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1d5ss"]
+size = Vector2(28, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yikn"]
-size = Vector2(16, 28)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7oc1c"]
+size = Vector2(25, 28)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfuel"]
-size = Vector2(16, 28)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ec31x"]
+size = Vector2(24, 28)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hawd0"]
 _data = {
@@ -1490,24 +1490,24 @@ sprite_frames = SubResource("SpriteFrames_sct4u")
 animation = &"Idle"
 
 [node name="SwordSideHurtBox" parent="." unique_id=631934805 instance=ExtResource("4_xr5en")]
+position = Vector2(21, -36)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordSideHurtBox" unique_id=1420034096]
-position = Vector2(12, -13)
-shape = SubResource("RectangleShape2D_wrryv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordSideHurtBox" unique_id=252346892]
+shape = SubResource("RectangleShape2D_1d5ss")
 disabled = true
 
-[node name="SwordFrontHurtBox2" parent="." unique_id=1372044820 instance=ExtResource("4_xr5en")]
+[node name="SwordFrontHurtBox2" parent="." unique_id=219520766 instance=ExtResource("4_xr5en")]
+position = Vector2(-1, -20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordFrontHurtBox2" unique_id=2041608299]
-position = Vector2(-4, 2)
-shape = SubResource("RectangleShape2D_7yikn")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordFrontHurtBox2" unique_id=1034703415]
+shape = SubResource("RectangleShape2D_7oc1c")
 disabled = true
 
-[node name="SwordBackHurtBox3" parent="." unique_id=1837407325 instance=ExtResource("4_xr5en")]
+[node name="SwordBackHurtBox3" parent="." unique_id=1106137298 instance=ExtResource("4_xr5en")]
+position = Vector2(16, -41)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordBackHurtBox3" unique_id=376208939]
-position = Vector2(3, -18)
-shape = SubResource("RectangleShape2D_sfuel")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordBackHurtBox3" unique_id=1089281250]
+shape = SubResource("RectangleShape2D_ec31x")
 disabled = true
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="." unique_id=4887098]
