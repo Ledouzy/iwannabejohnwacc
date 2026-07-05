@@ -415,18 +415,17 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("down"):
 			# print("down")
 			# change the direction so the animation plays properly
-			if dir <= -1:
-				changed_dir = 1
-				player_body.scale.x = -1
+			changed_dir = dir*-1
+			player_body.scale.x = -1
 			# plays the front attack animation
 			animation_player.play("attackFront")
 			
 		elif Input.is_action_pressed("up"):
 			# print("up")
 			# change the direction so the animation plays properly
-			if dir <= -1:
-				changed_dir = 1
-				player_body.scale.x = -1
+			#if dir <= -1:
+				#changed_dir = 1
+				#player_body.scale.x = -1
 			# plays the back attack animation
 			animation_player.play("attackBack")
 		else:
@@ -442,9 +441,7 @@ func _physics_process(delta: float) -> void:
 		
 		# change back our direction to what it's supposed to be
 		if changed_dir != dir:
-			if dir == 1:
-				player_body.scale.x = -1
-			elif dir == -1:
+			if dir == 1 or dir == -1:
 				player_body.scale.x = -1
 		# unlock our direction
 		lock_direction = false

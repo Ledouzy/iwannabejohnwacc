@@ -27,6 +27,18 @@ region = Rect2(240, 16, 16, 16)
 atlas = ExtResource("1_4ben4")
 region = Rect2(0, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqtay"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(0, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lay3"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(32, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p64r"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(16, 240, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ben4"]
 atlas = ExtResource("1_4ben4")
 region = Rect2(0, 0, 16, 16)
@@ -144,10 +156,19 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kjsfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqtay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lay3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p64r")
 }],
 "loop": 1,
 "name": &"IdleBack",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -267,12 +288,11 @@ script = ExtResource("1_kjsfy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=594908979]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4ben4")
-animation = &"IdleSide"
+animation = &"Down"
 autoplay = "IdleFront"
-frame_progress = 0.64168
+frame_progress = 0.1570734
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462337660]
-visible = false
 position = Vector2(0, -8.5)
 shape = SubResource("RectangleShape2D_4ben4")
 
