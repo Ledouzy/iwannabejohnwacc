@@ -272,7 +272,6 @@ func process_animation(direction_x, direction_y) -> void:
 		if (pickupanim):
 			animated_sprite.play("PickupWalkSide")
 		else:
-			print("dir: ", dir)
 			match dir:
 				# Down
 				0:
@@ -458,19 +457,17 @@ func _physics_process(delta: float) -> void:
 		
 		# play the attack animation and locks animation for the length of the animation
 		if dir == 0:
-			if side_dir == -1:
 			# print("down")
 			# change the direction so the animation plays properly
-				changed_dir = 1
-				player_body.scale.x = -1
+			changed_dir = side_dir * -1
+			player_body.scale.x = -1
 			# plays the front attack animation
 			animation_player.play("attackFront")
 		elif dir == 2:
 			# print("up")
 			# change the direction so the animation plays properly
-			if side_dir == -1:
-				changed_dir = 1
-				player_body.scale.x = -1
+			#changed_dir = side_dir * -1
+			#player_body.scale.x = -1
 			# plays the back attack animation
 			animation_player.play("attackBack")
 		else:
@@ -486,9 +483,7 @@ func _physics_process(delta: float) -> void:
 		
 		# change back our direction to what it's supposed to be
 		if changed_dir != side_dir:
-			if side_dir == 1:
-				player_body.scale.x = -1
-			elif side_dir == -1:
+			if side_dir == 1 or side_dir == -1:
 				player_body.scale.x = -1
 		# unlock our direction
 		lock_direction = false
@@ -510,7 +505,7 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity/speedMult
 		speedMult = 1.0
 		
-	# check for the direction facing
+	# check for the direction facing, if moving more on the x axis
 	if abs(direction.x) > abs(direction.y):
 		if direction.x > 0:
 			# flip sprite if we changed direction.x
@@ -529,8 +524,21 @@ func _physics_process(delta: float) -> void:
 			# updates our direction.x
 			dir = 3
 			side_dir = -1
+		
+	# if moving more on the y axis
+	elif abs(direction.x) <= abs(direction.y):
+		if direction.x > 0:
+			# flip sprite if we changed direction.x
+			if side_dir != 1 && !lock_direction:
+				player_body.scale.x = -1
+			side_dir = 1
 			
-	elif abs(direction.x) < abs(direction.y):
+		elif direction.x < 0:
+			# flip sprite if we changed direction.x
+			if side_dir != -1 && !lock_direction:
+				player_body.scale.x = -1
+			side_dir = -1
+			
 		if direction.y > 0:
 			dir = 0
 		elif direction.y < 0:
