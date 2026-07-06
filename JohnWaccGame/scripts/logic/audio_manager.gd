@@ -9,7 +9,7 @@ extends Node
 
 # music streams
 var active_music_stream: AudioStreamPlayer
-var active_sound_stream: AudioStreamPlayer2D
+#var active_sound_streams: Array[AudioStreamPlayer2D]
 var active_ui_stream: AudioStreamPlayer
 var active_bgs_stream: AudioStreamPlayer
 
@@ -119,7 +119,8 @@ func stop_bgs():
 ## the audio will play from the sound_position and get gradually quieter the farther away
 func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Vector2 = Vector2(0,0)) -> void:
 	# get the audio stream for the sound we want to play
-	active_sound_stream = sounds.get_node(audio_name).duplicate()
+	var active_sound_stream = sounds.get_node(audio_name).duplicate()
+	#active_sound_streams.append(sfx)
 	get_tree().root.add_child(active_sound_stream)
 	
 	# check if we found the stream
@@ -132,12 +133,12 @@ func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Ve
 	# play the sound
 	active_sound_stream.play(from_position)
 	
-	#if active_sound_stream != null:
-		#await active_sound_stream.finished
+	if active_sound_stream != null:
+		await active_sound_stream.finished
 		
-		#active_sound_stream.queue_free()
+		active_sound_stream.queue_free()
 		
-		#active_sound_stream = null
+		active_sound_stream = null
 
 
 ## plays the sfx with the corresponding audio name starting from the from_position.
