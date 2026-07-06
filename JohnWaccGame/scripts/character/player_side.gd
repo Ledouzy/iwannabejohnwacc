@@ -45,6 +45,7 @@ var pickupanim = false # will change to pickup variants of animations
 var shruganim = false # stops idle animation, but can be cancelled
 var waitforanimationend = false # stop other animations from playing until finished with current
 var skipMoveProcess = false # stop the calculations for user input movement, letting only gravity affect player
+var cant_jump = false # stops from jumping
 
 # Initialized variables
 @onready var jumps = MAX_JUMPS # number of jumps left
@@ -334,7 +335,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY * 0.25
 	
 	# If held, or first tapped we give full height, also handles multiple jumps
-	if Input.is_action_just_pressed("jump") and (can_jump or (jumps > 0)) and !pickupanim:
+	if Input.is_action_just_pressed("jump") and (can_jump or (jumps > 0)) and !cant_jump:
 		#already jumped, remove that shit
 		can_jump = false
 		# removes 1 jump to number of jumps (jumps variable)
@@ -357,6 +358,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend and is_on_floor():
 		# indicates that we use pickup variants of animations
 		pickupanim = true
+		# prevent from jumping during animation
+		cant_jump = true
 		
 		# stop animations and stop player from moving
 		waitforanimationend = true
@@ -378,6 +381,7 @@ func _physics_process(delta: float) -> void:
 			# stop the animation
 			pickupanim = false
 			shruganim = true
+			cant_jump = false
 			
 			# allows animation to play and player to move again
 			waitforanimationend = false
@@ -394,6 +398,7 @@ func _physics_process(delta: float) -> void:
 		# allows animation to play and player to move again
 		waitforanimationend = false
 		skipMoveProcess = false
+		cant_jump = false
 		
 	# Handles throwing objects and enemies
 	if Input.is_action_just_pressed("pick") and pickupanim == true and !waitforanimationend:
@@ -447,7 +452,7 @@ func _physics_process(delta: float) -> void:
 		waitforanimationend = true
 		await animation_player.animation_finished
 		waitforanimationend = false
-		#jumpanim = false
+		jumpanim = false
 		
 		# change back our direction to what it's supposed to be
 		if changed_dir != dir:
