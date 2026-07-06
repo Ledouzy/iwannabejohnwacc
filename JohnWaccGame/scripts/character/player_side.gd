@@ -335,6 +335,8 @@ func _physics_process(delta: float) -> void:
 	
 	# If held, or first tapped we give full height, also handles multiple jumps
 	if Input.is_action_just_pressed("jump") and (can_jump or (jumps > 0)) and !pickupanim:
+		#already jumped, remove that shit
+		can_jump = false
 		# removes 1 jump to number of jumps (jumps variable)
 		jumps -= 1
 		#print("jumps: ",jumps)
