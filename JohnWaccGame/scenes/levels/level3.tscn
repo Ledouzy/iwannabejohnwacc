@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://clu3xijl2ddsp" path="res://scripts/global/camera_topdown.gd" id="3_wb0vq"]
 [ext_resource type="TileSet" uid="uid://ve75kdpktk4j" path="res://assets/Tilemaps/topdown_test.tres" id="4_ah4rv"]
 [ext_resource type="PackedScene" uid="uid://ku2eobc64brn" path="res://scenes/character/amangoose.tscn" id="5_522sc"]
+[ext_resource type="PackedScene" uid="uid://d0uni3hjywdt1" path="res://scenes/character/car_topdown.tscn" id="5_wb0vq"]
 [ext_resource type="PackedScene" uid="uid://c8mfj41nk7n5s" path="res://scenes/objects/box_test.tscn" id="6_a82vw"]
 [ext_resource type="PackedScene" uid="uid://ckpcnh36p766g" path="res://scenes/character/mage.tscn" id="7_t14x3"]
 [ext_resource type="PackedScene" uid="uid://dytiwk522x40r" path="res://scenes/logic/dialog_area.tscn" id="8_ahaer"]
@@ -47,6 +48,14 @@ tile_set = ExtResource("4_ah4rv")
 position = Vector2(168, 0)
 tile_map_data = PackedByteArray("AAABAPP/AQAAAAAAAQA=")
 tile_set = ExtResource("4_ah4rv")
+
+[node name="Enemies" type="Node2D" parent="Level" unique_id=265724129]
+
+[node name="CarTopdown" parent="Level/Enemies" unique_id=1601088451 instance=ExtResource("5_wb0vq")]
+
+[node name="Car" parent="Level/Enemies/CarTopdown" index="0" unique_id=1027794888]
+position = Vector2(33, 8)
+left_right = false
 
 [node name="Amangoose" parent="." unique_id=875060791 instance=ExtResource("5_522sc")]
 position = Vector2(-32, -32)
@@ -91,5 +100,7 @@ shape = SubResource("RectangleShape2D_wb0vq")
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]
+[editable path="Level/Enemies/CarTopdown"]
+[editable path="Level/Enemies/CarTopdown/Car"]
 [editable path="DialogAreaTest"]
 [editable path="DialogAreaTest2"]

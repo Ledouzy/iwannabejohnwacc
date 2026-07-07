@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://blxo7j5lbqkgk"]
 
 [ext_resource type="Texture2D" uid="uid://choofjd4tvopo" path="res://assets/sprites/Characters/Car.png" id="1_7p1mj"]
-[ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/character/car.gd" id="1_50v30"]
+[ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/character/car_side.gd" id="1_50v30"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="2_md0e3"]
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/logic/throw_hurt_box.tscn" id="3_3mrxu"]
-[ext_resource type="Script" uid="uid://dqpv3dl2j385i" path="res://scripts/character/enemy_platform.gd" id="3_5xkyk"]
 [ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/logic/hurt_box.gd" id="5_cp117"]
 [ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="7_4clw4"]
 
@@ -188,9 +187,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_50v30"]
-size = Vector2(11, 2)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj0f0"]
 size = Vector2(11, 9)
 
@@ -217,7 +213,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/CollisionShape2D2:disabled")
+tracks/1/path = NodePath("CollisionShape2D3:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -229,7 +225,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D3:disabled")
+tracks/2/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -241,19 +237,19 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("RayCastRight:enabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("RayCastRight:enabled")
+tracks/4/path = NodePath("RayCastLeft:enabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -265,7 +261,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("RayCastLeft:enabled")
+tracks/5/path = NodePath("ThrowHurtBox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -277,10 +273,22 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ThrowHurtBox/CollisionShape2D:disabled")
+tracks/6/path = NodePath("RayCastUp:enabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RayCastDown:enabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -305,7 +313,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody2D/CollisionShape2D2:disabled")
+tracks/1/path = NodePath("CollisionShape2D3:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -317,7 +325,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D3:disabled")
+tracks/2/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -329,19 +337,19 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/3/path = NodePath("RayCastRight:enabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("RayCastRight:enabled")
+tracks/4/path = NodePath("RayCastLeft:enabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -350,25 +358,13 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/5/type = "value"
+tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("RayCastLeft:enabled")
+tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -379,17 +375,41 @@ tracks/6/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ThrowHurtBox/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("ThrowHurtBox/CollisionShape2D:disabled")
+tracks/7/path = NodePath("RayCastUp:enabled")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RayCastDown:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3mrxu"]
@@ -408,22 +428,12 @@ sprite_frames = SubResource("SpriteFrames_xwavj")
 animation = &"WalkSide"
 autoplay = "IdleSide"
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1917337681]
-collision_layer = 5
-collision_mask = 5
-script = ExtResource("3_5xkyk")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1995339573]
-position = Vector2(-0.5, -3)
-shape = SubResource("RectangleShape2D_50v30")
-one_way_collision = true
-
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=326158773]
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_sj0f0")
 
 [node name="ThrowHurtBox" parent="." unique_id=631934805 node_paths=PackedStringArray("character_body") instance=ExtResource("3_3mrxu")]
-character_body = NodePath("../CharacterBody2D")
+character_body = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowHurtBox" unique_id=2117886572]
 position = Vector2(0, 2)
@@ -437,6 +447,14 @@ damage = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1319252143]
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_5xkyk")
+
+[node name="RayCastUp" type="RayCast2D" parent="." unique_id=628167823]
+target_position = Vector2(0, -5)
+collision_mask = 5
+
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=336565268]
+target_position = Vector2(0, 8)
+collision_mask = 5
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=388195486]
 position = Vector2(0, 2)

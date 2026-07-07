@@ -1,6 +1,22 @@
 [gd_scene format=3 uid="uid://vilx3cwlkfli"]
 
+[ext_resource type="Script" uid="uid://c5h5fx8uac5ke" path="res://scripts/character/king_car.gd" id="1_8nbdw"]
 [ext_resource type="Texture2D" uid="uid://dp03icp33bmj2" path="res://assets/sprites/Characters/KingCar.png" id="1_sb14k"]
+[ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="3_0yvjc"]
+[ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/logic/hurt_box.gd" id="4_buyt4"]
+[ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="5_vqeoi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yvjc"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqeoi"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buyt4"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_48rk7"]
 atlas = ExtResource("1_sb14k")
@@ -9,6 +25,10 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fnp5g"]
 atlas = ExtResource("1_sb14k")
 region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nbdw"]
+atlas = ExtResource("1_sb14k")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wcyrv"]
 atlas = ExtResource("1_sb14k")
@@ -33,6 +53,20 @@ region = Rect2(32, 32, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_okwsv"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yvjc")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_vqeoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buyt4")
+}],
+"loop": 0,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 8.0,
 "texture": SubResource("AtlasTexture_48rk7")
 }, {
@@ -41,6 +75,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"IdleFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nbdw")
+}],
+"loop": 0,
+"name": &"TakeDamage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -72,10 +114,202 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="KingCar" type="Node2D" unique_id=374207838]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
+size = Vector2(20, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbbm4"]
+size = Vector2(22, 21)
+
+[sub_resource type="Animation" id="Animation_50v30"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RayCastRight:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RayCastLeft:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_jtldb"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RayCastRight:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RayCastLeft:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"set_dead"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8nbdw"]
+_data = {
+&"RESET": SubResource("Animation_50v30"),
+&"death": SubResource("Animation_jtldb")
+}
+
+[node name="KingCar" type="CharacterBody2D" unique_id=2131667871]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_8nbdw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2058641899]
-position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_okwsv")
 animation = &"WalkSide"
 autoplay = "IdleFront"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1336771576]
+position = Vector2(2, 4.5)
+shape = SubResource("RectangleShape2D_ihebq")
+
+[node name="HurtBox" parent="." unique_id=631934805 instance=ExtResource("3_0yvjc")]
+script = ExtResource("4_buyt4")
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=687462063]
+position = Vector2(2, 5.5)
+shape = SubResource("RectangleShape2D_lbbm4")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=2037138653]
+position = Vector2(0, 2)
+target_position = Vector2(-16, 0)
+collision_mask = 5
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=561021482]
+position = Vector2(0, 2)
+target_position = Vector2(16, 0)
+collision_mask = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=273702396]
+libraries/ = SubResource("AnimationLibrary_8nbdw")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=286207258]
+wait_time = 0.5
+one_shot = true
+
+[node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("5_vqeoi")]
+
+[connection signal="body_exited" from="HurtBox" to="HurtBox" method="_on_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

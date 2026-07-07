@@ -46,7 +46,7 @@ var walkDisabled = false
 
 # collision
 @onready var hurtbox_collision: CollisionShape2D = $HurtBox/CollisionShape2D
-@onready var collision_shape_2: CollisionShape2D = $CharacterBody2D/CollisionShape2D2
+@onready var collision_shape_2: CollisionShape2D = $CharacterBody2D2/CollisionShape2D2
 @onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
 @onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
 
@@ -252,7 +252,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("Grabbed")
 	# if not thrown, apply friction to the car
 	if !startThrow:
-		velocity.x = move_toward(velocity.x, 0, 5)
+		velocity.x = move_toward(velocity.x, 0, speed/2*delta)
 	
 	# applies movement
 	move_and_slide()

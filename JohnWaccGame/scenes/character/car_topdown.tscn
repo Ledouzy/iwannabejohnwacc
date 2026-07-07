@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d0uni3hjywdt1"]
+
+[ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="1_lak5i"]
+[ext_resource type="Script" uid="uid://i1joucbc37b7" path="res://scripts/character/car_topdown.gd" id="2_8otuk"]
+
+[node name="CarTopdown" type="Node2D" unique_id=1601088451]
+
+[node name="Car" parent="." unique_id=1027794888 instance=ExtResource("1_lak5i")]
+script = ExtResource("2_8otuk")
+left_right = true
+
+[node name="AnimatedSprite2D" parent="Car" index="0" unique_id=2036936847]
+animation = &"WalkBack"
+
+[editable path="Car"]

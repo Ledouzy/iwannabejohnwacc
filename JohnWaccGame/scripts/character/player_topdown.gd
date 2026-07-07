@@ -129,6 +129,8 @@ func take_damage(damage,direction) -> void:
 		
 		# start invulnerability timer
 		damage_timer.start()
+		
+		print("direction: ", direction)
 		# apply knockback
 		velocity = 60*direction
 		
@@ -142,7 +144,7 @@ func take_damage(damage,direction) -> void:
 			animation_player.play("death")
 		else:
 			# plays damage animation
-			animated_sprite.play("PlayerTakeDamage")
+			animated_sprite.play("TakeDamage")
 			
 			# stop movement and lock until animation end
 			skipMoveProcess = true

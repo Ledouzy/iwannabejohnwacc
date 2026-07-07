@@ -11,7 +11,6 @@ var timer: float = 0.0 # timer for when to heal
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("entered")
 	# if body is not the parent of the hurtbox
 	if (body != null && body != self.get_parent()):
 		# if it can get healed

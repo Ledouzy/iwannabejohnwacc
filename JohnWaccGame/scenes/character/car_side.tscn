@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bvu2nnk362e0a"]
+
+[ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="1_vvcm1"]
+[ext_resource type="Script" uid="uid://dqpv3dl2j385i" path="res://scripts/character/enemy_platform.gd" id="2_k6c0k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12xjr"]
+size = Vector2(11, 2)
+
+[node name="CarSide" type="Node2D" unique_id=2118649542]
+
+[node name="Car" parent="." unique_id=1027794888 instance=ExtResource("1_vvcm1")]
+
+[node name="ThrowHurtBox" parent="Car" index="2" unique_id=631934805 node_paths=PackedStringArray("character_body2")]
+character_body2 = NodePath("../CharacterBody2D2")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="Car" unique_id=1643796185]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("2_k6c0k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Car/CharacterBody2D2" unique_id=1526672799]
+position = Vector2(-0.5, -3)
+shape = SubResource("RectangleShape2D_12xjr")
+one_way_collision = true
+
+[editable path="Car"]
