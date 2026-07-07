@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://blxo7j5lbqkgk"]
 
 [ext_resource type="Texture2D" uid="uid://choofjd4tvopo" path="res://assets/sprites/Characters/Car.png" id="1_7p1mj"]
-[ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/character/car_side.gd" id="1_50v30"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="2_md0e3"]
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/logic/throw_hurt_box.tscn" id="3_3mrxu"]
 [ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/logic/hurt_box.gd" id="5_cp117"]
@@ -421,7 +420,6 @@ _data = {
 [node name="Car" type="CharacterBody2D" unique_id=1027794888]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_50v30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
@@ -480,5 +478,3 @@ one_shot = true
 [node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("7_4clw4")]
 
 [connection signal="body_exited" from="HurtBox" to="HurtBox" method="_on_body_exited"]
-[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
-[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

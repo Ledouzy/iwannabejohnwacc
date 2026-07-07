@@ -189,8 +189,8 @@ func _physics_process(delta: float) -> void:
 	
 	if startThrow:
 		# apply force for the throw
-		velocity.x += 18 * dir
-		velocity.y -= 10
+		velocity.x += 1250 * delta * dir
+		velocity.y -= 350 * delta
 	elif pickedUpBy != null:
 		# apply the same movement as the player and direction
 		var temp = Input.get_axis("left", "right")
@@ -252,7 +252,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("Grabbed")
 	# if not thrown, apply friction to the car
 	if !startThrow:
-		velocity.x = move_toward(velocity.x, 0, speed/2*delta)
+		velocity.x = move_toward(velocity.x, 0, speed/2*delta*35)
 	
 	# applies movement
 	move_and_slide()

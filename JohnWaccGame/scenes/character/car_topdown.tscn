@@ -7,9 +7,11 @@
 
 [node name="Car" parent="." unique_id=1027794888 instance=ExtResource("1_lak5i")]
 script = ExtResource("2_8otuk")
-left_right = true
 
 [node name="AnimatedSprite2D" parent="Car" index="0" unique_id=2036936847]
 animation = &"WalkBack"
+
+[connection signal="timeout" from="Car/DamageTimer" to="Car" method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Car/ThrowTimer" to="Car" method="_on_throw_timer_timeout"]
 
 [editable path="Car"]

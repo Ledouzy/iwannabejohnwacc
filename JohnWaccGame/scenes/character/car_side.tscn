@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvu2nnk362e0a"]
 
 [ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="1_vvcm1"]
+[ext_resource type="Script" uid="uid://rgiv0k8gl4g3" path="res://scripts/character/car_side.gd" id="2_12xjr"]
 [ext_resource type="Script" uid="uid://dqpv3dl2j385i" path="res://scripts/character/enemy_platform.gd" id="2_k6c0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12xjr"]
@@ -9,6 +10,7 @@ size = Vector2(11, 2)
 [node name="CarSide" type="Node2D" unique_id=2118649542]
 
 [node name="Car" parent="." unique_id=1027794888 instance=ExtResource("1_vvcm1")]
+script = ExtResource("2_12xjr")
 
 [node name="ThrowHurtBox" parent="Car" index="2" unique_id=631934805 node_paths=PackedStringArray("character_body2")]
 character_body2 = NodePath("../CharacterBody2D2")
@@ -22,5 +24,8 @@ script = ExtResource("2_k6c0k")
 position = Vector2(-0.5, -3)
 shape = SubResource("RectangleShape2D_12xjr")
 one_way_collision = true
+
+[connection signal="timeout" from="Car/DamageTimer" to="Car" method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Car/ThrowTimer" to="Car" method="_on_throw_timer_timeout"]
 
 [editable path="Car"]

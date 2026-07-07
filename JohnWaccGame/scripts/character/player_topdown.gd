@@ -130,7 +130,6 @@ func take_damage(damage,direction) -> void:
 		# start invulnerability timer
 		damage_timer.start()
 		
-		print("direction: ", direction)
 		# apply knockback
 		velocity = 60*direction
 		

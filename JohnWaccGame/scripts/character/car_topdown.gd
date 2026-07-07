@@ -69,8 +69,10 @@ func take_damage(damage, direction) -> void:
 		invulnerable = true
 		# start invulnerability timer
 		damage_timer.start()
+		
 		# apply knockback
-		velocity = 100*direction
+		velocity += 100*direction
+		
 		# deal damage
 		health -= damage
 		
@@ -85,9 +87,7 @@ func take_damage(damage, direction) -> void:
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")
-			
-			
-			
+
 			# stop movement and lock until animation end
 			skipMoveProcess = true
 			waitforanimationend = true
@@ -194,11 +194,14 @@ func _physics_process(delta: float) -> void:
 
 	# apply friction to the car
 	velocity.x = move_toward(velocity.x, 0, speed*delta)
-	velocity.y = move_toward(velocity.x, 0, speed*delta)
-	
+	velocity.y = move_toward(velocity.y, 0, speed*delta)
 	# applies movement
 	move_and_slide()
 	
 # play a sound by calling the audio manager
 func play_sfx(sfx_name):
 	audio_manager.play_sfx(sfx_name, 0, self.position)
+
+
+func _on_throw_timer_timeout() -> void:
+	pass # Replace with function body.
