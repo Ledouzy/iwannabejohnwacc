@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="2_c3kbx"]
 [ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="3_sleal"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="4_oxtmp"]
-[ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="5_ydev5"]
+[ext_resource type="PackedScene" uid="uid://dtitmamsbpfdm" path="res://scenes/character/birb.tscn" id="5_oxtmp"]
+[ext_resource type="PackedScene" uid="uid://bvu2nnk362e0a" path="res://scenes/character/car_side.tscn" id="6_oxtmp"]
 [ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="6_t5p8u"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="7_ptnqk"]
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="8_tt7i6"]
@@ -60,13 +61,22 @@ shape = SubResource("WorldBoundaryShape2D_4pku8")
 
 [node name="Enemies" type="Node2D" parent="Level" unique_id=1070552548]
 
-[node name="Car" parent="Level/Enemies" unique_id=1027794888 instance=ExtResource("5_ydev5")]
+[node name="Birb" parent="Level/Enemies" unique_id=1787715896 instance=ExtResource("5_oxtmp")]
+position = Vector2(304, -34)
+
+[node name="CarSide" parent="Level/Enemies" unique_id=2118649542 instance=ExtResource("6_oxtmp")]
+
+[node name="Car" parent="Level/Enemies/CarSide" index="0" unique_id=1027794888]
 position = Vector2(173, -12)
 
-[node name="Car2" parent="Level/Enemies" unique_id=1447504195 instance=ExtResource("5_ydev5")]
+[node name="CarSide2" parent="Level/Enemies" unique_id=2077113187 instance=ExtResource("6_oxtmp")]
+
+[node name="Car" parent="Level/Enemies/CarSide2" index="0" unique_id=1027794888]
 position = Vector2(203, -12)
 
-[node name="Car3" parent="Level/Enemies" unique_id=220392612 instance=ExtResource("5_ydev5")]
+[node name="CarSide3" parent="Level/Enemies" unique_id=131680205 instance=ExtResource("6_oxtmp")]
+
+[node name="Car" parent="Level/Enemies/CarSide3" index="0" unique_id=1027794888]
 position = Vector2(315, -14)
 
 [node name="Beaver" parent="Level/Enemies" unique_id=588698386 instance=ExtResource("6_t5p8u")]
@@ -116,4 +126,10 @@ shape = SubResource("RectangleShape2D_ihebq")
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]
+[editable path="Level/Enemies/CarSide"]
+[editable path="Level/Enemies/CarSide/Car"]
+[editable path="Level/Enemies/CarSide2"]
+[editable path="Level/Enemies/CarSide2/Car"]
+[editable path="Level/Enemies/CarSide3"]
+[editable path="Level/Enemies/CarSide3/Car"]
 [editable path="Lance/DialogAreaTest"]
