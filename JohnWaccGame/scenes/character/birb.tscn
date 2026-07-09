@@ -148,7 +148,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"WalkBack",
-"speed": 8.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -165,7 +165,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"WalkFront",
-"speed": 8.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -191,8 +191,8 @@ texture = SubResource("AtlasTexture_ihebq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=452523135]
 sprite_frames = SubResource("SpriteFrames_ihebq")
-animation = &"IdleSide"
-frame_progress = 0.64691323
+animation = &"FlySide"
+frame_progress = 0.5489665
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1986886767]
 position = Vector2(-1, -0.5)
