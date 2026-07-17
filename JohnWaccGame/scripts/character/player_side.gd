@@ -494,6 +494,7 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(.1).timeout
 			
 			# INSTEAD USE A SIGNAL FROM THE GRAPPLE POINT, WHEN PLAYER ON THE WALL, STOP AND GIVE BACK CONTROL
+			velocity = Vector2(velocity.x/2, JUMP_VELOCITY/4)
 			
 			skipMoveProcess = false
 			waitforanimationend = false
