@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ihbkwhcw3ra4" path="res://assets/sprites/Characters/player.png" id="1_p0vlq"]
 [ext_resource type="Texture2D" uid="uid://cabj0ahjsijba" path="res://assets/sprites/VFX/death.png" id="3_qu4a1"]
+[ext_resource type="Texture2D" uid="uid://c25n0fxmu3akq" path="res://assets/sprites/Characters/hookshot.png" id="5_1y732"]
 [ext_resource type="Animation" uid="uid://cuh1wioebaitd" path="res://blink.res" id="6_fjrip"]
 [ext_resource type="PackedScene" uid="uid://c118octxh7v0b" path="res://scenes/logic/hurt_box.tscn" id="6_tuyoq"]
 
@@ -953,6 +954,54 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HookshotRaycast:enabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sprite2D:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Sprite2D3:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Sprite2D2:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_erpy8"]
 resource_name = "attackBack"
@@ -1280,6 +1329,57 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_bnvp8"]
+resource_name = "hookshotSide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HookshotRaycast:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_70d11"]
 resource_name = "jump"
 
@@ -1291,6 +1391,7 @@ _data = {
 &"attackSide": SubResource("Animation_qlg0r"),
 &"blink": ExtResource("6_fjrip"),
 &"death": SubResource("Animation_qu4a1"),
+&"hookshotSide": SubResource("Animation_bnvp8"),
 &"jump": SubResource("Animation_70d11")
 }
 
@@ -1400,6 +1501,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnvp8"]
 size = Vector2(32, 31)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihebq"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ph2j0"]
+atlas = ExtResource("1_p0vlq")
+region = Rect2(32, 96, 16, 16)
+
 [node name="PlayerBody" type="CharacterBody2D" unique_id=1264691691]
 collision_layer = 10
 collision_mask = 5
@@ -1417,6 +1526,7 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_d3wef")
 animation = &"IdleSide"
 autoplay = "IdleSide"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049596249]
 position = Vector2(0, -5)
@@ -1475,6 +1585,31 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogInteract" unique_id=329759524]
 position = Vector2(8, -10.5)
 shape = SubResource("RectangleShape2D_bnvp8")
+
+[node name="HookshotRaycast" type="RayCast2D" parent="." unique_id=1465907868]
+position = Vector2(0, -8)
+enabled = false
+target_position = Vector2(50, 0)
+collision_mask = 16
+collide_with_areas = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=103874662]
+visible = false
+position = Vector2(14, -11)
+texture = SubResource("AtlasTexture_ihebq")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=92535089]
+visible = false
+position = Vector2(54, -11)
+texture = SubResource("AtlasTexture_ph2j0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1411867370]
+visible = false
+texture_repeat = 2
+position = Vector2(34, -10)
+texture = ExtResource("5_1y732")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 16)
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

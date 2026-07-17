@@ -29,6 +29,7 @@ var active_bgs_stream: AudioStreamPlayer
 @export var move_sfx: AudioStreamPlayer
 @export var back_sfx: AudioStreamPlayer
 
+var number_of_sfx: int
 
 ## plays the music with the corresponding audio name starting from the from_position.
 ## If restart is true, then the music will restart even if the music was already playing
@@ -118,10 +119,15 @@ func stop_bgs():
 ## plays the sfx with the corresponding audio name starting from the from_position.
 ## the audio will play from the sound_position and get gradually quieter the farther away
 func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Vector2 = Vector2(0,0)) -> void:
+	# only allow up to 5 sfx at once to not break your ears
+	if number_of_sfx > 5:
+		return
+	
 	# get the audio stream for the sound we want to play
 	var active_sound_stream = sounds.get_node(audio_name).duplicate()
 	#active_sound_streams.append(sfx)
 	get_tree().root.add_child(active_sound_stream)
+	number_of_sfx += 1
 	
 	# check if we found the stream
 	if !active_sound_stream:
@@ -137,6 +143,8 @@ func play_sfx(audio_name: String, from_position: float = 0.0, sound_position: Ve
 		await active_sound_stream.finished
 		
 		active_sound_stream.queue_free()
+		
+		number_of_sfx -= 1
 		
 		active_sound_stream = null
 

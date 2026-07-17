@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cai4obhmdjsmr"]
+
+[node name="Grapplepoint" type="Area2D" unique_id=1480441017]
+collision_layer = 16
+collision_mask = 16

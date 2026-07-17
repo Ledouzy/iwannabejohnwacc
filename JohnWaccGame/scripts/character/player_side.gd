@@ -9,6 +9,7 @@ class_name player
 @export var WALK_CAP = 110
 @export var RUN_CAP = 145
 @export var RUN_MULT = 1.5 ## Sprint multiplier
+@export var HOOKSHOT_SPEED = 500
 # deadzone
 @export var deadzone = 0.25 ## min value before input is registered
 # Stats
@@ -28,6 +29,7 @@ var coyote_timer = 0
 var can_jump = true
 var springjump = false
 var skipisonfloor = false # bc godot is cringe
+var skipGravity = false
 
 # direction
 var dir = 1 # direction of the player
@@ -59,6 +61,7 @@ var cant_jump = false # stops from jumping
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var camera: Camera2D = $"../../Camera2D"
+@onready var hookshot_raycast: RayCast2D = $HookshotRaycast
 
 
 # ready just for camera lmao. Else the camera will scroll while loading checkpoint
@@ -257,6 +260,11 @@ func _on_sword_down_body_entered(body: Node2D) -> void:
 	pass
 	#if body != null:
 	#	velocity.y = JUMP_VELOCITY
+	
+
+## Handles logic for hookshot
+func hookshot(target):
+	pass
 
 
 ## Handles the playing of animations not specific to an action
@@ -315,7 +323,7 @@ func _physics_process(delta: float) -> void:
 		jumps = MAX_JUMPS
 		
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not skipGravity:
 		# coyote time aka jumping when leaving ground
 		coyote_timer += delta
 		
@@ -460,6 +468,36 @@ func _physics_process(delta: float) -> void:
 				player_body.scale.x = -1
 		# unlock our direction
 		lock_direction = false
+		
+	# logic for hookshot
+	if Input.is_action_just_pressed("hookshot") and !waitforanimationend and !pickupanim:
+		animation_player.play("hookshotSide")
+		print("hookshot!")
+		var target = hookshot_raycast.get_collider()
+		print("target: ", target)
+		
+		if target != null:
+			print("position: ", position)
+			print("target position: ", target.position)
+			
+			waitforanimationend = true
+			skipMoveProcess = true
+			skipGravity = true
+			#velocity.y = 0
+			
+			# test to see if it works
+			var hookshot_direction = target.position - position
+			print("hookshot_direction: ", hookshot_direction)
+			velocity = HOOKSHOT_SPEED * delta * hookshot_direction
+			print("velocity: ", velocity)
+			
+			await get_tree().create_timer(.1).timeout
+			
+			# INSTEAD USE A SIGNAL FROM THE GRAPPLE POINT, WHEN PLAYER ON THE WALL, STOP AND GIVE BACK CONTROL
+			
+			skipMoveProcess = false
+			waitforanimationend = false
+			skipGravity = false
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
