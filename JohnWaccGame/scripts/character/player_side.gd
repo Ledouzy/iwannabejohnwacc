@@ -9,7 +9,7 @@ class_name player
 @export var WALK_CAP = 110
 @export var RUN_CAP = 145
 @export var RUN_MULT = 1.5 ## Sprint multiplier
-@export var HOOKSHOT_SPEED = 500
+@export var HOOKSHOT_SPEED = 400
 # deadzone
 @export var deadzone = 0.25 ## min value before input is registered
 # Stats
@@ -42,6 +42,8 @@ var pickedUp # stores the object that you picked up
 
 # indicates that we are using the hookshot
 var hookshot_active = false
+# staying at the point yout hooked to
+var hookshot_cling = false
 
 # animation flags
 var jumpanim = false # play the animation once
@@ -346,7 +348,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY * 0.25
 	
 	# If held, or first tapped we give full height, also handles multiple jumps
-	if Input.is_action_just_pressed("jump") and (can_jump or (jumps > 0)) and !cant_jump:
+	if Input.is_action_just_pressed("jump") and ((can_jump or (jumps > 0)) and !cant_jump or hookshot_cling):
 		#already jumped, remove that shit
 		can_jump = false
 		# removes 1 jump to number of jumps (jumps variable)
@@ -364,6 +366,15 @@ func _physics_process(delta: float) -> void:
 		
 		# cap the velocity so that we don't go too far up
 		velocity.y = max(JUMP_VELOCITY*1, velocity.y)
+		
+		# if we jump after we clinged to a wall
+		if hookshot_cling:
+			skipMoveProcess = false
+			waitforanimationend = false
+			skipGravity = false
+			hookshot_cling = false
+			
+			animated_sprite.play("JumpSide")
 		
 	# Handles PickUp objects and enemies
 	if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend and is_on_floor():
@@ -473,7 +484,15 @@ func _physics_process(delta: float) -> void:
 		lock_direction = false
 		
 	# logic for activating hookshot
-	if Input.is_action_just_pressed("hookshot") and !waitforanimationend and !pickupanim:
+	if Input.is_action_just_pressed("hookshot") and ((!waitforanimationend and !pickupanim) or hookshot_cling):
+		
+		# disable flags set by wall cling
+		#skipMoveProcess = false
+		#skipGravity = false
+		hookshot_cling = false
+		
+		# play the hookshot animation
+		waitforanimationend = true
 		animation_player.play("hookshotSide")
 		print("hookshot!")
 		hookshot_active = true
@@ -490,7 +509,7 @@ func _physics_process(delta: float) -> void:
 			print("position: ", position)
 			print("target position: ", target.position)
 			
-			waitforanimationend = true
+			
 			skipMoveProcess = true
 			skipGravity = true
 			#velocity.y = 0
@@ -498,17 +517,20 @@ func _physics_process(delta: float) -> void:
 			# test to see if it works
 			var hookshot_direction = target.position - position
 			print("hookshot_direction: ", hookshot_direction)
-			velocity = HOOKSHOT_SPEED * delta * hookshot_direction
+			velocity = HOOKSHOT_SPEED * delta * (hookshot_direction + Vector2(0,4))
 			print("velocity: ", velocity)
 			
-			await get_tree().create_timer(.1).timeout
+			# to avoid stale references
+			target = null
+			
+			await get_tree().create_timer(.15).timeout
+			
+			# stick to the hooked point
+			hookshot_cling = true
+			velocity = Vector2(0,0)
 			
 			# INSTEAD USE A SIGNAL FROM THE GRAPPLE POINT, WHEN PLAYER ON THE WALL, STOP AND GIVE BACK CONTROL
-			velocity = Vector2(velocity.x/2, JUMP_VELOCITY/4)
-			
-			skipMoveProcess = false
-			waitforanimationend = false
-			skipGravity = false
+		
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
@@ -580,3 +602,9 @@ func _physics_process(delta: float) -> void:
 # play a sound by calling the audio manager
 func play_sfx(sfx_name):
 	audio_manager.play_sfx(sfx_name, 0, self.position)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "hookshotSide":
+		waitforanimationend = false
+		hookshot_active = false

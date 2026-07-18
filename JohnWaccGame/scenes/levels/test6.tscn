@@ -21,7 +21,6 @@ normal = Vector2(1, 0)
 distance = -80.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6x4r8"]
-size = Vector2(10, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pku8"]
 size = Vector2(16, 16)
@@ -70,7 +69,7 @@ shape = SubResource("WorldBoundaryShape2D_4pku8")
 [node name="Objects" type="Node2D" parent="Level" unique_id=751048458]
 
 [node name="Grapplepoint" parent="Level/Objects" unique_id=1480441017 instance=ExtResource("5_uidxl")]
-position = Vector2(267, -40)
+position = Vector2(280, -40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Objects/Grapplepoint" unique_id=636734979]
 shape = SubResource("RectangleShape2D_6x4r8")
@@ -164,6 +163,9 @@ position = Vector2(152, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealArea" unique_id=2070968074]
 shape = SubResource("RectangleShape2D_ihebq")
+
+[connection signal="animation_finished" from="Player/PlayerBody/AnimationPlayer" to="Player/PlayerBody" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Player/PlayerBody/SwordBackHurtBox3" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]

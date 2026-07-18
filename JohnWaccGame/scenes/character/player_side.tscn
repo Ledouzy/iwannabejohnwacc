@@ -11,6 +11,7 @@ script = ExtResource("1_hmm4i")
 [node name="PlayerBody" parent="." unique_id=1264691691 instance=ExtResource("1_amd7u")]
 script = ExtResource("1_5nlcr")
 
+[connection signal="animation_finished" from="PlayerBody/AnimationPlayer" to="PlayerBody" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="PlayerBody/SwordBackHurtBox3" to="PlayerBody" method="_on_sword_down_body_entered"]
 
 [editable path="PlayerBody"]
