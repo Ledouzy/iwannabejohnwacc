@@ -40,6 +40,9 @@ var invulnerable = false
 # pickup/throw objects
 var pickedUp # stores the object that you picked up
 
+# indicates that we are using the hookshot
+var hookshot_active = false
+
 # animation flags
 var jumpanim = false # play the animation once
 var deathanim = false # play the animation once
@@ -469,14 +472,21 @@ func _physics_process(delta: float) -> void:
 		# unlock our direction
 		lock_direction = false
 		
-	# logic for hookshot
+	# logic for activating hookshot
 	if Input.is_action_just_pressed("hookshot") and !waitforanimationend and !pickupanim:
 		animation_player.play("hookshotSide")
 		print("hookshot!")
+		hookshot_active = true
+	
+	# while the hookshot is active
+	if hookshot_active:
 		var target = hookshot_raycast.get_collider()
 		print("target: ", target)
 		
 		if target != null:
+			# only happens once
+			hookshot_active = false
+			
 			print("position: ", position)
 			print("target position: ", target.position)
 			
