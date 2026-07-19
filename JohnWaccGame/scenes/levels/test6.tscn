@@ -164,9 +164,6 @@ position = Vector2(152, -25)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealArea" unique_id=2070968074]
 shape = SubResource("RectangleShape2D_ihebq")
 
-[connection signal="animation_finished" from="Player/PlayerBody/AnimationPlayer" to="Player/PlayerBody" method="_on_animation_player_animation_finished"]
-[connection signal="body_entered" from="Player/PlayerBody/SwordBackHurtBox3" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
-
 [editable path="Player"]
 [editable path="Player/PlayerBody"]
 [editable path="Lance/DialogAreaTest"]

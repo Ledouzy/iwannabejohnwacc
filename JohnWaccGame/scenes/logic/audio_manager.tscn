@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://wht1ke7uro52" path="res://scripts/logic/audio_manager.gd" id="1_qxga5"]
 [ext_resource type="AudioStream" uid="uid://crwlyr114vidw" path="res://assets/audio/music/Temple of the Sun.wav" id="2_acg88"]
+<<<<<<< Updated upstream
 [ext_resource type="AudioStream" uid="uid://5okxqd1468ac" path="res://assets/audio/music/6rd Sanctary.wav" id="2_e3jjc"]
+=======
+[ext_resource type="AudioStream" uid="uid://cbxuaif1bua0d" path="res://assets/audio/music/6rd Sanctary.ogg" id="2_e3jjc"]
+>>>>>>> Stashed changes
 [ext_resource type="AudioStream" uid="uid://bvtx5venoy5la" path="res://assets/audio/music/track_baller.wav" id="2_mcjhh"]
 [ext_resource type="AudioStream" uid="uid://2ac3rtwphoww" path="res://assets/audio/music/Third_Sanctuary.ogg" id="3_gh300"]
 [ext_resource type="AudioStream" uid="uid://drachgabwwx2l" path="res://assets/audio/music/The Boy's Got Wings.wav" id="3_pum6a"]
@@ -39,7 +43,11 @@ back_sfx = NodePath("UI/MenuBack")
 
 [node name="Musics" type="Node" parent="." unique_id=1933384434]
 
+<<<<<<< Updated upstream
 [node name="6rdSanctary" type="AudioStreamPlayer" parent="Musics" unique_id=1377654987]
+=======
+[node name="6rdSanctary" type="AudioStreamPlayer" parent="Musics" unique_id=1334658016]
+>>>>>>> Stashed changes
 stream = ExtResource("2_e3jjc")
 
 [node name="TempleOfTheSun" type="AudioStreamPlayer" parent="Musics" unique_id=771599168]
