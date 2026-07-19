@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bp5wsq8gs01i4" path="res://assets/audio/music/The Final Decisive Battle.wav" id="6_6fkjv"]
 [ext_resource type="AudioStream" uid="uid://d0ne8i4gr2svq" path="res://assets/audio/sounds/jump.wav" id="7_siidf"]
 [ext_resource type="AudioStream" uid="uid://b34tbckjtxd73" path="res://assets/audio/sounds/death.wav" id="8_pc3ia"]
-[ext_resource type="AudioStream" uid="uid://dugkgoilqj7pe" path="res://assets/audio/sounds/sword.wav" id="9_hhrbd"]
+[ext_resource type="AudioStream" uid="uid://brdyn6a8uwx5y" path="res://assets/audio/sounds/sword.wav" id="9_hhrbd"]
 [ext_resource type="AudioStream" uid="uid://bnom6e03tfwvg" path="res://assets/audio/sounds/menu_back.wav" id="9_siidf"]
 [ext_resource type="AudioStream" uid="uid://h8x07cd37d5j" path="res://assets/audio/music/sword.ogg" id="10_pum6a"]
 [ext_resource type="AudioStream" uid="uid://6eka5b8pid7x" path="res://assets/audio/sounds/spring.wav" id="10_y3xji"]
@@ -41,6 +41,7 @@ back_sfx = NodePath("UI/MenuBack")
 
 [node name="6rdSanctary" type="AudioStreamPlayer" parent="Musics" unique_id=1334658016]
 stream = ExtResource("2_e3jjc")
+bus = &"Music"
 
 [node name="TempleOfTheSun" type="AudioStreamPlayer" parent="Musics" unique_id=771599168]
 stream = ExtResource("2_acg88")

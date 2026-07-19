@@ -31,9 +31,6 @@ level_id = 4
 [node name="Player" parent="." unique_id=1165610629 instance=ExtResource("1_y3vdi")]
 unique_name_in_owner = true
 
-[node name="AnimatedSprite2D" parent="Player/PlayerBody" parent_id_path=PackedInt32Array(1165610629, 1264691691) index="1" unique_id=415068813]
-frame = 1
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1310489893 node_paths=PackedStringArray("player")]
 process_callback = 0
 limit_left = -80
@@ -113,7 +110,8 @@ tile_set = ExtResource("10_1wpw8")
 
 [node name="level_transition" parent="Level" unique_id=1807414438 instance=ExtResource("11_w1hcc")]
 position = Vector2(-1105, 445)
-next_scene_name = "test0"
+next_scene_name = "level5"
+next_stage_number = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/level_transition" unique_id=1071860672]
 position = Vector2(4889, -445)
