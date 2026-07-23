@@ -67,6 +67,9 @@ var cant_jump = false # stops from jumping
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var camera: Camera2D = $"../../Camera2D"
 @onready var hookshot_raycast: RayCast2D = $HookshotRaycast
+@onready var hook1: Sprite2D = $Sprite2D
+@onready var hook2: Sprite2D = $Sprite2D3
+@onready var hook3: Sprite2D = $Sprite2D2
 
 
 # ready just for camera lmao. Else the camera will scroll while loading checkpoint
@@ -496,6 +499,14 @@ func _physics_process(delta: float) -> void:
 		animation_player.play("hookshotSide")
 		print("hookshot!")
 		hookshot_active = true
+		
+		await animation_player.animation_finished
+		
+		animation_player.play("hookReturnSide")
+		
+		await animation_player.animation_finished
+		
+		waitforanimationend = false
 	
 	# while the hookshot is active
 	if hookshot_active:
