@@ -1,5 +1,19 @@
 [gd_scene format=3 uid="uid://cai4obhmdjsmr"]
 
+[ext_resource type="Script" uid="uid://cxe1geiy8xoq" path="res://scripts/objects/grapplepoint.gd" id="1_km8xv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ihebq"]
+radius = 4.0
+
 [node name="Grapplepoint" type="Area2D" unique_id=1480441017]
 collision_layer = 16
 collision_mask = 16
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1827937514]
+collision_mask = 2
+script = ExtResource("1_km8xv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=206736112]
+shape = SubResource("CircleShape2D_ihebq")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

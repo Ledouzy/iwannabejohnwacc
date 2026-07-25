@@ -9,7 +9,7 @@ class_name player
 @export var WALK_CAP = 110
 @export var RUN_CAP = 145
 @export var RUN_MULT = 1.5 ## Sprint multiplier
-@export var HOOKSHOT_SPEED = 400
+@export var HOOKSHOT_SPEED = 300
 # deadzone
 @export var deadzone = 0.25 ## min value before input is registered
 # Stats
@@ -40,10 +40,15 @@ var invulnerable = false
 # pickup/throw objects
 var pickedUp # stores the object that you picked up
 
+# cause hookshot is buggy just like my code and i need to stop attack while hookshot
+var attackanim
+
 # indicates that we are using the hookshot
 var hookshot_active = false
 # staying at the point yout hooked to
 var hookshot_cling = false
+# target of the hookshot
+var hookshot_target = null
 
 # animation flags
 var jumpanim = false # play the animation once
@@ -67,9 +72,6 @@ var cant_jump = false # stops from jumping
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var camera: Camera2D = $"../../Camera2D"
 @onready var hookshot_raycast: RayCast2D = $HookshotRaycast
-@onready var hook1: Sprite2D = $Sprite2D
-@onready var hook2: Sprite2D = $Sprite2D3
-@onready var hook3: Sprite2D = $Sprite2D2
 
 
 # ready just for camera lmao. Else the camera will scroll while loading checkpoint
@@ -277,8 +279,11 @@ func hookshot(target):
 
 ## Handles the playing of animations not specific to an action
 func process_animation(direction) -> void:
+	# cling animation
+	if hookshot_cling:
+		animated_sprite.play("ClingSide")
 	# grounded animation
-	if is_on_floor():
+	elif is_on_floor():
 		# we are not jumping and we can reset our number of jumps
 		jumpanim = false
 		
@@ -287,7 +292,7 @@ func process_animation(direction) -> void:
 			# if we are holding an object/enemy, play the variant
 			if (pickupanim):
 				animated_sprite.play("PickupIdleSide")
-			elif !shruganim:
+			elif !shruganim and !hookshot_cling and !hookshot_active:
 				animated_sprite.play("IdleSide")
 		# else, we are moving, play the walk animation
 		else:
@@ -372,12 +377,17 @@ func _physics_process(delta: float) -> void:
 		
 		# if we jump after we clinged to a wall
 		if hookshot_cling:
+			# disable the flags for that
 			skipMoveProcess = false
 			waitforanimationend = false
 			skipGravity = false
 			hookshot_cling = false
 			
+			# Change to the jumping sprite
 			animated_sprite.play("JumpSide")
+			
+			# Reset to hide the hookshot
+			animation_player.play("hookReset")
 		
 	# Handles PickUp objects and enemies
 	if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend and is_on_floor():
@@ -443,8 +453,10 @@ func _physics_process(delta: float) -> void:
 		waitforanimationend = false
 		
 	# Handles attacking, right now only for sword and on side
-	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:
+	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim and !hookshot_active and !hookshot_target:
 		# print("attack") # debug message
+		# we are attacking
+		attackanim = true
 		
 		# check for if we changed direction while we are attacking
 		var changed_dir = dir
@@ -486,27 +498,47 @@ func _physics_process(delta: float) -> void:
 		# unlock our direction
 		lock_direction = false
 		
+		# we are done
+		attackanim = false
+		
 	# logic for activating hookshot
-	if Input.is_action_just_pressed("hookshot") and ((!waitforanimationend and !pickupanim) or hookshot_cling):
+	if Input.is_action_just_pressed("hookshot") and ((!waitforanimationend and !pickupanim) or hookshot_cling) and !hookshot_active and !hookshot_target and !attackanim:
 		
 		# disable flags set by wall cling
-		#skipMoveProcess = false
-		#skipGravity = false
-		hookshot_cling = false
+		#hookshot_cling = false
 		
-		# play the hookshot animation
+		# play the hookshot animation, locking other animations during the this time
 		waitforanimationend = true
 		animation_player.play("hookshotSide")
-		print("hookshot!")
+		
+		#print("hookshot!")
+		
+		# indicate that we are hookshotting
 		hookshot_active = true
 		
+		#wait for the end of the hookshot animation, then play the return animation
 		await animation_player.animation_finished
 		
 		animation_player.play("hookReturnSide")
 		
 		await animation_player.animation_finished
 		
-		waitforanimationend = false
+		# if we are not clinging, hide the hookshot
+		if !hookshot_cling and !hookshot_target:
+			# Reset to hide the hookshot
+			animation_player.play("hookReset")
+			
+			# unlock animation when done
+			waitforanimationend = false
+		
+		hookshot_raycast.enabled = false
+		hookshot_raycast.target_position = Vector2(0,0)
+		
+		# test to see if it clears the target
+		print("test at the end raycast: ", hookshot_raycast.get_collider())
+		print("test at the end raycast: ", hookshot_raycast.get_collider())
+		hookshot_target = null
+		hookshot_active = false
 	
 	# while the hookshot is active
 	if hookshot_active:
@@ -516,6 +548,7 @@ func _physics_process(delta: float) -> void:
 		if target != null:
 			# only happens once
 			hookshot_active = false
+			hookshot_target = target
 			
 			print("position: ", position)
 			print("target position: ", target.position)
@@ -534,10 +567,11 @@ func _physics_process(delta: float) -> void:
 			# to avoid stale references
 			target = null
 			
-			await get_tree().create_timer(.15).timeout
+			await SignalBus.stop_hookshot
 			
 			# stick to the hooked point
 			hookshot_cling = true
+			hookshot_target = null
 			velocity = Vector2(0,0)
 			
 			# INSTEAD USE A SIGNAL FROM THE GRAPPLE POINT, WHEN PLAYER ON THE WALL, STOP AND GIVE BACK CONTROL
@@ -616,6 +650,6 @@ func play_sfx(sfx_name):
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "hookshotSide":
+	if anim_name == "hookReturnSide":
 		waitforanimationend = false
 		hookshot_active = false
