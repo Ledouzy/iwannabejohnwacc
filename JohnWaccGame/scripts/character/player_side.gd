@@ -519,7 +519,38 @@ func _physics_process(delta: float) -> void:
 		# play the hookshot animation, locking other animations during the this time
 		lock_direction = true
 		waitforanimationend = true
-		animation_player.play("hookshotSide")
+		
+		# get the direction the player is hooking
+		var hook_direction = 0 # 0,1,2,3 = NESW
+		
+		if Input.is_action_pressed("up"):
+			hook_direction = 0
+		elif Input.is_action_pressed("right"):
+			hook_direction = 1
+		elif Input.is_action_pressed("down"):
+			hook_direction = 2
+		elif Input.is_action_pressed("left"):
+			hook_direction = 3
+		else:
+			# get the direction the player is facing
+			# technically 1 and 3 are the same but in case we need it i gess
+			if get_direction() > 0:
+				hook_direction = 1
+			else:
+				hook_direction = 3
+		
+		# play the animation for the direction we are facing
+		match hook_direction:
+			0: # up
+				animation_player.play("hookshotUp")
+			1: # right
+				animation_player.play("hookshotSide")
+			2: # down
+				animation_player.play("hookshotDown")
+			3: # left
+				animation_player.play("hookshotSide")
+			_: # other
+				print("Error: hook direction is not between 0 and 3.")
 		
 		#print("hookshot!")
 		
@@ -529,7 +560,18 @@ func _physics_process(delta: float) -> void:
 		#wait for the end of the hookshot animation, then play the return animation
 		await animation_player.animation_finished
 		
-		animation_player.play("hookReturnSide")
+		# play the return animation for the correct direction
+		match hook_direction:
+			0: # up
+				animation_player.play("hookReturnUp")
+			1: # right
+				animation_player.play("hookReturnSide")
+			2: # down
+				animation_player.play("hookReturnDown")
+			3: # left
+				animation_player.play("hookReturnSide")
+			_: # other
+				print("Error: hook direction is not between 0 and 3.")
 		
 		await animation_player.animation_finished
 		
@@ -658,6 +700,6 @@ func play_sfx(sfx_name):
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "hookReturnSide":
+	if anim_name == "hookReturnSide" or anim_name == "hookReturnUp" or anim_name == "hookReturnDown":
 		waitforanimationend = false
 		hookshot_active = false
