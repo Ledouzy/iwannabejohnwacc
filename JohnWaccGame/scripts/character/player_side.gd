@@ -318,6 +318,15 @@ func process_animation(direction) -> void:
 
 ## call at fixed interval for physics calculations
 func _physics_process(delta: float) -> void:
+	# ensures that the direction facing is correct
+	if !lock_direction:
+		if Input.is_action_pressed("right") and Input.is_action_pressed("left"):
+			pass
+		elif (velocity.x > 0 or Input.is_action_pressed("right")) and rotation < 0:
+			scale.x = -1
+		elif (velocity.x < 0 or Input.is_action_pressed("left")) and rotation > 0:
+			scale.x = -1
+	
 	# When dead
 	if (dead):
 		# play the death animation once
@@ -508,6 +517,7 @@ func _physics_process(delta: float) -> void:
 		#hookshot_cling = false
 		
 		# play the hookshot animation, locking other animations during the this time
+		lock_direction = true
 		waitforanimationend = true
 		animation_player.play("hookshotSide")
 		
@@ -534,11 +544,9 @@ func _physics_process(delta: float) -> void:
 		hookshot_raycast.enabled = false
 		hookshot_raycast.target_position = Vector2(0,0)
 		
-		# test to see if it clears the target
-		print("test at the end raycast: ", hookshot_raycast.get_collider())
-		print("test at the end raycast: ", hookshot_raycast.get_collider())
 		hookshot_target = null
 		hookshot_active = false
+		lock_direction = false
 	
 	# while the hookshot is active
 	if hookshot_active:
