@@ -11,7 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://v11oc0wr282e" path="res://assets/audio/music/Star Light Zone.wav" id="5_gh300"]
 [ext_resource type="AudioStream" uid="uid://be26io14cxx7k" path="res://assets/audio/sounds/coin.wav" id="6_2hsro"]
 [ext_resource type="AudioStream" uid="uid://bp5wsq8gs01i4" path="res://assets/audio/music/The Final Decisive Battle.wav" id="6_6fkjv"]
-[ext_resource type="AudioStream" uid="uid://d0ne8i4gr2svq" path="res://assets/audio/sounds/jump.wav" id="7_siidf"]
 [ext_resource type="AudioStream" uid="uid://b34tbckjtxd73" path="res://assets/audio/sounds/death.wav" id="8_pc3ia"]
 [ext_resource type="AudioStream" uid="uid://brdyn6a8uwx5y" path="res://assets/audio/sounds/sword.wav" id="9_hhrbd"]
 [ext_resource type="AudioStream" uid="uid://bnom6e03tfwvg" path="res://assets/audio/sounds/menu_back.wav" id="9_siidf"]
@@ -23,8 +22,11 @@
 [ext_resource type="AudioStream" uid="uid://blvctyuwfxuo0" path="res://assets/audio/music/Moat of Burnedbless.wav" id="13_6xeo7"]
 [ext_resource type="AudioStream" uid="uid://8krvs13dcsov" path="res://assets/audio/sounds/car.wav" id="14_lrgoc"]
 [ext_resource type="AudioStream" uid="uid://ocn3y12my2yy" path="res://assets/audio/sounds/Rain.wav" id="16_t0aqn"]
+[ext_resource type="AudioStream" uid="uid://cr7a3sk0ji4ug" path="res://assets/audio/sounds/jump2.wav" id="17_adm1r"]
 [ext_resource type="AudioStream" uid="uid://bswbloqac1r6i" path="res://assets/audio/sounds/dogi.wav" id="19_qhr3l"]
+[ext_resource type="AudioStream" uid="uid://dofi2tlbcsos8" path="res://assets/audio/sounds/push.wav" id="22_kjlye"]
 [ext_resource type="AudioStream" uid="uid://c12nimn51d86h" path="res://assets/audio/sounds/beaver.wav" id="22_vux6c"]
+[ext_resource type="AudioStream" uid="uid://dm5rhh12pnlor" path="res://assets/audio/sounds/beep.wav" id="22_wj6y6"]
 
 [node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "BGS", "ui", "confirm_sfx", "move_sfx", "back_sfx")]
 process_mode = 3
@@ -115,8 +117,8 @@ max_distance = 256.0
 bus = &"SFX"
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=112391268]
-stream = ExtResource("7_siidf")
-volume_db = 10.0
+stream = ExtResource("17_adm1r")
+pitch_scale = 1.05
 max_distance = 256.0
 bus = &"SFX"
 
@@ -139,15 +141,14 @@ max_distance = 256.0
 bus = &"SFX"
 
 [node name="Pickup" type="AudioStreamPlayer2D" parent="Sounds" unique_id=145428075]
-stream = ExtResource("7_siidf")
-volume_db = 10.0
+stream = ExtResource("17_adm1r")
 pitch_scale = 0.8
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Throw" type="AudioStreamPlayer2D" parent="Sounds" unique_id=994286090]
-stream = ExtResource("10_y3xji")
-volume_db = 12.0
+stream = ExtResource("22_kjlye")
+pitch_scale = 1.2
 max_distance = 256.0
 bus = &"SFX"
 
@@ -159,8 +160,7 @@ max_distance = 256.0
 bus = &"SFX"
 
 [node name="Damage" type="AudioStreamPlayer2D" parent="Sounds" unique_id=71881890]
-stream = ExtResource("9_siidf")
-volume_db = 16.0
+stream = ExtResource("22_wj6y6")
 pitch_scale = 0.8
 max_distance = 256.0
 bus = &"SFX"
@@ -191,6 +191,9 @@ volume_db = 9.0
 pitch_scale = 0.6
 max_distance = 256.0
 bus = &"SFX"
+
+[node name="Push" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1294942957]
+stream = ExtResource("22_kjlye")
 
 [node name="BGS" type="Node" parent="." unique_id=1326326623]
 
