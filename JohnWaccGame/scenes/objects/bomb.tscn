@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c2uuwe2e0r1u"]
+
+[ext_resource type="Texture2D" uid="uid://cudf2mx7h3stx" path="res://assets/sprites/Objects/bomb.png" id="1_unqwv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyuu0"]
+atlas = ExtResource("1_unqwv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc6o0"]
+atlas = ExtResource("1_unqwv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uno4j"]
+atlas = ExtResource("1_unqwv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyuu0")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc6o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uno4j")
+}],
+"loop": 1,
+"name": &"tick",
+"speed": 5.0
+}]
+
+[node name="Bomb" type="Node2D" unique_id=1961716561]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2137807985]
+sprite_frames = SubResource("SpriteFrames_ihebq")
+animation = &"tick"
+frame_progress = 0.1384291

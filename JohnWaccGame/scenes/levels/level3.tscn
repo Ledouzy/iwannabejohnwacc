@@ -103,11 +103,6 @@ next_stage_number = 4
 position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_wb0vq")
 
-[connection signal="timeout" from="Level/Enemies/CarTopdown/Car/DamageTimer" to="Level/Enemies/CarTopdown/Car" method="_on_damage_timer_timeout"]
-[connection signal="timeout" from="Level/Enemies/CarTopdown/Car/ThrowTimer" to="Level/Enemies/CarTopdown/Car" method="_on_throw_timer_timeout"]
-[connection signal="timeout" from="Level/Enemies/CarTopdown2/Car/DamageTimer" to="Level/Enemies/CarTopdown2/Car" method="_on_damage_timer_timeout"]
-[connection signal="timeout" from="Level/Enemies/CarTopdown2/Car/ThrowTimer" to="Level/Enemies/CarTopdown2/Car" method="_on_throw_timer_timeout"]
-
 [editable path="Player"]
 [editable path="Player/PlayerBody"]
 [editable path="Level/Enemies/CarTopdown"]

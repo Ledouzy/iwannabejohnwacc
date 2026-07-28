@@ -435,7 +435,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("Shrug")
 			
 			# wait for shrug animation end
-			await animated_sprite.animation_finished
+			await animated_sprite.animation_changed
 			
 			shruganim = false
 			

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://2a3bw823bt3d"]
+
+[ext_resource type="Texture2D" uid="uid://x1tgcpvhyv3r" path="res://assets/sprites/Objects/door.png" id="1_yar34"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw3m6"]
+atlas = ExtResource("1_yar34")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm0wp"]
+atlas = ExtResource("1_yar34")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw3m6")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm0wp")
+}],
+"loop": 1,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="Door" type="Node2D" unique_id=1519689909]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1235073732]
+sprite_frames = SubResource("SpriteFrames_ihebq")
+animation = &"idle"
+autoplay = "idle"

@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cdscwknu7hknk" path="res://assets/sprites/Tiles/test_top.png" id="1_om5xw"]
 [ext_resource type="PackedScene" uid="uid://qi1ndjspalke" path="res://scenes/objects/flag.tscn" id="2_6hc21"]
+[ext_resource type="PackedScene" uid="uid://c2uuwe2e0r1u" path="res://scenes/objects/bomb.tscn" id="3_1chk1"]
+[ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/door.tscn" id="4_m5nnd"]
+[ext_resource type="Texture2D" uid="uid://kh7mv7dcke1k" path="res://assets/sprites/Objects/pedestal.png" id="5_ek8lr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hc21"]
 texture = ExtResource("1_om5xw")
@@ -718,6 +721,12 @@ texture = ExtResource("1_om5xw")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_om5xw"]
 resource_name = "Objects"
 scenes/1/scene = ExtResource("2_6hc21")
+scenes/2/scene = ExtResource("3_1chk1")
+scenes/3/scene = ExtResource("4_m5nnd")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wrqx8"]
+texture = ExtResource("5_ek8lr")
+0:0/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 9
@@ -735,3 +744,4 @@ terrain_set_0/terrain_4/name = "Object"
 terrain_set_0/terrain_4/color = Color(0.9554705, 0.7497167, 0, 1)
 sources/0 = SubResource("TileSetAtlasSource_6hc21")
 sources/1 = SubResource("TileSetScenesCollectionSource_om5xw")
+sources/2 = SubResource("TileSetAtlasSource_wrqx8")

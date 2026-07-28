@@ -1,0 +1,150 @@
+[gd_scene format=4 uid="uid://i0lct4mypc8i"]
+
+[ext_resource type="Script" uid="uid://dlh31ifduhpq8" path="res://scripts/level/level.gd" id="1_sdnvp"]
+[ext_resource type="Texture2D" uid="uid://1sky3d5i1gtk" path="res://assets/sprites/Background/bg1_layer0_2.png" id="2_2rkt7"]
+[ext_resource type="Texture2D" uid="uid://bh7ypfciqtuoi" path="res://assets/sprites/Background/bg1_layer0.png" id="2_wrd1n"]
+[ext_resource type="Texture2D" uid="uid://bncgcbvkkscrb" path="res://assets/sprites/Background/bg1_layer1.png" id="4_sdnvp"]
+[ext_resource type="Texture2D" uid="uid://bb47oge2yv67o" path="res://assets/sprites/Background/bg1_layer4.png" id="4_wrd1n"]
+[ext_resource type="Texture2D" uid="uid://cbse8uu8e7738" path="res://assets/sprites/Background/bg1_layer2.png" id="5_53v2u"]
+[ext_resource type="Texture2D" uid="uid://bs1g46v5ivgaa" path="res://assets/sprites/Background/bg1_layer3.png" id="6_3mgnq"]
+[ext_resource type="PackedScene" uid="uid://cfhjn46f5v8xr" path="res://scenes/character/player_side.tscn" id="9_e257y"]
+[ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="10_7xq2f"]
+[ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="11_xmmsn"]
+[ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="12_vjdek"]
+[ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="13_qw2ud"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ngf84"]
+distance = -192.0
+
+[node name="level6" type="Node2D" unique_id=1791756656]
+script = ExtResource("1_sdnvp")
+music_name = "6rdSanctary"
+level_id = 6
+
+[node name="Background" type="Node2D" parent="." unique_id=539580206]
+position = Vector2(-235, -295)
+
+[node name="Parallax2D5" type="Parallax2D" parent="Background" unique_id=80720617]
+z_index = -4096
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D5" unique_id=82107466]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("2_2rkt7")
+centered = false
+
+[node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=1068801857]
+z_index = -4096
+scroll_scale = Vector2(0, 0.1)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=1904736726]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("2_wrd1n")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="Background" unique_id=613208674]
+z_index = -4096
+scroll_scale = Vector2(0.005, 0.005)
+scroll_offset = Vector2(-150, 240)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=1928994188]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("4_sdnvp")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Background" unique_id=1360402578]
+z_index = -4096
+scroll_scale = Vector2(0, 0.1)
+scroll_offset = Vector2(-102, 240)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" unique_id=1714132834]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("5_53v2u")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background" unique_id=1075730183]
+z_index = -4096
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+autoscroll = Vector2(4, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2" unique_id=113960104]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("6_3mgnq")
+centered = false
+
+[node name="Parallax2D6" type="Parallax2D" parent="Background" unique_id=1406747365]
+z_index = -4096
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, 240)
+repeat_size = Vector2(256, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D6" unique_id=733887527]
+z_index = -4096
+position = Vector2(256, 0)
+texture = ExtResource("4_wrd1n")
+centered = false
+
+[node name="Player" parent="." unique_id=1165610629 instance=ExtResource("9_e257y")]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=827557238 node_paths=PackedStringArray("player")]
+process_callback = 0
+limit_bottom = 192
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("10_7xq2f")
+player = NodePath("../Player/PlayerBody")
+
+[node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("11_xmmsn")]
+unique_name_in_owner = true
+
+[node name="Level" type="Node2D" parent="." unique_id=1489832866]
+
+[node name="Enemies" type="Node2D" parent="Level" unique_id=776019690]
+
+[node name="Background" type="TileMapLayer" parent="Level" unique_id=1587357361]
+z_index = -2
+tile_map_data = PackedByteArray("AAAGAP//BwABAAEAAAAGAP7/BwABAAEAAAAGAP3/BwABAAEAAAAHAP3/BwABAAEAAAALAP3/BwABAAEAAAALAP7/BwABAAEAAAALAP//BwABAAEAAAAKAP//BwABAAEAAAAJAP//BwABAAEAAAAIAP//BwABAAEAAAAHAP//BwABAAEAAAAHAP7/BwABAAEAAAAIAP3/BwABAAEAAAAJAP3/BwABAAEAAAAKAP3/BwABAAEAAAAKAP7/BwABAAEAAAAJAP7/BwABAAEAAAAIAP7/BwABAAEAAAA=")
+tile_set = ExtResource("12_vjdek")
+collision_enabled = false
+
+[node name="TileMap" type="TileMapLayer" parent="Level" unique_id=233455674]
+z_index = -2
+tile_map_data = PackedByteArray("AAD//wAABAAHAAAAAAD+/wAABAAHAAAAAAAAAAAABAAHAAAAAAABAAAABAAHAAAAAAACAAAABAAHAAAAAAADAAAABAAHAAAAAAAEAAAABAAHAAAAAAD9/wAABAAHAAAAAAD8/wAABAAGAAAAAAAFAAAABAAIAAAAAAD9/wEABAABAAEAAAD+/wEABAABAAEAAAD//wEABAABAAEAAAAAAAEABAABAAEAAAABAAEABAABAAEAAAACAAEABAABAAEAAAADAAEABAABAAEAAAAEAAEABAABAAEAAAAEAAIABAABAAEAAAADAAIABAABAAEAAAACAAIABAABAAEAAAABAAIABAABAAEAAAAAAAIABAABAAEAAAD//wIABAABAAEAAAD+/wIABAABAAEAAAD9/wIABAABAAEAAAD8/wEABAAAAAEAAAD8/wIABAAAAAEAAAD8/wMABAAAAAIAAAD9/wMABAABAAIAAAD+/wMABAABAAIAAAD//wMABAABAAIAAAAAAAMABAABAAIAAAABAAMABAABAAIAAAACAAMABAABAAIAAAADAAMABAABAAIAAAAEAAMABAABAAIAAAAFAAMABAACAAIAAAAFAAIABAACAAEAAAAFAAEABAACAAEAAAAGAAAABwAAAAAAAAAHAAAABwAAAAAAAAAIAAAABwAAAAAAAAAJAAAABwAAAAAAAAAKAAAABwAAAAAAAAALAAAABwAAAAAAAAAGAAEABwABAAAAAAAHAAEABwABAAAAAAAIAAEABwABAAAAAAAJAAEABwABAAAAAAAKAAEABwABAAAAAAALAAEABwABAAAAAAAGAPz/BwACAAAAAAAHAPz/BwACAAAAAAAIAPz/BwACAAAAAAAJAPz/BwACAAAAAAAKAPz/BwACAAAAAAALAPz/BwACAAAAAAAEAP//CAAAAAAAAAAEAP7/AwAAAAAABAAIAP//AwAAAAAAEAA=")
+tile_set = ExtResource("12_vjdek")
+
+[node name="Killzone" parent="Level" unique_id=631934805 instance=ExtResource("13_qw2ud")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Killzone" unique_id=9525490]
+position = Vector2(0, 2)
+shape = SubResource("WorldBoundaryShape2D_ngf84")
+
+[node name="Platforms" type="Node2D" parent="Level" unique_id=1519873356]
+
+[node name="Springs" type="Node2D" parent="Level" unique_id=2102919483]
+
+[node name="Coins" type="Node2D" parent="Level" unique_id=2016997388]
+
+[connection signal="body_entered" from="Player/PlayerBody/SwordFrontHurtBox2" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
+[connection signal="body_entered" from="Level/TileMap/EarthDeeple" to="Level/TileMap/EarthDeeple" method="_on_body_entered"]
+
+[editable path="Player"]
+[editable path="Player/PlayerBody"]

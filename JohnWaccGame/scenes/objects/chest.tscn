@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bbrht23c62lsd"]
+
+[ext_resource type="Texture2D" uid="uid://defiljfp2duno" path="res://assets/sprites/Objects/chest.png" id="1_bas4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opa1x"]
+atlas = ExtResource("1_bas4e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acra8"]
+atlas = ExtResource("1_bas4e")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opa1x")
+}],
+"loop": 1,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acra8")
+}],
+"loop": 1,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="Chest" type="Node2D" unique_id=488964964]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=524480923]
+sprite_frames = SubResource("SpriteFrames_ihebq")
+animation = &"open"
