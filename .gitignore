@@ -19,3 +19,5 @@ mono_crash.*.json
 /JohnWaccGame/build
 *.png~
 *.kra~
+*.kra.1~
+*.kra.2~
