@@ -29,8 +29,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Chest" type="Node2D" unique_id=488964964]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
+size = Vector2(16, 16)
+
+[node name="Chest" type="StaticBody2D" unique_id=1607532700]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=524480923]
 sprite_frames = SubResource("SpriteFrames_ihebq")
-animation = &"open"
+animation = &"closed"
+autoplay = "closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1029974602]
+shape = SubResource("RectangleShape2D_ihebq")

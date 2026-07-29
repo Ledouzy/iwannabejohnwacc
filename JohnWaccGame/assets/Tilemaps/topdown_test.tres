@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c2uuwe2e0r1u" path="res://scenes/objects/bomb.tscn" id="3_1chk1"]
 [ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/door.tscn" id="4_m5nnd"]
 [ext_resource type="Texture2D" uid="uid://kh7mv7dcke1k" path="res://assets/sprites/Objects/pedestal.png" id="5_ek8lr"]
+[ext_resource type="PackedScene" uid="uid://bbrht23c62lsd" path="res://scenes/objects/chest.tscn" id="5_wrqx8"]
+[ext_resource type="Texture2D" uid="uid://b8jwjifkq61je" path="res://assets/sprites/Tiles/interior_side.png" id="6_m5nnd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hc21"]
 texture = ExtResource("1_om5xw")
@@ -723,10 +725,26 @@ resource_name = "Objects"
 scenes/1/scene = ExtResource("2_6hc21")
 scenes/2/scene = ExtResource("3_1chk1")
 scenes/3/scene = ExtResource("4_m5nnd")
+scenes/4/scene = ExtResource("5_wrqx8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wrqx8"]
 texture = ExtResource("5_ek8lr")
 0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ek8lr"]
+texture = ExtResource("6_m5nnd")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 9
@@ -745,3 +763,4 @@ terrain_set_0/terrain_4/color = Color(0.9554705, 0.7497167, 0, 1)
 sources/0 = SubResource("TileSetAtlasSource_6hc21")
 sources/1 = SubResource("TileSetScenesCollectionSource_om5xw")
 sources/2 = SubResource("TileSetAtlasSource_wrqx8")
+sources/3 = SubResource("TileSetAtlasSource_ek8lr")

@@ -1,0 +1,52 @@
+[gd_scene format=4 uid="uid://biafy407uybhm"]
+
+[ext_resource type="Script" uid="uid://dlh31ifduhpq8" path="res://scripts/level/level.gd" id="1_u3p6y"]
+[ext_resource type="PackedScene" uid="uid://pgsyxf38iyvp" path="res://scenes/character/player_topdown.tscn" id="2_a2yos"]
+[ext_resource type="TileSet" uid="uid://ve75kdpktk4j" path="res://assets/Tilemaps/topdown_test.tres" id="4_h5ktk"]
+[ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/door.tscn" id="5_tue62"]
+[ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="10_k8jl6"]
+[ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="11_64dqy"]
+
+[node name="level6_1" type="Node2D" unique_id=488593241]
+y_sort_enabled = true
+script = ExtResource("1_u3p6y")
+music_name = "6rdSanctary"
+level_id = 6
+
+[node name="Player" parent="." unique_id=806243544 instance=ExtResource("2_a2yos")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1814646841]
+process_callback = 0
+limit_left = -264
+limit_top = -288
+limit_right = 504
+limit_bottom = 96
+limit_smoothed = true
+
+[node name="Level" type="Node2D" parent="." unique_id=1009897138]
+z_index = -10
+
+[node name="Background" type="TileMapLayer" parent="Level" unique_id=903904092]
+tile_map_data = PackedByteArray("AAD8//z/AAAAAAMAAAD9//z/AAABAAMAAAD+//z/AAABAAMAAAD///z/AAABAAMAAAAAAPz/AwADAAEAAAABAPz/AAABAAMAAAACAPz/AAABAAMAAAADAPz/AAACAAMAAAADAP3/AAACAAQAAAACAP3/AwABAAAAAAABAP7/AwABAAAAAAAAAP7/AwABAAAAAAD///7/AwABAAAAAAD+//7/AwABAAAAAAD9//7/AwABAAAAAAD8//7/AAAAAAQAAAD8//3/AAAAAAQAAAD9//3/AwABAAAAAAD+//3/AwABAAAAAAD///3/AwABAAAAAAAAAP3/AwABAAAAAAABAP3/AwABAAAAAAD8////AAAAAAQAAAD9////AwABAAAAAAD+////AwABAAAAAAD/////AwABAAAAAAAAAP//AwABAAAAAAACAP7/AwABAAAAAAADAP7/AAACAAQAAAACAP//AwABAAAAAAABAP//AwABAAAAAAADAP//AAACAAQAAAADAAAAAAACAAQAAAACAAAAAwABAAAAAAD//wAAAwABAAAAAAD+/wAAAwABAAAAAAD9/wAAAwABAAAAAAD8/wAAAAAAAAQAAAD8/wEAAAAAAAQAAAD9/wEAAwABAAAAAAD+/wEAAwABAAAAAAD//wEAAwABAAAAAAAAAAEAAwABAAAAAAABAAEAAwABAAAAAAACAAEAAwABAAAAAAAAAAAAAwABAAAAAAABAAAAAwABAAAAAAD8/wIAAAAAAAQAAAD9/wMAAAABAAUAAAD+/wMAAAABAAUAAAD//wMAAAABAAUAAAAAAAMAAAABAAUAAAABAAMAAAABAAUAAAACAAMAAAABAAUAAAADAAMAAAACAAUAAAD+/wIAAwABAAAAAAD9/wIAAwABAAAAAAD//wIAAwABAAAAAAAAAAIAAwABAAAAAAABAAIAAwABAAAAAAACAAIAAwABAAAAAAADAAIAAAACAAQAAAADAAEAAAACAAQAAAD8/wMAAAAAAAUAAAD7/wQAAAAEAAQAAAD7/wMAAAAEAAQAAAD7/wIAAAAEAAQAAAD7/wEAAAAEAAQAAAD7/wAAAAAEAAQAAAD7////AAAEAAQAAAD7//7/AAAEAAQAAAD7//3/AAAEAAQAAAD7//z/AAAEAAQAAAD7//v/AAAEAAQAAAD8//v/AAAEAAQAAAD9//v/AAAEAAQAAAD+//v/AAAEAAQAAAD///v/AAAEAAQAAAAAAPv/AAAEAAQAAAABAPv/AAAEAAQAAAACAPv/AAAEAAQAAAADAPv/AAAEAAQAAAAEAPv/AAAEAAQAAAAEAPz/AAAEAAQAAAAEAP3/AAAEAAQAAAAEAP7/AAAEAAQAAAAEAP//AAAEAAQAAAAEAAAAAAAEAAQAAAAEAAEAAAAEAAQAAAAEAAIAAAAEAAQAAAAEAAMAAAAEAAQAAAAEAAQAAAAEAAQAAAADAAQAAAAEAAQAAAACAAQAAAAEAAQAAAABAAQAAAAEAAQAAAAAAAQAAAAEAAQAAAD8/wQAAAAEAAQAAAD9/wQAAAAEAAQAAAD+/wQAAAAEAAQAAAD//wQAAAAEAAQAAAA=")
+tile_set = ExtResource("4_h5ktk")
+
+[node name="Sprites" type="TileMapLayer" parent="Level" unique_id=1213246284]
+tile_map_data = PackedByteArray("AAD+//3/AQAAAAAABAA=")
+tile_set = ExtResource("4_h5ktk")
+
+[node name="Door" parent="Level" unique_id=1271508214 node_paths=PackedStringArray("player") instance=ExtResource("5_tue62")]
+position = Vector2(8, -56)
+next_scene_name = "level6"
+player = NodePath("../../Player/PlayerBody")
+
+[node name="Enemies" type="Node2D" parent="Level" unique_id=265724129]
+
+[node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("10_k8jl6")]
+unique_name_in_owner = true
+metadata/_edit_use_anchors_ = true
+
+[node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("11_64dqy")]
+scene_text_file = "res://assets/dialogue/level3.json"
+
+[editable path="Player"]
+[editable path="Player/PlayerBody"]
