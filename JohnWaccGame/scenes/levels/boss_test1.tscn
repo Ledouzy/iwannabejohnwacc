@@ -17,6 +17,7 @@ distance = -80.0
 [node name="BossTest1" type="Node2D" unique_id=898645644]
 
 [node name="Player" parent="." unique_id=1165610629 instance=ExtResource("1_crrpq")]
+unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=305464099 node_paths=PackedStringArray("player")]
 process_callback = 0

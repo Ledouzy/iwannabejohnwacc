@@ -31,7 +31,7 @@ func _on_option_button_pressed() -> void:
 func _on_title_button_pressed() -> void:
 	# TODO: probably have a confirmation popup
 	# unpause the game
-	get_tree().paused = false
+	#get_tree().paused = false
 	# load the title screen
 	scene_manager.go_to_title(get_tree())
 
@@ -52,4 +52,4 @@ func _process(delta: float) -> void:
 func _on_retry_button_pressed() -> void:
 	# reload the scene at the checkpoint and unpause the game
 	scene_manager.reload_scene()
-	get_tree().paused = false
+	#get_tree().paused = false

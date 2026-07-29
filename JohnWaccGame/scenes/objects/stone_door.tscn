@@ -1,21 +1,21 @@
-[gd_scene format=3 uid="uid://2a3bw823bt3d"]
+[gd_scene format=3 uid="uid://c0tddhvnbjmav"]
 
-[ext_resource type="Script" uid="uid://tdwbc82286w0" path="res://scripts/objects/door.gd" id="1_uw3m6"]
-[ext_resource type="Texture2D" uid="uid://x1tgcpvhyv3r" path="res://assets/sprites/Objects/door.png" id="1_yar34"]
+[ext_resource type="Script" uid="uid://tdwbc82286w0" path="res://scripts/objects/door.gd" id="1_ok320"]
+[ext_resource type="Texture2D" uid="uid://x1tgcpvhyv3r" path="res://assets/sprites/Objects/door.png" id="2_roy3r"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uw3m6"]
-atlas = ExtResource("1_yar34")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok320"]
+atlas = ExtResource("2_roy3r")
+region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xm0wp"]
-atlas = ExtResource("1_yar34")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_roy3r"]
+atlas = ExtResource("2_roy3r")
+region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uw3m6")
+"texture": SubResource("AtlasTexture_ok320")
 }],
 "loop": 1,
 "name": &"closed",
@@ -23,7 +23,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xm0wp")
+"texture": SubResource("AtlasTexture_roy3r")
 }],
 "loop": 1,
 "name": &"open",
@@ -35,11 +35,11 @@ size = Vector2(16, 18)
 
 [node name="Door" type="Area2D" unique_id=1271508214]
 collision_mask = 3
-script = ExtResource("1_uw3m6")
+script = ExtResource("1_ok320")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1235073732]
 sprite_frames = SubResource("SpriteFrames_ihebq")
-animation = &"closed"
+animation = &"open"
 autoplay = "closed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1837125125]

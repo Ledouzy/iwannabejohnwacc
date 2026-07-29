@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://disoesm5ie3oe" path="res://scenes/objects/rotating_platforms.tscn" id="9_x7xd1"]
 [ext_resource type="PackedScene" uid="uid://bjy8d1i5fhi8x" path="res://scenes/objects/spikes.tscn" id="10_auwb8"]
 [ext_resource type="PackedScene" uid="uid://bl5lhy300j1f2" path="res://scenes/objects/breakable_block.tscn" id="10_xxhiw"]
-[ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/door.tscn" id="11_4b7bg"]
+[ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/wood_door.tscn" id="11_4b7bg"]
 [ext_resource type="PackedScene" uid="uid://bytkg1aao2wyn" path="res://scenes/objects/spring.tscn" id="11_r14xe"]
 [ext_resource type="PackedScene" uid="uid://b42ih6p5mqrsv" path="res://scenes/objects/wood_platform.tscn" id="12_fvn7d"]
 [ext_resource type="Texture2D" uid="uid://48idgkmst6m5" path="res://assets/sprites/Tiles/world1_side.png" id="12_i7t13"]

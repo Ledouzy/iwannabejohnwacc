@@ -210,8 +210,8 @@ func checkpoint_load(player: CharacterBody2D):
 	current_data.erase("x_coords")
 	current_data.erase("y_coords")
 	
-	# change player position
-	player.position = Vector2(checkpoint_data.x_coords, checkpoint_data.y_coords)
+	# give new player position
+	scene_manager.starting_coords = Vector2(checkpoint_data.x_coords, checkpoint_data.y_coords)
 	#print("player position: ", player.position)
 	#print("current coins:", current_data.coins)
 

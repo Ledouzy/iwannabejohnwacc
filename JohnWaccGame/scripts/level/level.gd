@@ -16,6 +16,7 @@ func _ready() -> void:
 	# if the checkpoint is not for the correct level, save the checkpoint to the beginning of the stage
 	if save_system.checkpoint_data.stage != level_id:
 		save_system.checkpoint_save(player.position.x, player.position.y)
+	
 	# set the stage we are at in the save system
 	save_system.current_data.stage = level_id
 	
@@ -31,8 +32,19 @@ func _ready() -> void:
 	else:
 		audio_manager.play_bgs(bgs_name)
 	
-	# loads the checkpoint so that we start at the checkpoint when restarting
-	save_system.checkpoint_load(player)
+	# if we need to load checkpoint or not
+	if scene_manager.load_checkpoint:
+		# loads the checkpoint so that we start at the checkpoint when restarting
+		save_system.checkpoint_load(player)
+	
+	# if we have starting coordinates we apply them here
+	player.position = scene_manager.starting_coords
+	
+	# make it true since we should load it.
+	scene_manager.load_checkpoint = true
+	
+	# reset it's value
+	scene_manager.starting_coords = Vector2(0,0)
 	
 	# update the UI to reflect the checkpoint data
 	game_manager._ready()

@@ -47,6 +47,9 @@ func display_save_data(data):
 
 
 func _on_play_button_pressed() -> void:
+	# hides the screen
+	self.get_parent().get_parent().visible = false
+	
 	# change current data to the selected save file
 	save_system.select_save_file(file_id)
 	

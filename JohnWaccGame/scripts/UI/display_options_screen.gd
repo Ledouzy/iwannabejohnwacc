@@ -1,8 +1,8 @@
 extends Control
 
 # buttons in the screen
-@onready var fullscreen_check_box: base_button = $UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen/CheckBox
-@onready var aspect_check_box: base_button = $UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio/CheckBox
+@onready var fullscreen_check_box: CheckBox = $UI_elements/VBoxContainer2/Container/VBoxContainer/Fullscreen/CheckBox
+@onready var aspect_check_box: CheckBox = $UI_elements/VBoxContainer2/Container/VBoxContainer/AspectRatio/CheckBox
 @onready var back_button: Button = $UI_elements/VBoxContainer2/VBoxContainer/BackButton
 
 
@@ -42,6 +42,9 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	else:
 		#print("windowed")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		
+	global_manager.update_settings()
+	global_manager.save_settings()
 
 
 func _on_widescreen_toggled(toggled_on: bool) -> void:
@@ -54,3 +57,6 @@ func _on_widescreen_toggled(toggled_on: bool) -> void:
 		# set window size to 160x144
 		DisplayServer.window_set_size(Vector2i(160,144))
 		get_window().content_scale_size = Vector2i(160,144)
+		
+	global_manager.update_settings()
+	global_manager.save_settings()

@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cfhjn46f5v8xr" path="res://scenes/character/player_side.tscn" id="9_e257y"]
 [ext_resource type="Script" uid="uid://bdtt2434cpsop" path="res://scripts/global/camera.gd" id="10_7xq2f"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="11_xmmsn"]
-[ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/door.tscn" id="12_sdnvp"]
+[ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/wood_door.tscn" id="12_sdnvp"]
 [ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="12_vjdek"]
+[ext_resource type="PackedScene" uid="uid://c0tddhvnbjmav" path="res://scenes/objects/stone_door.tscn" id="13_53v2u"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="13_qw2ud"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ngf84"]
@@ -136,11 +137,13 @@ tile_set = ExtResource("12_vjdek")
 position = Vector2(136, -8)
 next_scene_name = "level6_1"
 player = NodePath("../../Player/PlayerBody")
+starting_coords = Vector2(8, -48)
 
-[node name="Door2" parent="Level" unique_id=1298406935 node_paths=PackedStringArray("player") instance=ExtResource("12_sdnvp")]
+[node name="Door2" parent="Level" unique_id=497697324 node_paths=PackedStringArray("player") instance=ExtResource("13_53v2u")]
 position = Vector2(248, -8)
 next_scene_name = "level6_1"
 player = NodePath("../../Player/PlayerBody")
+starting_coords = Vector2(8, -48)
 
 [node name="Killzone" parent="Level" unique_id=631934805 instance=ExtResource("13_qw2ud")]
 
@@ -155,7 +158,7 @@ shape = SubResource("WorldBoundaryShape2D_ngf84")
 [node name="Coins" type="Node2D" parent="Level" unique_id=2016997388]
 
 [connection signal="body_entered" from="Player/PlayerBody/SwordFrontHurtBox2" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
-[connection signal="body_entered" from="Level/TileMap/@Area2D@155224" to="Level/TileMap/@Area2D@155224" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/TileMap/EarthDeeple" to="Level/TileMap/EarthDeeple" method="_on_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]

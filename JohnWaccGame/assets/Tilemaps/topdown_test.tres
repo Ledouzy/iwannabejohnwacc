@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cdscwknu7hknk" path="res://assets/sprites/Tiles/test_top.png" id="1_om5xw"]
 [ext_resource type="PackedScene" uid="uid://qi1ndjspalke" path="res://scenes/objects/flag.tscn" id="2_6hc21"]
 [ext_resource type="PackedScene" uid="uid://c2uuwe2e0r1u" path="res://scenes/objects/bomb.tscn" id="3_1chk1"]
-[ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/door.tscn" id="4_m5nnd"]
+[ext_resource type="PackedScene" uid="uid://2a3bw823bt3d" path="res://scenes/objects/wood_door.tscn" id="4_m5nnd"]
 [ext_resource type="Texture2D" uid="uid://kh7mv7dcke1k" path="res://assets/sprites/Objects/pedestal.png" id="5_ek8lr"]
 [ext_resource type="PackedScene" uid="uid://bbrht23c62lsd" path="res://scenes/objects/chest.tscn" id="5_wrqx8"]
 [ext_resource type="Texture2D" uid="uid://b8jwjifkq61je" path="res://assets/sprites/Tiles/interior_side.png" id="6_m5nnd"]
@@ -745,6 +745,18 @@ texture = ExtResource("6_m5nnd")
 3:1/0 = 0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+5:1/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+7:0/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 9

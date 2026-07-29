@@ -6,7 +6,6 @@
 [ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/UI_no_box.tres" id="4_vq1c8"]
 [ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/UI.tres" id="5_t2gth"]
 [ext_resource type="Texture2D" uid="uid://c1oqsbfcfr6uc" path="res://assets/UI/ui_checkbox_focus.png" id="5_vq1c8"]
-[ext_resource type="Script" uid="uid://b1wjcwgadqxqt" path="res://scripts/UI/base_button.gd" id="5_x3dci"]
 [ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="7_vq1c8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3dci"]
@@ -100,7 +99,6 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tn7r2")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ois3x")
 theme_override_styles/focus = SubResource("StyleBoxTexture_t2gth")
 button_pressed = true
-script = ExtResource("5_x3dci")
 
 [node name="AspectRatio" type="HSplitContainer" parent="UI_elements/VBoxContainer2/Container/VBoxContainer" unique_id=301962418]
 layout_mode = 2
@@ -131,7 +129,6 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tn7r2")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ois3x")
 theme_override_styles/focus = SubResource("StyleBoxTexture_t2gth")
 button_pressed = true
-script = ExtResource("5_x3dci")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI_elements/VBoxContainer2" unique_id=1648078062]
 custom_minimum_size = Vector2(64, 0)

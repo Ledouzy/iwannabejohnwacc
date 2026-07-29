@@ -24,6 +24,7 @@ music_name = "Sword"
 level_id = 4
 
 [node name="Player" parent="." unique_id=1178522090 instance=ExtResource("2_3qb8m")]
+unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1814646841 node_paths=PackedStringArray("player")]
 process_callback = 0
