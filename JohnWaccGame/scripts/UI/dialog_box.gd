@@ -61,15 +61,34 @@ var portrait_dict = {
 	"john_car": Vector2(224,128),
 	
 	# misc portraits
-	"car": Vector2(0,128),
-	"king_car": Vector2(32,160),
-	"old_neutral": Vector2(64,160),
-	"knight_helm": Vector2(96,160),
-	"knight_neutral": Vector2(128,160),
+	"car_neutral": Vector2(0,160),
+	"car_blink": Vector2(32,160),
+	"car_happy": Vector2(64,160),
+	"king_car_neutral": Vector2(96,160),
+	"king_car_blink": Vector2(128,160),
+	"king_car_happy": Vector2(160,160),
+	"unused1": Vector2(192,160),
+	"unused2": Vector2(224,160),
 	
-	"unused1": Vector2(160,160),
-	"unused2": Vector2(192,160),
-	"unused3": Vector2(224,160),
+	# Black Knight
+	"knight_helmet": Vector2(0,192),
+	"knight_neutral": Vector2(32,192),
+	"knight_yell": Vector2(64,192),
+	"knight_talk": Vector2(96,192),
+	"knight_blink": Vector2(128,192),
+	"unused3": Vector2(160,192),
+	"unused4": Vector2(192,192),
+	"unused5": Vector2(224,192),
+	
+	# Misc 2
+	"bones_yell": Vector2(0,224),
+	"bones_neutral": Vector2(32,224),
+	"olmane_neutral": Vector2(64,224),
+	"joof_left": Vector2(96,224),
+	"joof_right": Vector2(128,224),
+	"unused6": Vector2(160,224),
+	"unused7": Vector2(192,224),
+	"unused8": Vector2(224,224),
 }
 
 # the text layer
