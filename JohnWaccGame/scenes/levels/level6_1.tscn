@@ -10,7 +10,7 @@
 [node name="level6_1" type="Node2D" unique_id=488593241]
 y_sort_enabled = true
 script = ExtResource("1_u3p6y")
-music_name = "6rdSanctary"
+music_name = "TheGreatForestOfCelceta"
 level_id = 6
 
 [node name="Player" parent="." unique_id=806243544 instance=ExtResource("2_a2yos")]

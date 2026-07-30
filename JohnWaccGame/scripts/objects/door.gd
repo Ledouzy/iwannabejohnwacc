@@ -22,10 +22,14 @@ func _process(delta: float) -> void:
 	if inside and Input.is_action_pressed("door"):
 		# do not load the checkpoint
 		scene_manager.load_checkpoint = false
-
+		
+		# Play SFX
+		audio_manager.play_sfx("Door", 0.0, self.position)
+		
 		animated_sprite.play("open")
 		# save
 		save_system._save()
 		# load next level
 		scene_manager.change_scene(get_tree(), next_scene_name, starting_coords)
+		
 		inside = false

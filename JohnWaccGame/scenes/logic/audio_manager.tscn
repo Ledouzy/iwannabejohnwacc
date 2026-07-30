@@ -26,6 +26,16 @@
 [ext_resource type="AudioStream" uid="uid://dofi2tlbcsos8" path="res://assets/audio/sounds/push.wav" id="22_kjlye"]
 [ext_resource type="AudioStream" uid="uid://c12nimn51d86h" path="res://assets/audio/sounds/beaver.wav" id="22_vux6c"]
 [ext_resource type="AudioStream" uid="uid://dm5rhh12pnlor" path="res://assets/audio/sounds/beep.wav" id="22_wj6y6"]
+[ext_resource type="AudioStream" uid="uid://buxxjuq5aptn3" path="res://assets/audio/sounds/big_hit.wav" id="24_k7h24"]
+[ext_resource type="AudioStream" uid="uid://diwodeg7t5iuc" path="res://assets/audio/sounds/hit1.wav" id="25_fjopx"]
+[ext_resource type="AudioStream" uid="uid://b4dhqf8f544gm" path="res://assets/audio/sounds/hit2.wav" id="26_armkr"]
+[ext_resource type="AudioStream" uid="uid://dui54ifypibge" path="res://assets/audio/sounds/hit3.wav" id="27_xxlmt"]
+[ext_resource type="AudioStream" uid="uid://bpyenh3wbhrwk" path="res://assets/audio/sounds/stairs.wav" id="28_4s3rc"]
+[ext_resource type="AudioStream" uid="uid://dfqp6f5tjadh7" path="res://assets/audio/sounds/crumble.wav" id="29_ev03v"]
+[ext_resource type="AudioStream" uid="uid://dpln3iqey1m2a" path="res://assets/audio/sounds/door.wav" id="29_fjopx"]
+[ext_resource type="AudioStream" uid="uid://r5ankqvpu0qt" path="res://assets/audio/sounds/engine.wav" id="30_m1r0i"]
+[ext_resource type="AudioStream" uid="uid://c8s88jlf325dj" path="res://assets/audio/sounds/propeller.wav" id="31_6wyhb"]
+[ext_resource type="AudioStream" uid="uid://bfq3ehvslkt75" path="res://assets/audio/sounds/propeller_low.wav" id="32_vcaqx"]
 
 [node name="AudioManager" type="Node" unique_id=1923064297 node_paths=PackedStringArray("music", "sounds", "BGS", "ui", "confirm_sfx", "move_sfx", "back_sfx")]
 process_mode = 3
@@ -98,20 +108,18 @@ bus = &"Music"
 
 [node name="Car" type="AudioStreamPlayer2D" parent="Sounds" unique_id=462768964]
 stream = ExtResource("14_lrgoc")
-volume_db = 12.0
+volume_db = 4.0
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Deeple" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1283208682]
 stream = ExtResource("6_2hsro")
-volume_db = 6.0
 pitch_scale = 1.25
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Coin" type="AudioStreamPlayer2D" parent="Sounds" unique_id=301775852]
 stream = ExtResource("6_2hsro")
-volume_db = 6.0
 max_distance = 256.0
 bus = &"SFX"
 
@@ -122,13 +130,11 @@ bus = &"SFX"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1413912158]
 stream = ExtResource("8_pc3ia")
-volume_db = 12.0
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Sword" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1517363634]
 stream = ExtResource("9_hhrbd")
-volume_db = 6.0
 max_distance = 256.0
 bus = &"SFX"
 
@@ -152,46 +158,65 @@ bus = &"SFX"
 
 [node name="Heal" type="AudioStreamPlayer2D" parent="Sounds" unique_id=2029183781]
 stream = ExtResource("6_2hsro")
-volume_db = 6.0
 pitch_scale = 1.2
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Damage" type="AudioStreamPlayer2D" parent="Sounds" unique_id=71881890]
 stream = ExtResource("22_wj6y6")
+volume_db = 2.0
 pitch_scale = 0.8
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Checkpoint" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1307764584]
 stream = ExtResource("11_hhrbd")
-volume_db = 12.0
 pitch_scale = 0.8
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Beaver" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1127695454]
 stream = ExtResource("22_vux6c")
-volume_db = 12.0
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Break" type="AudioStreamPlayer2D" parent="Sounds" unique_id=876844739]
 stream = ExtResource("8_pc3ia")
-volume_db = 6.0
+volume_db = -6.0
 pitch_scale = 0.7
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Crush" type="AudioStreamPlayer2D" parent="Sounds" unique_id=494143812]
 stream = ExtResource("8_pc3ia")
-volume_db = 9.0
+volume_db = -2.0
 pitch_scale = 0.6
 max_distance = 256.0
 bus = &"SFX"
 
 [node name="Push" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1294942957]
 stream = ExtResource("22_kjlye")
+
+[node name="BigHit" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1521937370]
+stream = ExtResource("24_k7h24")
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="Sounds" unique_id=62161923]
+stream = ExtResource("25_fjopx")
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="Sounds" unique_id=935154833]
+stream = ExtResource("26_armkr")
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1828943593]
+stream = ExtResource("27_xxlmt")
+
+[node name="Stairs" type="AudioStreamPlayer2D" parent="Sounds" unique_id=2061571899]
+stream = ExtResource("28_4s3rc")
+
+[node name="Door" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1601689309]
+process_mode = 3
+stream = ExtResource("29_fjopx")
+volume_db = -2.0
+pitch_scale = 0.9
 
 [node name="BGS" type="Node" parent="." unique_id=1326326623]
 
@@ -204,16 +229,27 @@ stream = ExtResource("16_t0aqn")
 volume_db = -4.0
 bus = &"BGS"
 
+[node name="Crumble" type="AudioStreamPlayer" parent="BGS" unique_id=550346434]
+stream = ExtResource("29_ev03v")
+
+[node name="Engine" type="AudioStreamPlayer" parent="BGS" unique_id=1821157649]
+stream = ExtResource("30_m1r0i")
+
+[node name="Propeller" type="AudioStreamPlayer" parent="BGS" unique_id=1053680355]
+stream = ExtResource("31_6wyhb")
+
+[node name="PropellerLow" type="AudioStreamPlayer" parent="BGS" unique_id=407050528]
+stream = ExtResource("32_vcaqx")
+
 [node name="UI" type="Node" parent="." unique_id=1757287764]
 
 [node name="Dogi" type="AudioStreamPlayer" parent="UI" unique_id=240363883]
 stream = ExtResource("19_qhr3l")
-volume_db = 12.0
 bus = &"SFX"
 
 [node name="MenuConfirm" type="AudioStreamPlayer" parent="UI" unique_id=1837801471]
 stream = ExtResource("11_hhrbd")
-volume_db = 6.0
+volume_db = -4.0
 bus = &"SFX"
 
 [node name="MenuMove" type="AudioStreamPlayer" parent="UI" unique_id=1739030589]
@@ -221,6 +257,6 @@ bus = &"SFX"
 
 [node name="MenuBack" type="AudioStreamPlayer" parent="UI" unique_id=1583536149]
 stream = ExtResource("9_siidf")
-volume_db = 6.0
+volume_db = -4.0
 pitch_scale = 0.9
 bus = &"SFX"

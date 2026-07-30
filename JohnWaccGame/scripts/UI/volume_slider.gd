@@ -25,7 +25,8 @@ func _on_value_changed(value: float) -> void:
 	if bus_name == "SFX" && self.get_tree().root.visible == true:
 		audio_manager.play_sfx("Coin")
 	elif bus_name == "BGS" && self.get_tree().root.visible == true:
-		audio_manager.play_bgs("Test", 0.0, true)
+		if audio_manager.active_bgs_stream == null:
+			audio_manager.play_bgs("Test", 0.0, true)
 	
 	# change the volume of the audio bus to the value
 	AudioServer.set_bus_volume_db(bus_index,linear_to_db(value))
