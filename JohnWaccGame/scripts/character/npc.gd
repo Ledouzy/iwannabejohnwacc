@@ -3,6 +3,11 @@ extends CharacterBody2D
 @export_group("Movement")
 @export var speed = 10
 @export var MAX_FALL_VELOCITY = 300
+@export_group("Misc")
+@export var hurt_sfx = "Damage"
+
+# Health
+var invulnerable = false
 
 var direction = -1
 var dir = -1 # sames as direction but only -1 and 1 basically left or right
@@ -21,6 +26,8 @@ var skipMoveProcess = false
 # Animation
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var throw_timer: Timer = $ThrowTimer
+@onready var damage_timer: Timer = $DamageTimer
+@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 
 # collision
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -74,6 +81,42 @@ func thrown() -> void:
 func _on_throw_timer_timeout() -> void:
 	animated_sprite.play("IdleFront")
 	waitforanimationend = false
+	
+# logic for taking damage
+func take_damage(damage, direction) -> void:
+	# check if we are still in invulnerability frames
+	if !invulnerable:
+		# set invulnerable
+		invulnerable = true
+		# start invulnerability timer
+		damage_timer.start()
+		# apply knockback
+		velocity = Vector2(125*direction.x, 200*direction.y)
+		# deal damage
+		#health -= damage
+		
+		# play sfx
+		play_sfx(hurt_sfx)
+
+	else:
+		# plays damage animation
+		animated_sprite.play("TakeDamage")
+
+		# stop movement and lock until animation end
+		skipMoveProcess = true
+		waitforanimationend = true
+		# make the enemy blink
+		blink_animation_player.play("blink")
+		# wait until blinking ends
+		await get_tree().create_timer(0.5).timeout
+		# resume normal movement
+		skipMoveProcess = false
+		waitforanimationend = false
+		await get_tree().create_timer(0.5).timeout
+
+# when damage timer timeouts, removes invulnerability
+func _on_damage_timer_timeout() -> void:
+	invulnerable = false
 
 ## Handles jumping on springs
 func spring_jump(jump_height):

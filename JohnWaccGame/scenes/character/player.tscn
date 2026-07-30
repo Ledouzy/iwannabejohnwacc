@@ -2841,6 +2841,7 @@ animation = &"Idle"
 
 [node name="SwordSideHurtBox" parent="." unique_id=631934805 instance=ExtResource("6_tuyoq")]
 position = Vector2(14, -14)
+collision_mask = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordSideHurtBox" unique_id=234974590]
 shape = SubResource("RectangleShape2D_fjrip")
@@ -2848,6 +2849,8 @@ disabled = true
 
 [node name="SwordFrontHurtBox2" parent="." unique_id=1639574454 instance=ExtResource("6_tuyoq")]
 position = Vector2(-8, 2)
+collision_mask = 36
+offset = Vector2(0, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordFrontHurtBox2" unique_id=2076995877]
 shape = SubResource("RectangleShape2D_uicah")
@@ -2855,6 +2858,8 @@ disabled = true
 
 [node name="SwordBackHurtBox3" parent="." unique_id=1708009677 instance=ExtResource("6_tuyoq")]
 position = Vector2(9, -19)
+collision_mask = 36
+offset = Vector2(0, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordBackHurtBox3" unique_id=361076622]
 shape = SubResource("RectangleShape2D_iinkm")

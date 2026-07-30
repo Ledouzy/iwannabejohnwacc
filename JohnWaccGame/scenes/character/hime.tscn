@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://clkpoj4jo0u07" path="res://assets/sprites/Characters/hime.png" id="1_4ben4"]
 [ext_resource type="Script" uid="uid://c6u51hf3lhbjj" path="res://scripts/character/npc.gd" id="1_kjsfy"]
+[ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="3_kyp1x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kioyx"]
 atlas = ExtResource("1_4ben4")
@@ -78,6 +79,18 @@ region = Rect2(32, 224, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7tpi"]
 atlas = ExtResource("1_4ben4")
 region = Rect2(48, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6blc"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(208, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m16i"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(224, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh3pl"]
+atlas = ExtResource("1_4ben4")
+region = Rect2(240, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q8o3i"]
 atlas = ExtResource("1_4ben4")
@@ -236,6 +249,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_k6blc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m16i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh3pl")
+}],
+"loop": 0,
+"name": &"TakeDamage",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_q8o3i")
 }, {
 "duration": 1.0,
@@ -283,14 +310,14 @@ animations = [{
 size = Vector2(10, 15)
 
 [node name="Hime" type="CharacterBody2D" unique_id=1227297899]
+collision_layer = 33
 script = ExtResource("1_kjsfy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=594908979]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4ben4")
-animation = &"Down"
+animation = &"TakeDamage"
 autoplay = "IdleFront"
-frame_progress = 0.1570734
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462337660]
 position = Vector2(0, -8.5)
@@ -300,4 +327,11 @@ shape = SubResource("RectangleShape2D_4ben4")
 wait_time = 2.0
 one_shot = true
 
+[node name="DamageTimer" type="Timer" parent="." unique_id=1814991650]
+wait_time = 0.5
+one_shot = true
+
+[node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("3_kyp1x")]
+
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

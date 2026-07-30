@@ -1,6 +1,8 @@
 extends Area2D
 
 @export var damage = 1 # damage that the attack will do
+@export var offset = Vector2(0,0)
+
 var target: Array[Node2D] # the entity that will receive the damage
 var direction = Vector2(1,0) # direction that the knockback will be applied
 
@@ -15,7 +17,7 @@ func _on_body_entered(body: Node2D) -> void:
 		# if it can take damage
 		if (body.has_method("take_damage")):
 			# get normal for the direction
-			direction = self.get_parent().position.direction_to(body.position)
+			direction = self.get_parent().position.direction_to(body.position+offset)
 
 			# call take damage on the body
 			body.call_deferred("take_damage",damage, direction)

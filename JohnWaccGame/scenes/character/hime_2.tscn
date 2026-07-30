@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b1i41bnk6ocjh" path="res://assets/sprites/Characters/hime3.png" id="1_3qdc1"]
 [ext_resource type="Script" uid="uid://c6u51hf3lhbjj" path="res://scripts/character/npc.gd" id="1_xr8y1"]
+[ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="3_o28l2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dlswd"]
 atlas = ExtResource("1_3qdc1")
@@ -864,13 +865,15 @@ animations = [{
 size = Vector2(10, 15)
 
 [node name="Hime2" type="CharacterBody2D" unique_id=1227297899]
+collision_layer = 33
 script = ExtResource("1_xr8y1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=500741014]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_n3s1r")
-animation = &"IdleSide"
-frame_progress = 0.73498785
+animation = &"TakeDamage"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=576741577]
 position = Vector2(0, -8.5)
@@ -880,4 +883,11 @@ shape = SubResource("RectangleShape2D_qty7g")
 wait_time = 2.0
 one_shot = true
 
+[node name="DamageTimer" type="Timer" parent="." unique_id=784983641]
+wait_time = 0.5
+one_shot = true
+
+[node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("3_o28l2")]
+
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

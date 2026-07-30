@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d2r3vne2x8g14" path="res://assets/sprites/Characters/lance.png" id="1_0ndns"]
 [ext_resource type="Script" uid="uid://c6u51hf3lhbjj" path="res://scripts/character/npc.gd" id="1_hqjr2"]
 [ext_resource type="Texture2D" uid="uid://cabj0ahjsijba" path="res://assets/sprites/VFX/death.png" id="3_f1fav"]
+[ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="4_nke5f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jr8jt"]
 atlas = ExtResource("1_0ndns")
@@ -135,6 +136,18 @@ region = Rect2(240, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_15ua7"]
 atlas = ExtResource("1_0ndns")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjbbq"]
+atlas = ExtResource("1_0ndns")
+region = Rect2(208, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60ihf"]
+atlas = ExtResource("1_0ndns")
+region = Rect2(224, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyxyn"]
+atlas = ExtResource("1_0ndns")
+region = Rect2(240, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pxuss"]
 atlas = ExtResource("1_0ndns")
@@ -370,6 +383,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_kjbbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60ihf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyxyn")
+}],
+"loop": 0,
+"name": &"TakeDamage",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pxuss")
 }, {
 "duration": 1.0,
@@ -449,15 +476,16 @@ size = Vector2(10, 15)
 
 [node name="Lance" type="CharacterBody2D" unique_id=1264691691]
 z_index = 5
+collision_layer = 33
 script = ExtResource("1_hqjr2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=415068813]
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_d3wef")
-animation = &"Thrown"
+animation = &"TakeDamage"
 autoplay = "IdleSide"
-frame = 1
+frame = 2
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2049596249]
@@ -468,4 +496,11 @@ shape = SubResource("RectangleShape2D_nke5f")
 wait_time = 2.0
 one_shot = true
 
+[node name="DamageTimer" type="Timer" parent="." unique_id=653991005]
+wait_time = 0.5
+one_shot = true
+
+[node name="BlinkAnimationPlayer" parent="." unique_id=1277852578 instance=ExtResource("4_nke5f")]
+
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
