@@ -58,16 +58,22 @@ tile_set = ExtResource("4_ah4rv")
 position = Vector2(33, 8)
 left_right = false
 
+[node name="HurtBox" parent="Level/Enemies/CarTopdown/Car" index="3" unique_id=7972012]
+offset = Vector2(0, 0)
+
 [node name="CarTopdown2" parent="Level/Enemies" unique_id=366448217 instance=ExtResource("5_wb0vq")]
 
 [node name="Car" parent="Level/Enemies/CarTopdown2" index="0" unique_id=1027794888]
 position = Vector2(1, 40)
 
+[node name="HurtBox" parent="Level/Enemies/CarTopdown2/Car" index="3" unique_id=7972012]
+offset = Vector2(0, 0)
+
 [node name="Amangoose" parent="." unique_id=875060791 instance=ExtResource("5_522sc")]
 position = Vector2(-32, -32)
 
 [node name="BoxTest" parent="." unique_id=924173968 instance=ExtResource("6_a82vw")]
-position = Vector2(0, -80)
+position = Vector2(0, -72)
 
 [node name="Mage" parent="." unique_id=1649577332 instance=ExtResource("7_t14x3")]
 position = Vector2(64, -160)
