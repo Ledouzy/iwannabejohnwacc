@@ -3,5 +3,9 @@
 		{"portrait" : "", "text" : "Well, there is MAN here."},
 		{"portrait" : "", "text" : "He's shitting right now."},
 		{"portrait" : "man", "text" : "Yeah, I'm MAN."}
+	],
+	
+	"man2": [
+		{"portrait" : "", "text" : "He is behind the tree."}
 	]
 }
