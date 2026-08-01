@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://dlmuq3eysv76n" path="res://assets/audio/music/Tidal Tempest.ogg" id="12_6xeo7"]
 [ext_resource type="AudioStream" uid="uid://blvctyuwfxuo0" path="res://assets/audio/music/Moat of Burnedbless.wav" id="13_6xeo7"]
 [ext_resource type="AudioStream" uid="uid://8krvs13dcsov" path="res://assets/audio/sounds/car.wav" id="14_lrgoc"]
+[ext_resource type="AudioStream" uid="uid://1nbksk515ioa" path="res://assets/audio/music/man_nes.ogg" id="15_xxlmt"]
 [ext_resource type="AudioStream" uid="uid://ocn3y12my2yy" path="res://assets/audio/sounds/Rain.wav" id="16_t0aqn"]
 [ext_resource type="AudioStream" uid="uid://c4tadgeqllgue" path="res://assets/audio/sounds/jump3.wav" id="17_kjlye"]
 [ext_resource type="AudioStream" uid="uid://bswbloqac1r6i" path="res://assets/audio/sounds/dogi.wav" id="19_qhr3l"]
@@ -103,6 +104,11 @@ bus = &"Music"
 [node name="MoatOfBurnedbless" type="AudioStreamPlayer" parent="Musics" unique_id=1521805266]
 stream = ExtResource("13_6xeo7")
 bus = &"Music"
+
+[node name="man_nes" type="AudioStreamPlayer" parent="Musics" unique_id=2084859650]
+stream = ExtResource("15_xxlmt")
+bus = &"Music"
+parameters/looping = true
 
 [node name="Sounds" type="Node" parent="." unique_id=1718301511]
 

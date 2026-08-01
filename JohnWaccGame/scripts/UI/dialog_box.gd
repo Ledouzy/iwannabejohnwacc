@@ -76,7 +76,7 @@ var portrait_dict = {
 	"knight_yell": Vector2(64,192),
 	"knight_talk": Vector2(96,192),
 	"knight_blink": Vector2(128,192),
-	"unused3": Vector2(160,192),
+	"man": Vector2(160,192),
 	"unused4": Vector2(192,192),
 	"unused5": Vector2(224,192),
 	
