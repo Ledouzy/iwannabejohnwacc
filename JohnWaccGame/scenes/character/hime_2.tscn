@@ -866,6 +866,7 @@ size = Vector2(10, 15)
 
 [node name="Hime2" type="CharacterBody2D" unique_id=1227297899]
 collision_layer = 33
+collision_mask = 5
 script = ExtResource("1_xr8y1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=500741014]
