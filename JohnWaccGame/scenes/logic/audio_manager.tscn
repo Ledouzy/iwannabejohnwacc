@@ -232,7 +232,7 @@ bus = &"BGS"
 
 [node name="Rain" type="AudioStreamPlayer" parent="BGS" unique_id=152296207]
 stream = ExtResource("16_t0aqn")
-volume_db = -4.0
+volume_db = -6.0
 bus = &"BGS"
 
 [node name="Crumble" type="AudioStreamPlayer" parent="BGS" unique_id=550346434]
