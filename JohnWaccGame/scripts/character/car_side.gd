@@ -250,6 +250,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			# if grabbed, play the animation
 			animated_sprite.play("Grabbed")
+	
 	# if not thrown, apply friction to the car
 	if !startThrow:
 		velocity.x = move_toward(velocity.x, 0, speed/2*delta*35)

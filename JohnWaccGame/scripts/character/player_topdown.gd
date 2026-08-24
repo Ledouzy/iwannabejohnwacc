@@ -32,14 +32,20 @@ var can_jump = true
 var dir = 1 # direction of the player (S-0,E-1,N-2,W-3)
 var side_dir = 1 # act as the old dir did
 var lock_direction = false
+var cant_jump = false
 
 var invulnerable = false
 
 # pickup/throw objects
 var pickedUp # stores the object that you picked up
 
+# hookshot
+var hookshot_cling = false
+var hookshot_active = false
+
 # animation flags
 var jumpanim = false # play the animation once
+var shruganim = false # play the animation once
 var deathanim = false # play the animation once
 var pickupanim = false # will change to pickup variants of animations
 var pushanim = false # indicates that we are pushing a block right now
@@ -53,7 +59,10 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
 @onready var player_body: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var throw_rayCast: RayCast2D = $RayCastThrow
+@onready var throw_raycast_down: RayCast2D = $ThrowRaycastDown
+@onready var throw_raycast_up: RayCast2D = $ThrowRaycastUp
+@onready var throw_raycast_left: RayCast2D = $ThrowRaycastLeft
+@onready var throw_raycast_right: RayCast2D = $ThrowRaycastRight
 @onready var death_timer: Timer = $DeathTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
@@ -186,9 +195,24 @@ func get_direction() -> int:
 
 
 ## handles picking up objects and enemies
-func pickUp() -> bool:
+func pickUp(pickDirection: int) -> bool:
 	# get the enemy or object right below the player
-	var object = throw_rayCast.get_collider()
+	var object
+	
+	# get the object on the direction we are facing
+	match pickDirection:
+		0: # Up
+			object = throw_raycast_up.get_collider()
+		1: # right
+			object = throw_raycast_right.get_collider()
+		2: # down
+			object = throw_raycast_down.get_collider()
+		3: # left
+			object = throw_raycast_left.get_collider()
+		_:
+			print("Error: Direction is not between 0 and 3.")
+			# for safety
+			object = throw_raycast_down.get_collider()
 	
 	# check if that object exists and that it can be pickedUp
 	# TODO: change so it checks for class throwable when that class is added
@@ -250,28 +274,61 @@ func process_animation(direction_x, direction_y) -> void:
 	# grounded animation
 	# if we are not moving, play the idle animation
 	if direction_x == 0 && direction_y == 0:
-		# if we are holding an object/enemy, play the variant
-		match dir:
-			# Down
-			0:
-				animated_sprite.play("IdleFront")
-			# Right
-			1:
-				animated_sprite.play("IdleSide")
-			# Up
-			2:
-				animated_sprite.play("IdleBack")
-			# Left
-			3:
-				animated_sprite.play("IdleSide")
-			# Error
-			_:
-				print("Error: Direction isn't between 0 and 3")
+		if (pickupanim):
+			match dir:
+				# Down
+				0:
+					animated_sprite.play("PickupIdleFront")
+				# Right
+				1:
+					animated_sprite.play("PickupIdleSide")
+				# Up
+				2:
+					animated_sprite.play("PickupIdleBack")
+				# Left
+				3:
+					animated_sprite.play("PickupIdleSide")
+				# Error
+				_:
+					print("Error: Direction isn't between 0 and 3")
+		elif !shruganim and !hookshot_cling and !hookshot_active:
+			# if we are holding an object/enemy, play the variant
+			match dir:
+				# Down
+				0:
+					animated_sprite.play("IdleFront")
+				# Right
+				1:
+					animated_sprite.play("IdleSide")
+				# Up
+				2:
+					animated_sprite.play("IdleBack")
+				# Left
+				3:
+					animated_sprite.play("IdleSide")
+				# Error
+				_:
+					print("Error: Direction isn't between 0 and 3")
 	# else, we are moving, play the walk animation
 	else:
 		# if we are holding an object/enemy, play the variant
 		if (pickupanim):
-			animated_sprite.play("PickupWalkSide")
+			match dir:
+				# Down
+				0:
+					animated_sprite.play("PickupWalkFront")
+				# Right
+				1:
+					animated_sprite.play("PickupWalkSide")
+				# Up
+				2:
+					animated_sprite.play("PickupWalkBack")
+				# Left
+				3:
+					animated_sprite.play("PickupWalkSide")
+				# Error
+				_:
+					print("Error: Direction isn't between 0 and 3")
 		else:
 			match dir:
 				# Down
@@ -397,39 +454,66 @@ func _physics_process(delta: float) -> void:
 #		velocity.y = JUMP_VELOCITY
 		
 	# Handles PickUp objects and enemies
-	#if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend and is_on_floor():
-	#	# indicates that we use pickup variants of animations
-	#	pickupanim = true
-	#	
-	#	# stop animations and stop player from moving
-	#	waitforanimationend = true
-	#	skipMoveProcess = true
-	#	
-	#	# Play the animation for picking up
-	#	animated_sprite.play("PlayerPickupSide")
-	#	# TODO: Add sfx for pickup
-	#	
-	#	# freezes the player in place for the duration of the animation
-	#	velocity.x = 0
-	#	
-	#	# waits for a fixed amount for the animation to play
-	#	await animated_sprite.animation_finished
-	#	
-	#	# tries to pickUp the item right below us
-	#	if !pickUp():
-	#		# if we did not pick anything up, or the object wasn't pickable (same shit really)
-	#		# stop the animation
-	#		pickupanim = false
-	#		
-	#		# makes the player shrug to waste his time
-	#		animated_sprite.play("PlayerShrug")
-	#		
-	#		# wait for shrug animation end
-	#		await animated_sprite.animation_finished
-	#		
-	#	# allows animation to play and player to move again
-	#	waitforanimationend = false
-	#	skipMoveProcess = false
+	if Input.is_action_just_pressed("pick") and pickupanim == false and !waitforanimationend:
+		# indicates that we use pickup variants of animations
+		pickupanim = true
+		# prevent from jumping during animation
+		cant_jump = true
+		
+		# stop animations and stop player from moving
+		waitforanimationend = true
+		skipMoveProcess = true
+		
+		# Play the animation for picking up
+		match dir:
+			# Down
+			0:
+				animated_sprite.play("PickupFront")
+			# Right
+			1:
+				animated_sprite.play("PickupSide")
+			# Up
+			2:
+				animated_sprite.play("PickupBack")
+			# Left
+			3:
+				animated_sprite.play("PickupSide")
+			# Error
+			_:
+				print("Error: Direction isn't between 0 and 3")
+		
+		# TODO: Add sfx for pickup
+		
+		# freezes the player in place for the duration of the animation
+		velocity.x = 0
+		
+		# waits for a fixed amount for the animation to play
+		await animated_sprite.animation_finished
+		
+		# tries to pickUp the item right below us
+		if !pickUp(dir):
+			# if we did not pick anything up, or the object wasn't pickable (same shit really)
+			# stop the animation
+			pickupanim = false
+			shruganim = true
+			cant_jump = false
+			
+			# allows animation to play and player to move again
+			waitforanimationend = false
+			skipMoveProcess = false
+			
+			# makes the player shrug to waste his time
+			animated_sprite.play("Shrug")
+			
+			# wait for shrug animation end
+			await animated_sprite.animation_finished
+			
+			shruganim = false
+			
+		# allows animation to play and player to move again
+		waitforanimationend = false
+		skipMoveProcess = false
+		cant_jump = false
 	#	
 	# Handles throwing objects and enemies
 	#if Input.is_action_just_pressed("pick") and pickupanim == true and !waitforanimationend:
@@ -478,7 +562,9 @@ func _physics_process(delta: float) -> void:
 		
 		# wait for the end of animations before renabling jump animations or other shit
 		waitforanimationend = true
+		
 		await animation_player.animation_finished
+		
 		waitforanimationend = false
 		jumpanim = false
 		
@@ -486,6 +572,7 @@ func _physics_process(delta: float) -> void:
 		if changed_dir != side_dir:
 			if side_dir == 1 or side_dir == -1:
 				player_body.scale.x = -1
+		
 		# unlock our direction
 		lock_direction = false
 	
@@ -575,7 +662,7 @@ func _physics_process(delta: float) -> void:
 		# if not moving
 		else:
 			# apply friction
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, SPEED*delta)
 		
 		# if moving in y axis
 		if direction.y:
@@ -599,7 +686,7 @@ func _physics_process(delta: float) -> void:
 		# if not moving
 		else:
 			# apply friction
-			velocity.y = move_toward(velocity.y, 0, SPEED)
+			velocity.y = move_toward(velocity.y, 0, SPEED*delta)
 	
 	# apply movement
 	move_and_slide()

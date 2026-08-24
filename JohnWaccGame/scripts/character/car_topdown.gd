@@ -27,11 +27,14 @@ var waitforanimationend = false
 var pickedUpBy
 var skipMoveProcess = false
 var walkDisabled = false
+var startThrow = false
 
 # Reference to objects needed
 # taking damage
 @onready var health = MAX_HEALTH
 @onready var damage_timer: Timer = $DamageTimer # invulnerability frames basically
+
+@onready var throw_timer: Timer = $ThrowTimer
 
 # Checks for Walls
 @onready var ray_cast_up: RayCast2D = $RayCastUp
@@ -47,6 +50,7 @@ var walkDisabled = false
 # collision
 @onready var hurtbox_collision: CollisionShape2D = $HurtBox/CollisionShape2D
 @onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
+@onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
 
 
 # set dead to true
@@ -60,7 +64,63 @@ func set_dead():
 func is_dead() -> bool:
 	return dead
 
+
+# logic for the object getting picked up
+func pickedUp(player: CharacterBody2D) -> void:
+	# marks that the object has been picked up, we store that object so that we know we are picked up and have it's position at all times
+	pickedUpBy = player
+	# disable movement
+	walkDisabled = true
 	
+	# stop the timer for getting up
+	throw_timer.stop()
+	
+	# disable collision and hurtbox
+	hurtbox_collision.disabled = true
+	collision_shape_3.disabled = true
+	
+	# flip the sprite vertically
+	animated_sprite.flip_v = true
+	
+	# turn towards the same direction as the player
+	if (player.has_method("get_direction")):
+		direction = player.get_direction()
+
+
+# logic for the object being thrown
+func thrown() -> void:
+	# indicate that we are starting the throw for the physics process
+	startThrow = true
+	# initiate movement
+	#move_and_slide()
+	
+	# wait until throw is finished
+	await get_tree().create_timer(0.1).timeout
+	# re-enable collisions
+	collision_shape_3.disabled = false
+	# we are not at the start of the throw anymore
+	startThrow = false
+	# no longer picked up by the player
+	pickedUpBy = null
+	
+	# enable the hurtbox for throwing
+	thrown_hurt_box.disabled = false
+	
+	# wait a while, stop the object and wait again
+	await get_tree().create_timer(0.5).timeout
+	velocity.x = move_toward(velocity.x, 0, 100)
+	throw_timer.start()
+
+
+func _on_throw_timer_timeout() -> void:
+	# if we haven't been picked up again
+	if pickedUpBy == null:
+		# re-enable walking and the hurtbox for the object and flip back up
+		walkDisabled = false
+		hurtbox_collision.disabled = false
+		animated_sprite.flip_v = false
+
+
 # logic for taking damage
 func take_damage(damage, direction) -> void:
 	# check if we are still in invulnerability frames
@@ -131,6 +191,30 @@ func _physics_process(delta: float) -> void:
 			skipMoveProcess = true
 			waitforanimationend = true
 	
+	if startThrow:
+		# apply force for the throw
+		velocity.x += 1250 * delta * dir
+		velocity.y -= 350 * delta
+	elif pickedUpBy != null:
+		# apply the same movement as the player and direction
+		var temp : Vector2  = Input.get_vector("left","right","up","down", 0.25)
+
+		temp = temp.normalized()
+		
+		# make sure that direction is not 0 since else we're stuck in place
+		if temp != Vector2(0,0):
+			if temp.y < 0:
+				direction = 0
+			if temp.y > 0:
+				direction = 1
+			if temp.x > 0:
+				direction = 3
+			if temp.x < 0: 
+				direction = 2
+				
+			
+		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-16)
+	
 	# sets dir for anything that only need the sign
 	if direction > 0:
 		dir = 1
@@ -139,69 +223,70 @@ func _physics_process(delta: float) -> void:
 	
 	# movement logic
 	if !waitforanimationend:
-		# left right movement
-		if left_right:
-			# flip the sprite in the correct direction
-			if (direction < 0):
-				animated_sprite.flip_h = true
-			elif (direction > 0):
-				animated_sprite.flip_h = false
-			
-			# check for walls on the right and change direction if yes
-			if ray_cast_right.is_colliding():
-				direction = 1
-				animated_sprite.flip_h = true
-					
-			# same but on the left
-			if ray_cast_left.is_colliding():
-				direction = -1
-				animated_sprite.flip_h = false
-					
-			# if between two walls
-			if ray_cast_left.is_colliding() && ray_cast_right.is_colliding():
-				# just wait
-				animated_sprite.play("IdleFront")
+		# if not picked up
+		if pickedUpBy == null:
+			# left right movement
+			if left_right:
+				# flip the sprite in the correct direction
+				if (direction < 0):
+					animated_sprite.flip_h = true
+				elif (direction > 0):
+					animated_sprite.flip_h = false
+				
+				# check for walls on the right and change direction if yes
+				if ray_cast_right.is_colliding():
+					direction = 1
+					animated_sprite.flip_h = true
+						
+				# same but on the left
+				if ray_cast_left.is_colliding():
+					direction = -1
+					animated_sprite.flip_h = false
+				
+				# if between two walls
+				if ray_cast_left.is_colliding() && ray_cast_right.is_colliding():
+					# just wait
+					animated_sprite.play("IdleFront")
+				else:
+					# play walk animation
+					animated_sprite.play("WalkSide")
+						
+					# move the enemy if movement is not disabled
+					if !walkDisabled:
+						position.x += direction * delta * speed
 			else:
-				# play walk animation
-				animated_sprite.play("WalkSide")
-					
-				# move the enemy if movement is not disabled
-				if !walkDisabled:
-					position.x += direction * delta * speed
-		else:
-			# check for walls on the right and change direction if yes
-			if ray_cast_up.is_colliding():
-				direction = 1
-					
-			# same but on the left
-			if ray_cast_down.is_colliding():
-				direction = -1
-					
-			# if between two walls
-			if ray_cast_up.is_colliding() && ray_cast_down.is_colliding():
-				# just wait
-				animated_sprite.play("IdleFront")
-			else:
-				# play walk animation
-				if direction > 0:
-					animated_sprite.play("WalkFront")
-				elif direction < 0:
-					animated_sprite.play("WalkBack")
-					
-				# move the enemy if movement is not disabled
-				if !walkDisabled:
-					position.y += direction * delta * speed
-
-	# apply friction to the car
-	velocity.x = move_toward(velocity.x, 0, speed*delta)
-	velocity.y = move_toward(velocity.y, 0, speed*delta)
+				# check for walls on the right and change direction if yes
+				if ray_cast_up.is_colliding():
+					direction = 1
+						
+				# same but on the left
+				if ray_cast_down.is_colliding():
+					direction = -1
+						
+				# if between two walls
+				if ray_cast_up.is_colliding() && ray_cast_down.is_colliding():
+					# just wait
+					animated_sprite.play("IdleFront")
+				else:
+					# play walk animation
+					if direction > 0:
+						animated_sprite.play("WalkFront")
+					elif direction < 0:
+						animated_sprite.play("WalkBack")
+						
+					# move the enemy if movement is not disabled
+					if !walkDisabled:
+						position.y += direction * delta * speed
+		else: # if picked up
+			# if grabbed, play the animation
+			animated_sprite.play("Grabbed")
+	# if not thrown, apply friction to the car
+	if !startThrow:
+		velocity.x = move_toward(velocity.x, 0, speed*delta)
+		velocity.y = move_toward(velocity.y, 0, speed*delta)
 	# applies movement
 	move_and_slide()
 	
 # play a sound by calling the audio manager
 func play_sfx(sfx_name):
 	audio_manager.play_sfx(sfx_name, 0, self.position)
-
-
-func _on_throw_timer_timeout() -> void:
-	pass # Replace with function body.
