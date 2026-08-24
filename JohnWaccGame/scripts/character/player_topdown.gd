@@ -61,8 +61,7 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var throw_raycast_down: RayCast2D = $ThrowRaycastDown
 @onready var throw_raycast_up: RayCast2D = $ThrowRaycastUp
-@onready var throw_raycast_left: RayCast2D = $ThrowRaycastLeft
-@onready var throw_raycast_right: RayCast2D = $ThrowRaycastRight
+@onready var throw_raycast_side: RayCast2D = $ThrowRaycastSide
 @onready var death_timer: Timer = $DeathTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
@@ -202,13 +201,13 @@ func pickUp(pickDirection: int) -> bool:
 	# get the object on the direction we are facing
 	match pickDirection:
 		0: # Up
-			object = throw_raycast_up.get_collider()
-		1: # right
-			object = throw_raycast_right.get_collider()
-		2: # down
 			object = throw_raycast_down.get_collider()
+		1: # right
+			object = throw_raycast_side.get_collider()
+		2: # down
+			object = throw_raycast_up.get_collider()
 		3: # left
-			object = throw_raycast_left.get_collider()
+			object = throw_raycast_side.get_collider()
 		_:
 			print("Error: Direction is not between 0 and 3.")
 			# for safety
@@ -242,8 +241,10 @@ func throw() -> void:
 	# check first if we do have an item that we picked up, and check if that method does have a thrown method
 	# TODO: change so it checks for class throwable when that class is added
 	if pickedUp == null:
+		# if we don't have something picked up, just return
 		return
 	if pickedUp.has_method("thrown"):
+		play_sfx("Throw")
 		# call the thrown method on the object
 		pickedUp.call("thrown")
 
@@ -485,7 +486,7 @@ func _physics_process(delta: float) -> void:
 		# TODO: Add sfx for pickup
 		
 		# freezes the player in place for the duration of the animation
-		velocity.x = 0
+		velocity = Vector2(0,0)
 		
 		# waits for a fixed amount for the animation to play
 		await animated_sprite.animation_finished
@@ -516,20 +517,20 @@ func _physics_process(delta: float) -> void:
 		cant_jump = false
 	#	
 	# Handles throwing objects and enemies
-	#if Input.is_action_just_pressed("pick") and pickupanim == true and !waitforanimationend:
-	#	# indicate that we aren't holding anything anymore and locks animations
-	#	pickupanim = false
-	#	waitforanimationend = true
-	#	
-	#	# Play the throw animation
-	#	animated_sprite.play("PlayerThrow")
-	#	
-	#	# Throw the held object/enemy
-	#	throw()
-	#	
-	#	# wait for throw to finish and then allows animation to play again
-	#	await animated_sprite.animation_finished
-	#	waitforanimationend = false
+	if Input.is_action_just_pressed("pick") and pickupanim == true and !waitforanimationend:
+		# indicate that we aren't holding anything anymore and locks animations
+		pickupanim = false
+		waitforanimationend = true
+		
+		# Play the throw animation
+		animated_sprite.play("ThrowSide")
+		
+		# Throw the held object/enemy
+		throw()
+		
+		# wait for throw to finish and then allows animation to play again
+		await animated_sprite.animation_finished
+		waitforanimationend = false
 		
 	# Handles attacking
 	if Input.is_action_just_pressed("attack") and !waitforanimationend and !pickupanim:

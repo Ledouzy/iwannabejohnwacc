@@ -2828,22 +2828,20 @@ libraries/ = SubResource("AnimationLibrary_70d11")
 
 [node name="ThrowRaycastDown" type="RayCast2D" parent="." unique_id=2033770049]
 position = Vector2(0, -5)
-target_position = Vector2(0, 10)
+scale = Vector2(4, 1)
+target_position = Vector2(0, 12)
 collision_mask = 5
 
 [node name="ThrowRaycastUp" type="RayCast2D" parent="." unique_id=1029721073]
 position = Vector2(0, -5)
-target_position = Vector2(0, -12)
+scale = Vector2(4, 1)
+target_position = Vector2(0, -14)
 collision_mask = 5
 
-[node name="ThrowRaycastLeft" type="RayCast2D" parent="." unique_id=1881232811]
+[node name="ThrowRaycastSide" type="RayCast2D" parent="." unique_id=1382773602]
 position = Vector2(0, -5)
-target_position = Vector2(-12, 0)
-collision_mask = 5
-
-[node name="ThrowRaycastRight" type="RayCast2D" parent="." unique_id=1382773602]
-position = Vector2(0, -5)
-target_position = Vector2(12, 0)
+scale = Vector2(1, 4)
+target_position = Vector2(14, 0)
 collision_mask = 5
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1506339776]

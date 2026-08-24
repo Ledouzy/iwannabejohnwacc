@@ -441,6 +441,7 @@ disabled = true
 [node name="HurtBox" parent="." unique_id=7972012 instance=ExtResource("2_md0e3")]
 script = ExtResource("5_cp117")
 damage = 1
+offset = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1319252143]
 position = Vector2(-0.5, 2.5)

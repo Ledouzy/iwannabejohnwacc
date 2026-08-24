@@ -4,15 +4,15 @@
 [ext_resource type="Script" uid="uid://i1joucbc37b7" path="res://scripts/character/car_topdown.gd" id="2_8otuk"]
 
 [node name="CarTopdown" type="Node2D" unique_id=1601088451]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Car" parent="." unique_id=1027794888 instance=ExtResource("1_lak5i")]
+z_as_relative = false
 script = ExtResource("2_8otuk")
 
 [node name="AnimatedSprite2D" parent="Car" index="0" unique_id=2036936847]
 animation = &"WalkBack"
-
-[node name="HurtBox" parent="Car" index="3" unique_id=7972012]
-offset = Vector2(0, 0)
 
 [connection signal="timeout" from="Car/DamageTimer" to="Car" method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="Car/ThrowTimer" to="Car" method="_on_throw_timer_timeout"]

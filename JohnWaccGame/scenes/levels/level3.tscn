@@ -58,16 +58,10 @@ tile_set = ExtResource("4_ah4rv")
 position = Vector2(33, 8)
 left_right = false
 
-[node name="HurtBox" parent="Level/Enemies/CarTopdown/Car" index="3" unique_id=7972012]
-offset = Vector2(0, 0)
-
 [node name="CarTopdown2" parent="Level/Enemies" unique_id=366448217 instance=ExtResource("5_wb0vq")]
 
 [node name="Car" parent="Level/Enemies/CarTopdown2" index="0" unique_id=1027794888]
 position = Vector2(1, 40)
-
-[node name="HurtBox" parent="Level/Enemies/CarTopdown2/Car" index="3" unique_id=7972012]
-offset = Vector2(0, 0)
 
 [node name="Amangoose" parent="." unique_id=875060791 instance=ExtResource("5_522sc")]
 position = Vector2(-32, -32)
@@ -109,6 +103,11 @@ next_stage_number = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="level_transition" unique_id=2143949405]
 position = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_wb0vq")
+
+[connection signal="timeout" from="Level/Enemies/CarTopdown/Car/DamageTimer" to="Level/Enemies/CarTopdown/Car" method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Level/Enemies/CarTopdown/Car/ThrowTimer" to="Level/Enemies/CarTopdown/Car" method="_on_throw_timer_timeout"]
+[connection signal="timeout" from="Level/Enemies/CarTopdown2/Car/DamageTimer" to="Level/Enemies/CarTopdown2/Car" method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Level/Enemies/CarTopdown2/Car/ThrowTimer" to="Level/Enemies/CarTopdown2/Car" method="_on_throw_timer_timeout"]
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]

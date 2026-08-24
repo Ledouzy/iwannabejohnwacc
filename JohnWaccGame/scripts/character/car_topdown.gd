@@ -94,10 +94,19 @@ func thrown() -> void:
 	# initiate movement
 	#move_and_slide()
 	
-	# wait until throw is finished
-	await get_tree().create_timer(0.1).timeout
 	# re-enable collisions
 	collision_shape_3.disabled = false
+	
+	# player does not collide with enemy
+	self.collision_layer = 0
+	
+	# go over the player
+	self.z_index = 1
+	self.y_sort_enabled = false
+	
+	# wait until throw is finished
+	await get_tree().create_timer(0.1).timeout
+	
 	# we are not at the start of the throw anymore
 	startThrow = false
 	# no longer picked up by the player
@@ -108,7 +117,17 @@ func thrown() -> void:
 	
 	# wait a while, stop the object and wait again
 	await get_tree().create_timer(0.5).timeout
+	
+	
+	# reset z index
+	self.z_index = 0
+	self.y_sort_enabled = true
+	
+	# player can collide with enemy
+	self.collision_layer = 4
+	
 	velocity.x = move_toward(velocity.x, 0, 100)
+	velocity.y = move_toward(velocity.y, 0, 100)
 	throw_timer.start()
 
 
@@ -131,7 +150,7 @@ func take_damage(damage, direction) -> void:
 		damage_timer.start()
 		
 		# apply knockback
-		velocity += 100*direction
+		velocity = 60*direction
 		
 		# deal damage
 		health -= damage
@@ -193,8 +212,18 @@ func _physics_process(delta: float) -> void:
 	
 	if startThrow:
 		# apply force for the throw
-		velocity.x += 1250 * delta * dir
-		velocity.y -= 350 * delta
+		match direction:
+			0:
+				velocity.y -= 1250 * delta
+			1:
+				velocity.x += 1250 * delta
+			2:
+				velocity.y += 1250 * delta
+			3:
+				velocity.x -= 1250 * delta
+			_:
+				print("Error: Direction is not between 0 and 3.")
+		
 	elif pickedUpBy != null:
 		# apply the same movement as the player and direction
 		var temp : Vector2  = Input.get_vector("left","right","up","down", 0.25)
@@ -206,11 +235,11 @@ func _physics_process(delta: float) -> void:
 			if temp.y < 0:
 				direction = 0
 			if temp.y > 0:
-				direction = 1
-			if temp.x > 0:
-				direction = 3
-			if temp.x < 0: 
 				direction = 2
+			if temp.x > 0:
+				direction = 1
+			if temp.x < 0: 
+				direction = 3
 				
 			
 		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-16)
@@ -282,8 +311,8 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("Grabbed")
 	# if not thrown, apply friction to the car
 	if !startThrow:
-		velocity.x = move_toward(velocity.x, 0, speed*delta)
-		velocity.y = move_toward(velocity.y, 0, speed*delta)
+		velocity.x = move_toward(velocity.x, 0, speed*delta*5)
+		velocity.y = move_toward(velocity.y, 0, speed*delta*5)
 	# applies movement
 	move_and_slide()
 	
