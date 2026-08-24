@@ -89,6 +89,9 @@ func pickedUp(player: CharacterBody2D) -> void:
 
 # logic for the object being thrown
 func thrown() -> void:
+	# fix position
+	position.y += 8
+	
 	# indicate that we are starting the throw for the physics process
 	startThrow = true
 	# initiate movement

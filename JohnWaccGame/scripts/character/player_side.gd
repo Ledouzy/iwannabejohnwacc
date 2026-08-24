@@ -291,11 +291,13 @@ func process_animation(direction) -> void:
 		if direction == 0:
 			# if we are holding an object/enemy, play the variant
 			if (pickupanim):
+				shruganim = false
 				animated_sprite.play("PickupIdleSide")
 			elif !shruganim and !hookshot_cling and !hookshot_active:
 				animated_sprite.play("IdleSide")
 		# else, we are moving, play the walk animation
 		else:
+			shruganim = false
 			# if we are holding an object/enemy, play the variant
 			if (pickupanim):
 				animated_sprite.play("PickupWalkSide")
@@ -303,6 +305,7 @@ func process_animation(direction) -> void:
 				animated_sprite.play("WalkSide")
 	# we are in the air
 	else:
+		shruganim = false
 		if !jumpanim:
 			# play the jump animation, but only once
 			jumpanim = true

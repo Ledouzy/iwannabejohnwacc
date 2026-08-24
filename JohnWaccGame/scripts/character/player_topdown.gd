@@ -276,6 +276,7 @@ func process_animation(direction_x, direction_y) -> void:
 	# if we are not moving, play the idle animation
 	if direction_x == 0 && direction_y == 0:
 		if (pickupanim):
+			shruganim = false
 			match dir:
 				# Down
 				0:
@@ -312,6 +313,7 @@ func process_animation(direction_x, direction_y) -> void:
 					print("Error: Direction isn't between 0 and 3")
 	# else, we are moving, play the walk animation
 	else:
+		shruganim = false
 		# if we are holding an object/enemy, play the variant
 		if (pickupanim):
 			match dir:
@@ -331,6 +333,7 @@ func process_animation(direction_x, direction_y) -> void:
 				_:
 					print("Error: Direction isn't between 0 and 3")
 		else:
+			shruganim = false
 			match dir:
 				# Down
 				0:
