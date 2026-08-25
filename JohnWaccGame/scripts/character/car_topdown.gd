@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var speed = 10
 @export var MAX_FALL_VELOCITY = 300
 @export var left_right = true # if false, up or down
+@export var throw_force = 840
 
 @export_group("Stats")
 @export var MAX_HEALTH = 2
@@ -84,7 +85,7 @@ func pickedUp(player: CharacterBody2D) -> void:
 	
 	# turn towards the same direction as the player
 	if (player.has_method("get_direction")):
-		direction = player.get_direction()
+		dir = player.get_direction()
 
 
 # logic for the object being thrown
@@ -215,15 +216,15 @@ func _physics_process(delta: float) -> void:
 	
 	if startThrow:
 		# apply force for the throw
-		match direction:
+		match dir:
 			0:
-				velocity.y -= 1250 * delta
+				velocity.y -= throw_force * delta
 			1:
-				velocity.x += 1250 * delta
+				velocity.x += throw_force * delta
 			2:
-				velocity.y += 1250 * delta
+				velocity.y += throw_force * delta
 			3:
-				velocity.x -= 1250 * delta
+				velocity.x -= throw_force * delta
 			_:
 				print("Error: Direction is not between 0 and 3.")
 		
@@ -236,22 +237,21 @@ func _physics_process(delta: float) -> void:
 		# make sure that direction is not 0 since else we're stuck in place
 		if temp != Vector2(0,0):
 			if temp.y < 0:
-				direction = 0
+				dir = 0
 			if temp.y > 0:
-				direction = 2
+				dir = 2
 			if temp.x > 0:
-				direction = 1
+				dir = 1
 			if temp.x < 0: 
-				direction = 3
-				
+				dir = 3	
 			
 		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-16)
-	
-	# sets dir for anything that only need the sign
-	if direction > 0:
-		dir = 1
-	elif direction < 0:
-		dir = 3
+	else: # only if not picked up
+		# sets dir for anything that only need the sign
+		if direction > 0:
+			dir = 1
+		elif direction < 0:
+			dir = 3
 	
 	# movement logic
 	if !waitforanimationend:
@@ -309,6 +309,7 @@ func _physics_process(delta: float) -> void:
 					# move the enemy if movement is not disabled
 					if !walkDisabled:
 						position.y += direction * delta * speed
+
 		else: # if picked up
 			# if grabbed, play the animation
 			animated_sprite.play("Grabbed")

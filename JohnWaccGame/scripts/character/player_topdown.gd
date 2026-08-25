@@ -29,7 +29,7 @@ var coyote_timer = 0
 var can_jump = true
 
 # direction
-var dir = 1 # direction of the player (S-0,E-1,N-2,W-3)
+var dir = 1 # direction of the player (N-0,E-1,S-2,W-3)
 var side_dir = 1 # act as the old dir did
 var lock_direction = false
 var cant_jump = false
@@ -201,11 +201,11 @@ func pickUp(pickDirection: int) -> bool:
 	# get the object on the direction we are facing
 	match pickDirection:
 		0: # Up
-			object = throw_raycast_down.get_collider()
+			object = throw_raycast_up.get_collider()
 		1: # right
 			object = throw_raycast_side.get_collider()
 		2: # down
-			object = throw_raycast_up.get_collider()
+			object = throw_raycast_down.get_collider()
 		3: # left
 			object = throw_raycast_side.get_collider()
 		_:
@@ -279,13 +279,13 @@ func process_animation(direction_x, direction_y) -> void:
 			shruganim = false
 			match dir:
 				# Down
-				0:
+				2:
 					animated_sprite.play("PickupIdleFront")
 				# Right
 				1:
 					animated_sprite.play("PickupIdleSide")
 				# Up
-				2:
+				0:
 					animated_sprite.play("PickupIdleBack")
 				# Left
 				3:
@@ -297,13 +297,13 @@ func process_animation(direction_x, direction_y) -> void:
 			# if we are holding an object/enemy, play the variant
 			match dir:
 				# Down
-				0:
+				2:
 					animated_sprite.play("IdleFront")
 				# Right
 				1:
 					animated_sprite.play("IdleSide")
 				# Up
-				2:
+				0:
 					animated_sprite.play("IdleBack")
 				# Left
 				3:
@@ -318,13 +318,13 @@ func process_animation(direction_x, direction_y) -> void:
 		if (pickupanim):
 			match dir:
 				# Down
-				0:
+				2:
 					animated_sprite.play("PickupWalkFront")
 				# Right
 				1:
 					animated_sprite.play("PickupWalkSide")
 				# Up
-				2:
+				0:
 					animated_sprite.play("PickupWalkBack")
 				# Left
 				3:
@@ -336,7 +336,7 @@ func process_animation(direction_x, direction_y) -> void:
 			shruganim = false
 			match dir:
 				# Down
-				0:
+				2:
 					if pushanim:
 						animated_sprite.play("PushFront")
 					else:
@@ -348,7 +348,7 @@ func process_animation(direction_x, direction_y) -> void:
 					else:
 						animated_sprite.play("WalkSide")
 				# Up
-				2:
+				0:
 					if pushanim:
 						animated_sprite.play("PushBack")
 					else:
@@ -471,13 +471,13 @@ func _physics_process(delta: float) -> void:
 		# Play the animation for picking up
 		match dir:
 			# Down
-			0:
+			2:
 				animated_sprite.play("PickupFront")
 			# Right
 			1:
 				animated_sprite.play("PickupSide")
 			# Up
-			2:
+			0:
 				animated_sprite.play("PickupBack")
 			# Left
 			3:
@@ -526,7 +526,18 @@ func _physics_process(delta: float) -> void:
 		waitforanimationend = true
 		
 		# Play the throw animation
-		animated_sprite.play("ThrowSide")
+		match dir:
+			0:
+				animated_sprite.play("ThrowBack")
+			1:
+				animated_sprite.play("ThrowSide")
+			2:
+				animated_sprite.play("ThrowFront")
+			3:
+				animated_sprite.play("ThrowSide")
+			_:
+				print("Error: Dir is not between 0 and 3")
+		
 		
 		# Throw the held object/enemy
 		throw()
@@ -545,14 +556,14 @@ func _physics_process(delta: float) -> void:
 		lock_direction = true
 		
 		# play the attack animation and locks animation for the length of the animation
-		if dir == 0:
+		if dir == 2:
 			# print("down")
 			# change the direction so the animation plays properly
 			changed_dir = side_dir * -1
 			player_body.scale.x = -1
 			# plays the front attack animation
 			animation_player.play("attackFront")
-		elif dir == 2:
+		elif dir == 0:
 			# print("up")
 			# change the direction so the animation plays properly
 			#changed_dir = side_dir * -1
@@ -632,9 +643,9 @@ func _physics_process(delta: float) -> void:
 			side_dir = -1
 			
 		if direction.y > 0:
-			dir = 0
-		elif direction.y < 0:
 			dir = 2
+		elif direction.y < 0:
+			dir = 0
 		
 	# handles pushing blocks
 	pushanim = collision_handler()

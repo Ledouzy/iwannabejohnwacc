@@ -9,6 +9,7 @@ y_sort_enabled = true
 
 [node name="Car" parent="." unique_id=1027794888 instance=ExtResource("1_lak5i")]
 z_as_relative = false
+motion_mode = 1
 script = ExtResource("2_8otuk")
 
 [node name="AnimatedSprite2D" parent="Car" index="0" unique_id=2036936847]

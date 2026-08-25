@@ -9,6 +9,7 @@ y_sort_enabled = true
 script = ExtResource("1_3jx12")
 
 [node name="PlayerBody" parent="." unique_id=1264691691 instance=ExtResource("1_w5wd0")]
+motion_mode = 1
 script = ExtResource("1_c64y4")
 
 [editable path="PlayerBody"]
