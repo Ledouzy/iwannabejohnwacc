@@ -64,6 +64,22 @@ region = Rect2(224, 16, 16, 16)
 atlas = ExtResource("1_p0vlq")
 region = Rect2(240, 16, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4126"]
+atlas = ExtResource("3_qu4a1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkdrv"]
+atlas = ExtResource("3_qu4a1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7iby"]
+atlas = ExtResource("3_qu4a1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rnld"]
+atlas = ExtResource("3_qu4a1")
+region = Rect2(48, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_afjbu"]
 atlas = ExtResource("1_p0vlq")
 region = Rect2(224, 0, 16, 16)
@@ -344,22 +360,6 @@ region = Rect2(16, 16, 16, 16)
 atlas = ExtResource("1_p0vlq")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o4126"]
-atlas = ExtResource("3_qu4a1")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lkdrv"]
-atlas = ExtResource("3_qu4a1")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p7iby"]
-atlas = ExtResource("3_qu4a1")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0rnld"]
-atlas = ExtResource("3_qu4a1")
-region = Rect2(48, 0, 16, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_d3wef"]
 animations = [{
 "frames": [{
@@ -416,6 +416,32 @@ animations = [{
 "loop": 0,
 "name": &"Death",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igsco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ce5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4126")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkdrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7iby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rnld")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"DeathTopdown",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1378,10 +1404,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.0666667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.0666667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [false]
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -2660,7 +2686,6 @@ _data = {
 &"attackBack": SubResource("Animation_erpy8"),
 &"attackFront": SubResource("Animation_1y732"),
 &"attackSide": SubResource("Animation_qlg0r"),
-&"blink": ExtResource("6_fjrip"),
 &"death": SubResource("Animation_qu4a1"),
 &"hookReset": SubResource("Animation_5y66v"),
 &"hookReturnDown": SubResource("Animation_iinkm"),

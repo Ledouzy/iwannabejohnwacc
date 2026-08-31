@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://choofjd4tvopo" path="res://assets/sprites/Characters/Car.png" id="1_7p1mj"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://cabj0ahjsijba" path="res://assets/sprites/VFX/death.png" id="2_sj0f0"]
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/logic/throw_hurt_box.tscn" id="3_3mrxu"]
 [ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/logic/hurt_box.gd" id="5_cp117"]
 [ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="7_4clw4"]
@@ -17,6 +18,22 @@ region = Rect2(176, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vqyg"]
 atlas = ExtResource("1_7p1mj")
 region = Rect2(160, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xkyk"]
+atlas = ExtResource("2_sj0f0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sgsw"]
+atlas = ExtResource("2_sj0f0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jcoc"]
+atlas = ExtResource("2_sj0f0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iugiq"]
+atlas = ExtResource("2_sj0f0")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hylxu"]
 atlas = ExtResource("1_7p1mj")
@@ -93,6 +110,32 @@ animations = [{
 "loop": 0,
 "name": &"Death",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8qg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vqyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xkyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sgsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jcoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iugiq")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"DeathTopdown",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -423,7 +466,7 @@ collision_mask = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2036936847]
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"WalkSide"
+animation = &"DeathTopdown"
 autoplay = "IdleSide"
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=326158773]

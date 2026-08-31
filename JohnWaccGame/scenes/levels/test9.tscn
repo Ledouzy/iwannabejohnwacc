@@ -15,6 +15,9 @@ script = ExtResource("1_knmtw")
 [node name="Player" parent="." unique_id=806243544 instance=ExtResource("2_kl3xd")]
 unique_name_in_owner = true
 
+[node name="PlayerBody" parent="Player" index="0" unique_id=1264691691]
+MAX_HEALTH = 2
+
 [node name="CarTopdown" parent="." unique_id=1601088451 instance=ExtResource("5_ufv6w")]
 
 [node name="Car" parent="CarTopdown" index="0" unique_id=1027794888]
@@ -40,9 +43,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("11_s5uvd")]
 scene_text_file = "res://assets/dialogue/level3.json"
-
-[connection signal="timeout" from="CarTopdown/Car/DamageTimer" to="CarTopdown/Car" method="_on_damage_timer_timeout"]
-[connection signal="timeout" from="CarTopdown/Car/ThrowTimer" to="CarTopdown/Car" method="_on_throw_timer_timeout"]
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]

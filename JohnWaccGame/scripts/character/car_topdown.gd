@@ -58,6 +58,10 @@ var startThrow = false
 func set_dead():
 	dead = true
 	deathanim = true
+	
+	# stop movement
+	velocity = Vector2(0,0)
+	
 	play_sfx("Death")
 
 
@@ -207,7 +211,7 @@ func _physics_process(delta: float) -> void:
 		# play the death animation once
 		if (deathanim):
 			# play the animation
-			animated_sprite.play("Death")
+			animated_sprite.play("DeathTopdown")
 			# mark that the animation has been played once
 			deathanim = false
 			# skip move and wait for the end of the animation

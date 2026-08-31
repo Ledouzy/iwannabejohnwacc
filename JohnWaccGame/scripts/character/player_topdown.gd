@@ -100,6 +100,9 @@ func set_dead():
 	# we are dead
 	dead = true 
 	
+	# stop movement
+	velocity = Vector2(0,0)
+	
 	# we play death animation
 	
 	deathanim = true 
@@ -412,7 +415,7 @@ func _physics_process(delta: float) -> void:
 	if (dead):
 		# play the death animation once
 		if (deathanim):
-			animated_sprite.play("Death")
+			animated_sprite.play("DeathTopdown")
 			deathanim = false
 			
 		# lock movement and animation
