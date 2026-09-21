@@ -1,12 +1,12 @@
 {  
    "mogus1": [
 		{"portrait" : "", "text" : "Amogus"},
-        {"portrait" : "", "text" : "Dudududududududu dududu"}
+		{"portrait" : "", "text" : "Dudududududududu dududu"}
 	],
 	"mage1": [
 		{"portrait" : "joof_left", "text" : "Hello, traveler, might you be"},
 		{"portrait" : "joof_right", "text" : "interested in some wares?"},
-        {"portrait" : "joof_left", "text" : "Well I ain't got jack, so scram."},
+		{"portrait" : "joof_left", "text" : "Well I ain't got jack, so scram."},
 		{"portrait" : "jack_surprised", "text" : "You can't be serious!"}
 	]
 }
