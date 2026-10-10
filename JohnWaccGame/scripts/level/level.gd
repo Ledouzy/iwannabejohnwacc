@@ -46,5 +46,10 @@ func _ready() -> void:
 	# reset it's value
 	scene_manager.starting_coords = Vector2(0,0)
 	
+	# Updates the Player HP to the stored value
+	var i = global_manager.get_current_health()
+	if i > 0:
+		player.set_health(i)
+	
 	# update the UI to reflect the checkpoint data
 	game_manager._ready()

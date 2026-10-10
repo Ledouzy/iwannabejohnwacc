@@ -23,6 +23,15 @@ var loaded_settings = {
 	"fullscreen": true,
 }
 
+# Values to store between scenes
+var current_health: int = 0
+
+func get_current_health():
+	return current_health
+	
+func set_current_health(i: int):
+	current_health = i
+
 # load settings from settings file
 func load_settings():
 	# if the file exists

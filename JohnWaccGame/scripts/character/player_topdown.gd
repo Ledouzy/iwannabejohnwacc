@@ -115,6 +115,11 @@ func set_dead():
 ## get value of health
 func get_health() -> int:
 	return health
+	
+	
+## change value of health
+func set_health(i: int):
+	health = min(i, MAX_HEALTH)
 
 
 ## get value of MAX_HEALTH

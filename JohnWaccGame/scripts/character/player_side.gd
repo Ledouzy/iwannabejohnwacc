@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name player
+class_name player_side
 
 # Movement Parameters
 # Speed
@@ -116,6 +116,11 @@ func set_dead():
 ## get value of health
 func get_health() -> int:
 	return health
+	
+
+## change value of health
+func set_health(i: int):
+	health = min(i, MAX_HEALTH)
 
 
 ## get value of MAX_HEALTH
@@ -260,9 +265,15 @@ func spring_jump(jump_height):
 		skipisonfloor = true
 		# we are doing a spring jump so skip things that don't need to be used
 		springjump = true
-		await get_tree().create_timer(0.01).timeout
+		
+		can_jump = false
+		cant_jump = true
+		
+		await get_tree().create_timer(0.02).timeout
 		# reactive the check for on the floor after .01 seconds to not fuck things up
 		skipisonfloor = false
+		can_jump = false
+		cant_jump = false
 
 
 func _on_sword_down_body_entered(body: Node2D) -> void:
@@ -363,7 +374,7 @@ func _physics_process(delta: float) -> void:
 
 	# Jump Handling
 	# If light tap, we decrease our velocity
-	if Input.is_action_just_released("jump") and velocity.y < 0 and !springjump:
+	if Input.is_action_just_released("jump") and velocity.y < 0 and !springjump and !cant_jump:
 		# updates the velocity
 		velocity.y = JUMP_VELOCITY * 0.25
 	

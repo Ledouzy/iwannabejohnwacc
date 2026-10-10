@@ -7,7 +7,7 @@ var load_checkpoint = true
 
 
 # change the scene to the scene name specified (needs to be in the levels/ folder)
-func change_scene(from, to_scene_name: String, new_coords: Vector2 = Vector2(0,0)) -> void:
+func change_scene(from, to_scene_name: String, new_coords: Vector2 = Vector2(0,0), starting_health: int = 6) -> void:
 	# get the path for the scene
 	var next_level = "res://scenes/levels/" + to_scene_name + ".tscn"
 	
@@ -26,6 +26,9 @@ func change_scene(from, to_scene_name: String, new_coords: Vector2 = Vector2(0,0
 	
 	# unpause game
 	get_tree().paused = false
+	
+	# pass the starting health to the global manager so that it's saved between scenes
+	global_manager.set_current_health(starting_health)
 	
 	# initiate fade in
 	animation.play("fade_in")
@@ -48,6 +51,9 @@ func reload_scene() -> void:
 	# unpause game
 	get_tree().paused = false
 	
+	# Reset the value of stored health
+	global_manager.set_current_health(0)
+	
 	# initiate fade in
 	animation.play("fade_in")
 	await animation.animation_finished
@@ -68,6 +74,9 @@ func load_level(level_id: int):
 	
 	# change the scene to the level
 	get_tree().call_deferred("change_scene_to_file", next_level)
+	
+	# Reset the value of stored health
+	global_manager.set_current_health(0)
 	
 	# unpause game
 	get_tree().paused = false
@@ -91,6 +100,9 @@ func go_to_title(from) -> void:
 	
 	# load the title screen
 	get_tree().call_deferred("change_scene_to_file", next_level)
+	
+	# Reset the value of stored health
+	global_manager.set_current_health(0)
 	
 	# unpause game
 	get_tree().paused = false

@@ -94,7 +94,6 @@ func _process(delta: float) -> void:
 		get_tree().paused = true
 		pause_menu.visible = true
 
-
 # add n coin to the counter, defaults to 1
 func add_point(n: int = 1):
 	# update score and save that value

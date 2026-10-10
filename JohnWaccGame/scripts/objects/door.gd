@@ -12,7 +12,9 @@ var inside = false
 
 
 func _on_body_entered(body: Node2D) -> void:
+	print(body)
 	if body != self and body == player:
+		print("enter")
 		inside = true
 	
 func _on_body_exited(body: Node2D) -> void:
@@ -30,6 +32,9 @@ func _process(delta: float) -> void:
 		# save
 		save_system._save()
 		# load next level
-		scene_manager.change_scene(get_tree(), next_scene_name, starting_coords)
+		scene_manager.change_scene(get_tree(), next_scene_name, starting_coords, player.get_health())
+		
+		# save checkpoint
+		save_system.checkpoint_save(starting_coords.x, starting_coords.y)
 		
 		inside = false
