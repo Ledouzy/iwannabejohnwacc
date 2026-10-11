@@ -597,7 +597,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"PickupBack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -608,7 +608,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"PickupFront",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -667,7 +667,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"PickupSide",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -770,34 +770,34 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n6q1m")
 }, {
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_v5kga")
 }],
 "loop": 0,
 "name": &"ThrowBack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vnymm")
 }, {
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_e4bi2")
 }],
 "loop": 0,
 "name": &"ThrowFront",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j01l2")
 }, {
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_2w14l")
 }],
 "loop": 0,
 "name": &"ThrowSide",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

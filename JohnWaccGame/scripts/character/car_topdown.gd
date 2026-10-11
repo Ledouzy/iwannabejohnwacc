@@ -87,6 +87,8 @@ func pickedUp(player: CharacterBody2D) -> void:
 	# flip the sprite vertically
 	animated_sprite.flip_v = true
 	
+	animated_sprite.offset = Vector2(0,3)
+	
 	# turn towards the same direction as the player
 	if (player.has_method("get_direction")):
 		dir = player.get_direction()
@@ -146,6 +148,7 @@ func _on_throw_timer_timeout() -> void:
 		walkDisabled = false
 		hurtbox_collision.disabled = false
 		animated_sprite.flip_v = false
+		animated_sprite.offset = Vector2(0,0)
 
 
 # logic for taking damage
@@ -249,7 +252,7 @@ func _physics_process(delta: float) -> void:
 			if temp.x < 0: 
 				dir = 3	
 			
-		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-16)
+		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-19)
 	else: # only if not picked up
 		# sets dir for anything that only need the sign
 		if direction > 0:

@@ -79,6 +79,8 @@ func pickedUp(player: CharacterBody2D) -> void:
 	# flip the sprite vertically
 	animated_sprite.flip_v = true
 	
+	animated_sprite.offset = Vector2(0,3)
+	
 	# turn towards the same direction as the player
 	if (player.has_method("get_direction")):
 		direction = player.get_direction()
@@ -115,6 +117,7 @@ func _on_throw_timer_timeout() -> void:
 		walkDisabled = false
 		hurtbox_collision.disabled = false
 		animated_sprite.flip_v = false
+		animated_sprite.offset = Vector2(0,0)
 	
 # logic for taking damage
 func take_damage(damage, direction) -> void:
@@ -199,7 +202,7 @@ func _physics_process(delta: float) -> void:
 		if temp != 0:
 			direction = temp
 			
-		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-16)
+		position = Vector2(pickedUpBy.position.x, pickedUpBy.position.y-19)
 		
 	elif not is_on_floor():
 		# process gravity
