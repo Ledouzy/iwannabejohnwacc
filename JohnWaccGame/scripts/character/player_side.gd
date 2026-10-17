@@ -641,11 +641,33 @@ func _physics_process(delta: float) -> void:
 			# INSTEAD USE A SIGNAL FROM THE GRAPPLE POINT, WHEN PLAYER ON THE WALL, STOP AND GIVE BACK CONTROL
 		
 	
+	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
 	# apply deadzone to movement direction
 	if abs(direction) < deadzone:
 		direction = 0
+	
+	# if not moving
+	if !direction:
+		# Offset camera when pressing up or down
+		if Input.is_action_just_pressed("up"):
+			await get_tree().create_timer(.5).timeout
+			if Input.is_action_pressed("up"):
+				camera.CameraOffset.y = -32
+				
+		if Input.is_action_just_released("up"):
+			camera.CameraOffset.y = 0
+			
+		if Input.is_action_just_pressed("down"):
+			await get_tree().create_timer(.5).timeout
+			if Input.is_action_pressed("down"):
+				camera.CameraOffset.y = 32
+				
+		if Input.is_action_just_released("down"):
+			camera.CameraOffset.y = 0
+	else:
+		camera.CameraOffset.y = 0
 	
 	# check if running
 	if Input.is_action_just_pressed("run"):

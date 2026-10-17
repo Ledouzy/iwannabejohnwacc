@@ -10,6 +10,8 @@ var scene_text = {}
 var selected_text = []
 # currently in a dialogue
 var in_progress = false
+var timer: float = 0
+var delay_tolerance: float = 1
 
 # reference to the dialogue box where text is displayed
 @onready var dialog_box: Control = $CanvasLayer/DialogBox
@@ -82,6 +84,7 @@ func finish():
 	in_progress = false
 	# unpause the game
 	get_tree().paused = false
+	timer = 0
 
 
 # when get signal to display dialog
@@ -96,16 +99,17 @@ func _on_display_dialog(text_key):
 			# show the entire text
 			dialog_box.set_skip_text()
 	else: 
-		# pause the game
-		get_tree().paused = true
-		# toggle on the dialog box
-		toggle_on_dialog_box()
-		# mark that we are in a dialogue
-		in_progress = true
-		# create a copy of the dialogue we want to display
-		selected_text = scene_text[text_key].duplicate()
-		# display the next line
-		next_line()
+		if (timer > delay_tolerance):
+			# pause the game
+			get_tree().paused = true
+			# toggle on the dialog box
+			toggle_on_dialog_box()
+			# mark that we are in a dialogue
+			in_progress = true
+			# create a copy of the dialogue we want to display
+			selected_text = scene_text[text_key].duplicate()
+			# display the next line
+			next_line()
 
 
 func _ready():
@@ -115,3 +119,7 @@ func _ready():
 	scene_text = load_scene_text()
 	# connect pressing the dialog key next to an npc to the on display dialog method
 	SignalBus.display_dialog.connect(_on_display_dialog)
+	
+func _process(delta: float) -> void:
+	timer += delta
+	
