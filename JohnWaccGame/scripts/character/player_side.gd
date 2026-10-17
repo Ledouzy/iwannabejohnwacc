@@ -10,6 +10,7 @@ class_name player_side
 @export var RUN_CAP = 145
 @export var RUN_MULT = 1.5 ## Sprint multiplier
 @export var HOOKSHOT_SPEED = 400
+@export var cling_offset = Vector2(0,-4)
 # deadzone
 @export var deadzone = 0.25 ## min value before input is registered
 # Stats
@@ -74,6 +75,9 @@ var cant_jump = false # stops from jumping
 @onready var camera: Camera2D = $"../../Camera2D"
 @onready var hookshot_raycast: RayCast2D = $HookshotRaycast
 
+@onready var hook_1: Sprite2D = $Hook1
+@onready var hook_2: Sprite2D = $Hook2
+@onready var hook_3: Sprite2D = $Hook3
 
 # ready just for camera lmao. Else the camera will scroll while loading checkpoint
 func _ready() -> void:
@@ -384,6 +388,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and ((can_jump or (jumps > 0)) and !cant_jump or hookshot_cling):
 		#already jumped, remove that shit
 		can_jump = false
+		can_hook = true
 		# removes 1 jump to number of jumps (jumps variable)
 		jumps -= 1
 		#print("jumps: ",jumps)
@@ -590,12 +595,20 @@ func _physics_process(delta: float) -> void:
 		match hook_direction:
 			0: # up
 				animation_player.play("hookReturnUp")
+				#var tween = get_tree().create_tween()
 			1: # right
 				animation_player.play("hookReturnSide")
+				#var tween = get_tree().create_tween()
+				#tween.tween_property(hook_2, "position", Vector2(19,-8), 0.5)
+				#tween.tween_property(hook_3, "position", Vector2(11,-7), 0.5)
+				#tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.5)
 			2: # down
 				animation_player.play("hookReturnDown")
+				#var tween = get_tree().create_tween()
 			3: # left
 				animation_player.play("hookReturnSide")
+				#var tween = get_tree().create_tween()
+				#tween.tween_property(hook_2, "position", Vector2(19,-8), 0.1)
 			_: # other
 				print("Error: hook direction is not between 0 and 3.")
 		
@@ -633,10 +646,12 @@ func _physics_process(delta: float) -> void:
 			
 			#TODO: TWEEN POSITION TO CLING LOCATION INSTEAD
 			# test to see if it works
-			var hookshot_direction = target.position - position
-			print("hookshot_direction: ", hookshot_direction)
-			velocity = HOOKSHOT_SPEED * delta * (hookshot_direction + Vector2(0,4))
-			print("velocity: ", velocity)
+			#var hookshot_direction = target.position - position
+			#print("hookshot_direction: ", hookshot_direction)
+			#velocity = HOOKSHOT_SPEED * delta * (hookshot_direction + Vector2(0,4))
+			#print("velocity: ", velocity)
+			var tween = get_tree().create_tween()
+			tween.tween_property(self, "position", target.position - cling_offset, 0.1)
 			
 			# to avoid stale references
 			target = null
@@ -647,6 +662,9 @@ func _physics_process(delta: float) -> void:
 			hookshot_cling = true
 			hookshot_target = null
 			velocity = Vector2(0,0)
+			
+			#reset number of jumps
+			jumps = MAX_JUMPS
 			
 			# INSTEAD USE A SIGNAL FROM THE GRAPPLE POINT, WHEN PLAYER ON THE WALL, STOP AND GIVE BACK CONTROL
 		

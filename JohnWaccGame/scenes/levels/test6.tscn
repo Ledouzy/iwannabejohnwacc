@@ -37,7 +37,7 @@ size = Vector2(16, 16)
 unique_name_in_owner = true
 
 [node name="PlayerBody" parent="Player" index="0" unique_id=1264691691]
-MAX_HEALTH = 10
+MAX_JUMPS = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=305464099 node_paths=PackedStringArray("player")]
 process_callback = 0
