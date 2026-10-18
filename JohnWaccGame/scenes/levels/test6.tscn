@@ -36,9 +36,6 @@ size = Vector2(16, 16)
 [node name="Player" parent="." unique_id=1165610629 instance=ExtResource("1_6gi7g")]
 unique_name_in_owner = true
 
-[node name="PlayerBody" parent="Player" index="0" unique_id=1264691691]
-MAX_JUMPS = 2
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=305464099 node_paths=PackedStringArray("player")]
 process_callback = 0
 limit_left = -80
@@ -164,6 +161,9 @@ position = Vector2(152, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealArea" unique_id=2070968074]
 shape = SubResource("RectangleShape2D_ihebq")
+
+[connection signal="animation_finished" from="Player/PlayerBody/AnimationPlayer" to="Player/PlayerBody" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Player/PlayerBody/SwordBackHurtBox3" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/PlayerBody"]

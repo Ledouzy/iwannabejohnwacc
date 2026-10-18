@@ -25,6 +25,11 @@ class_name player_side
 
 @export var MAXCOYOTETIME = .14 # max time in air before we can't jump anymore
 
+@export_group("optional")
+@export var can_hook_after_cling = false
+@export var hold_jump_slows_gravity = false
+@export var gravity_modifier = 0.9
+
 var speedMult = 1.0 ## mults the speed by this constant, changes if sprinting
 var coyote_timer = 0
 var can_jump = true
@@ -35,6 +40,7 @@ var skipGravity = false
 # direction
 var dir = 1 # direction of the player
 var lock_direction = false
+var hook_direction = 0 # 0,1,2,3 = NESW
 
 var invulnerable = false
 
@@ -376,7 +382,10 @@ func _physics_process(delta: float) -> void:
 				jumps = min(jumps, MAX_JUMPS-1)
 			can_jump = false
 		if velocity.y < MAX_FALL_VELOCITY:
-			velocity += get_gravity() * delta * 0.5
+			var mult = 1
+			if hold_jump_slows_gravity and Input.is_action_pressed("jump"):
+				mult = gravity_modifier
+			velocity += get_gravity() * mult * delta * 0.5
 
 	# Jump Handling
 	# If light tap, we decrease our velocity
@@ -538,13 +547,14 @@ func _physics_process(delta: float) -> void:
 		# disable flags set by wall cling
 		#hookshot_cling = false
 		
+		# save previous target
+		var old_target = hookshot_target
+		
 		# play the hookshot animation, locking other animations during the this time
 		lock_direction = true
 		waitforanimationend = true
 		
 		# get the direction the player is hooking
-		var hook_direction = 0 # 0,1,2,3 = NESW
-		
 		if Input.is_action_pressed("up"):
 			hook_direction = 0
 		elif Input.is_action_pressed("right"):
@@ -585,6 +595,8 @@ func _physics_process(delta: float) -> void:
 		#wait for the end of the hookshot animation, then play the return animation
 		await animation_player.animation_finished
 		
+		hook_return(hook_direction)
+		
 		# if we are not clinging, hide the hookshot
 		if !hookshot_cling and !hookshot_target:
 			# unlock animation when done
@@ -592,33 +604,18 @@ func _physics_process(delta: float) -> void:
 			skipGravity = false
 			skipMoveProcess = false
 		
-		# play the return animation for the correct direction
-		match hook_direction:
-			0: # up
-				animation_player.play("hookReturnUp")
-				#var tween = get_tree().create_tween()
-			1: # right
-				animation_player.play("hookReturnSide")
-				#var tween = get_tree().create_tween()
-				#tween.tween_property(hook_2, "position", Vector2(19,-8), 0.5)
-				#tween.tween_property(hook_3, "position", Vector2(11,-7), 0.5)
-				#tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.5)
-			2: # down
-				animation_player.play("hookReturnDown")
-				#var tween = get_tree().create_tween()
-			3: # left
-				animation_player.play("hookReturnSide")
-				#var tween = get_tree().create_tween()
-				#tween.tween_property(hook_2, "position", Vector2(19,-8), 0.1)
-			_: # other
-				print("Error: hook direction is not between 0 and 3.")
-		
 		await animation_player.animation_finished
 		
 		# if we are not clinging, hide the hookshot
 		if !hookshot_cling and !hookshot_target:
 			# Reset to hide the hookshot
 			animation_player.play("hookReset")
+		else:
+			hook_1.position = Vector2(9, -8)
+			hook_1.rotation = 0
+			hook_2.position = Vector2(19,-8)
+			hook_2.rotation = 0
+			
 		
 		hookshot_raycast.enabled = false
 		hookshot_raycast.target_position = Vector2(0,0)
@@ -630,15 +627,15 @@ func _physics_process(delta: float) -> void:
 	# while the hookshot is active
 	if hookshot_active:
 		var target = hookshot_raycast.get_collider()
-		print("target: ", target)
+		#print("target: ", target)
 		
 		if target != null:
 			# only happens once
 			hookshot_active = false
 			hookshot_target = target
 			
-			print("position: ", position)
-			print("target position: ", target.position)
+			#print("position: ", position)
+			#print("target position: ", target.position)
 			
 			
 			skipMoveProcess = true
@@ -646,6 +643,7 @@ func _physics_process(delta: float) -> void:
 			#velocity.y = 0
 			
 			#TODO: TWEEN POSITION TO CLING LOCATION INSTEAD
+			hook_return(hook_direction)
 			# test to see if it works
 			#var hookshot_direction = target.position - position
 			#print("hookshot_direction: ", hookshot_direction)
@@ -674,7 +672,7 @@ func _physics_process(delta: float) -> void:
 			# INSTEAD USE A SIGNAL FROM THE GRAPPLE POINT, WHEN PLAYER ON THE WALL, STOP AND GIVE BACK CONTROL
 		
 	if hookshot_cling:
-		can_hook = false
+		can_hook = can_hook_after_cling
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
@@ -773,3 +771,33 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hookReturnSide" or anim_name == "hookReturnUp" or anim_name == "hookReturnDown":
 		waitforanimationend = false
 		hookshot_active = false
+		
+func hook_return(hook_direction):
+	# play the return animation for the correct direction
+	match hook_direction:
+		0: # up
+			animation_player.play("hookReturnUp")
+			var tween = get_tree().create_tween()
+			tween.tween_property(hook_2, "position", Vector2(-6,-27), 0.1)
+			tween.tween_property(hook_3, "position", Vector2(-5,-19), 0.1)
+			tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
+		1: # right
+			animation_player.play("hookReturnSide")
+			var tween = get_tree().create_tween()
+			tween.tween_property(hook_2, "position", Vector2(19,-8), 0.1)
+			tween.tween_property(hook_3, "position", Vector2(11,-7), 0.1)
+			tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
+		2: # down
+			animation_player.play("hookReturnDown")
+			var tween = get_tree().create_tween()
+			tween.tween_property(hook_2, "position", Vector2(5,11), 0.1)
+			tween.tween_property(hook_3, "position", Vector2(-5,-19), 0.1)
+			tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
+		3: # left
+			animation_player.play("hookReturnSide")
+			var tween = get_tree().create_tween()
+			tween.tween_property(hook_2, "position", Vector2(19,-8), 0.1)
+			tween.tween_property(hook_3, "position", Vector2(11,-7), 0.1)
+			tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
+		_: # other
+			print("Error: hook direction is not between 0 and 3.")
