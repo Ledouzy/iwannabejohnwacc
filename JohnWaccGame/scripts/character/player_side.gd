@@ -412,6 +412,7 @@ func _physics_process(delta: float) -> void:
 			waitforanimationend = false
 			skipGravity = false
 			hookshot_cling = false
+			can_hook = true
 			
 			# Change to the jumping sprite
 			animated_sprite.play("JumpSide")
@@ -650,8 +651,12 @@ func _physics_process(delta: float) -> void:
 			#print("hookshot_direction: ", hookshot_direction)
 			#velocity = HOOKSHOT_SPEED * delta * (hookshot_direction + Vector2(0,4))
 			#print("velocity: ", velocity)
+			var cling_position = target.position - cling_offset
+			var cling_difference = cling_position - position
+			print(cling_difference.length())
+			print(HOOKSHOT_SPEED/cling_difference.length())
 			var tween = get_tree().create_tween()
-			tween.tween_property(self, "position", target.position - cling_offset, 0.1)
+			tween.tween_property(self, "position", cling_position, cling_difference.length() / HOOKSHOT_SPEED)
 			
 			# to avoid stale references
 			target = null
@@ -669,7 +674,7 @@ func _physics_process(delta: float) -> void:
 			# INSTEAD USE A SIGNAL FROM THE GRAPPLE POINT, WHEN PLAYER ON THE WALL, STOP AND GIVE BACK CONTROL
 		
 	if hookshot_cling:
-		can_hook = true
+		can_hook = false
 	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("left", "right")
