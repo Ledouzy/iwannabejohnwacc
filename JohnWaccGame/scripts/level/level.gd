@@ -5,7 +5,7 @@ extends Node2D
 @export var level_id: int = 0
 
 # reference to the player
-@onready var player = $Player.get_player()
+@onready var player = $Player
 
 # reference to the in-game UI and logic
 @onready var game_manager: Control = %GameManager

@@ -2,17 +2,28 @@
 
 [ext_resource type="Script" uid="uid://nvd00fbdfpq5" path="res://scripts/character/player_side.gd" id="1_5nlcr"]
 [ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/character/player.tscn" id="1_amd7u"]
-[ext_resource type="Script" uid="uid://dotnn6exktd2d" path="res://scripts/character/player.gd" id="1_hmm4i"]
 
-[node name="PlayerSide" type="Node2D" unique_id=1165610629]
-z_index = 5
-script = ExtResource("1_hmm4i")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7u1l8"]
+radius = 5.0
+height = 12.0
 
-[node name="PlayerBody" parent="." unique_id=1264691691 instance=ExtResource("1_amd7u")]
+[node name="PlayerSide" type="CharacterBody2D" unique_id=1264691691]
+z_index = 1
+collision_layer = 10
+collision_mask = 5
+floor_snap_length = 3.0
 script = ExtResource("1_5nlcr")
 can_hook_after_cling = true
 
-[connection signal="animation_finished" from="PlayerBody/AnimationPlayer" to="PlayerBody" method="_on_animation_player_animation_finished"]
-[connection signal="body_entered" from="PlayerBody/SwordBackHurtBox3" to="PlayerBody" method="_on_sword_down_body_entered"]
+[node name="PlayerBody" parent="." unique_id=1178188391 instance=ExtResource("1_amd7u")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=614848268]
+position = Vector2(0, -6)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_7u1l8")
+
+[connection signal="animation_finished" from="PlayerBody/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="PlayerBody/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="PlayerBody/DamageTimer" to="." method="_on_damage_timer_timeout"]
 
 [editable path="PlayerBody"]

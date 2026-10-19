@@ -387,7 +387,7 @@ _data = {
 
 [node name="Beaver" type="CharacterBody2D" unique_id=588698386]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 7
 script = ExtResource("1_3wayd")
 speed = 30
 MAX_HEALTH = 3

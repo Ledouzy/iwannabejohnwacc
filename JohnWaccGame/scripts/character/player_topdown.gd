@@ -56,17 +56,16 @@ var skipMoveProcess = false # stop the calculations for user input movement, let
 @onready var jumps = MAX_JUMPS # number of jumps left
 @onready var health = MAX_HEALTH # number of hits before dying
 # Component references
-@onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
+@onready var damage_timer: Timer = $PlayerBody/DamageTimer ## invulnerability frames basically
 @onready var player_body: CharacterBody2D = $"."
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var throw_raycast_down: RayCast2D = $ThrowRaycastDown
-@onready var throw_raycast_up: RayCast2D = $ThrowRaycastUp
-@onready var throw_raycast_side: RayCast2D = $ThrowRaycastSide
-@onready var death_timer: Timer = $DeathTimer
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
-@onready var camera: Camera2D = $"../../Camera2D"
-
+@onready var animated_sprite: AnimatedSprite2D = $PlayerBody/AnimatedSprite2D
+@onready var throw_raycast_down: RayCast2D = $PlayerBody/ThrowRaycastDown
+@onready var throw_raycast_up: RayCast2D = $PlayerBody/ThrowRaycastUp
+@onready var throw_raycast_side: RayCast2D = $PlayerBody/ThrowRaycastSide
+@onready var death_timer: Timer = $PlayerBody/DeathTimer
+@onready var animation_player: AnimationPlayer = $PlayerBody/AnimationPlayer
+@onready var blink_animation_player: AnimationPlayer = $PlayerBody/BlinkAnimationPlayer
+@onready var camera: Camera2D = $"../Camera2D"
 
 # ready just for camera lmao
 func _ready() -> void:
@@ -160,6 +159,7 @@ func take_damage(damage,direction) -> void:
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")
+			play_sfx("Damage")
 			
 			# stop movement and lock until animation end
 			skipMoveProcess = true

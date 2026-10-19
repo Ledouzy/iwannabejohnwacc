@@ -1,15 +1,28 @@
 [gd_scene format=3 uid="uid://pgsyxf38iyvp"]
 
-[ext_resource type="Script" uid="uid://dotnn6exktd2d" path="res://scripts/character/player.gd" id="1_3jx12"]
 [ext_resource type="Script" uid="uid://corosqjet8kxa" path="res://scripts/character/player_topdown.gd" id="1_c64y4"]
 [ext_resource type="PackedScene" uid="uid://cqs0fv8ytarnj" path="res://scenes/character/player.tscn" id="1_w5wd0"]
 
-[node name="PlayerTopdown" type="Node2D" unique_id=1632600799]
-y_sort_enabled = true
-script = ExtResource("1_3jx12")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5wd0"]
+radius = 5.0
+height = 12.0
 
-[node name="PlayerBody" parent="." unique_id=1264691691 instance=ExtResource("1_w5wd0")]
+[node name="PlayerBody" type="CharacterBody2D" unique_id=1264691691]
+y_sort_enabled = true
+collision_layer = 10
+collision_mask = 5
 motion_mode = 1
+floor_snap_length = 3.0
 script = ExtResource("1_c64y4")
+
+[node name="PlayerBody" parent="." unique_id=1178188391 instance=ExtResource("1_w5wd0")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=833176196]
+position = Vector2(0, -6)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_w5wd0")
+
+[connection signal="timeout" from="PlayerBody/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="PlayerBody/DamageTimer" to="." method="_on_damage_timer_timeout"]
 
 [editable path="PlayerBody"]

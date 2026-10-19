@@ -71,19 +71,20 @@ var cant_jump = false # stops from jumping
 @onready var jumps = MAX_JUMPS # number of jumps left
 @onready var health = MAX_HEALTH # number of hits before dying
 # Component references
-@onready var damage_timer: Timer = $DamageTimer ## invulnerability frames basically
+@onready var damage_timer: Timer = $PlayerBody/DamageTimer ## invulnerability frames basically
 @onready var player_body: CharacterBody2D = $"."
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var throw_rayCast: RayCast2D = $ThrowRaycastDown
-@onready var death_timer: Timer = $DeathTimer
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
-@onready var camera: Camera2D = $"../../Camera2D"
-@onready var hookshot_raycast: RayCast2D = $HookshotRaycast
+@onready var animated_sprite: AnimatedSprite2D = $PlayerBody/AnimatedSprite2D
+@onready var throw_rayCast: RayCast2D = $PlayerBody/ThrowRaycastDown
+@onready var death_timer: Timer = $PlayerBody/DeathTimer
+@onready var animation_player: AnimationPlayer = $PlayerBody/AnimationPlayer
+@onready var blink_animation_player: AnimationPlayer = $PlayerBody/BlinkAnimationPlayer
+@onready var camera: Camera2D = $"../Camera2D"
+@onready var hookshot_raycast: RayCast2D = $PlayerBody/HookshotRaycast
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-@onready var hook_1: Sprite2D = $Hook1
-@onready var hook_2: Sprite2D = $Hook2
-@onready var hook_3: Sprite2D = $Hook3
+@onready var hook_1: Sprite2D = $PlayerBody/Hook1
+@onready var hook_2: Sprite2D = $PlayerBody/Hook2
+@onready var hook_3: Sprite2D = $PlayerBody/Hook3
 
 # ready just for camera lmao. Else the camera will scroll while loading checkpoint
 func _ready() -> void:
@@ -116,7 +117,7 @@ func set_dead():
 	dead = true 
 	
 	# we play death animation
-	
+	collision_shape.disabled = true
 	deathanim = true 
 	print("You died!") # debug message
 	
@@ -154,6 +155,7 @@ func take_damage(damage,direction) -> void:
 		
 		# make us not collide with enemies 
 		player_body.collision_mask = 1
+		player_body.collision_layer = 8
 		
 		# start invulnerability timer
 		damage_timer.start()
@@ -168,6 +170,8 @@ func take_damage(damage,direction) -> void:
 		if health <= 0:
 			# death if below 0
 			animation_player.play("death")
+			play_sfx("Death")
+			set_dead()
 			
 		else:
 			# plays damage animation
@@ -190,6 +194,7 @@ func take_damage(damage,direction) -> void:
 			
 		# set mask back to collide with enemies
 		player_body.collision_mask = 5
+		player_body.collision_layer = 10
 
 
 # increase the health of the player by the amount specified
@@ -293,11 +298,6 @@ func _on_sword_down_body_entered(body: Node2D) -> void:
 	#if body != null:
 	#	velocity.y = JUMP_VELOCITY
 	
-
-## Handles logic for hookshot
-func hookshot(target):
-	pass
-
 
 ## Handles the playing of animations not specific to an action
 func process_animation(direction) -> void:
@@ -757,7 +757,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			# apply friction
 			velocity.x = move_toward(velocity.x, 0, SPEED*delta)
-	
+	print(hook_3.region_rect)
 	# apply movement	
 	move_and_slide()
 
@@ -778,26 +778,27 @@ func hook_return(hook_direction):
 		0: # up
 			animation_player.play("hookReturnUp")
 			var tween = get_tree().create_tween()
-			tween.tween_property(hook_2, "position", Vector2(-6,-27), 0.1)
-			tween.tween_property(hook_3, "position", Vector2(-5,-19), 0.1)
-			tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
+			var tween2 = get_tree().create_tween()
+			tween.tween_property(hook_2, "position", Vector2(-14,-19), 0.1)
+			tween2.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
 		1: # right
 			animation_player.play("hookReturnSide")
 			var tween = get_tree().create_tween()
-			tween.tween_property(hook_2, "position", Vector2(19,-8), 0.1)
-			tween.tween_property(hook_3, "position", Vector2(11,-7), 0.1)
-			tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
+			var tween2 = get_tree().create_tween()
+			tween.tween_property(hook_2, "position", Vector2(11,-16), 0.1)
+			tween2.tween_property(hook_3, "region_rect:size:x", 0.0, 0.1)
 		2: # down
 			animation_player.play("hookReturnDown")
 			var tween = get_tree().create_tween()
-			tween.tween_property(hook_2, "position", Vector2(5,11), 0.1)
-			tween.tween_property(hook_3, "position", Vector2(-5,-19), 0.1)
-			tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
+			var tween2 = get_tree().create_tween()
+			tween.tween_property(hook_2, "position", Vector2(13,3), 0.1)
+			tween2.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
 		3: # left
 			animation_player.play("hookReturnSide")
 			var tween = get_tree().create_tween()
-			tween.tween_property(hook_2, "position", Vector2(19,-8), 0.1)
-			tween.tween_property(hook_3, "position", Vector2(11,-7), 0.1)
-			tween.tween_property(hook_3, "region_rect", Rect2(0,0,0,16), 0.1)
+			var tween2 = get_tree().create_tween()
+			tween.tween_property(hook_2, "position", Vector2(11,-16), 0.1)
+			tween2.tween_property(hook_3, "region_rect:size:x", 0.0, 0.1)
 		_: # other
 			print("Error: hook direction is not between 0 and 3.")
+			

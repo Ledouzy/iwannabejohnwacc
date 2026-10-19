@@ -191,8 +191,9 @@ func take_damage(damage, direction) -> void:
 			skipMoveProcess = false
 			waitforanimationend = false
 			await get_tree().create_timer(0.5).timeout
-			# reactivate hurtbox
-			hurtbox_collision.disabled = false
+			if (!dead):
+				# reactivate hurtbox
+				hurtbox_collision.disabled = false
 
 # when damage timer timeouts, removes invulnerability
 func _on_damage_timer_timeout() -> void:

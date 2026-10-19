@@ -114,7 +114,7 @@ limit_bottom = 192
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("10_7xq2f")
-player = NodePath("../Player/PlayerBody")
+player = NodePath("../Player")
 
 [node name="GameManager" parent="." unique_id=2047177381 instance=ExtResource("11_xmmsn")]
 unique_name_in_owner = true

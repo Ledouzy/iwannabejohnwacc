@@ -118,7 +118,8 @@ size = Vector2(11.25, 2)
 [sub_resource type="CircleShape2D" id="CircleShape2D_dyjl7"]
 radius = 7.0
 
-[node name="Octahedron" type="Node2D" unique_id=930603472]
+[node name="Octahedron" type="CharacterBody2D" unique_id=506726223]
+collision_mask = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1600816500]
 position = Vector2(0, -8)
@@ -126,7 +127,7 @@ sprite_frames = SubResource("SpriteFrames_lblac")
 animation = &"Death"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1970240833]
-position = Vector2(0.625, -15)
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_eb0l7")
 disabled = true
 

@@ -17,7 +17,7 @@ var stage_names: Array = ["1-1","1-2","1-3","1-4","2-1","2-2","2-3","2-4","3-1",
 @onready var HEART = preload("uid://bfkt5jeh8r31c") # heart scene
 
 # reference to the player
-@onready var player: CharacterBody2D = $"../Player".get_player()
+@onready var player: CharacterBody2D = $"../Player"
 
 # reference to the pause menu
 @onready var pause_menu: Control = $CanvasLayer/pause_menu

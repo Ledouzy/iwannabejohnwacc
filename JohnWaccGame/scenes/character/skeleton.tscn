@@ -44,7 +44,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_auywf")
 }],
-"loop": true,
+"loop": 1,
 "name": &"IdleBack",
 "speed": 5.0
 }, {
@@ -52,7 +52,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hnpsg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"IdleFront",
 "speed": 5.0
 }, {
@@ -60,7 +60,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_10dqq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"IdleSide",
 "speed": 5.0
 }, {
@@ -71,7 +71,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t7kus")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkBack",
 "speed": 5.0
 }, {
@@ -82,7 +82,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e54cy")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkFront",
 "speed": 5.0
 }, {
@@ -93,7 +93,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_14feb")
 }],
-"loop": true,
+"loop": 1,
 "name": &"WalkSide",
 "speed": 5.0
 }]
@@ -102,6 +102,7 @@ animations = [{
 size = Vector2(9, 14)
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=176213425]
+collision_mask = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=836112402]
 sprite_frames = SubResource("SpriteFrames_0udbn")

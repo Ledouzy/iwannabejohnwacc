@@ -38,7 +38,7 @@ limit_bottom = 1596
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("2_irrt8")
-player = NodePath("../Player/PlayerBody")
+player = NodePath("../Player")
 
 [node name="Level" type="Node2D" parent="." unique_id=824431197]
 

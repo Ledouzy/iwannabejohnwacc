@@ -183,6 +183,7 @@ animations = [{
 size = Vector2(12, 9)
 
 [node name="Birb" type="CharacterBody2D" unique_id=1787715896]
+collision_mask = 3
 motion_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2123861513]

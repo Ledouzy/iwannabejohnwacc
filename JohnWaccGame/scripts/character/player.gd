@@ -1,9 +1,7 @@
 extends Node2D
 
-# reference to the PlayerBody
-@onready var player = $PlayerBody
+@onready var player: CharacterBody2D = $".."
 
-
-# returns the PlayerBody
-func get_player():
-	return player
+# play a sound by calling the audio manager
+func play_sfx(sfx_name):
+	audio_manager.play_sfx(sfx_name, 0, player.position)
