@@ -757,7 +757,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			# apply friction
 			velocity.x = move_toward(velocity.x, 0, SPEED*delta)
-	print(hook_3.region_rect)
+
 	# apply movement	
 	move_and_slide()
 
