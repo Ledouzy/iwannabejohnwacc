@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://bflslxo4o1xhb"]
 
 [ext_resource type="Script" uid="uid://cexc0j0reomt7" path="res://scripts/UI/cutscene_screen.gd" id="1_ndytl"]
+[ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="2_sdsos"]
 [ext_resource type="PackedScene" uid="uid://bmnccdjwt6fnd" path="res://scenes/UI/dialog_box.tscn" id="3_iimv4"]
 
 [node name="CutsceneScreen" type="CanvasLayer" unique_id=1126385940]
 script = ExtResource("1_ndytl")
+
+[node name="dialog_manager" parent="." unique_id=824194023 instance=ExtResource("2_sdsos")]
 
 [node name="Dialog" type="CanvasLayer" parent="." unique_id=1965712044]
 layer = 2
@@ -14,6 +17,7 @@ visible = false
 z_index = 1
 
 [node name="BottomDialogBox" parent="Dialog" unique_id=1287262378 instance=ExtResource("3_iimv4")]
+visible = false
 z_index = 1
 offset_top = 112.0
 offset_bottom = 112.032

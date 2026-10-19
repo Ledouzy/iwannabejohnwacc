@@ -1,0 +1,10 @@
+{  
+   "one_time": [
+		{"portrait" : "bones_yell", "text" : "Hello this dialog"},
+		{"portrait" : "", "text" : "Will display only once"}
+	],
+	"old": [
+		{"portrait" : "olmane_neutral", "text" : "I'm old!"},
+		{"portrait" : "olmane_neutral", "text" : "And I repeat myself."}
+	],
+}

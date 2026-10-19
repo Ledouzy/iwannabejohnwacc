@@ -72,6 +72,7 @@ func next_line():
 	else:
 		# end the dialogue
 		finish()
+		SignalBus.emit_signal("end_dialog")
 
 
 # manage the end of dialogue
