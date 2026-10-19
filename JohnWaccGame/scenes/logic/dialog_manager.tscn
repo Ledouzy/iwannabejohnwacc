@@ -10,3 +10,4 @@ script = ExtResource("1_tfr6o")
 layer = 2
 
 [node name="DialogBox" parent="CanvasLayer" unique_id=1013334707 instance=ExtResource("2_o6u8y")]
+visible = false

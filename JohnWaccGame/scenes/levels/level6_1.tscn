@@ -8,9 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://dytiwk522x40r" path="res://scenes/logic/dialog_area.tscn" id="8_b330g"]
 [ext_resource type="PackedScene" uid="uid://xj0mr3a0p75k" path="res://scenes/character/ol_manne.tscn" id="8_rsxa0"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="10_k8jl6"]
+[ext_resource type="PackedScene" uid="uid://jn2dt4sgphbj" path="res://scenes/logic/cutscene_trigger.tscn" id="10_rsxa0"]
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="11_64dqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6x4r8"]
 
 [node name="level6_1" type="Node2D" unique_id=488593241]
 y_sort_enabled = true
@@ -70,6 +73,15 @@ dialog_key = "old"
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DialogArea2" unique_id=1070394564]
 position = Vector2(3, -3)
 shape = SubResource("RectangleShape2D_ihebq")
+
+[node name="CutsceneTrigger" parent="." unique_id=939984362 instance=ExtResource("10_rsxa0")]
+position = Vector2(0, 30)
+cutscene_name = "himelia_reveal"
+next_scene = "levelMan"
+cutscene_flag = "himelia_reveal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger" unique_id=1735280191]
+shape = SubResource("RectangleShape2D_6x4r8")
 
 [node name="DialogArea" parent="." unique_id=1596763752 instance=ExtResource("8_b330g")]
 position = Vector2(-59, -6)

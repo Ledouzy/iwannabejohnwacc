@@ -25,6 +25,20 @@ var loaded_settings = {
 
 # Values to store between scenes
 var current_health: int = 0
+var cutscene: String = ""
+var cutscene_starting_coordinates: Vector2
+
+# Flags
+var flags = {
+	"himelia_reveal": false,
+}
+
+func set_flag(flag_name: String, value):
+	flags.set(flag_name, value)
+	
+func get_flag(flag_name: String):
+	return flags.get(flag_name)
+	
 
 func get_current_health():
 	return current_health

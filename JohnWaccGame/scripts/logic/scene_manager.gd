@@ -2,6 +2,7 @@ class_name SceneManager extends CanvasLayer
 
 var starting_coords: Vector2 = Vector2(0,0)
 var load_checkpoint = true
+var next_scene
 
 @onready var animation: AnimationPlayer = $TransitionAnimation
 
@@ -84,6 +85,55 @@ func load_level(level_id: int):
 	# initiate fade in
 	animation.play("fade_in")
 	await animation.animation_finished
+	
+
+func load_cutscene(cutscene_name, previous_scene, next_scene):
+	var next_level = "res://scenes/UI/cutscene_screen.tscn"
+	
+	global_manager.cutscene = cutscene_name
+	
+	if next_scene == "":
+		# does not work
+		self.next_scene = previous_scene
+	else:
+		self.next_scene = "res://scenes/levels/" + next_scene + ".tscn"
+	# pause game
+	get_tree().paused = true
+	
+	# initiate fade out
+	animation.play("fade_out")
+	# wait for the end of the animation
+	await animation.animation_finished
+	
+	# change scene to the specified scene
+	var cutscene_screen = get_tree().call_deferred("change_scene_to_file", next_level)
+	
+	# unpause game
+	get_tree().paused = false
+	
+	# initiate fade in
+	animation.play("fade_in")
+	await animation.animation_finished
+	
+func load_next_scene():
+	# pause game
+	get_tree().paused = true
+	
+	# initiate fade out
+	animation.play("fade_out")
+	# wait for the end of the animation
+	await animation.animation_finished
+	
+	# change scene to the specified scene
+	var cutscene_screen = get_tree().call_deferred("change_scene_to_file", next_scene)
+	
+	# unpause game
+	get_tree().paused = false
+	
+	# initiate fade in
+	animation.play("fade_in")
+	await animation.animation_finished
+	
 	
 	
 func go_to_title(from) -> void:

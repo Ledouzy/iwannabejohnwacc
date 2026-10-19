@@ -6,8 +6,6 @@ extends CanvasLayer
 @export var cutscene_name: String
 
 var cutscene_instance
-var test # delete later
-
 
 # plays a cutscene
 func play_cutscene(cutscene_name: String):
@@ -31,21 +29,14 @@ func play_cutscene(cutscene_name: String):
 
 # ends the cutscene by removing the cutscene node
 func end_cutscene():
-	remove_child(cutscene_instance)
-	cutscene_instance = null
-
-
-func _process(delta: float) -> void:
-	# debug code
-	if Input.is_action_just_pressed("debug"):
-		if !test:
-			play_cutscene(cutscene_name)
-			test = true
-		else:
-			end_cutscene()
-			test = false
+	#remove_child(cutscene_instance)
+	#cutscene_instance = null
+	get_tree().paused = false
+	scene_manager.load_next_scene()
 	
 func _ready():
+	cutscene_name = global_manager.cutscene
+	play_cutscene(cutscene_name)
 	SignalBus.end_cutscene.connect(_on_end_cutscene)
 	
 func _on_end_cutscene():

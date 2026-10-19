@@ -7,7 +7,6 @@
 shader = ExtResource("2_h5apg")
 shader_parameter/progress = 0.0
 shader_parameter/reverse = false
-shader_parameter/numberOfTiles = Vector2(10, 9)
 
 [sub_resource type="Animation" id="Animation_hodps"]
 length = 0.001

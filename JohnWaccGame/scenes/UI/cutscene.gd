@@ -1,6 +1,7 @@
 class_name cutscene extends CanvasLayer
 
 @export var dialog_key = ""
+@onready var dialog_manager: Node = $"../dialog_manager"
 
 var end_connected = false
 
@@ -26,4 +27,5 @@ func _input(event: InputEvent) -> void:
 		
 func _on_cutscene_end():
 	SignalBus.emit_signal("end_cutscene")
+	dialog_manager.display_dialog_on_top()
 	pass

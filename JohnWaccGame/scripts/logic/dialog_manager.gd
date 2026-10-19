@@ -30,6 +30,7 @@ func toggle_off_dialog_box():
 func display_dialog_on_top():
 	dialog_box.anchor_bottom = 1.0
 	dialog_box.anchor_top = 0.0
+	dialog_box.offset_top = 0
 	
 func display_dialog_on_bottom():
 	dialog_box.anchor_bottom = 0.0
@@ -131,7 +132,6 @@ func _on_display_dialog(text_key):
 
 
 func _ready():
-	display_dialog_on_bottom()
 	# make sure the dialogue box is turned off
 	dialog_box.toggle_off_dialog_box()
 	# get the text for the scene

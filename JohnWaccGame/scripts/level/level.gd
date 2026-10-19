@@ -40,6 +40,11 @@ func _ready() -> void:
 	# if we have starting coordinates we apply them here
 	player.position = scene_manager.starting_coords
 	
+	# set position after cutscene
+	if global_manager.cutscene_starting_coordinates != Vector2(0,0):
+		player.position = global_manager.cutscene_starting_coordinates
+		global_manager.cutscene_starting_coordinates = Vector2(0,0)
+	
 	# make it true since we should load it.
 	scene_manager.load_checkpoint = true
 	
