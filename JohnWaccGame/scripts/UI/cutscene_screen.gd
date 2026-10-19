@@ -3,6 +3,7 @@ extends CanvasLayer
 # Cutscene Screen - By Ledouzy
 # Handles cutscene playback
 
+@export var cutscene_name: String
 
 var cutscene_instance
 var test # delete later
@@ -20,6 +21,7 @@ func play_cutscene(cutscene_name: String):
 		# instantiate it
 		cutscene_instance = cutscene.instantiate()
 		self.add_child(cutscene_instance)
+		cutscene_instance.play()
 	# if not found print error
 	else:
 		print("Error: Cutscene \"", name, " \" does not exist.")
@@ -37,9 +39,14 @@ func _process(delta: float) -> void:
 	# debug code
 	if Input.is_action_just_pressed("debug"):
 		if !test:
-			play_cutscene("himelia_reveal")
+			play_cutscene(cutscene_name)
 			test = true
 		else:
 			end_cutscene()
 			test = false
 	
+func _ready():
+	SignalBus.end_cutscene.connect(_on_end_cutscene)
+	
+func _on_end_cutscene():
+	end_cutscene()

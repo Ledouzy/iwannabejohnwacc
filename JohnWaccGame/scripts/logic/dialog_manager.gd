@@ -12,6 +12,7 @@ var selected_text = []
 var in_progress = false
 var timer: float = 0
 var delay_tolerance: float = 1
+var dialog_box_hidden = false
 
 # reference to the dialogue box where text is displayed
 @onready var dialog_box: Control = $CanvasLayer/DialogBox
@@ -26,11 +27,27 @@ func toggle_on_dialog_box():
 func toggle_off_dialog_box():
 	dialog_box.toggle_off_dialog_box()
 
+func display_dialog_on_top():
+	dialog_box.anchor_bottom = 1.0
+	dialog_box.anchor_top = 0.0
+	
+func display_dialog_on_bottom():
+	dialog_box.anchor_bottom = 0.0
+	dialog_box.anchor_top = 1.0
+	dialog_box.offset_top = -32
 
 # display the text with the portrait indicated
 func display_text(text: String, portrait_name: String = ""):
+	if dialog_box_hidden:
+		toggle_on_dialog_box()
+	
+	# if no portrait or text
+	if text == "" and portrait_name == "":
+		print("hide")
+		dialog_box_hidden = true
+		toggle_off_dialog_box()
 	# if no portrait mentionned
-	if portrait_name == "":
+	elif portrait_name == "":
 		# display without portrait
 		dialog_box.display_text(text)
 	else:
@@ -114,6 +131,7 @@ func _on_display_dialog(text_key):
 
 
 func _ready():
+	display_dialog_on_bottom()
 	# make sure the dialogue box is turned off
 	dialog_box.toggle_off_dialog_box()
 	# get the text for the scene

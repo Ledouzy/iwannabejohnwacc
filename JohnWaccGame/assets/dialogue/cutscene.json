@@ -1,0 +1,7 @@
+{
+	"himelia_reveal": [
+		{"portrait" : "princess_neutral", "text" : "Hello, I am the Princess."},
+		{"portrait" : "princess_neutral", "text" : "And this is cutscene."},
+		{"portrait" : "", "text" : ""},
+	],
+}

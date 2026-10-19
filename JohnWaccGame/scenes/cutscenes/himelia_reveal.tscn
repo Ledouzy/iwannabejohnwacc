@@ -1,16 +1,22 @@
 [gd_scene format=3 uid="uid://b1da8pc61vjp3"]
 
+[ext_resource type="Script" uid="uid://ckobcdgos4rlf" path="res://scenes/cutscenes/himelia_reveal.gd" id="1_o5fsi"]
 [ext_resource type="Texture2D" uid="uid://b3i1aijtwufcs" path="res://assets/Images/hime_reveal_bg.png" id="1_xqee6"]
 [ext_resource type="Texture2D" uid="uid://cvu8xqe4xrbhg" path="res://assets/Images/hime_reveal.png" id="2_o5fsi"]
 
 [node name="HimeliaReveal" type="CanvasLayer" unique_id=1039499203]
+process_mode = 3
+script = ExtResource("1_o5fsi")
+dialog_key = "himelia_reveal"
 
 [node name="Background" type="TextureRect" parent="." unique_id=1302516708]
+offset_top = -96.0
 offset_right = 160.0
-offset_bottom = 240.0
+offset_bottom = 144.0
 texture = ExtResource("1_xqee6")
 
 [node name="Sprite" type="TextureRect" parent="." unique_id=745018085]
+offset_top = 144.0
 offset_right = 160.0
-offset_bottom = 240.0
+offset_bottom = 384.0
 texture = ExtResource("2_o5fsi")
