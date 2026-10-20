@@ -57,6 +57,7 @@ var hookshot_cling = false
 # target of the hookshot
 var hookshot_target = null
 var can_hook = false
+var hook_is_returned = true
 
 # animation flags
 var jumpanim = false # play the animation once
@@ -544,6 +545,8 @@ func _physics_process(delta: float) -> void:
 	# logic for activating hookshot
 	if Input.is_action_just_pressed("hookshot") and ((!waitforanimationend and !pickupanim) or hookshot_cling) and !hookshot_active and !hookshot_target and !attackanim and can_hook:
 		can_hook = false
+		cant_jump = true
+		hook_is_returned = false
 		# disable flags set by wall cling
 		#hookshot_cling = false
 		
@@ -611,9 +614,9 @@ func _physics_process(delta: float) -> void:
 			# Reset to hide the hookshot
 			animation_player.play("hookReset")
 		else:
-			hook_1.position = Vector2(9, -8)
+			hook_1.position = Vector2(6, -16)
 			hook_1.rotation = 0
-			hook_2.position = Vector2(19,-8)
+			hook_2.position = Vector2(10,-16)
 			hook_2.rotation = 0
 			
 		
@@ -773,6 +776,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		hookshot_active = false
 		
 func hook_return(hook_direction):
+	if hook_is_returned:
+		return
+	hook_is_returned = true
+	cant_jump = false
 	# play the return animation for the correct direction
 	match hook_direction:
 		0: # up
