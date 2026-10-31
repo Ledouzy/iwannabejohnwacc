@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="3_s4lrb"]
 [ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/UI.tres" id="4_3yumr"]
 [ext_resource type="Texture2D" uid="uid://cn10vuuv10tnm" path="res://assets/UI/grid.png" id="4_e54dn"]
-[ext_resource type="Texture2D" uid="uid://h6lbnq1eafgy" path="res://assets/UI/main_menu_background_moon.png" id="4_sx02u"]
 [ext_resource type="PackedScene" uid="uid://dd623so28ui25" path="res://scenes/UI/options_screen.tscn" id="7_3yumr"]
 [ext_resource type="Script" uid="uid://dak7y1gd3ajdl" path="res://scripts/UI/first_button.gd" id="7_tklts"]
 [ext_resource type="PackedScene" uid="uid://b1oegl0o0afyl" path="res://scenes/UI/credit_screen.tscn" id="8_cs5ya"]
@@ -16,10 +15,6 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_e54dn"]
 font = ExtResource("3_s4lrb")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sx02u"]
-atlas = ExtResource("4_sx02u")
-region = Rect2(0, 0, 160, 144)
 
 [node name="TitleScreen" type="Control" unique_id=319287504]
 process_mode = 3
@@ -50,30 +45,17 @@ vertical_alignment = 2
 [node name="Background" type="TextureRect" parent="." unique_id=328635746]
 z_index = -10
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = -256.0
 offset_top = -72.0
-offset_right = 256.0
 offset_bottom = 72.0
+grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("1_fgkus")
-
-[node name="BGMoon" type="TextureRect" parent="." unique_id=905666762]
-z_index = -10
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = -72.0
-offset_right = 80.0
-offset_bottom = 72.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_sx02u")
 
 [node name="grid" type="TextureRect" parent="." unique_id=1557400561]
 visible = false
@@ -85,11 +67,8 @@ texture = ExtResource("4_e54dn")
 
 [node name="UI_elements" type="MarginContainer" parent="." unique_id=1702353622]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 161.0
+offset_bottom = 155.0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
