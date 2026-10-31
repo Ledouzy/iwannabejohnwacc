@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://jecwb5b25p78" path="res://assets/UI/main_menu_background.png" id="1_fgkus"]
 [ext_resource type="Texture2D" uid="uid://dmgcey242c8j4" path="res://assets/UI/logo.png" id="1_sa3yf"]
 [ext_resource type="FontFile" uid="uid://5awfie13afbl" path="res://assets/fonts/PixelOperator.ttf" id="3_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://ctv54tps4aeg3" path="res://assets/UI/main_menu_characters2.png" id="4_3nmny"]
 [ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/UI.tres" id="4_3yumr"]
 [ext_resource type="Texture2D" uid="uid://cn10vuuv10tnm" path="res://assets/UI/grid.png" id="4_e54dn"]
+[ext_resource type="Texture2D" uid="uid://c2m78lrecq7vv" path="res://assets/UI/main_menu_characters.png" id="4_sx02u"]
 [ext_resource type="PackedScene" uid="uid://dd623so28ui25" path="res://scenes/UI/options_screen.tscn" id="7_3yumr"]
 [ext_resource type="Script" uid="uid://dak7y1gd3ajdl" path="res://scripts/UI/first_button.gd" id="7_tklts"]
 [ext_resource type="PackedScene" uid="uid://b1oegl0o0afyl" path="res://scenes/UI/credit_screen.tscn" id="8_cs5ya"]
@@ -56,6 +58,32 @@ offset_bottom = 72.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("1_fgkus")
+
+[node name="Characters2" type="TextureRect" parent="." unique_id=2133143399]
+z_index = -10
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -72.0
+offset_right = 261.0
+offset_bottom = 72.0
+grow_vertical = 2
+texture = ExtResource("4_3nmny")
+
+[node name="Characters1" type="TextureRect" parent="." unique_id=773975291]
+z_index = -10
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -72.0
+offset_right = 274.0
+offset_bottom = 72.0
+grow_vertical = 2
+texture = ExtResource("4_sx02u")
 
 [node name="grid" type="TextureRect" parent="." unique_id=1557400561]
 visible = false
