@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dytiwk522x40r" path="res://scenes/logic/dialog_area.tscn" id="2_jx06t"]
 [ext_resource type="PackedScene" uid="uid://pgsyxf38iyvp" path="res://scenes/character/player_topdown.tscn" id="2_urjc2"]
 [ext_resource type="TileSet" uid="uid://ve75kdpktk4j" path="res://assets/Tilemaps/topdown_test.tres" id="3_jx06t"]
+[ext_resource type="Script" uid="uid://clu3xijl2ddsp" path="res://scripts/global/camera_topdown.gd" id="4_r1fhv"]
 [ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="6_urjc2"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="17_biuej"]
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="18_ic81f"]
@@ -37,11 +38,12 @@ position = Vector2(0, 64)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1814646841]
 process_callback = 0
-limit_left = -264
-limit_top = -288
-limit_right = 504
-limit_bottom = 96
+limit_left = -100
+limit_top = -100
+limit_right = 100
+limit_bottom = 70
 limit_smoothed = true
+script = ExtResource("4_r1fhv")
 
 [node name="Level" type="Node2D" parent="." unique_id=1009897138]
 z_index = -10
