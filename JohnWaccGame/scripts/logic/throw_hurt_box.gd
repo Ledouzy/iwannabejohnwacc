@@ -11,5 +11,5 @@ func _on_body_entered(body: Node2D) -> void:
 	super(body)
 	# make the enemy die
 	if (body != null && body != self) && body != character_body:
-		if self.has_method("take_damage"):
-			self.call_deferred("take_damage", 2)
+		if self.get_parent().get_parent().has_method("take_damage"):
+			self.get_parent().get_parent().call_deferred("take_damage", 2, Vector2(0,0))

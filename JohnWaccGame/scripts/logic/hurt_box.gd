@@ -43,8 +43,9 @@ func _physics_process(delta: float) -> void:
 	if !target.is_empty():
 		# if it's not empty
 		for t in target:
-			# call take damage on every target
-			t.call_deferred("take_damage",damage, direction)
+			if t != null:
+				# call take damage on every target
+				t.call_deferred("take_damage",damage, direction)
 
 
 func _on_body_exited(body: Node2D) -> void:

@@ -114,7 +114,8 @@ func thrown() -> void:
 	collision_shape_3.disabled = false
 	
 	# player does not collide with enemy
-	self.collision_layer = 0
+	self.collision_mask = 0b101
+	self.collision_layer = 0b0
 	
 	# go over the player
 	self.z_index = 1
@@ -140,7 +141,8 @@ func thrown() -> void:
 	self.y_sort_enabled = true
 	
 	# player can collide with enemy
-	self.collision_layer = 4
+	self.collision_mask = 0b111
+	self.collision_layer = 0b100
 	
 	velocity.x = move_toward(velocity.x, 0, 100)
 	velocity.y = move_toward(velocity.y, 0, 100)
