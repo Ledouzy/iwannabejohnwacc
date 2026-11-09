@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://c6sncqj6xsixm" path="res://scripts/UI/display_options_screen.gd" id="1_y00dx"]
 [ext_resource type="Texture2D" uid="uid://cybx686bfvt0l" path="res://assets/UI/ui_bigbox.png" id="2_jnvwv"]
 [ext_resource type="LabelSettings" uid="uid://djqms57dwnula" path="res://assets/fonts/default_text.tres" id="3_x3dci"]
-[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/UI_no_box.tres" id="4_vq1c8"]
-[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/UI.tres" id="5_t2gth"]
+[ext_resource type="Theme" uid="uid://u3py1nu5dm5d" path="res://assets/ressources/UI_no_box.tres" id="4_vq1c8"]
+[ext_resource type="Theme" uid="uid://divqfgclw4rhu" path="res://assets/ressources/UI.tres" id="5_t2gth"]
 [ext_resource type="Texture2D" uid="uid://c1oqsbfcfr6uc" path="res://assets/UI/ui_checkbox_focus.png" id="5_vq1c8"]
 [ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="7_vq1c8"]
 

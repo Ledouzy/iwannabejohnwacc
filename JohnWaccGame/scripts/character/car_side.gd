@@ -31,24 +31,24 @@ var walkDisabled = false
 # Reference to objects needed
 # taking damage
 @onready var health = MAX_HEALTH
-@onready var damage_timer: Timer = $DamageTimer # invulnerability frames basically
+@onready var damage_timer: Timer = $CarBody/DamageTimer # invulnerability frames basically
 
-@onready var throw_timer: Timer = $ThrowTimer
+@onready var throw_timer: Timer = $CarBody/ThrowTimer
 
 # Checks for Walls
-@onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
+@onready var ray_cast_right: RayCast2D = $CarBody/RayCastRight
+@onready var ray_cast_left: RayCast2D = $CarBody/RayCastLeft
 
 # Animation
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
+@onready var animated_sprite: AnimatedSprite2D = $CarBody/AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $CarBody/AnimationPlayer
+@onready var blink_animation_player: AnimationPlayer = $CarBody/BlinkAnimationPlayer
 
 # collision
-@onready var hurtbox_collision: CollisionShape2D = $HurtBox/CollisionShape2D
-@onready var collision_shape_2: CollisionShape2D = $CharacterBody2D2/CollisionShape2D2
-@onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
-@onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
+@onready var hurtbox_collision: CollisionShape2D = $CarBody/HurtBox/CollisionShape2D
+@onready var collision_shape_2: CollisionShape2D = $CollisionShape2D2
+@onready var collision_shape_3: CollisionShape2D = $CollisionShape2D
+@onready var thrown_hurt_box: CollisionShape2D = $CarBody/ThrowHurtBox/CollisionShape2D
 
 
 # set dead to true
@@ -56,6 +56,13 @@ func set_dead():
 	dead = true
 	deathanim = true
 	play_sfx("Death")
+	
+	collision_shape_2.disabled = true
+	collision_shape_3.disabled = true
+	
+	await get_tree().create_timer(2).timeout
+	
+	queue_free()
 
 # returns value of dead
 func is_dead() -> bool:
@@ -139,12 +146,11 @@ func take_damage(damage, direction) -> void:
 		if health <= 0:
 			# death if below 0
 			animation_player.play("death")
-
+			set_dead()
+			
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")
-			
-			
 			
 			# stop movement and lock until animation end
 			skipMoveProcess = true

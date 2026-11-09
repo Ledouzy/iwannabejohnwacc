@@ -13,11 +13,11 @@ var direction = Vector2(1,0) # direction that the knockback will be applied
 # when a body enters the area
 func _on_body_entered(body: Node2D) -> void:
 	# if body is not the parent of the hurtbox
-	if (body != null && body != self.get_parent()):
+	if (body != null && body != self):
 		# if it can take damage
 		if (body.has_method("take_damage")):
 			# get normal for the direction
-			direction = self.get_parent().position.direction_to(body.position+offset)
+			direction = self.position.direction_to(body.position+offset)
 
 			# call take damage on the body
 			body.call_deferred("take_damage",damage, direction)

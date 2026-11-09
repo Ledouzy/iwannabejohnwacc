@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpy5sdcomqdjx"]
 
-[ext_resource type="Animation" uid="uid://cuh1wioebaitd" path="res://blink.res" id="1_t7oc7"]
+[ext_resource type="Animation" uid="uid://cuh1wioebaitd" path="res://assets/ressources/blink.res" id="1_t7oc7"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_smehm"]
 _data = {

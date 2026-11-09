@@ -3,19 +3,29 @@
 [ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="1_lak5i"]
 [ext_resource type="Script" uid="uid://i1joucbc37b7" path="res://scripts/character/car_topdown.gd" id="2_8otuk"]
 
-[node name="CarTopdown" type="Node2D" unique_id=1601088451]
-z_as_relative = false
-y_sort_enabled = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lak5i"]
+size = Vector2(10, 9)
 
-[node name="Car" parent="." unique_id=1027794888 instance=ExtResource("1_lak5i")]
-z_as_relative = false
+[node name="CarTopdown" type="CharacterBody2D" unique_id=9262505]
+collision_layer = 4
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("2_8otuk")
 
-[node name="AnimatedSprite2D" parent="Car" index="0" unique_id=2036936847]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1598726653]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_lak5i")
+
+[node name="CarBody" parent="." unique_id=1027794888 instance=ExtResource("1_lak5i")]
+z_as_relative = false
+
+[node name="AnimatedSprite2D" parent="CarBody" index="0" unique_id=2036936847]
 animation = &"WalkBack"
 
-[connection signal="timeout" from="Car/DamageTimer" to="Car" method="_on_damage_timer_timeout"]
-[connection signal="timeout" from="Car/ThrowTimer" to="Car" method="_on_throw_timer_timeout"]
+[node name="ThrowHurtBox" parent="CarBody" index="1" unique_id=631934805 node_paths=PackedStringArray("character_body")]
+character_body = NodePath("../..")
 
-[editable path="Car"]
+[connection signal="timeout" from="CarBody/DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="CarBody/ThrowTimer" to="." method="_on_throw_timer_timeout"]
+
+[editable path="CarBody"]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bcfnr3wci4rq3" path="res://scenes/UI/base_button.tscn" id="3_0ra34"]
 [ext_resource type="Script" uid="uid://c3v4khsceub7u" path="res://scripts/UI/level_select_button.gd" id="4_1fmgh"]
 [ext_resource type="Script" uid="uid://s0pivjh6w7h1" path="res://scripts/UI/back_button.gd" id="4_ty08u"]
-[ext_resource type="Theme" uid="uid://v0arlr3tf6hg" path="res://assets/UI_small.tres" id="5_ty08u"]
+[ext_resource type="Theme" uid="uid://v0arlr3tf6hg" path="res://assets/ressources/UI_small.tres" id="5_ty08u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mi1ok"]
 line_spacing = 4.0
