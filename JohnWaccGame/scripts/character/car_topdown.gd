@@ -135,7 +135,6 @@ func thrown() -> void:
 	# wait a while, stop the object and wait again
 	await get_tree().create_timer(0.5).timeout
 	
-	
 	# reset z index
 	self.z_index = 0
 	self.y_sort_enabled = true

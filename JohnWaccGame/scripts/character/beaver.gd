@@ -39,30 +39,30 @@ var current_state = states.WAIT
 
 # taking damage
 @onready var health = MAX_HEALTH
-@onready var damage_timer: Timer = $DamageTimer # invulnerability frames basically
+@onready var damage_timer: Timer = $BeaverBody/DamageTimer # invulnerability frames basically
 
-@onready var throw_timer: Timer = $ThrowTimer
+@onready var throw_timer: Timer = $BeaverBody/ThrowTimer
 
 # Checks for Walls, Floor and Player
-@onready var wall_check_right: RayCast2D = $WallCheckRight
-@onready var wall_check_left: RayCast2D = $WallCheckLeft
+@onready var wall_check_right: RayCast2D = $BeaverBody/WallCheckRight
+@onready var wall_check_left: RayCast2D = $BeaverBody/WallCheckLeft
 
-@onready var floor_check_left: RayCast2D = $FloorCheckLeft
-@onready var floor_check_right: RayCast2D = $FloorCheckRight
+@onready var floor_check_left: RayCast2D = $BeaverBody/FloorCheckLeft
+@onready var floor_check_right: RayCast2D = $BeaverBody/FloorCheckRight
 
-@onready var player_check_right: RayCast2D = $PlayerCheckRight
-@onready var player_check_left: RayCast2D = $PlayerCheckLeft
+@onready var player_check_right: RayCast2D = $BeaverBody/PlayerCheckRight
+@onready var player_check_left: RayCast2D = $BeaverBody/PlayerCheckLeft
 
 # Reference to objects needed
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
+@onready var animated_sprite: AnimatedSprite2D = $BeaverBody/AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $BeaverBody/AnimationPlayer
+@onready var blink_animation_player: AnimationPlayer = $BeaverBody/BlinkAnimationPlayer
 
-@onready var collision_shape_2: CollisionShape2D = $CharacterBody2D/CollisionShape2D2
+@onready var collision_shape_2: CollisionShape2D = $CollisionShape2D2
 @onready var collision_shape_3: CollisionShape2D = $CollisionShape2D3
 
-@onready var hurtbox_collision: CollisionShape2D = $HurtBox/CollisionShape2D
-@onready var thrown_hurt_box: CollisionShape2D = $ThrowHurtBox/CollisionShape2D
+@onready var hurtbox_collision: CollisionShape2D = $BeaverBody/HurtBox/CollisionShape2D
+@onready var thrown_hurt_box: CollisionShape2D = $BeaverBody/ThrowHurtBox/CollisionShape2D
 
 # set dead to true
 func set_dead():
