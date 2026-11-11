@@ -216,6 +216,7 @@ joypads/ignore_joypad_on_unfocused_application=true
 2d_physics/layer_4="Dialog"
 2d_physics/layer_5="Hookshot"
 2d_physics/layer_6="NPC"
+2d_physics/layer_7="Spring"
 
 [physics]
 

@@ -2,9 +2,7 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	# if body exists
-	if (body != null):
+	if (body != null && body.has_method("set_dead")):
 		# get the animation player
-		var temp = body.get_node("AnimationPlayer")
+		body.call_deferred("set_dead")
 		# if it exists, call the death animation
-		if temp != null:
-			temp.play("death")

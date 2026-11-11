@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="4_kocsj"]
 [ext_resource type="PackedScene" uid="uid://cai4obhmdjsmr" path="res://scenes/objects/grapplepoint.tscn" id="5_uidxl"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="6_2p150"]
-[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="6_eswb4"]
+[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver_side.tscn" id="6_eswb4"]
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="7_uidxl"]
 [ext_resource type="PackedScene" uid="uid://cqfvfe8griydo" path="res://scenes/character/hime.tscn" id="9_kocsj"]
 [ext_resource type="PackedScene" uid="uid://d3x5bi32l5htu" path="res://scenes/character/lance.tscn" id="9_uidxl"]

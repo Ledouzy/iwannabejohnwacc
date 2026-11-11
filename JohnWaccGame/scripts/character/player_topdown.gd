@@ -94,6 +94,8 @@ func is_dead() -> bool:
 
 ## Setter: Set the bools for true so that we can call from other scripts
 func set_dead():
+	play_sfx("death")
+	animation_player.play("death")
 	# set health to 0 so it doesn't look weird
 	health = 0
 	# we are dead
@@ -155,7 +157,7 @@ func take_damage(damage,direction) -> void:
 		# check if below 0
 		if health <= 0:
 			# death if below 0
-			animation_player.play("death")
+			set_dead()
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")

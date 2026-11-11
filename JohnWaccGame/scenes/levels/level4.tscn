@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://8m1dkw6luhaf" path="res://assets/sprites/Background/bg3_layer1.png" id="4_xx6b8"]
 [ext_resource type="Texture2D" uid="uid://byhvpe28gnkxk" path="res://assets/sprites/Background/bg3_layer2.png" id="5_f62st"]
 [ext_resource type="Texture2D" uid="uid://ca784ejitq1ww" path="res://assets/sprites/Background/bg3_layer3.png" id="6_w24lh"]
-[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="9_f62st"]
+[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver_side.tscn" id="9_f62st"]
 [ext_resource type="TileSet" uid="uid://b8wbu8hulh0l5" path="res://assets/Tilemaps/world_test.tres" id="10_1wpw8"]
 [ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="11_w1hcc"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="12_ph4mq"]

@@ -1,17 +1,10 @@
-[gd_scene format=3 uid="uid://1uqlk2q32rv4"]
+[gd_scene format=3 uid="uid://dux87lhxs8hm8"]
 
-[ext_resource type="Script" uid="uid://crcd46s4jvkg8" path="res://scripts/character/beaver.gd" id="1_3wayd"]
 [ext_resource type="Texture2D" uid="uid://cnxv404xpghfl" path="res://assets/sprites/Characters/beaver.png" id="1_cke00"]
 [ext_resource type="PackedScene" uid="uid://coq2uybjf1tjk" path="res://scenes/logic/throw_hurt_box.tscn" id="3_yp1mp"]
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="4_mrwi6"]
 [ext_resource type="Script" uid="uid://ba3ucmsirbli1" path="res://scripts/logic/hurt_box.gd" id="5_p6haj"]
-[ext_resource type="PackedScene" uid="uid://ccuol7nug10h3" path="res://scenes/logic/blink_short_animation_player.tscn" id="6_x5011"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cke00"]
-size = Vector2(10, 2)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yp1mp"]
-size = Vector2(10, 13)
+[ext_resource type="Animation" uid="uid://cuh1wioebaitd" path="res://assets/ressources/blink.res" id="6_yp1mp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yp1mp"]
 atlas = ExtResource("1_cke00")
@@ -191,31 +184,31 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BeaverBody/AnimatedSprite2D:visible")
+tracks/0/path = NodePath("BeaverBody/HurtBox/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/path = NodePath("BeaverBody/WallCheckRight:enabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D3:disabled")
+tracks/2/path = NodePath("BeaverBody/ThrowHurtBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -223,54 +216,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BeaverBody/HurtBox/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BeaverBody/WallCheckRight:enabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BeaverBody/WallCheckLeft:enabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("BeaverBody/ThrowHurtBox/CollisionShape2D:disabled")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jtldb"]
@@ -291,7 +236,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D2:disabled")
+tracks/1/path = NodePath("BeaverBody/HurtBox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -303,58 +248,22 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D3:disabled")
+tracks/2/path = NodePath("BeaverBody/WallCheckRight:enabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
-tracks/3/type = "value"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BeaverBody/HurtBox/CollisionShape2D:disabled")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BeaverBody/WallCheckRight:enabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BeaverBody/WallCheckLeft:enabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -365,13 +274,13 @@ tracks/6/keys = {
 "method": &"queue_free"
 }]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("BeaverBody/ThrowHurtBox/CollisionShape2D:disabled")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BeaverBody/ThrowHurtBox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -384,87 +293,73 @@ _data = {
 &"death": SubResource("Animation_jtldb")
 }
 
-[node name="Beaver" type="CharacterBody2D" unique_id=588698386]
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("1_3wayd")
-speed = 30
-MAX_HEALTH = 3
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3p5lm"]
+_data = {
+&"blink": ExtResource("6_yp1mp")
+}
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1864582220]
-position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_cke00")
-one_way_collision = true
+[node name="BeaverBody" type="Node2D" unique_id=1350051609]
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=298362402]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_yp1mp")
-
-[node name="BeaverBody" type="Node2D" parent="." unique_id=954973666]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BeaverBody" unique_id=1783104354]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=4629670]
 sprite_frames = SubResource("SpriteFrames_ebhbi")
 animation = &"WalkSide"
 
-[node name="ThrowHurtBox" parent="BeaverBody" unique_id=631934805 node_paths=PackedStringArray("character_body") instance=ExtResource("3_yp1mp")]
-character_body = NodePath("../..")
+[node name="ThrowHurtBox" parent="." unique_id=631934805 instance=ExtResource("3_yp1mp")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeaverBody/ThrowHurtBox" unique_id=1343191308]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowHurtBox" unique_id=1471899405]
 shape = SubResource("CircleShape2D_j1i4f")
-disabled = true
 
-[node name="HurtBox" parent="BeaverBody" unique_id=1345927244 instance=ExtResource("4_mrwi6")]
+[node name="HurtBox" parent="." unique_id=686080954 instance=ExtResource("4_mrwi6")]
 script = ExtResource("5_p6haj")
 damage = 1
 offset = Vector2(0, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeaverBody/HurtBox" unique_id=1159768383]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=359417590]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_mrwi6")
 
-[node name="FloorCheckLeft" type="RayCast2D" parent="BeaverBody" unique_id=1123366367]
+[node name="FloorCheckLeft" type="RayCast2D" parent="." unique_id=1723922888]
 position = Vector2(-7, 2)
 target_position = Vector2(0, 8)
 
-[node name="FloorCheckRight" type="RayCast2D" parent="BeaverBody" unique_id=1248666348]
+[node name="FloorCheckRight" type="RayCast2D" parent="." unique_id=857526844]
 position = Vector2(6, 2)
 target_position = Vector2(0, 8)
 
-[node name="PlayerCheckRight" type="RayCast2D" parent="BeaverBody" unique_id=283426229]
+[node name="PlayerCheckRight" type="RayCast2D" parent="." unique_id=1635426647]
 position = Vector2(0, 2)
 target_position = Vector2(-48, 0)
 collision_mask = 2
 
-[node name="PlayerCheckLeft" type="RayCast2D" parent="BeaverBody" unique_id=989064135]
+[node name="PlayerCheckLeft" type="RayCast2D" parent="." unique_id=1302313889]
 position = Vector2(0, 2)
 target_position = Vector2(48, 0)
 collision_mask = 2
 
-[node name="WallCheckRight" type="RayCast2D" parent="BeaverBody" unique_id=1371815581]
+[node name="WallCheckRight" type="RayCast2D" parent="." unique_id=1969331415]
 position = Vector2(0, 2)
 target_position = Vector2(-10, 0)
 collision_mask = 5
 
-[node name="WallCheckLeft" type="RayCast2D" parent="BeaverBody" unique_id=858081482]
+[node name="WallCheckLeft" type="RayCast2D" parent="." unique_id=919897757]
 position = Vector2(0, 2)
+enabled = false
 target_position = Vector2(10, 0)
 collision_mask = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BeaverBody" unique_id=576094270]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=55645571]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_ah7ws")
 
-[node name="DamageTimer" type="Timer" parent="BeaverBody" unique_id=1246546987]
+[node name="DamageTimer" type="Timer" parent="." unique_id=1133835861]
 wait_time = 0.5
 one_shot = true
 
-[node name="BlinkAnimationPlayer" parent="BeaverBody" unique_id=1277852578 instance=ExtResource("6_x5011")]
-root_node = NodePath("../..")
-
-[node name="ThrowTimer" type="Timer" parent="BeaverBody" unique_id=1026028961]
+[node name="ThrowTimer" type="Timer" parent="." unique_id=1162938228]
 wait_time = 2.0
 one_shot = true
 
-[connection signal="body_exited" from="BeaverBody/HurtBox" to="BeaverBody/HurtBox" method="_on_body_exited"]
-[connection signal="timeout" from="BeaverBody/DamageTimer" to="." method="_on_damage_timer_timeout"]
-[connection signal="timeout" from="BeaverBody/ThrowTimer" to="." method="_on_throw_timer_timeout"]
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="." unique_id=293996978]
+libraries/ = SubResource("AnimationLibrary_3p5lm")
+
+[connection signal="body_exited" from="HurtBox" to="HurtBox" method="_on_body_exited"]

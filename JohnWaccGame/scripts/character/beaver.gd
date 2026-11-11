@@ -66,9 +66,17 @@ var current_state = states.WAIT
 
 # set dead to true
 func set_dead():
+	animation_player.play("death")
 	dead = true
 	deathanim = true
 	play_sfx("Death")
+	
+	collision_shape_2.disabled = true
+	collision_shape_3.disabled = true
+	
+	await get_tree().create_timer(2).timeout
+	
+	queue_free()
 
 # returns value of dead
 func is_dead() -> bool:
@@ -154,7 +162,7 @@ func take_damage(damage, direction) -> void:
 		# check if below 0
 		if health <= 0:
 			# death if below 0
-			animation_player.play("death")
+			set_dead()
 		else:
 			# plays damage animation
 			animated_sprite.play("TakeDamage")
@@ -212,8 +220,8 @@ func _physics_process(delta: float) -> void:
 
 	if startThrow:
 		# apply force for the throw
-		velocity.x += 18 * dir
-		velocity.y -= 10
+		velocity.x += 1250 * delta * dir
+		velocity.y -= 350 * delta
 	elif pickedUpBy != null:
 		# apply the same movement as the player and direction
 		var temp = Input.get_axis("left", "right")

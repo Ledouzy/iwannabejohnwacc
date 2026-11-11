@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b58x086lhdmmk" path="res://scenes/logic/killzone.tscn" id="4_oxtmp"]
 [ext_resource type="PackedScene" uid="uid://dtitmamsbpfdm" path="res://scenes/character/birb.tscn" id="5_oxtmp"]
 [ext_resource type="PackedScene" uid="uid://bvu2nnk362e0a" path="res://scenes/character/car_side.tscn" id="6_oxtmp"]
-[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="6_t5p8u"]
+[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver_side.tscn" id="6_t5p8u"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="7_ptnqk"]
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="8_tt7i6"]
 [ext_resource type="PackedScene" uid="uid://d3x5bi32l5htu" path="res://scenes/character/lance.tscn" id="9_sleal"]
@@ -65,17 +65,17 @@ position = Vector2(304, -34)
 
 [node name="CarSide" parent="Level/Enemies" unique_id=2118649542 instance=ExtResource("6_oxtmp")]
 
-[node name="Car" parent="Level/Enemies/CarSide" index="0" unique_id=1027794888]
+[node name="CarBody" parent="Level/Enemies/CarSide" index="1" unique_id=1027794888]
 position = Vector2(173, -12)
 
 [node name="CarSide2" parent="Level/Enemies" unique_id=2077113187 instance=ExtResource("6_oxtmp")]
 
-[node name="Car" parent="Level/Enemies/CarSide2" index="0" unique_id=1027794888]
+[node name="CarBody" parent="Level/Enemies/CarSide2" index="1" unique_id=1027794888]
 position = Vector2(203, -12)
 
 [node name="CarSide3" parent="Level/Enemies" unique_id=131680205 instance=ExtResource("6_oxtmp")]
 
-[node name="Car" parent="Level/Enemies/CarSide3" index="0" unique_id=1027794888]
+[node name="CarBody" parent="Level/Enemies/CarSide3" index="1" unique_id=1027794888]
 position = Vector2(315, -14)
 
 [node name="Beaver" parent="Level/Enemies" unique_id=588698386 instance=ExtResource("6_t5p8u")]
@@ -124,9 +124,9 @@ position = Vector2(152, -25)
 shape = SubResource("RectangleShape2D_ihebq")
 
 [editable path="Level/Enemies/CarSide"]
-[editable path="Level/Enemies/CarSide/Car"]
+[editable path="Level/Enemies/CarSide/CarBody"]
 [editable path="Level/Enemies/CarSide2"]
-[editable path="Level/Enemies/CarSide2/Car"]
+[editable path="Level/Enemies/CarSide2/CarBody"]
 [editable path="Level/Enemies/CarSide3"]
-[editable path="Level/Enemies/CarSide3/Car"]
+[editable path="Level/Enemies/CarSide3/CarBody"]
 [editable path="Lance/DialogAreaTest"]

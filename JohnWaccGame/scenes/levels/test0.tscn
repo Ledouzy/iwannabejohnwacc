@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bxywk3cyha3sj" path="res://scenes/logic/level_transition.tscn" id="19_6qc4b"]
 [ext_resource type="PackedScene" uid="uid://drf1doidx3rhd" path="res://scenes/objects/checkpoint.tscn" id="20_1u6qs"]
 [ext_resource type="PackedScene" uid="uid://blxo7j5lbqkgk" path="res://scenes/character/car.tscn" id="21_warkj"]
-[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver.tscn" id="22_25e2h"]
+[ext_resource type="PackedScene" uid="uid://1uqlk2q32rv4" path="res://scenes/character/beaver_side.tscn" id="22_25e2h"]
 [ext_resource type="PackedScene" uid="uid://27r6pjij1ih4" path="res://scenes/logic/game_manager.tscn" id="23_lmfra"]
 [ext_resource type="PackedScene" uid="uid://dlfuuuyjvddts" path="res://scenes/logic/dialog_manager.tscn" id="24_qg7kj"]
 

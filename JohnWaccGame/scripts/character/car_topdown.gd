@@ -56,6 +56,7 @@ var startThrow = false
 
 # set dead to true
 func set_dead():
+	animation_player.play("death")
 	dead = true
 	deathanim = true
 	
@@ -179,7 +180,6 @@ func take_damage(damage, direction) -> void:
 		# check if below 0
 		if health <= 0:
 			# death if below 0
-			animation_player.play("death")
 			set_dead()
 		else:
 			# plays damage animation
