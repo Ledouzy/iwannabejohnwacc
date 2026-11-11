@@ -198,8 +198,3 @@ shape = SubResource("WorldBoundaryShape2D_ngf84")
 [node name="Springs" type="Node2D" parent="Level" unique_id=2102919483]
 
 [node name="Coins" type="Node2D" parent="Level" unique_id=2016997388]
-
-[connection signal="body_entered" from="Player/PlayerBody/SwordFrontHurtBox2" to="Player/PlayerBody" method="_on_sword_down_body_entered"]
-
-[editable path="Player"]
-[editable path="Player/PlayerBody"]

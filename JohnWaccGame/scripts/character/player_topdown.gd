@@ -94,7 +94,7 @@ func is_dead() -> bool:
 
 ## Setter: Set the bools for true so that we can call from other scripts
 func set_dead():
-	play_sfx("death")
+	play_sfx("Death")
 	animation_player.play("death")
 	# set health to 0 so it doesn't look weird
 	health = 0
@@ -142,7 +142,8 @@ func take_damage(damage,direction) -> void:
 		invulnerable = true
 		
 		# make us not collide with enemies 
-		player_body.collision_mask = 1
+		player_body.collision_mask = 0b001
+		player_body.collision_layer = 0b1001000
 		
 		# start invulnerability timer
 		damage_timer.start()
@@ -178,7 +179,8 @@ func take_damage(damage,direction) -> void:
 			await blink_animation_player.animation_finished
 			
 		# set mask back to collide with enemies
-		player_body.collision_mask = 5
+		player_body.collision_mask = 0b101
+		player_body.collision_layer = 0b1001010
 
 
 # increase the health of the player by the amount specified

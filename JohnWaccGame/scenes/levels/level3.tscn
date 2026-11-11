@@ -101,7 +101,5 @@ left_right = false
 [node name="CarTopdown2" parent="." unique_id=1931494406 instance=ExtResource("5_wb0vq")]
 position = Vector2(17, 39)
 
-[editable path="Player"]
-[editable path="Player/PlayerBody"]
 [editable path="DialogAreaTest"]
 [editable path="DialogAreaTest2"]

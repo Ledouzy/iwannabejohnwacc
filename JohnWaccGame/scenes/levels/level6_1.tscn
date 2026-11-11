@@ -48,7 +48,7 @@ tile_set = ExtResource("4_h5ktk")
 [node name="Door" parent="Level" unique_id=1271508214 node_paths=PackedStringArray("player") instance=ExtResource("5_tue62")]
 position = Vector2(8, -64)
 next_scene_name = "level6"
-player = NodePath("../../Player/PlayerBody")
+player = NodePath("../../Player")
 starting_coords = Vector2(136, -8)
 
 [node name="Enemies" type="Node2D" parent="Level" unique_id=265724129]
@@ -91,6 +91,3 @@ one_time_dialog = true
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DialogArea" unique_id=54184792]
 position = Vector2(3, -3)
 shape = SubResource("RectangleShape2D_ihebq")
-
-[editable path="Player"]
-[editable path="Player/PlayerBody"]
