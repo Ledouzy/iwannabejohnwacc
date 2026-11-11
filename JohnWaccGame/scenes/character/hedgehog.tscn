@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://r2831cnb74l8"]
+
+[ext_resource type="Script" uid="uid://c3u7vw3jm5dl7" path="res://scripts/character/hedgehog.gd" id="1_4p5vq"]
+[ext_resource type="Texture2D" uid="uid://chtidqu8yrjfh" path="res://assets/sprites/Characters/hedgehog.png" id="2_4maus"]
+[ext_resource type="PackedScene" uid="uid://c118octxh7v0b" path="res://scenes/logic/hurt_box.tscn" id="2_nqqoc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8r4a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wv2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8bc1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihebq"]
+size = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6x4r8"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p5vq"]
+atlas = ExtResource("2_4maus")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqays"]
+atlas = ExtResource("2_4maus")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr6se"]
+atlas = ExtResource("2_4maus")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyl13"]
+atlas = ExtResource("2_4maus")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdirs"]
+atlas = ExtResource("2_4maus")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y70xw"]
+atlas = ExtResource("2_4maus")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pq1o"]
+atlas = ExtResource("2_4maus")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx0ss"]
+atlas = ExtResource("2_4maus")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4jn3"]
+atlas = ExtResource("2_4maus")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xktlk"]
+atlas = ExtResource("2_4maus")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq63m"]
+atlas = ExtResource("2_4maus")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4maus"]
+atlas = ExtResource("2_4maus")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihebq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p5vq")
+}],
+"loop": 1,
+"name": &"IdleSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqays")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr6se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyl13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdirs")
+}],
+"loop": 1,
+"name": &"JumpSide",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y70xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pq1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx0ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4jn3")
+}],
+"loop": 1,
+"name": &"RollSide",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xktlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq63m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4maus")
+}],
+"loop": 1,
+"name": &"WalkSide",
+"speed": 5.0
+}]
+
+[node name="Hedgehog" type="CharacterBody2D" unique_id=1541852465]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_4p5vq")
+
+[node name="WallCheckRight" type="RayCast2D" parent="." unique_id=63535624]
+target_position = Vector2(16, 0)
+
+[node name="WallCheckLeft" type="RayCast2D" parent="." unique_id=1519322066]
+target_position = Vector2(-16, 0)
+
+[node name="VisibilityCastRight" type="ShapeCast2D" parent="." unique_id=1030163155]
+visible = false
+position = Vector2(10, 3)
+shape = SubResource("RectangleShape2D_s8r4a")
+target_position = Vector2(32, 0)
+collision_mask = 2
+
+[node name="VisibilityCastLeft" type="ShapeCast2D" parent="." unique_id=2073280210]
+visible = false
+position = Vector2(-10, 3)
+shape = SubResource("RectangleShape2D_6wv2l")
+target_position = Vector2(-32, 0)
+collision_mask = 2
+
+[node name="JumpCast" type="ShapeCast2D" parent="." unique_id=645117106]
+visible = false
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_c8bc1")
+target_position = Vector2(32, 0)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2132310298]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ihebq")
+
+[node name="HurtBox" parent="." unique_id=42430512 instance=ExtResource("2_nqqoc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1162100004]
+shape = SubResource("RectangleShape2D_6x4r8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=986303931]
+sprite_frames = SubResource("SpriteFrames_ihebq")
+animation = &"WalkSide"
+frame_progress = 0.5930971
+
+[node name="RollTimer" type="Timer" parent="." unique_id=1070304708]
+
+[node name="JumpTimer" type="Timer" parent="." unique_id=2078741584]
+wait_time = 2.0
+
+[connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

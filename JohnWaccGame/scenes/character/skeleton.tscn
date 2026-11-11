@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cq2nqnu0qvbdf"]
 
 [ext_resource type="Texture2D" uid="uid://bwnu0vney4mk1" path="res://assets/sprites/Characters/skeleton.png" id="1_twu1u"]
+[ext_resource type="PackedScene" uid="uid://c118octxh7v0b" path="res://scenes/logic/hurt_box.tscn" id="2_auywf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_auywf"]
 atlas = ExtResource("1_twu1u")
@@ -40,6 +41,16 @@ region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0udbn"]
 animations = [{
+"frames": [],
+"loop": 0,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 0,
+"name": &"DeathTopdown",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_auywf")
@@ -62,6 +73,16 @@ animations = [{
 }],
 "loop": 1,
 "name": &"IdleSide",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 0,
+"name": &"JumpSide",
+"speed": 15.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"TakeDamage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -98,18 +119,47 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_twu1u"]
-size = Vector2(9, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnpsg"]
+size = Vector2(9, 16)
 
-[node name="Skeleton" type="CharacterBody2D" unique_id=176213425]
-collision_mask = 3
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10dqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_todre"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7kus"]
+
+[node name="SkeletonBody" type="Node2D" unique_id=1092910705]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=836112402]
 sprite_frames = SubResource("SpriteFrames_0udbn")
-animation = &"WalkSide"
-frame = 1
-frame_progress = 0.380761
+animation = &"IdleSide"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=897792819]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_twu1u")
+[node name="HurtBox" parent="." unique_id=631934805 instance=ExtResource("2_auywf")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1149056122]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_hnpsg")
+
+[node name="VisibilityCastRight" type="ShapeCast2D" parent="." unique_id=1582616264]
+visible = false
+position = Vector2(10, 3)
+shape = SubResource("RectangleShape2D_10dqq")
+target_position = Vector2(64, 0)
+collision_mask = 2
+
+[node name="VisibilityCastLeft" type="ShapeCast2D" parent="." unique_id=1209184071]
+visible = false
+position = Vector2(-10, 3)
+shape = SubResource("RectangleShape2D_todre")
+target_position = Vector2(-64, 0)
+collision_mask = 2
+
+[node name="JumpCast" type="ShapeCast2D" parent="." unique_id=241295078]
+visible = false
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_t7kus")
+target_position = Vector2(32, 0)
+collision_mask = 2
+
+[node name="JumpTimer" type="Timer" parent="." unique_id=1659399531]
+wait_time = 2.0

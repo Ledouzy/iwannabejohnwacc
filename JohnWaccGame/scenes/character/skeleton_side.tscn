@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ct2s5aa8ds5wg"]
+
+[ext_resource type="Script" uid="uid://dl627qr17b1ov" path="res://scripts/character/skeleton.gd" id="1_3n47f"]
+[ext_resource type="PackedScene" uid="uid://cq2nqnu0qvbdf" path="res://scenes/character/skeleton.tscn" id="2_4c1ld"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3txi5"]
+size = Vector2(9, 16)
+
+[node name="SkeletonSide" type="CharacterBody2D" unique_id=86304550 node_paths=PackedStringArray("jump_timer")]
+script = ExtResource("1_3n47f")
+jump_timer = NodePath("SkeletonBody/JumpTimer")
+
+[node name="SkeletonBody" parent="." unique_id=1092910705 instance=ExtResource("2_4c1ld")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=139294733]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_3txi5")
+
+[connection signal="timeout" from="SkeletonBody/JumpTimer" to="." method="_on_jump_timer_timeout"]
+
+[editable path="SkeletonBody"]

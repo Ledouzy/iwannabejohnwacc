@@ -35,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://dfqp6f5tjadh7" path="res://assets/audio/sounds/crumble.wav" id="29_ev03v"]
 [ext_resource type="AudioStream" uid="uid://dpln3iqey1m2a" path="res://assets/audio/sounds/door.wav" id="29_fjopx"]
 [ext_resource type="AudioStream" uid="uid://r5ankqvpu0qt" path="res://assets/audio/sounds/engine.wav" id="30_m1r0i"]
+[ext_resource type="AudioStream" uid="uid://bnugd37i3gw1j" path="res://assets/audio/sounds/spin2.wav" id="31_4s3rc"]
 [ext_resource type="AudioStream" uid="uid://c8s88jlf325dj" path="res://assets/audio/sounds/propeller.wav" id="31_6wyhb"]
 [ext_resource type="AudioStream" uid="uid://bfq3ehvslkt75" path="res://assets/audio/sounds/propeller_low.wav" id="32_vcaqx"]
 
@@ -134,6 +135,12 @@ stream = ExtResource("17_kjlye")
 max_distance = 256.0
 bus = &"SFX"
 
+[node name="SkeletonJump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=160490348]
+stream = ExtResource("17_kjlye")
+pitch_scale = 0.8
+max_distance = 256.0
+bus = &"SFX"
+
 [node name="Death" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1413912158]
 stream = ExtResource("8_pc3ia")
 max_distance = 256.0
@@ -223,6 +230,14 @@ process_mode = 3
 stream = ExtResource("29_fjopx")
 volume_db = -2.0
 pitch_scale = 0.9
+
+[node name="HedgehogJump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=334865792]
+stream = ExtResource("17_kjlye")
+pitch_scale = 0.9
+
+[node name="Spin" type="AudioStreamPlayer2D" parent="Sounds" unique_id=294790891]
+stream = ExtResource("31_4s3rc")
+volume_db = 8.0
 
 [node name="BGS" type="Node" parent="." unique_id=1326326623]
 
